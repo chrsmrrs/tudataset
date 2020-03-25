@@ -1,14 +1,46 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Borgwardt \& Kriegel(2005)Borgwardt and Kriegel]{Bor+2005}
+Borgwardt, K.~M. and Kriegel, H.-P.
+\newblock Shortest-path kernels on graphs.
+\newblock In \emph{IEEE International Conference on Data Mining}, pp.\  74--81,
+  2005.
+
+\bibitem[Bruna et~al.(2014)Bruna, Zaremba, Szlam, and LeCun]{Bru+2014}
+Bruna, J., Zaremba, W., Szlam, A., and LeCun, Y.
+\newblock Spectral networks and deep locally connected networks on graphs.
+\newblock In \emph{International Conference on Learning Representation}, 2014.
+
+\bibitem[Defferrard et~al.(2016)Defferrard, X., and Vandergheynst]{Def+2015}
+Defferrard, M., X., B., and Vandergheynst, P.
+\newblock Convolutional neural networks on graphs with fast localized spectral
+  filtering.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pp.\
+  3844--3852, 2016.
+
+\bibitem[Duvenaud et~al.(2015)Duvenaud, Maclaurin, Iparraguirre, Bombarell,
+  Hirzel, Aspuru-Guzik, and Adams]{Duv+2015}
+Duvenaud, D.~K., Maclaurin, D., Iparraguirre, J., Bombarell, R., Hirzel, T.,
+  Aspuru-Guzik, A., and Adams, R.~P.
+\newblock Convolutional networks on graphs for learning molecular fingerprints.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pp.\
+  2224--2232, 2015.
+
 \bibitem[Fey \& Lenssen(2019)Fey and Lenssen]{Fey+2019}
 Fey, M. and Lenssen, J.~E.
 \newblock Fast graph representation learning with pytorch geometric.
 \newblock \emph{CoRR}, abs/1903.02428, 2019.
+
+\bibitem[G\"{a}rtner et~al.(2003)G\"{a}rtner, Flach, and Wrobel]{Gaertner2003}
+G\"{a}rtner, T., Flach, P., and Wrobel, S.
+\newblock On graph kernels: {H}ardness results and efficient alternatives.
+\newblock In \emph{Learning Theory and Kernel Machines}, volume 2777 of
+  \emph{Lecture Notes in Computer Science}, pp.\  129--143. 2003.
 
 \bibitem[Gilmer et~al.(2017)Gilmer, Schoenholz, Riley, Vinyals, and
   Dahl]{Gil+2017}
@@ -16,17 +48,108 @@ Gilmer, J., Schoenholz, S.~S., Riley, P.~F., Vinyals, O., and Dahl, G.~E.
 \newblock Neural message passing for quantum chemistry.
 \newblock In \emph{International Conference on Machine Learning}, 2017.
 
-\bibitem[Hamilton et~al.(2017)Hamilton, Ying, and Leskovec]{Ham+2017a}
+\bibitem[Hamilton et~al.(2017)Hamilton, Ying, and Leskovec]{Ham+2017}
 Hamilton, W.~L., Ying, R., and Leskovec, J.
-\newblock Representation learning on graphs: Methods and applications.
-\newblock \emph{{IEEE} Data Engineering Bulletin}, 40\penalty0 (3):\penalty0
-  52--74, 2017.
+\newblock Inductive representation learning on large graphs.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pp.\
+  1025--1035, 2017.
+
+\bibitem[Kipf \& Welling(2017)Kipf and Welling]{Kip+2017}
+Kipf, T.~N. and Welling, M.
+\newblock Semi-supervised classification with graph convolutional networks.
+\newblock In \emph{International Conference on Learning Representations}, 2017.
+
+\bibitem[Kireev(1995)]{Kir+1995}
+Kireev, D.~B.
+\newblock Chemnet: A novel neural network based method for graph/property
+  mapping.
+\newblock \emph{Journal of Chemical Information and Computer Sciences},
+  35\penalty0 (2):\penalty0 175--180, 1995.
+\newblock ACS.
+
+\bibitem[Kondor \& Pan(2016)Kondor and Pan]{Kon+2016}
+Kondor, R. and Pan, H.
+\newblock The multiscale laplacian graph kernel.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pp.\
+  2982--2990. NIPS, 2016.
+
+\bibitem[Kriege et~al.(2016)Kriege, Giscard, and Wilson]{Kri+2016}
+Kriege, N.~M., Giscard, P.-L., and Wilson, R.~C.
+\newblock On valid optimal assignment kernels and applications to graph
+  classification.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pp.\
+  1615--1623. NIPS, 2016.
+
+\bibitem[Kriege et~al.(2017)Kriege, Neumann, Morris, Kersting, and
+  Mutzel]{Kri+2017b}
+Kriege, N.~M., Neumann, M., Morris, C., Kersting, K., and Mutzel, P.
+\newblock A unifying view of explicit and implicit feature maps for structured
+  data: Systematic studies of graph kernels.
+\newblock \emph{CoRR}, abs/1703.00676, 2017.
+\newblock Accepted for publication in \emph{Data Mining and Knowledge
+  Discovery}.
 
 \bibitem[Kriege et~al.(2019)Kriege, Johansson, and Morris]{Kri+2019}
 Kriege, N.~M., Johansson, F.~D., and Morris, C.
 \newblock A survey on graph kernels.
 \newblock \emph{CoRR}, abs/1903.11835, 2019.
 \newblock Accepted for publication in \emph{Applied Network Science}.
+
+\bibitem[Li et~al.(2016)Li, Saidi, Sanchez, Sch{\"{a}}f, and
+  Schweitzer]{Li+2016}
+Li, W., Saidi, H., Sanchez, H., Sch{\"{a}}f, M., and Schweitzer, P.
+\newblock Detecting similar programs via the {W}eisfeiler-{L}eman graph kernel.
+\newblock In \emph{International Conference on Software Reuse}, pp.\  315--330,
+  2016.
+
+\bibitem[Merkwirth \& Lengauer(2005)Merkwirth and Lengauer]{Mer+2005}
+Merkwirth, C. and Lengauer, T.
+\newblock Automatic generation of complementary descriptors with molecular
+  graph networks.
+\newblock \emph{Journal of Chemical Information and Modeling}, 45\penalty0
+  (5):\penalty0 1159--1168, 2005.
+
+\bibitem[Morris et~al.(2017)Morris, Kersting, and Mutzel]{Mor+2017}
+Morris, C., Kersting, K., and Mutzel, P.
+\newblock Glocalized {W}eisfeiler-{L}ehman kernels: Global-local feature maps
+  of graphs.
+\newblock In \emph{IEEE International Conference on Data Mining}, pp.\
+  327--336, 2017.
+
+\bibitem[Nikolentzos et~al.(2017)Nikolentzos, Meladianos, and
+  Vazirgiannis]{Nik+2017}
+Nikolentzos, G., Meladianos, P., and Vazirgiannis, M.
+\newblock Matching node embeddings for graph similarity.
+\newblock In \emph{AAAI Conference on Artificial Intelligence}, pp.\
+  2429--2435, 2017.
+
+\bibitem[Nikolentzos et~al.(2018)Nikolentzos, Meladianos, Limnios, and
+  Vazirgiannis]{Nik+2018}
+Nikolentzos, G., Meladianos, P., Limnios, S., and Vazirgiannis, M.
+\newblock A degeneracy framework for graph similarity.
+\newblock In \emph{International Joint Conference on Artificial Intelligence},
+  pp.\  2595--2601, 2018.
+
+\bibitem[Scarselli et~al.(2009)Scarselli, Gori, Tsoi, Hagenbuchner, and
+  Monfardini]{Sca+2009}
+Scarselli, F., Gori, M., Tsoi, A.~C., Hagenbuchner, M., and Monfardini, G.
+\newblock The graph neural network model.
+\newblock \emph{IEEE Transactions on Neural Networks}, 20\penalty0
+  (1):\penalty0 61--80, 2009.
+
+\bibitem[Shervashidze et~al.(2011)Shervashidze, Schweitzer, van Leeuwen,
+  Mehlhorn, and Borgwardt]{She+2011}
+Shervashidze, N., Schweitzer, P., van Leeuwen, E.~J., Mehlhorn, K., and
+  Borgwardt, K.~M.
+\newblock Weisfeiler-{L}ehman graph kernels.
+\newblock \emph{Journal of Machine Learning Research}, 12:\penalty0 2539--2561,
+  2011.
+
+\bibitem[Sugiyama \& Borgwardt(2015)Sugiyama and Borgwardt]{Sugiyama2015}
+Sugiyama, M. and Borgwardt, K.~M.
+\newblock Halting in random walk kernels.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pp.\
+  1639--1647, 2015.
 
 \bibitem[Wang et~al.(2019)Wang, Yu, Zheng, Gan, Gai, Ye, Li, Zhou, Huang, Ma,
   Huang, Guo, Zhang, Lin, Zhao, Li, Smola, and Zhang]{Wan+2019}
@@ -38,5 +161,17 @@ Wang, M., Yu, L., Zheng, D., Gan, Q., Gai, Y., Ye, Z., Li, M., Zhou, J., Huang,
 \newblock \emph{ICLR Workshop on Representation Learning on Graphs and
   Manifolds}, 2019.
 \newblock URL \url{https://arxiv.org/abs/1909.01315}.
+
+\bibitem[Wu et~al.(2019)Wu, Pan, Chen, Long, Zhang, and
+  Yu]{wu2019comprehensive}
+Wu, Z., Pan, S., Chen, F., Long, G., Zhang, C., and Yu, P.~S.
+\newblock A comprehensive survey on graph neural networks.
+\newblock \emph{arXiv preprint arXiv:1901.00596}, 2019.
+
+\bibitem[Zhou et~al.(2018)Zhou, Cui, Zhang, Yang, Liu, Wang, Li, and
+  Sun]{zhou2018graph}
+Zhou, J., Cui, G., Zhang, Z., Yang, C., Liu, Z., Wang, L., Li, C., and Sun, M.
+\newblock Graph neural networks: A review of methods and applications.
+\newblock \emph{arXiv preprint arXiv:1812.08434}, 2018.
 
 \end{thebibliography}

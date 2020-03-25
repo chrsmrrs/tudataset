@@ -3,44 +3,46 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: icml2020.bst
 Database file #1: bibliography.bib
-You've used 5 entries,
+Warning--empty publisher in Gaertner2003
+You've used 25 entries,
             2773 wiz_defined-function locations,
-            625 strings with 5874 characters,
-and the built_in function-call counts, 3034 in all, are:
-= -- 236
-> -- 294
-< -- 1
-+ -- 98
-- -- 93
-* -- 281
-:= -- 504
-add.period$ -- 17
-call.type$ -- 5
-change.case$ -- 46
-chr.to.int$ -- 5
-cite$ -- 10
-duplicate$ -- 104
-empty$ -- 173
-format.name$ -- 100
-if$ -- 599
+            750 strings with 9453 characters,
+and the built_in function-call counts, 15247 in all, are:
+= -- 1344
+> -- 1027
+< -- 20
++ -- 343
+- -- 318
+* -- 1239
+:= -- 2240
+add.period$ -- 82
+call.type$ -- 25
+change.case$ -- 181
+chr.to.int$ -- 25
+cite$ -- 51
+duplicate$ -- 681
+empty$ -- 1138
+format.name$ -- 355
+if$ -- 3278
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 5
-newline$ -- 35
-num.names$ -- 20
-pop$ -- 87
+missing$ -- 25
+newline$ -- 137
+num.names$ -- 100
+pop$ -- 385
 preamble$ -- 1
-purify$ -- 41
+purify$ -- 156
 quote$ -- 0
-skip$ -- 96
+skip$ -- 595
 stack$ -- 0
-substring$ -- 29
-swap$ -- 6
-text.length$ -- 0
+substring$ -- 592
+swap$ -- 163
+text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 55
-warning$ -- 0
-while$ -- 17
+type$ -- 275
+warning$ -- 1
+while$ -- 118
 width$ -- 0
-write$ -- 74
+write$ -- 337
+(There was 1 warning)
