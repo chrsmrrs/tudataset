@@ -2,108 +2,228 @@
 
 \documentclass{article}
 
-% Recommended, but optional, packages for figures and better typesetting:
-\usepackage{microtype}
+
+
 \usepackage{graphicx}
 \usepackage{subfigure}
-\usepackage{booktabs} % for professional tables
-
-% hyperref makes hyperlinks in the resulting PDF.
-% If your build breaks (sometimes temporarily if a hyperlink spans a page)
-% please comment out the following usepackage line and replace
-% \usepackage{icml2020} with \usepackage[nohyperref]{icml2020} above.
+\usepackage{booktabs}
 \usepackage{hyperref}
-
-% Attempt to make hyperref and algorithmic work together better:
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
-% Use the following line for the initial blind version submitted for review:
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{todonotes}
+\usepackage{multirow}
+\usepackage{tikz}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{thmtools}		
+\usepackage{mleftright}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{remark}[theorem]{Remark}
+
+\usepackage{thm-restate}
+\usepackage[mathic=true]{mathtools}
+\usepackage{fixmath}
+\usepackage{siunitx}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\usepackage{enumitem}
+\setlist[enumerate]{noitemsep, topsep=0.5\topsep}
+\setlist[description]{noitemsep, topsep=0.5\topsep}
+\setlist[itemize]{noitemsep, topsep=0.5\topsep}
+
+\usepackage{enumitem}
+\setlist[enumerate]{noitemsep, topsep=0.5\topsep}
+\setlist[description]{noitemsep, topsep=0.5\topsep}
+\setlist[itemize]{noitemsep, topsep=0.5\topsep}
+
+\usepackage{setspace}
+\usepackage[protrusion=true,expansion=false, activate={true,nocompatibility},final,kerning=true,spacing=true]{microtype}
+
+\usepackage{ellipsis}
+\usepackage{xspace}
+\usepackage{hfoldsty}
+
+\usepackage{ifthen}
+\newcommand{\CC}[1][]{$\text{C\hspace{-.25ex}}^{_{_{_{++}}}}
+	\ifthenelse{\equal{#1}{}}{}{\text{\hspace{-.625ex}#1}}$}
+
+\newcommand{\win}[1]{$\hspace{-0.3mm}$\textbf{#1}}
+\newcommand{\sd}[1]{\scriptsize{$\pm$#1}}
+
+
+% Let cleveref and thmtools work together
+\makeatletter
+\def\thmt@refnamewithcomma #1#2#3,#4,#5\@nil{%
+	\@xa\def\csname\thmt@envname #1utorefname\endcsname{#3}%
+	\ifcsname #2refname\endcsname
+	\csname #2refname\expandafter\endcsname\expandafter{\thmt@envname}{#3}{#4}%
+	\fi
+}
+\makeatother
+\usepackage[capitalise,noabbrev]{cleveref}   
+
+\newcommand{\new}[1]{\emph{#1}}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+\newcommand{\cA}{\ensuremath{{\mathcal A}}\xspace}
+\newcommand{\cB}{\ensuremath{{\mathcal B}}\xspace}
+\newcommand{\cC}{\ensuremath{{\mathcal C}}\xspace}
+\newcommand{\cD}{\ensuremath{{\mathcal D}}\xspace}
+\newcommand{\cF}{\ensuremath{{\mathcal F}}\xspace}
+\newcommand{\cH}{\ensuremath{{\mathcal H}}\xspace}
+\newcommand{\cN}{\ensuremath{{\mathcal N}}\xspace}
+\newcommand{\cO}{\ensuremath{{\mathcal O}}\xspace}
+\newcommand{\cP}{\ensuremath{{\mathcal P}}\xspace}
+\newcommand{\cR}{\ensuremath{{\mathcal R}}\xspace}
+\newcommand{\cS}{\ensuremath{{\mathcal S}}\xspace}
+\newcommand{\cU}{\ensuremath{{\mathcal U}}\xspace}
+\newcommand{\cV}{\ensuremath{{\mathcal V}}\xspace}
+\newcommand{\cPn}{\ensuremath{{\mathcal P}_n}\xspace}
+
+\newcommand{\fA}{\ensuremath{\mathfrak{A}}\xspace}
+\newcommand{\fB}{\ensuremath{\mathfrak{B}}\xspace}
+\newcommand{\fC}{\ensuremath{\mathfrak{C}}\xspace}
+
+\newcommand{\fa}{\ensuremath{\mathfrak{a}}\xspace}
+\newcommand{\fb}{\ensuremath{\mathfrak{b}}\xspace}
+\newcommand{\fc}{\ensuremath{\mathfrak{c}}\xspace}
+\newcommand{\fd}{\ensuremath{\mathfrak{d}}\xspace}
+
+\newcommand{\bA}{\ensuremath{{\bf A}}\xspace}
+\newcommand{\bB}{\ensuremath{{\bf B}}\xspace}
+\newcommand{\bK}{\ensuremath{{\bf K}}\xspace}
+\newcommand{\bE}{\ensuremath{{\bf E}}\xspace}
+\newcommand{\bN}{\ensuremath{{\bf N}}\xspace}
+\newcommand{\bG}{\ensuremath{{\bf G}}\xspace}
+
+\newcommand{\ba}{\ensuremath{{\bf a}}\xspace}
+\newcommand{\bb}{\ensuremath{{\bf b}}\xspace}
+\newcommand{\bc}{\ensuremath{{\bf c}}\xspace}
+
+\newcommand{\bbE}{\ensuremath{\mathbb{E}}}
+\newcommand{\bbR}{\ensuremath{\mathbb{R}}}
+\newcommand{\bbQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\bbP}{\ensuremath{\mathbb{P}}}
+\newcommand{\bbZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\bbN}{\ensuremath{\mathbb{N}}}
+\newcommand{\bbNn}{\ensuremath{\mathbb{N}_0}}
+
+\newcommand{\bbRnp}{\ensuremath{\bbR_{\geq 0}}}
+\newcommand{\bbQnp}{\ensuremath{\bbQ_{\geq}}}
+\newcommand{\bbZnp}{\ensuremath{\bbZ_{\geq}}}
+
+\newcommand{\bbRsp}{\ensuremath{\bbR_>}}
+\newcommand{\bbQsp}{\ensuremath{\bbQ_>}}
+\newcommand{\bbZsp}{\ensuremath{\bbZ_>}}
+
+\newcommand{\cp}{\textsf{P}\xspace}
+\newcommand{\cnp}{\textsf{NP}\xspace}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\GN}{\mathbb{G}_n}
+\newcommand{\rb}{\right\}\xspace}
+\newcommand{\lb}{\left\{\xspace}
+\newcommand{\lbr}{\left(\xspace} 
+\newcommand{\rbr}{\right)\xspace}
+\newcommand{\ndelta}{\ensuremath{\overline{\delta}}}
+\newcommand{\oms}{\{\!\!\{}
+\newcommand{\cms}{\}\!\!\}}
+\newcommand{\trans}{^T}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
 \usepackage{icml2020}
 
-% If accepted, instead use the following line for the camera-ready submission:
-%\usepackage[accepted]{icml2020}
 
-% The \icmltitle you define below is probably too long as a header.
-% Therefore, a short form for the running title is supplied here:
-\icmltitlerunning{Submission and Formatting Instructions for ICML 2020}
+
+
+
+\icmltitlerunning{TUD Datasets}
 
 \begin{document}
 
 \twocolumn[
 \icmltitle{TUD Datasets: A collection of benchmark datasets for learning with graphs}
-
-% It is OKAY to include author information, even for blind
-% submissions: the style file will automatically remove it for you
-% unless you've provided the [accepted] option to the icml2020
-% package.
-
-% List of affiliations: The first argument should be a (short)
-% identifier you will use later to specify author affiliations
-% Academic affiliations should list Department, University, City, Region, Country
-% Industry affiliations should list Company, City, Region, Country
-
-% You can specify symbols, otherwise they are numbered in order.
-% Ideally, you should not use this facility. Affiliations will be numbered
-% in order of appearance and this is the preferred way.
 \icmlsetsymbol{equal}{*}
 
 \begin{icmlauthorlist}
-\icmlauthor{Aeiau Zzzz}{equal,to}
-\icmlauthor{Bauiu C.~Yyyy}{equal,to,goo}
-\icmlauthor{Cieua Vvvvv}{goo}
-\icmlauthor{Iaesut Saoeu}{ed}
-\icmlauthor{Fiuea Rrrr}{to}
+\icmlauthor{C. Morris}{p}
+\icmlauthor{N.\,M.\,Kriege}{vie}
+\icmlauthor{K. Kersting}{darm}
+\icmlauthor{P. Mutzw}{bonn}
+\icmlauthor{N. Neumann}{wustl}
 \end{icmlauthorlist}
 
-\icmlaffiliation{to}{Department of Computation, University of Torontoland, Torontoland, Canada}
-\icmlaffiliation{goo}{Googol ShallowMind, New London, Michigan, USA}
-\icmlaffiliation{ed}{School of Computation, University of Edenborrow, Edenborrow, United Kingdom}
-
-\icmlcorrespondingauthor{Cieua Vvvvv}{c.vvvvv@googol.com}
-\icmlcorrespondingauthor{Eee Pppp}{ep@eden.co.uk}
-
+\icmlaffiliation{p}{CERC in Data Science for Real-Time Decision-Making, Polytechnique Montréal}
+\icmlaffiliation{vie}{University of Vienna}
+\icmlaffiliation{darm}{Machine Learning Group, TU Darmstadt}
+\icmlaffiliation{bonn}{Department of Computer Science, University of Bonn}
+\icmlaffiliation{wustl}{Washington University in St. Louis}
+\icmlcorrespondingauthor{Christopher Morris}{christopher.morris@tu-dortmund.de}
 
 \icmlkeywords{Machine Learning, ICML}
 
 \vskip 0.3in
 ]
 
-% this must go after the closing bracket ] following \twocolumn[ ...
-
-% This command actually creates the footnote in the first column
-% listing the affiliations and the copyright notice.
-% The command takes one argument, which is text to display at the start of the footnote.
-% The \icmlEqualContribution command is standard text for equal contribution.
-% Remove it (just {}) if you do not need this facility.
-
-%\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
-\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
+\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
+%\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-This document provides a basic paper template and submission guidelines.
-Abstracts must be a single paragraph, ideally between 4--6 sentences long.
-Gross violations will trigger corrections at the camera-ready phase.
+Recently, there has been an increasing interest in learning with graph data, especially in graph neural networks.  However, the development of meaningful benchmark datasets and standarized evaluation prodecures are lagging behind. That is, most paper papers evaluate their methods on small-scale datasets leading to high standard deviations and coseuqntly hindering advancements in this area. To adress this, we intodruce the \textsc{Tud benchmark dataset} for graph classification and regression. The dataset consists of over 150 datasets from a wide range of applications and variying size. We provide Python based data loaders, baseline implementations, and evaluation tools. Here, we give an overview of the datasets, the evalution tools, and provide baseline experiments. 
 \end{abstract}
 
 \section{Introduction}
 
+Graph-structured data is ubiquitous across application domains ranging from chemo- and bioinformatics to image and social network analysis. To develop successful machine learning models in these domains, we need techniques that can exploit the rich information inherent in the graph structure, as well as the feature information contained within nodes and edges. In recent years, numerous approaches have been proposed for machine learning with graphs---most notably, approaches based on graph \new{kernels}~\cite{Kri+2019} or using \new{graph neural networks} (GNNs)~\cite{Ham+2017a,Gil+2017}. However, most papers, even recent ones, evaluate newly proposed architectures or methods on a fixed set of small-scale benchmark datasets leading to high standard deviations and hard to interpret results. 
+
+Here, we give an overview \new{TUD benchn} The bencharmk consists of over 150 datasets from a wide range of domains and can be accessed via mark dataset for supervised learning with graphs, i.e., classificiation and regression. All datasets can convientlly be downloaded from \url{graphlearning.io}, and easily be accessed form popoluar graph learning frameworks such as Pytorch Geoeotric~\cite{Fey+2019} and DGL~\cite{Wan+2019}.
+
+\paragraph{Related work.}
+
+Give short over view of GNNs and other benchmarks and expermental studies.
+
+\paragraph{Contributions/}
 
 
-\section*{Acknowledgements}
-Thank all people you provided datasets. Especially Xavier and Benedek
+
+\section{Overview of the datasets}
+
+\section{Installation, usage, and evaluation tools}
+
+\section{Experimental evaluation}
+
+\subsection{Experimental protocol}
+
+\section{Conclusion}
 
 
 \bibliography{bibliography}
 \bibliographystyle{icml2020}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DELETE THIS PART. DO NOT PLACE CONTENT AFTER THE REFERENCES!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\section{Do \emph{not} have an appendix here}
 
 
 \end{document}

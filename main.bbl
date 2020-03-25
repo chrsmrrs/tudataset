@@ -1,8 +1,42 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Fey \& Lenssen(2019)Fey and Lenssen]{Fey+2019}
+Fey, M. and Lenssen, J.~E.
+\newblock Fast graph representation learning with pytorch geometric.
+\newblock \emph{CoRR}, abs/1903.02428, 2019.
+
+\bibitem[Gilmer et~al.(2017)Gilmer, Schoenholz, Riley, Vinyals, and
+  Dahl]{Gil+2017}
+Gilmer, J., Schoenholz, S.~S., Riley, P.~F., Vinyals, O., and Dahl, G.~E.
+\newblock Neural message passing for quantum chemistry.
+\newblock In \emph{International Conference on Machine Learning}, 2017.
+
+\bibitem[Hamilton et~al.(2017)Hamilton, Ying, and Leskovec]{Ham+2017a}
+Hamilton, W.~L., Ying, R., and Leskovec, J.
+\newblock Representation learning on graphs: Methods and applications.
+\newblock \emph{{IEEE} Data Engineering Bulletin}, 40\penalty0 (3):\penalty0
+  52--74, 2017.
+
+\bibitem[Kriege et~al.(2019)Kriege, Johansson, and Morris]{Kri+2019}
+Kriege, N.~M., Johansson, F.~D., and Morris, C.
+\newblock A survey on graph kernels.
+\newblock \emph{CoRR}, abs/1903.11835, 2019.
+\newblock Accepted for publication in \emph{Applied Network Science}.
+
+\bibitem[Wang et~al.(2019)Wang, Yu, Zheng, Gan, Gai, Ye, Li, Zhou, Huang, Ma,
+  Huang, Guo, Zhang, Lin, Zhao, Li, Smola, and Zhang]{Wan+2019}
+Wang, M., Yu, L., Zheng, D., Gan, Q., Gai, Y., Ye, Z., Li, M., Zhou, J., Huang,
+  Q., Ma, C., Huang, Z., Guo, Q., Zhang, H., Lin, H., Zhao, J., Li, J., Smola,
+  A.~J., and Zhang, Z.
+\newblock Deep graph library: Towards efficient and scalable deep learning on
+  graphs.
+\newblock \emph{ICLR Workshop on Representation Learning on Graphs and
+  Manifolds}, 2019.
+\newblock URL \url{https://arxiv.org/abs/1909.01315}.
 
 \end{thebibliography}

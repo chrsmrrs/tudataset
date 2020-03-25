@@ -2,47 +2,45 @@ This is BibTeX, Version 0.99d (TeX Live 2019)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: icml2020.bst
-I found no \citation commands---while reading file main.aux
 Database file #1: bibliography.bib
-You've used 0 entries,
+You've used 5 entries,
             2773 wiz_defined-function locations,
-            593 strings with 4833 characters,
-and the built_in function-call counts, 33 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 10
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+            625 strings with 5874 characters,
+and the built_in function-call counts, 3034 in all, are:
+= -- 236
+> -- 294
+< -- 1
++ -- 98
+- -- 93
+* -- 281
+:= -- 504
+add.period$ -- 17
+call.type$ -- 5
+change.case$ -- 46
+chr.to.int$ -- 5
+cite$ -- 10
+duplicate$ -- 104
+empty$ -- 173
+format.name$ -- 100
+if$ -- 599
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 8
-num.names$ -- 0
-pop$ -- 0
+missing$ -- 5
+newline$ -- 35
+num.names$ -- 20
+pop$ -- 87
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 41
 quote$ -- 0
-skip$ -- 1
+skip$ -- 96
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 29
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 55
 warning$ -- 0
-while$ -- 0
+while$ -- 17
 width$ -- 0
-write$ -- 7
-(There was 1 error message)
+write$ -- 74
