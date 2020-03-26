@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  25 MAR 2020 19:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  25 MAR 2020 20:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1342,45 +1342,45 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Underfull \hbox (badness 1831) in paragraph at lines 113--118
+Underfull \hbox (badness 1831) in paragraph at lines 124--129
 []\T1/ptm/m/n/10 (+20) Morris, C., Ker-st-ing, K., and Mutzel, P.  Glo-cal-ized
 
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 142--147
+Underfull \hbox (badness 2547) in paragraph at lines 153--158
 []\T1/ptm/m/n/10 (+20) Shervashidze, N., Schweitzer, P., van Leeuwen, E. J.,
  []
 
 [2]) [3
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 236.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 236.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 237.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 237.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 236.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 236.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 237.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 237.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 236.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 237.
  ) 
 Here is how much of TeX's memory you used:
- 35034 strings out of 492616
- 688330 string characters out of 6129480
- 749482 words of memory out of 5000000
- 38240 multiletter control sequences out of 15000+600000
- 583215 words of font info for 181 fonts, out of 8000000 for 9000
+ 35045 strings out of 492616
+ 688479 string characters out of 6129480
+ 750482 words of memory out of 5000000
+ 38246 multiletter control sequences out of 15000+600000
+ 583345 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,81p,849b,882s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,81p,849b,886s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
 019/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 74253 bytes).
+Output written on main.pdf (3 pages, 75722 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 141 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
  30317 words of extra memory for PDF output out of 35830 (max. 10000000)
 

@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: icml2020.bst
 Database file #1: bibliography.bib
 Warning--empty publisher in Gaertner2003
-You've used 25 entries,
+You've used 27 entries,
             2773 wiz_defined-function locations,
-            750 strings with 9453 characters,
-and the built_in function-call counts, 15247 in all, are:
-= -- 1344
-> -- 1027
+            761 strings with 9742 characters,
+and the built_in function-call counts, 16231 in all, are:
+= -- 1423
+> -- 1114
 < -- 20
-+ -- 343
-- -- 318
-* -- 1239
-:= -- 2240
-add.period$ -- 82
-call.type$ -- 25
-change.case$ -- 181
-chr.to.int$ -- 25
-cite$ -- 51
-duplicate$ -- 681
-empty$ -- 1138
-format.name$ -- 355
-if$ -- 3278
++ -- 372
+- -- 345
+* -- 1327
+:= -- 2403
+add.period$ -- 88
+call.type$ -- 27
+change.case$ -- 196
+chr.to.int$ -- 27
+cite$ -- 55
+duplicate$ -- 721
+empty$ -- 1200
+format.name$ -- 384
+if$ -- 3475
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 25
-newline$ -- 137
-num.names$ -- 100
-pop$ -- 385
+missing$ -- 27
+newline$ -- 147
+num.names$ -- 108
+pop$ -- 411
 preamble$ -- 1
-purify$ -- 156
+purify$ -- 169
 quote$ -- 0
-skip$ -- 595
+skip$ -- 630
 stack$ -- 0
-substring$ -- 592
-swap$ -- 163
+substring$ -- 596
+swap$ -- 165
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 275
+type$ -- 297
 warning$ -- 1
-while$ -- 118
+while$ -- 124
 width$ -- 0
-write$ -- 337
+write$ -- 363
 (There was 1 warning)
