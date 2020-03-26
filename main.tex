@@ -154,6 +154,10 @@
 \newcommand{\trans}{^T}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 
+\usepackage{ifthen}
+\newcommand{\CPP}[1][]{$\text{C\hspace{-.25ex}}^{_{_{_{++}}}}
+	\ifthenelse{\equal{#1}{}}{}{\text{\hspace{-.625ex}#1}}$}
+
 \usepackage{icml2020}
 
 
@@ -225,10 +229,14 @@ The data loader, baseline methods, experimental evaluation tool can be installed
 
 \subsection{Baselines}
 
-graph kernels and gnns 
+In order to provide meaningful baselines, we provide implementation of common graph kernels was well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{Shervashidze2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel, as well as the higher-order WL kernels~\cite{Mor+2019b}, in \CPP and made them accessable through the Python interface of \textsc{Tud dataset}, see \url{XXX} for further details.  Moreover, all GNN architectures implemented in PyTorch Geometric can be used as baseline as well. 
+
+Vertex kernel and edge kernel?
 
 
 \subsection{Evaluation tools}
+
+In order to insure a fair and meaningful comparision between methods, we propose the following evaulation and software for kernels and GNN approaches. Al proposed can the conviently accessed from the Python interface, see \url{XXX} for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels can be computed based on explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{}. Too compute accuracies and other metrics for evaluation, we propose to use $10$-fold cross validation, where for each training fold we select a validation uniformly at random ($10\%$ of the training fold) to select hyperparamets, e.g., number of iterations, $C$ parameter, number of layers, learning rate, feature dimension.  
 
 
 \section{Experimental evaluation}

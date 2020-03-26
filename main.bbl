@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{32}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -15,6 +15,13 @@ Borgwardt, K.~M. and Kriegel, H.-P.
 Bruna, J., Zaremba, W., Szlam, A., and LeCun, Y.
 \newblock Spectral networks and deep locally connected networks on graphs.
 \newblock In \emph{International Conference on Learning Representation}, 2014.
+
+\bibitem[Chang \& Lin(2011)Chang and Lin]{Cha+11}
+Chang, C.-C. and Lin, C.-J.
+\newblock {{LIBSVM}}: {A} library for support vector machines.
+\newblock \emph{ACM Transactions on Intelligent Systems and Technology},
+  2:\penalty0 27:1--27:27, 2011.
+\newblock ACM.
 
 \bibitem[Defferrard et~al.(2016)Defferrard, X., and Vandergheynst]{Def+2015}
 Defferrard, M., X., B., and Vandergheynst, P.
@@ -41,6 +48,12 @@ Dwivedi, V.~P., Joshi, C.~K., Laurent, T., Bengio, Y., and Bresson, X.
 Errica, F., Podda, M., Bacciu, D., and Micheli, A.
 \newblock A fair comparison of graph neural networks for graph classification.
 \newblock \emph{CoRR}, abs/1912.09893, 2019.
+
+\bibitem[Fan et~al.(2008)Fan, Chang, Hsieh, Wang, and Lin]{Fan+2008}
+Fan, R.-E., Chang, K.-W., Hsieh, C.-J., Wang, X.-R., and Lin, C.-J.
+\newblock {LIBLINEAR}: {A} library for large linear classification.
+\newblock \emph{Journal of Machine Learning Research}, 9:\penalty0 1871--1874,
+  2008.
 
 \bibitem[Fey \& Lenssen(2019)Fey and Lenssen]{Fey+2019}
 Fey, M. and Lenssen, J.~E.
@@ -120,6 +133,11 @@ Merkwirth, C. and Lengauer, T.
 \newblock \emph{Journal of Chemical Information and Modeling}, 45\penalty0
   (5):\penalty0 1159--1168, 2005.
 
+\bibitem[Morris \& Mutzel(2019)Morris and Mutzel]{Mor+2019b}
+Morris, C. and Mutzel, P.
+\newblock Towards a practical $k$-dimensional weisfeiler-leman algorithm.
+\newblock \emph{CoRR}, abs/1904.01543, 2019.
+
 \bibitem[Morris et~al.(2017)Morris, Kersting, and Mutzel]{Mor+2017}
 Morris, C., Kersting, K., and Mutzel, P.
 \newblock Glocalized {W}eisfeiler-{L}ehman kernels: Global-local feature maps
@@ -148,13 +166,28 @@ Scarselli, F., Gori, M., Tsoi, A.~C., Hagenbuchner, M., and Monfardini, G.
 \newblock \emph{IEEE Transactions on Neural Networks}, 20\penalty0
   (1):\penalty0 61--80, 2009.
 
-\bibitem[Shervashidze et~al.(2011)Shervashidze, Schweitzer, van Leeuwen,
-  Mehlhorn, and Borgwardt]{She+2011}
+\bibitem[Shervashidze et~al.(2009)Shervashidze, Vishwanathan, Petri, Mehlhorn,
+  and Borgwardt]{She+2009}
+Shervashidze, N., Vishwanathan, S.~V.~N., Petri, T.~H., Mehlhorn, K., and
+  Borgwardt, K.~M.
+\newblock Efficient graphlet kernels for large graph comparison.
+\newblock In \emph{International Conference on Artificial Intelligence and
+  Statistics}, pp.\  488--495. PMLR, 2009.
+
+\bibitem[Shervashidze et~al.(2011{\natexlab{a}})Shervashidze, Schweitzer, van
+  Leeuwen, Mehlhorn, and Borgwardt]{She+2011}
 Shervashidze, N., Schweitzer, P., van Leeuwen, E.~J., Mehlhorn, K., and
   Borgwardt, K.~M.
 \newblock Weisfeiler-{L}ehman graph kernels.
 \newblock \emph{Journal of Machine Learning Research}, 12:\penalty0 2539--2561,
-  2011.
+  2011{\natexlab{a}}.
+
+\bibitem[Shervashidze et~al.(2011{\natexlab{b}})Shervashidze, Schweitzer, van
+  Leeuwen, Mehlhorn, and Borgwardt]{Shervashidze2011}
+Shervashidze, N., Schweitzer, P., van Leeuwen, E.~J., Mehlhorn, K., and
+  Borgwardt, K.~M.
+\newblock Weisfeiler-{L}ehman graph kernels.
+\newblock \emph{PMLR}, 12:\penalty0 2539--2561, 2011{\natexlab{b}}.
 
 \bibitem[Sugiyama \& Borgwardt(2015)Sugiyama and Borgwardt]{Sugiyama2015}
 Sugiyama, M. and Borgwardt, K.~M.
