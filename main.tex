@@ -239,6 +239,10 @@ Vertex kernel and edge kernel?
 In order to insure a fair and meaningful comparision between methods, we propose the following evaluation proceudres, and software tools for kernels and GNN approaches. All proposed methods can be conviently accessed from the Python interface, see \url{XXX} for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{}. Too compute accuracies and other metrics for evaluation, we propose to use $10$-fold cross validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparamets, e.g., number of iterations, $C$ parameter, number of layers, learning rate, feature dimension, etc.  
 
 
+Repeat ten times?
+
+
+
 \section{Experimental evaluation}
 
 Our intention here is to investigate the benefits XXXX. More precisely, we address the following questions:
