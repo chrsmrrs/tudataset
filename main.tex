@@ -234,15 +234,56 @@ In order to provide meaningful baselines, we provide implementation of common gr
 Vertex kernel and edge kernel?
 
 
-\subsection{Evaluation tools}
+\subsection{Evaluation tools}\label{eval}
 
 In order to insure a fair and meaningful comparision between methods, we propose the following evaluation proceudres, and software tools for kernels and GNN approaches. All proposed methods can be conviently accessed from the Python interface, see \url{XXX} for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{}. Too compute accuracies and other metrics for evaluation, we propose to use $10$-fold cross validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparamets, e.g., number of iterations, $C$ parameter, number of layers, learning rate, feature dimension, etc.  
 
 
 \section{Experimental evaluation}
 
+Our intention here is to investigate the benefits XXXX. More precisely, we address the following questions:
+\begin{description}
+	\item[Q1] dfgkposdk
+	\item[Q2] dfdsfsdd
+	\item[Q3] sdfsdfsdfsdfdssdf
+\end{description}
+
 \subsection{Experimental protocol}
 
+Describe kernel, gnns used
+
+\paragraph{Datasets.}
+
+\paragraph{Graph kernels.}
+
+\paragraph{GNNs.}
+
+We used the evaluation procedute described in~\cref{eval}, describe used hyperparamter 
+
+\subsection{Results and discussion}
+
+
+
+\begin{table*}[t]\centering		
+	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
+	\label{t2l}	
+	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
+			
+			& \multirow{3}{*}{\vspace*{4pt}\textbf{Graph Kernel}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
+			& & {\textsc{Data0}}         &  {\textsc{Data1}}      & {\textsc{Data1}}           & {\textsc{Data1}}       & {\textsc{Data1}}           & {\textsc{Data1}}      \\	\toprule
+			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+				& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+				& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+				& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+			\cmidrule{2-8}	
+			\multirow{4}{*}{\rotatebox{90}{GNN}}	& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+		& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+		& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+		& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+			\bottomrule
+	\end{tabular}}
+\end{table*}		
 
 
 \section{Conclusion}

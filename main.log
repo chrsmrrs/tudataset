@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  25 MAR 2020 21:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  25 MAR 2020 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1345,7 +1345,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 255--256
+Underfull \hbox (badness 1281) in paragraph at lines 296--297
 []\T1/ptm/m/n/10 (+20) We thank ev-ery-body who pro-vided datasets for \T1/ptm/
 m/sc/10 (+20) Tud
  []
@@ -1356,7 +1356,13 @@ Underfull \hbox (badness 1831) in paragraph at lines 142--147
 
  []
 
+[3pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
+as been already used, duplicate ignored
 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.154 
+      ]
 Underfull \hbox (badness 2547) in paragraph at lines 179--184
 []\T1/ptm/m/n/10 (+20) Shervashidze, N., Schweitzer, P., van Leeuwen, E. J.,
  []
@@ -1366,36 +1372,40 @@ Underfull \hbox (badness 2547) in paragraph at lines 187--191
 []\T1/ptm/m/n/10 (+20) Shervashidze, N., Schweitzer, P., van Leeuwen, E. J.,
  []
 
-) [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 263.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 263.
+) [4
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 304.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 304.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 263.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 263.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 304.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 304.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 263.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 304.
  ) 
 Here is how much of TeX's memory you used:
- 35107 strings out of 492616
- 689197 string characters out of 6129480
- 749482 words of memory out of 5000000
- 38265 multiletter control sequences out of 15000+600000
- 586920 words of font info for 209 fonts, out of 8000000 for 9000
+ 35150 strings out of 492616
+ 689643 string characters out of 6129480
+ 752482 words of memory out of 5000000
+ 38277 multiletter control sequences out of 15000+600000
+ 596104 words of font info for 227 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,81p,984b,858s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,13n,81p,984b,886s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
 ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/f
-onts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
-/urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 105841 bytes).
+/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fon
+ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/u
+rw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/u
+tmri8a.pfb>
+Output written on main.pdf (4 pages, 121246 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 191 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
- 30829 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 238 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 39021 words of extra memory for PDF output out of 42996 (max. 10000000)
 
