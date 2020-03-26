@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  25 MAR 2020 21:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  26 MAR 2020 15:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1345,24 +1345,58 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 300--301
+Underfull \hbox (badness 10000) in paragraph at lines 255--258
+ \T1/ptm/b/n/10 Datasets. \T1/ptm/m/n/10 (+20) We used the \T1/ptm/m/sc/10 (+20
+) deezer_ego_nets\T1/ptm/m/n/10 (+20) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--258
+\T1/ptm/m/sc/10 (+20) github_stargazers\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (
++20) Enymes\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Imdb-BINARY\T1/ptm/m/n/
+10 (+20) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--258
+\T1/ptm/m/sc/10 (+20) Imdb-MULTI\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Mc
+f-7\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Molt-4\T1/ptm/m/n/10 (+20) , \T
+1/ptm/m/sc/10 (+20) Nci1\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Pro-teins\
+T1/ptm/m/n/10 (+20) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--258
+\T1/ptm/m/sc/10 (+20) Reddit-Binary\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20)
+ red-dit_threads\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) twitch_egos\T1/ptm
+/m/n/10 (+20) ,
+ []
+
+
+Underfull \hbox (badness 5022) in paragraph at lines 259--260
+ \T1/ptm/b/n/10 Graph ker-nels. \T1/ptm/m/n/10 (+20) As ker-nel base-lines we u
+sed the
+ []
+
+
+Underfull \hbox (badness 1281) in paragraph at lines 299--300
 []\T1/ptm/m/n/10 (+20) We thank ev-ery-body who pro-vided datasets for \T1/ptm/
 m/sc/10 (+20) Tud
  []
 
-(./main.bbl [2]
+(./main.bbl [2] [3pdfTeX warning (ext4): destination with the same identifier (
+name{table.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.121 
+      ]
 Underfull \hbox (badness 1831) in paragraph at lines 142--147
 []\T1/ptm/m/n/10 (+20) Morris, C., Ker-st-ing, K., and Mutzel, P.  Glo-cal-ized
 
  []
 
-[3pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
-as been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.168 
-      ]
 Underfull \hbox (badness 2547) in paragraph at lines 179--184
 []\T1/ptm/m/n/10 (+20) Shervashidze, N., Schweitzer, P., van Leeuwen, E. J.,
  []
@@ -1372,40 +1406,43 @@ Underfull \hbox (badness 2547) in paragraph at lines 187--191
 []\T1/ptm/m/n/10 (+20) Shervashidze, N., Schweitzer, P., van Leeuwen, E. J.,
  []
 
-) [4
-
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 308.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
+) [4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 307.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 307.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 308.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 307.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 307.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 308.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 307.
  ) 
 Here is how much of TeX's memory you used:
- 35154 strings out of 492616
- 689674 string characters out of 6129480
- 752482 words of memory out of 5000000
- 38277 multiletter control sequences out of 15000+600000
- 596242 words of font info for 230 fonts, out of 8000000 for 9000
+ 35174 strings out of 492616
+ 689876 string characters out of 6129480
+ 753482 words of memory out of 5000000
+ 38280 multiletter control sequences out of 15000+600000
+ 597090 words of font info for 241 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,81p,984b,890s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
-xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fon
-ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/u
-rw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/u
-tmri8a.pfb>
-Output written on main.pdf (4 pages, 121320 bytes).
+ 62i,13n,81p,984b,880s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+st, replaced by a fixed one
+
+{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
+live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
+ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
+e1/urw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/tim
+es/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a
+.pfb>
+Output written on main.pdf (4 pages, 141612 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
- 49 named destinations out of 1000 (max. 500000)
+ 272 PDF objects out of 1000 (max. 8388607)
+ 236 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
  39021 words of extra memory for PDF output out of 42996 (max. 10000000)
 

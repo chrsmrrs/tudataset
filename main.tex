@@ -221,11 +221,7 @@ The papers~\cite{Fey+2019,Err+2019,Dwi+2020} evalute GNNs using a unified evalua
 
 \section{Overview of the datasets}
 
-The \textsc{Tud dataset} contain over 150 datasets provided at \url{graphlearning.io}. 
-
-\section{Installation, baseline, and evaluation tools}
-
-The data loader, baseline methods, experimental evaluation tool can be installed by running \texttt{pip install tud-datasets}, see \url{XXX} for further details.
+The \textsc{Tud dataset} contain over 150 datasets provided at \url{graphlearning.io}. The data loader, baseline methods, experimental evaluation tool can be installed by running \texttt{pip install tud-datasets}, see \url{XXX} for further details.
 
 \subsection{Baselines}
 
@@ -245,27 +241,30 @@ Repeat ten times?
 
 \section{Experimental evaluation}
 
-Our intention here is to investigate the benefits XXXX. More precisely, we address the following questions:
+Our intention here is to provide baseline experiments, and compare graph kernels and GNNs. More precisely, we address the following questions:
 \begin{description}
-	\item[Q1] dfgkposdk
-	\item[Q2] dfdsfsdd
-	\item[Q3] sdfsdfsdfsdfdssdf
+	\item[Q1] Are GNNs superior to graph kernels? Is there a single method that dominates?
+	\item[Q2] ?
+	\item[Q3] ?
 \end{description}
 
 \subsection{Experimental protocol}
 
-Describe kernel, gnns used
+We used the following datasets, graph kernels, and GNN baselines.
 
-\paragraph{Datasets.}
+\paragraph{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes},
+\textsc{Imdb-BINARY}, \textsc{Imdb-MULTI}, \textsc{Mcf-7}, \textsc{Molt-4},	\textsc{Nci1}, \textsc{Proteins},
+\textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257}. See the appendix for dataset statistics.
 
-\paragraph{Graph kernels.}
+\paragraph{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{Shervashidze2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016}, and $\delta$-$2$-LWL$^+$ kernel~\cite{Mor+2019b} included in the \textsc{TUD Dataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL}, \textsc{WL-OA}, and the  $\delta$-$2$-LWL$^+$ were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
 
-\paragraph{GNNs.}
+\paragraph{GNNs.} We used the GNN architectures \textsc{GCN}~\cite{Kip+2017}, \textsc{Sage}~\cite{Ham+2017}, \textsc{Gin} and \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} as neural baselines. For all experiments, we used the global mean operator to obtain graph-level outputs. For each dataset, we optimize the number of hidden units from $
+\{16, 32, 64, 128\}$, the number of layers from $ \{2, 3, 4, 5\}$ and the learning rate from $ \{0.0001, 0.001, 0.01 \}$ with respect to the validation set. The batch size was fixed to $128$.
 
-We used the evaluation procedute described in~\cref{eval}, describe used hyperparamter 
+For both methods, we used the evaluation procecude described in~\cref{eval} to optimize hyperparameters and compute accuracies. All experiments can be fulled reprodcued from the scripts provided at \url{XXX}.
 
 \subsection{Results and discussion}
-
+See~\cref{t2l}.
 
 
 \begin{table*}[t]\centering		
