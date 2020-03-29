@@ -6,8 +6,8 @@
 #ifndef WLFAST_AUXILIARYMETHODS_H
 #define WLFAST_AUXILIARYMETHODS_H
 
-#include "/usr/local/include/eigen3/Eigen/Dense"
-//#include <eigen3/Eigen/Dense>
+//#include "/usr/local/include/eigen3/Eigen/Dense"
+#include <eigen3/Eigen/Dense>
 
 #include <fstream>
 #include <iostream>
@@ -20,11 +20,11 @@ using Eigen::MatrixXd;
 using namespace std;
 using namespace GraphLibrary;
 
-#include "/usr/local/include/eigen3/Eigen/Sparse"
-#include "/usr/local/include/eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h"
+//#include "/usr/local/include/eigen3/Eigen/Sparse"
+//#include "/usr/local/include/eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h"
 
-//#include <eigen3/Eigen/Sparse>
-//#include <eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h>
+#include <eigen3/Eigen/Sparse>
+#include <eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h>
 
 namespace AuxiliaryMethods {
     // Simple function for converting a comma separated string into a vector of integers.

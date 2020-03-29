@@ -15,8 +15,10 @@
 #include <chrono>
 
 
-#include </usr/local/include/pybind11/pybind11.h>
-#include </usr/local/include/pybind11/eigen.h>
+#include <pybind11>
+#include <pybind11/eigen>
+//#include </usr/local/include/pybind11/pybind11.h>
+//#include </usr/local/include/pybind11/eigen.h>
 
 
 
