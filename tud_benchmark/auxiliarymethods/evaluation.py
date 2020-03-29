@@ -19,8 +19,8 @@ def argmax(iterable):
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
-                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False):
-    # Acc. for over all repetitions.
+                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False, primal = True):
+    # Acc. over all repetitions.
     test_accuracies_all = []
     # All acc. over all folds and repetitions.
     test_accuracies_complete = []
@@ -40,7 +40,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 c_train = classes[train_index]
                 c_val = classes[val_index]
                 for c in C:
-                    clf = LinearSVC(C=c, dual=False)
+                    clf = LinearSVC(C=c, dual=not primal)
                     clf.fit(train, c_train)
                     p = clf.predict(val)
                     a = np.sum(np.equal(p, c_val)) / val.shape[0]
@@ -59,7 +59,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
             test_accuracies.append(a * 100.0)
 
             if all_std:
-                test_accuracies_complete.extend(test_accuracies)
+                test_accuracies_complete.append(a * 100.0)
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
@@ -114,10 +114,11 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
             test_accuracies.append(a * 100.0)
 
             if all_std:
-                test_accuracies_complete.extend(test_accuracies)
+                test_accuracies_complete.append(a * 100.0)
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
+    print(len(test_accuracies_complete))
     if all_std:
         return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
                 np.array(test_accuracies_complete).std())
