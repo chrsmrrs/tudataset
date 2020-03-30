@@ -42,7 +42,6 @@ namespace ColorRefinement {
 
         if (wloa) {
             MatrixXd gram_matrix = MatrixXd::Zero(num_graphs, num_graphs);
-            uint num_components = feature_vectors.cols();
 
             for (uint i = 0; i < num_graphs; ++i) {
                 for (uint j = 0; j < num_graphs; ++j) {
