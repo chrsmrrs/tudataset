@@ -2,6 +2,7 @@ import math as m
 import numpy as np
 from scipy import sparse as sp
 
+
 # Cosine normalization for a gram matrix.
 def normalize_gram_matrix(gram_matrix):
     n = gram_matrix.shape[0]
@@ -16,13 +17,10 @@ def normalize_gram_matrix(gram_matrix):
 
     return gram_matrix_norm
 
+
 # Cosine normalization for sparse feature vectors.
 def normalize_feature_vector(feature_vectors):
-    norm = sp.linalg.norm(feature_vectors,  axis=1)
-    feature_vectors = feature_vectors / norm
+    norm = sp.linalg.norm(feature_vectors, axis=1)
+    feature_vectors = feature_vectors / norm.reshape(feature_vectors.shape[0], 1)
 
     return feature_vectors
-
-
-
-
