@@ -32,7 +32,18 @@ MatrixXd compute_wl_1_dense(string ds, int num_iterations,  bool use_labels,  bo
 
     ColorRefinement::ColorRefinementKernel wl(gdb);
     GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, true);
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, true, false);
+
+    return MatrixXd(gm);
+}
+
+MatrixXd compute_wloa_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels) {
+    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
+    gdb.erase(gdb.begin() + 0);
+
+    ColorRefinement::ColorRefinementKernel wl(gdb);
+    GramMatrix gm;
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, true, true);
 
     return MatrixXd(gm);
 }
@@ -43,7 +54,7 @@ GramMatrix compute_wl_1_sparse(string ds, int num_iterations, bool use_labels, b
 
     ColorRefinement::ColorRefinementKernel wl(gdb);
     GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, false);
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, false, false);
 
     return gm;
 }
@@ -142,6 +153,7 @@ GramMatrix compute_shortestpath_sparse(string ds, bool use_labels) {
 
 PYBIND11_MODULE(kernel_baselines, m) {
     m.def("compute_wl_1_dense", &compute_wl_1_dense);
+    m.def("compute_wloa_dense", &compute_wloa_dense);
     m.def("compute_wl_1_sparse", &compute_wl_1_sparse);
 
     m.def("compute_lwl_2_dense", &compute_lwl_2_dense);

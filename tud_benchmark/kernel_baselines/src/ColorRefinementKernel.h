@@ -24,7 +24,7 @@ namespace ColorRefinement {
         ColorRefinementKernel(const GraphDatabase &graph_database);
 
         // Computes gram matrix for the Weisfeiler-Lehman subtree kernel.
-        GramMatrix compute_gram_matrix(const uint num_iterations, const bool use_labels, const bool use_edge_labels, const bool compute_gram);
+        GramMatrix compute_gram_matrix(const uint num_iterations, const bool use_labels, const bool use_edge_labels, const bool compute_gram, const bool wloa);
 
         ~ColorRefinementKernel();
 

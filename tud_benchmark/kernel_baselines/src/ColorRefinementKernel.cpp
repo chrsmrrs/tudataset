@@ -11,7 +11,7 @@ namespace ColorRefinement {
                                                                                         m_num_labels(0) {}
 
     GramMatrix
-    ColorRefinementKernel::compute_gram_matrix(const uint num_iterations, const bool use_labels, const bool use_edge_labels, const bool compute_gram) {
+    ColorRefinementKernel::compute_gram_matrix(const uint num_iterations, const bool use_labels, const bool use_edge_labels, const bool compute_gram, const bool wloa) {
         vector<ColorCounter> color_counters;
         color_counters.reserve(m_graph_database.size());
 
@@ -40,7 +40,21 @@ namespace ColorRefinement {
         GramMatrix feature_vectors(num_graphs, m_num_labels);
         feature_vectors.setFromTriplets(nonzero_compenents.begin(), nonzero_compenents.end());
 
+        if (wloa) {
+            MatrixXd feature_vectors_dense = MatrixXd(feature_vectors);
+            MatrixXd gram_matrix = MatrixXd::Zero(num_graphs, num_graphs);
 
+
+            for (uint i = 0; i < num_graphs; ++i) {
+                for (uint j = 0; j < num_graphs; ++j) {
+                    for (uint c = 0; c < num_graphs; ++c) {
+                        gram_matrix(i,j) += std::min(feature_vectors_dense(i,c), feature_vectors_dense(j,c));
+                    }
+                }
+            }
+
+            return gram_matrix.sparseView();;
+        }
 
         if (not compute_gram) {
             return feature_vectors;
