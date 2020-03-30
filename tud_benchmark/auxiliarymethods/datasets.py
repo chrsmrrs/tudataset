@@ -12,7 +12,7 @@ def listToDict(lst):
 # Return classes as numpy array.
 def read_classes(ds_name):
     # Classes
-    with open("./datasets/" + ds_name + "/raw/" + ds_name + "_graph_labels.txt", "r") as f:
+    with open("datasets/" + ds_name + "/" + ds_name + "/raw/" + ds_name + "_graph_labels.txt", "r") as f:
         classes = [int(i) for i in list(f)]
     f.closed
 
