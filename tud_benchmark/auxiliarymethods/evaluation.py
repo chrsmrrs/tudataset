@@ -19,7 +19,8 @@ def argmax(iterable):
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
-                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False, primal = True):
+                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False,
+                          primal=True):
     # Acc. over all repetitions.
     test_accuracies_all = []
     # All acc. over all folds and repetitions.
@@ -37,8 +38,10 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 train_index, val_index = train_test_split(train_index, test_size=0.1)
                 train = f[train_index]
                 val = f[val_index]
+
                 c_train = classes[train_index]
                 c_val = classes[val_index]
+
                 for c in C:
                     clf = LinearSVC(C=c, dual=not primal)
                     clf.fit(train, c_train)
@@ -62,7 +65,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 test_accuracies_complete.append(a * 100.0)
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
-
+    print(len(test_accuracies_complete))
     if all_std:
         return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
                 np.array(test_accuracies_complete).std())
@@ -118,12 +121,12 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
-    print(len(test_accuracies_complete))
     if all_std:
         return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
                 np.array(test_accuracies_complete).std())
     else:
         return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
+
 
 # One training epoch for GNN model.
 def train(train_loader, model, optimizer, device):
@@ -137,6 +140,7 @@ def train(train_loader, model, optimizer, device):
         loss.backward()
         optimizer.step()
 
+
 # Get acc. of GNN model.
 def test(loader, model, device):
     model.eval()
@@ -149,6 +153,7 @@ def test(loader, model, device):
         correct += pred.eq(data.y).sum().item()
     return correct / len(loader.dataset)
 
+
 # Train GNN modell
 def train_model(train_loader, val_loader, test_loader, model, optimizer, device, num_epochs):
     test_acc = None
@@ -159,10 +164,12 @@ def train_model(train_loader, val_loader, test_loader, model, optimizer, device,
     val_acc = test(val_loader, model, device)
     return val_acc, test_acc
 
+
 # 10-CV for GNN training and hyperparameter selection.
-def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, lr = 0.1, num_repetitions=10, all_std=False):
+def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, lr=0.1, num_repetitions=10,
+                   all_std=False):
     # Load dataset.
-    path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'data', ds_name)
+    path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
     dataset = TUDataset(path, name=ds_name).shuffle()
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -191,7 +198,8 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, 
                 for h in hidden:
                     model = gnn(dataset, l, h).to(device)
                     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-                    val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, device, num_epochs)
+                    val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, device,
+                                                    num_epochs)
                     vals.append(val_acc)
                     tests.append(test_acc)
 
@@ -209,5 +217,3 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, 
                 np.array(test_accuracies_complete).std())
     else:
         return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
-
-

@@ -5,8 +5,8 @@
 #ifndef WLFAST_GRAPH_H
 #define WLFAST_GRAPH_H
 
-//#include "/usr/local/include/eigen3/Eigen/Sparse"
-#include <eigen3/Eigen/Sparse>
+#include "/usr/local/include/eigen3/Eigen/Sparse"
+//#include <eigen3/Eigen/Sparse>
 
 #include <unordered_set>
 #include <unordered_map>
