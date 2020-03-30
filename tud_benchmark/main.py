@@ -22,6 +22,7 @@ def main():
 
     all_matrices = []
     for i in range(0, 6):
+        print(i)
         gm = kb.compute_lwlp_2_wloa_dense(dataset, i, True, False)
         gm = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm)
