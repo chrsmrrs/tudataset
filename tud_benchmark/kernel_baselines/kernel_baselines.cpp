@@ -14,10 +14,15 @@
 #include <iostream>
 #include <chrono>
 
-//#include <pybind11/pybind11.h>
-//#include <pybind11/eigen.h>
-#include </usr/local/include/pybind11/pybind11.h>
-#include </usr/local/include/pybind11/eigen.h>
+
+#ifdef __linux__
+    #include <pybind11/pybind11.h>
+    #include <pybind11/eigen.h>
+#else
+    #include </usr/local/include/pybind11/pybind11.h>
+    #include </usr/local/include/pybind11/eigen.h>
+#endif
+
 
 namespace py = pybind11;
 using namespace std::chrono;
