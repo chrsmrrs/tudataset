@@ -41,13 +41,13 @@ namespace ColorRefinement {
         feature_vectors.setFromTriplets(nonzero_compenents.begin(), nonzero_compenents.end());
 
         if (wloa) {
-            MatrixXd feature_vectors_dense = MatrixXd(feature_vectors);
             MatrixXd gram_matrix = MatrixXd::Zero(num_graphs, num_graphs);
-            uint num_components = feature_vectors_dense.cols();
+            uint num_components = feature_vectors.cols();
 
             for (uint i = 0; i < num_graphs; ++i) {
+                cout << num_iterations << " " << i << endl;
                 for (uint j = 0; j < num_graphs; ++j) {
-                     gram_matrix(i,j) += feature_vectors_dense.row(i).cwiseMin(feature_vectors_dense.row(j)).sum();
+                     gram_matrix(i,j) += feature_vectors.row(i).cwiseMin(feature_vectors.row(j)).sum();
                 }
             }
 

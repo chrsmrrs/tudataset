@@ -20,12 +20,13 @@ using Eigen::MatrixXd;
 using namespace std;
 using namespace GraphLibrary;
 
-
+#ifdef LINUX
+#include <eigen3/Eigen/Sparse>
+#include <eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h>
+#else
 #include "/usr/local/include/eigen3/Eigen/Sparse"
 #include "/usr/local/include/eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h"
-
-//#include <eigen3/Eigen/Sparse>
-//#include <eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h>
+#endif
 
 namespace AuxiliaryMethods {
     // Simple function for converting a comma separated string into a vector of integers.
