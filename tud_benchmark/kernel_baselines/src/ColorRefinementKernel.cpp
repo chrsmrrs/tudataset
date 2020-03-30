@@ -46,11 +46,14 @@ namespace ColorRefinement {
             uint num_components = feature_vectors_dense.cols();
 
             for (uint i = 0; i < num_graphs; ++i) {
+                cout << num_iterations << " " << i << endl;
                 for (uint j = 0; j < num_graphs; ++j) {
-                    for (uint c = 0; c < num_components; ++c) {
-                        gram_matrix(i,j) += std::min(feature_vectors_dense(i,c), feature_vectors_dense(j,c));
-                        //gram_matrix(j,i) += gram_matrix(i,j);
-                    }
+                     MatrixXd A = feature_vectors_dense.row(i);
+                     MatrixXd B = feature_vectors_dense.row(j);
+
+                     gram_matrix(i,j) += A.cwiseMin(B).sum();
+
+
                 }
             }
 
