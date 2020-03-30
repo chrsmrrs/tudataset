@@ -36,7 +36,7 @@ def main():
         all_matrices.append(gm)
     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
-    #print(gnn_evaluation(GIN0, dataset, [2], [64], num_repetitions=10, all_std=True))
+    # print(gnn_evaluation(GIN0, dataset, [2], [64], num_repetitions=10, all_std=True))
 
 
 if __name__ == "__main__":
