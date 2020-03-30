@@ -21,7 +21,7 @@ namespace GenerateTwo {
         GenerateTwo(const GraphDatabase &graph_database);
 
         GramMatrix compute_gram_matrix(const uint num_iterations, const bool use_labels, const bool use_edge_labels, const string algorithm,
-                                       const bool simple, const bool compute_gram);
+                                       const bool simple, const bool compute_gram, const bool wloa);
 
         Graph generate_local_graph(const Graph &g, const bool use_labels, const bool use_edge_labels);
 

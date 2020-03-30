@@ -15,7 +15,7 @@ namespace GenerateTwo {
     GramMatrix
     GenerateTwo::compute_gram_matrix(const uint num_iterations, const bool use_labels, const bool use_edge_labels,
                                      const string algorithm,
-                                     const bool simple, const bool compute_gram) {
+                                     const bool simple, const bool compute_gram, const bool wloa) {
         vector<ColorCounter> color_counters;
         color_counters.reserve(m_graph_database.size());
 
@@ -48,6 +48,20 @@ namespace GenerateTwo {
         // Compute Gram matrix or feature vectore
         GramMatrix feature_vectors(num_graphs, m_num_labels);
         feature_vectors.setFromTriplets(nonzero_compenents.begin(), nonzero_compenents.end());
+
+        if (wloa) {
+            MatrixXd gram_matrix = MatrixXd::Zero(num_graphs, num_graphs);
+            uint num_components = feature_vectors.cols();
+
+            for (uint i = 0; i < num_graphs; ++i) {
+                for (uint j = 0; j < num_graphs; ++j) {
+                     gram_matrix(i,j) += feature_vectors.row(i).cwiseMin(feature_vectors.row(j)).sum();
+                }
+            }
+
+            return gram_matrix.sparseView();
+        }
+
 
         if (not compute_gram) {
             return feature_vectors;

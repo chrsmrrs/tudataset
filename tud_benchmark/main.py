@@ -18,10 +18,11 @@ def main():
     #     gm = aux.normalize_feature_vector(gm)
     #     all_matrices.append(gm)
     # print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    # print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False))
 
     all_matrices = []
     for i in range(0, 6):
-        gm = kb.compute_wloa_dense(dataset, i, True, False)
+        gm = kb.compute_lwlp_2_wloa_dense(dataset, i, True, False)
         gm = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm)
     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
