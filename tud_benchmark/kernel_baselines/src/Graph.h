@@ -5,7 +5,7 @@
 #ifndef WLFAST_GRAPH_H
 #define WLFAST_GRAPH_H
 
-#ifdef LINUX
+#ifdef _LINUX
 #include <eigen3/Eigen/Sparse>
 #else
 #include "/usr/local/include/eigen3/Eigen/Sparse"
