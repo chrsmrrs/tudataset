@@ -20,7 +20,7 @@ using Eigen::MatrixXd;
 using namespace std;
 using namespace GraphLibrary;
 
-#ifdef _LINUX
+#ifdef unix
 #include <eigen3/Eigen/Sparse>
 #include <eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h>
 #else
