@@ -43,17 +43,18 @@ namespace ColorRefinement {
         if (wloa) {
             MatrixXd feature_vectors_dense = MatrixXd(feature_vectors);
             MatrixXd gram_matrix = MatrixXd::Zero(num_graphs, num_graphs);
-
+            uint num_components = feature_vectors_dense.cols();
 
             for (uint i = 0; i < num_graphs; ++i) {
-                for (uint j = 0; j < num_graphs; ++j) {
-                    for (uint c = 0; c < num_graphs; ++c) {
+                for (uint j = i; j < num_graphs; ++j) {
+                    for (uint c = 0; c < num_components; ++c) {
                         gram_matrix(i,j) += std::min(feature_vectors_dense(i,c), feature_vectors_dense(j,c));
+                        gram_matrix(j,i) += gram_matrix(i,j);
                     }
                 }
             }
 
-            return gram_matrix.sparseView();;
+            return gram_matrix.sparseView();
         }
 
         if (not compute_gram) {
