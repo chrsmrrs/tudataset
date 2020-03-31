@@ -42,8 +42,8 @@ namespace ColorRefinement {
 
         if (wloa) {
             MatrixXd gram_matrix = MatrixXd::Zero(num_graphs, num_graphs);
-            
-            // copy rows to sparse vectors for faster component-wise operations
+
+            // Copy rows to sparse vectors for faster component-wise operations.
             Eigen::SparseVector<double> fvs[num_graphs];
             for (uint i = 0; i < num_graphs; ++i) {
                 fvs[i] = feature_vectors.row(i);

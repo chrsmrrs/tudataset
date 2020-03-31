@@ -51,11 +51,17 @@ namespace GenerateTwo {
 
         if (wloa) {
             MatrixXd gram_matrix = MatrixXd::Zero(num_graphs, num_graphs);
-            uint num_components = feature_vectors.cols();
+
+            // Copy rows to sparse vectors for faster component-wise operations.
+            Eigen::SparseVector<double> fvs[num_graphs];
+            for (uint i = 0; i < num_graphs; ++i) {
+                fvs[i] = feature_vectors.row(i);
+            }
 
             for (uint i = 0; i < num_graphs; ++i) {
-                for (uint j = 0; j < num_graphs; ++j) {
-                     gram_matrix(i,j) += feature_vectors.row(i).cwiseMin(feature_vectors.row(j)).sum();
+                for (uint j = i; j < num_graphs; ++j) {
+                     gram_matrix(i,j) = fvs[i].cwiseMin(fvs[j]).sum();
+                     gram_matrix(j,i) = gram_matrix(i,j);
                 }
             }
 
