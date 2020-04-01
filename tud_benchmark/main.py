@@ -9,25 +9,28 @@ import auxiliarymethods.datasets as dp
 
 
 def main():
-    dataset = "ENZYMES"
-    classes = dp.get_dataset(dataset)
 
-    # all_matrices = []
-    # for i in range(0, 6):
-    #     gm = kb.compute_wl_1_sparse(dataset, i, True, False)
-    #     gm = aux.normalize_feature_vector(gm)
-    #     all_matrices.append(gm)
-    # print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
-    # print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False))
+    datataset = ["ENZYMES"]
+    for d in datataset:
 
-    all_matrices = []
-    for i in range(0, 6):
-        print(i)
-        gm = kb.compute_wloa_dense(dataset, i, True, False)
-        gm_n = aux.normalize_gram_matrix(gm)
-        all_matrices.append(gm)
-        all_matrices.append(gm_n)
-    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        dataset = d
+        classes = dp.get_dataset(dataset)
+
+        all_matrices = []
+        for i in range(0, 6):
+            gm = kb.compute_wloa_dense(dataset, i, True, False)
+            gm_n = aux.normalize_gram_matrix(gm)
+            all_matrices.append(gm)
+            all_matrices.append(gm_n)
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+        all_matrices = []
+        for i in range(0, 6):
+            gm = kb.compute_wl_1_dense(dataset, i, True, False)
+            gm_n = aux.normalize_gram_matrix(gm)
+            all_matrices.append(gm)
+            all_matrices.append(gm_n)
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
 
 

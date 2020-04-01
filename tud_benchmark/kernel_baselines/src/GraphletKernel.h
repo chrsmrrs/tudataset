@@ -27,13 +27,13 @@ namespace GraphletKernel {
         GraphletKernel(const GraphDatabase &graph_database);
 
         // Computes gram matrix for the graphlet kernel.
-        GramMatrix compute_gram_matrix(bool use_labels, const bool compute_gram);
+        GramMatrix compute_gram_matrix(const bool use_labels, const bool use_edge_labels, const bool compute_gram);
 
         ~GraphletKernel();
 
     private:
         // Computes number of graphlets in graph.
-        GraphletCounter compute_graphlet_count(const Graph &g, bool use_labels);
+        GraphletCounter compute_graphlet_count(const Graph &g, const bool use_labels, const bool use_edge_labels);
 
         // Manages graphs.
         GraphDatabase m_graph_database;

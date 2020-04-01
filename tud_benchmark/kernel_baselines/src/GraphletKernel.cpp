@@ -14,13 +14,14 @@ namespace GraphletKernel {
                                                                           m_label_to_index(),
                                                                           m_num_labels(0) {}
 
-    GramMatrix GraphletKernel::compute_gram_matrix(bool use_labels, const bool compute_gram) {
+    GramMatrix
+    GraphletKernel::compute_gram_matrix(const bool use_labels, const bool use_edge_labels, const bool compute_gram) {
         vector<GraphletCounter> graphlet_counters;
         graphlet_counters.reserve(m_graph_database.size());
 
         // Compute graphlet count for each graph in graph database.
         for (Graph &graph: m_graph_database) {
-            graphlet_counters.push_back(compute_graphlet_count(graph, use_labels));
+            graphlet_counters.push_back(compute_graphlet_count(graph, use_labels, use_edge_labels));
         }
 
         size_t num_graphs = m_graph_database.size();
@@ -51,7 +52,8 @@ namespace GraphletKernel {
         }
     }
 
-    GraphletCounter GraphletKernel::compute_graphlet_count(const Graph &g, bool use_labels) {
+    GraphletCounter
+    GraphletKernel::compute_graphlet_count(const Graph &g, const bool use_labels, const bool use_edge_labels) {
         GraphletCounter graphlet_counter;
 
         size_t num_nodes = g.get_num_nodes();
@@ -60,6 +62,11 @@ namespace GraphletKernel {
 
         if (use_labels) {
             labels = g.get_labels();
+        }
+
+        EdgeLabels edge_labels;
+        if (use_edge_labels) {
+            edge_labels = g.get_edge_labels();
         }
 
         // Generate all 3-node graplets.
@@ -74,20 +81,35 @@ namespace GraphletKernel {
                         // Found triangle.
                         if (g.has_edge(u, w)) {
                             if (use_labels) {
-                                new_label = g.has_edge(u, v) + g.has_edge(u, w) + g.has_edge(v, w);
+                                new_label = 3;
                                 Label l_u = labels[u];
                                 Label l_v = labels[v];
                                 Label l_w = labels[w];
 
-                                // Map every labeled triangle to a unique integer.
-                                Labels labels(
-                                        {{AuxiliaryMethods::pairing(g.get_degree(u) + 1,
-                                                                    l_u), AuxiliaryMethods::pairing(
-                                                g.get_degree(v) + 1,
-                                                l_v), AuxiliaryMethods::pairing(
-                                                g.get_degree(w) + 1,
-                                                l_w)}});
-                                sort(labels.begin(), labels.end());
+                                if (use_edge_labels) {
+                                    uint uv = edge_labels.find(make_tuple(u, v))->second;
+                                    uint uw = edge_labels.find(make_tuple(u, w))->second;
+                                    uint vw = edge_labels.find(make_tuple(v, w))->second;
+
+                                    Labels labels(
+                                            {{AuxiliaryMethods::pairing(2, l_u),
+                                                     AuxiliaryMethods::pairing(uv, l_u),
+                                                     AuxiliaryMethods::pairing(uw, l_u),
+                                                     AuxiliaryMethods::pairing(2, l_v),
+                                                     AuxiliaryMethods::pairing(2, l_w),
+                                                     AuxiliaryMethods::pairing(vw, l_v)
+                                             }});
+                                } else {
+                                    // Map every labeled triangle to a unique integer.
+                                    Labels labels(
+                                            {{AuxiliaryMethods::pairing(2,
+                                                                        l_u), AuxiliaryMethods::pairing(
+                                                    2,
+                                                    l_v), AuxiliaryMethods::pairing(
+                                                    2,
+                                                    l_w)}});
+                                    sort(labels.begin(), labels.end());
+                                }
 
                                 for (Label d: labels) {
                                     new_label = AuxiliaryMethods::pairing(new_label, d);
@@ -107,17 +129,32 @@ namespace GraphletKernel {
                             }
                         } else { // Found wedge.
                             if (use_labels) {
-                                new_label = g.has_edge(u, v) + g.has_edge(u, w) + g.has_edge(v, w);
+                                new_label = 2;
                                 Label l_u = labels[u];
                                 Label l_v = labels[v];
                                 Label l_w = labels[w];
 
-                                // Map every labeled triangle to a unique integer.
-                                Labels labels(
-                                        {{AuxiliaryMethods::pairing(g.get_degree(u) + 1,
-                                                                    l_u), AuxiliaryMethods::pairing(
-                                                g.get_degree(v) + 1, l_v), AuxiliaryMethods::pairing(
-                                                g.get_degree(w) + 1, l_w)}});
+                                if (use_edge_labels) {
+                                    uint uv = edge_labels.find(make_tuple(u, v))->second;
+                                    uint vw = edge_labels.find(make_tuple(v, w))->second;
+
+                                    Labels labels(
+                                            {{AuxiliaryMethods::pairing(2, l_u),
+                                                     AuxiliaryMethods::pairing(uv, l_u),
+                                                     AuxiliaryMethods::pairing(1, l_v),
+                                                     AuxiliaryMethods::pairing(1, l_w),
+                                                     AuxiliaryMethods::pairing(vw, l_v)
+                                             }});
+                                } else {
+
+                                    // Map every labeled triangle to a unique integer.
+                                    Labels labels(
+                                            {{AuxiliaryMethods::pairing(2,
+                                                                        l_u), AuxiliaryMethods::pairing(
+                                                    1, l_v), AuxiliaryMethods::pairing(
+                                                    1, l_w)}});
+                                }
+
                                 sort(labels.begin(), labels.end());
 
                                 for (Label d: labels) {

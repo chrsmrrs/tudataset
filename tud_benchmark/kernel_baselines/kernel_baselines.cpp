@@ -18,8 +18,10 @@
 #ifdef __linux__
     #include <pybind11/pybind11.h>
     #include <pybind11/eigen.h>
+    #include <pybind11/stl.h>
 #else
     #include </usr/local/include/pybind11/pybind11.h>
+    #include </usr/local/include/pybind11/stl.h>
     #include </usr/local/include/pybind11/eigen.h>
 #endif
 
@@ -30,6 +32,7 @@ using namespace std;
 using namespace GraphLibrary;
 
 using namespace std;
+
 
 MatrixXd compute_wl_1_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
@@ -133,26 +136,26 @@ GramMatrix compute_lwlp_2_sparse(string ds, int num_iterations, bool use_labels,
     return gm;
 }
 
-GramMatrix compute_graphlet_sparse(string ds, bool use_labels) {
+GramMatrix compute_graphlet_sparse(string ds, bool use_labels, bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
     vector<int> classes = AuxiliaryMethods::read_classes(ds);
 
     GraphletKernel::GraphletKernel graphlet(gdb);
     GramMatrix gm;
-    gm = graphlet.compute_gram_matrix(use_labels, false);
+    gm = graphlet.compute_gram_matrix(use_labels, use_edge_labels, false);
 
     return gm;
 }
 
-MatrixXd compute_graphlet_dense(string ds, bool use_labels) {
+MatrixXd compute_graphlet_dense(string ds, bool use_labels, bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
     vector<int> classes = AuxiliaryMethods::read_classes(ds);
 
     GraphletKernel::GraphletKernel graphlet(gdb);
     GramMatrix gm;
-    gm = graphlet.compute_gram_matrix(use_labels, true);
+    gm = graphlet.compute_gram_matrix(use_labels, use_edge_labels, true);
 
     return MatrixXd(gm);
 }

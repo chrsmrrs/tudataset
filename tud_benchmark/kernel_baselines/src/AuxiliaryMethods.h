@@ -7,7 +7,7 @@
 #define WLFAST_AUXILIARYMETHODS_H
 
 //#include "/usr/local/include/eigen3/Eigen/Dense"
-#include <eigen3/Eigen/Dense>
+
 
 #include <fstream>
 #include <iostream>
@@ -21,9 +21,11 @@ using namespace std;
 using namespace GraphLibrary;
 
 #ifdef __linux__
+#include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/Sparse>
 #include <eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h>
 #else
+#include "/usr/local/include/eigen3/Eigen/Dense"
 #include "/usr/local/include/eigen3/Eigen/Sparse"
 #include "/usr/local/include/eigen3/unsupported/Eigen/src/SparseExtra/MarketIO.h"
 #endif
