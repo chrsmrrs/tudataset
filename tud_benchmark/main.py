@@ -43,7 +43,7 @@ def main():
         print("GR")
         all_matrices = []
         for i in range(0, 6):
-            gm = kb.compute_graphlet_dense(dataset, i, use_labels, False)
+            gm = kb.compute_graphlet_dense(dataset, use_labels, False)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
@@ -53,7 +53,7 @@ def main():
         print("SP")
         all_matrices = []
         for i in range(0, 6):
-            gm = kb.compute_shortestpath_dense(dataset, i, use_labels)
+            gm = kb.compute_shortestpath_dense(dataset, use_labels)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
