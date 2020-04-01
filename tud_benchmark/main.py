@@ -27,6 +27,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("WLOA")
@@ -36,6 +37,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("GR")
@@ -45,6 +47,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("SP")
@@ -54,6 +57,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("LWL2")
@@ -63,6 +67,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("LWLP2")
@@ -72,6 +77,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("LWL2OA")
@@ -81,6 +87,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("LWLP2OA")
@@ -90,6 +97,7 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm)
             all_matrices.append(gm_n)
+        print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
 
