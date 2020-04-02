@@ -150,7 +150,7 @@ namespace AuxiliaryMethods {
         vector<int> classes;
 
         ifstream myfile(
-                path + "/datasets/" + data_set_name + "/raw/" + data_set_name +
+                path + "/datasets/" + data_set_name + "/" + data_set_name + "/raw/" + data_set_name +
                 "_graph_labels.txt");
         if (myfile.is_open()) {
             while (getline(myfile, line)) {
