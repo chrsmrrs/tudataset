@@ -87,7 +87,6 @@ def main():
 
         print("GR")
         all_matrices = []
-
         gm = kb.compute_graphlet_dense(dataset, use_labels, False)
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
