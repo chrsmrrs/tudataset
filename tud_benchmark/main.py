@@ -42,19 +42,19 @@ def main():
     #
     # exit()
     #
-    targets = dp.get_dataset("ZINC_val", regression=True)
-    f = kb.compute_lwlp_2_sparse("ZINC_val", 4, True, True)
-    #f= aux.normalize_feature_vector(f)
-    train, test =  train_test_split(list(range(targets.shape[0])), train_size=0.9, shuffle=True)
-    print("###")
-
-    X_train = f[train]
-    X_test = f[test]
-
-    reg = SGDRegressor(max_iter=5000).fit(X_train, targets[train])
-    p = reg.predict(X_test)
-    print(mse(targets[test], p))
-    exit()
+    # targets = dp.get_dataset("ZINC_val", regression=True)
+    # f = kb.compute_lwlp_2_sparse("ZINC_val", 4, True, True)
+    # #f= aux.normalize_feature_vector(f)
+    # train, test =  train_test_split(list(range(targets.shape[0])), train_size=0.9, shuffle=True)
+    # print("###")
+    #
+    # X_train = f[train]
+    # X_test = f[test]
+    #
+    # reg = SGDRegressor(max_iter=5000).fit(X_train, targets[train])
+    # p = reg.predict(X_test)
+    # print(mse(targets[test], p))
+    # exit()
 
     datataset = [["ENZYMES", True],
                  ["IMDB-BINARY", False], ["IMDB-MULTI", False],
