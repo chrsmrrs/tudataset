@@ -4,15 +4,12 @@ import os.path as path
 from torch_geometric.datasets import TUDataset
 import os.path as osp
 
-# TODO: Check this.
-def listToDict(lst):
-    op = { i+1 : lst[i] for i in range(0, len(lst) ) }
-    return op
+
 
 # Return classes as numpy array.
 def read_classes(ds_name):
     # Classes
-    with open("datasets/" + ds_name + "/raw/" + ds_name + "_graph_labels.txt", "r") as f:
+    with open("datasets/" + ds_name + "/"+ ds_name + "/raw/" + ds_name + "_graph_labels.txt", "r") as f:
         classes = [int(i) for i in list(f)]
     f.closed
 
