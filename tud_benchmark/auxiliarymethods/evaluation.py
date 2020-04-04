@@ -181,6 +181,8 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, 
         # Test acc. over all folds.
         test_accuracies = []
 
+        # TODO rest????############################################################
+
         for train_index, test_index in kf.split(list(range(len(dataset)))):
             train_index, val_index = train_test_split(train_index, test_size=0.1)
 

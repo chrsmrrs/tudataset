@@ -12,18 +12,29 @@ def listToDict(lst):
 # Return classes as numpy array.
 def read_classes(ds_name):
     # Classes
-    with open("datasets/" + ds_name + "/" +  ds_name + "/raw/" + ds_name + "_graph_labels.txt", "r") as f:
+    with open("datasets/" + ds_name + "/raw/" + ds_name + "_graph_labels.txt", "r") as f:
         classes = [int(i) for i in list(f)]
     f.closed
 
     return np.array(classes)
 
+def read_targets(ds_name):
+    # Classes
+    with open("datasets/" + ds_name  + "/raw/" + ds_name + "_graph_attributes.txt", "r") as f:
+        classes = [float(i) for i in list(f)]
+    f.closed
 
-def get_dataset(dataset):
+    return np.array(classes)
+
+
+def get_dataset(dataset, regression=False):
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', dataset)
     TUDataset(path, name=dataset)
 
-    return read_classes(dataset)
+    if not regression:
+        return read_classes(dataset)
+    else:
+        return read_targets(dataset)
 
 # TODO: Finsih this.
 # Return dataset as list of networkx graphs.
