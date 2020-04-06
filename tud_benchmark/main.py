@@ -70,7 +70,7 @@ def main():
 
     targets_train = kb.read_targets("ZINC_train", indices_train)
     targets_val = kb.read_targets("ZINC_val", indices_val)
-    targets_test = kb.read_targdets("ZINC_test", indices_test)
+    targets_test = kb.read_targets("ZINC_test", indices_test)
 
     print("###")
 
