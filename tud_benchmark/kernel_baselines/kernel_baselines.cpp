@@ -46,12 +46,16 @@ MatrixXd compute_wl_1_dense(string ds, int num_iterations,  bool use_labels,  bo
 }
 
 GramMatrix compute_wl_1_sparse_ZINC(int num_iterations,  bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
+   cout << "$$$" << endl;
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
     gdb.erase(gdb.begin() + 0);
+    cout << "$$$" << endl;
     GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
     gdb.erase(gdb_2.begin() + 0);
+    cout << "$$$" << endl;
     GraphDatabase gdb_3 = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
     gdb.erase(gdb_3.begin() + 0);
+   cout << "$$$" << endl;
 
     cout << "$$$" << endl;
 
