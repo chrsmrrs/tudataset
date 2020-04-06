@@ -18,7 +18,7 @@ def normalize_gram_matrix(gram_matrix):
 
 # Cosine normalization for sparse feature vectors.
 def normalize_feature_vector(feature_vectors):
-    norm = sp.linalg.norm(feature_vectors, axis=1)
-    feature_vectors = feature_vectors / norm.reshape(feature_vectors.shape[0], 1)
+    norm = sp.linalg.norm(feature_vectors, axis=1).reshape(feature_vectors.shape[0], 1)
+    feature_vectors = feature_vectors / norm
 
     return feature_vectors

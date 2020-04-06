@@ -45,6 +45,44 @@ MatrixXd compute_wl_1_dense(string ds, int num_iterations,  bool use_labels,  bo
     return MatrixXd(gm);
 }
 
+GramMatrix compute_wl_1_sparse_ZINC(int num_iterations,  bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
+    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
+    gdb.erase(gdb.begin() + 0);
+    GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
+    gdb.erase(gdb_2.begin() + 0);
+    GraphDatabase gdb_3 = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
+    gdb.erase(gdb_3.begin() + 0);
+
+    cout << "$$$" << endl;
+
+   GraphDatabase gdb_new;
+   for (auto i : indices_train) {
+       gdb_new.push_back(gdb[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+   for (auto i : indices_val) {
+       gdb_new.push_back(gdb_2[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+
+   for (auto i : indices_train) {
+       gdb_new.push_back(gdb_3[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+
+    ColorRefinement::ColorRefinementKernel wl(gdb_new);
+    GramMatrix gm;
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, true, false);
+
+    return gm;
+}
+
 MatrixXd compute_wloa_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
@@ -184,10 +222,29 @@ GramMatrix compute_shortestpath_sparse(string ds, bool use_labels) {
     return gm;
 }
 
+
+vector<float> read_targets(string data_set_name, const std::vector<int> &indices) {
+
+   vector<float> targets =  AuxiliaryMethods::read_targets(data_set_name);
+
+   vector<float> new_targets;
+   for (auto i : indices) {
+       new_targets.push_back(targets[i]);
+   }
+
+  return new_targets;
+
+}
+
 PYBIND11_MODULE(kernel_baselines, m) {
     m.def("compute_wl_1_dense", &compute_wl_1_dense);
     m.def("compute_wloa_dense", &compute_wloa_dense);
     m.def("compute_wl_1_sparse", &compute_wl_1_sparse);
+    m.def("compute_wl_1_sparse_ZINC", &compute_wl_1_sparse_ZINC);
+
+    m.def("read_targets", &read_targets);
+
+
 
     m.def("compute_lwl_2_dense", &compute_lwl_2_dense);
     m.def("compute_lwl_2_sparse", &compute_lwl_2_sparse);

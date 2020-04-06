@@ -42,19 +42,48 @@ def main():
     #
     # exit()
     #
-    # targets = dp.get_dataset("ZINC_val", regression=True)
-    # f = kb.compute_lwlp_2_sparse("ZINC_val", 4, True, True)
-    # #f= aux.normalize_feature_vector(f)
-    # train, test =  train_test_split(list(range(targets.shape[0])), train_size=0.9, shuffle=True)
-    # print("###")
-    #
-    # X_train = f[train]
-    # X_test = f[test]
-    #
-    # reg = SGDRegressor(max_iter=5000).fit(X_train, targets[train])
-    # p = reg.predict(X_test)
-    # print(mse(targets[test], p))
-    # exit()
+
+    indices_train = []
+    indices_val = []
+    indices_test = []
+
+    infile = open("datasets/test.index.txt", "r")
+    for line in infile:
+        indices_test = line.split(",")
+        indices_test = [int(i) for i in indices_test]
+
+    infile = open("datasets/val.index.txt", "r")
+    for line in infile:
+        indices_val = line.split(",")
+        indices_val = [int(i) for i in indices_val]
+
+    infile = open("datasets/train.index.txt", "r")
+    for line in infile:
+        indices_train = line.split(",")
+        indices_train = [int(i) for i in indices_train]
+
+    print("###")
+
+    targets_train = kb.read_targets("ZINC_train", indices_train)
+    targets_val = kb.read_targets("ZINC_val", indices_val)
+    targets_test = kb.read_targets("ZINC_test", indices_test)
+
+    print("###")
+
+    f = kb.compute_wl_1_sparse_ZINC(4, True, True, indices_train, indices_val, indices_test)
+    print("###")
+
+    print(f.shape)
+
+    X_train = f[0:10000]
+    X_test = f[11000:12000]
+
+
+
+    reg = SGDRegressor(max_iter=1000).fit(X_train, targets_train)
+    p = reg.predict(X_test)
+    print(mse(targets_test, p))
+    exit()
 
     datataset = [["ENZYMES", True],
                  ["IMDB-BINARY", False], ["IMDB-MULTI", False],

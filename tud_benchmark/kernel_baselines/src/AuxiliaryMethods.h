@@ -38,6 +38,7 @@ namespace AuxiliaryMethods {
     GraphDatabase read_graph_txt_file(string data_set_name);
 
     vector<int> read_classes(string data_set_name);
+       vector<float> read_targets(string data_set_name);
 
     // Write Gram matrix to file.
     void write_gram_matrix(const GramMatrix &gram_matrix, string file_name);
