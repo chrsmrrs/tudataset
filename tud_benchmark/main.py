@@ -43,9 +43,9 @@ def main():
     # exit()
     #
 
-    dp.get_dataset("ZINC_train")
-    dp.get_dataset("ZINC_val")
-    dp.get_dataset("ZINC_test")
+    dp.get_dataset("ZINC_train", regression=True)
+    dp.get_dataset("ZINC_val", regression=True)
+    dp.get_dataset("ZINC_test", regression=True)
 
     indices_train = []
     indices_val = []
