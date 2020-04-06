@@ -74,7 +74,7 @@ def main():
 
     print("###")
 
-    f = kb.compute_wl_1_sparse_ZINC(2, True, True, indices_train, indices_val, indices_test)
+    f = kb.compute_wl_1_sparse_ZINC(4, True, True, indices_train, indices_val, indices_test)
     print("###")
 
     print(f.shape)
