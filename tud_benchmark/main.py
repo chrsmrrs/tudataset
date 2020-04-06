@@ -43,6 +43,10 @@ def main():
     # exit()
     #
 
+    dp.get_dataset("ZINC_train")
+    dp.get_dataset("ZINC_val")
+    dp.get_dataset("ZINC_test")
+
     indices_train = []
     indices_val = []
     indices_test = []
