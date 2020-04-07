@@ -13,35 +13,35 @@ from sklearn.preprocessing import StandardScaler
 
 
 def main():
-    # dataset = "deezer_ego_nets"
-    # classes = dp.get_dataset(dataset)
-    # print(classes.sum()/len(classes))
-    #
-    # print("WL")
-    # all_matrices = []
-    # for i in range(1, 4):
-    #     print(i)
-    #     gm = kb.compute_wl_1_sparse(dataset, i, False, False)
-    #     gm_n = aux.normalize_feature_vector(gm)
-    #     all_matrices.append(gm)
-    #     all_matrices.append(gm_n)
-    # print("###")
-    # print(linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True, primal=True))
+    dataset = "deezer_ego_nets"
+    classes = dp.get_dataset(dataset)
+    print(classes.sum()/len(classes))
 
-    # print("WL")
-    # all_matrices = []
-    # for i in range(3, 4):
-    #     print(i)
-    #     gm = kb.compute_lwlp_2_dense(dataset, i, False, False)
-    #     gm_n = aux.normalize_gram_matrix(gm)
-    #     #all_matrices.append(gm)
-    #     all_matrices.append(gm_n)
-    # print("###")
-    # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
-    #
-    #
-    # exit()
-    #
+    print("WL")
+    all_matrices = []
+    for i in range(1, 4):
+        print(i)
+        gm = kb.compute_wl_1_sparse(dataset, i, False, False)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True, primal=True))
+
+    print("WL")
+    all_matrices = []
+    for i in range(3, 4):
+        print(i)
+        gm = kb.compute_lwlp_2_dense(dataset, i, False, False)
+        gm_n = aux.normalize_gram_matrix(gm)
+        #all_matrices.append(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
+
+
+    exit()
+
 
     dp.get_dataset("ZINC_train", regression=True)
     dp.get_dataset("ZINC_val", regression=True)
