@@ -21,7 +21,7 @@ def main():
     print("XXXX")
 
     p = sgd_regressor_evaluation([gm], targets, list(range(0, 4000)), list(range(4000, 4500)),
-                                      list(range(4500, 5000)), num_repetitions=1)
+                                      list(range(4500, 5000)), alpha=[0.0001], num_repetitions=1)
     print(p)
 
     exit()
