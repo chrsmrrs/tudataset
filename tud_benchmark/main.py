@@ -17,6 +17,7 @@ def main():
 
     targets = dp.get_dataset("ZINC_test", regression=True)
     gm = kb.compute_lwl_2_sparse("ZINC_test", 2, True, True)
+    gm = aux.normalize_feature_vector(gm)
     print("XXXX")
 
     p = sgd_regressor_evaluation([gm], targets, list(range(0, 4000)), list(range(4000, 4500)),
