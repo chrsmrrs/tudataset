@@ -22,7 +22,6 @@ def normalize_feature_vector(feature_vectors):
 
     for i in range(0, n):
         norm = sp.linalg.norm(feature_vectors[i])
-        print(norm.shape)
         feature_vectors[i] = feature_vectors[i]/norm
 
     return feature_vectors
