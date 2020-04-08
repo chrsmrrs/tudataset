@@ -27,15 +27,6 @@ def main():
         dataset = d
         classes = dp.get_dataset(dataset)
 
-        print("GR")
-        all_matrices = []
-        for i in range(0, 6):
-            gm = kb.compute_graphlet_dense(dataset, use_labels, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
-        print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-
         print("WL1")
         all_matrices = []
         for i in range(0, 6):
@@ -56,19 +47,17 @@ def main():
 
         print("GR")
         all_matrices = []
-        for i in range(0, 6):
-            gm = kb.compute_graphlet_dense(dataset, use_labels, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
+        gm = kb.compute_graphlet_dense(dataset, use_labels, False)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
         print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print("SP")
         all_matrices = []
-        for i in range(0, 6):
-            gm = kb.compute_shortestpath_dense(dataset, use_labels)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
+        gm = kb.compute_shortestpath_dense(dataset, use_labels)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
         print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
