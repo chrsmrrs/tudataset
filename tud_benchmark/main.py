@@ -29,7 +29,7 @@ def main():
 
         print("WL1")
         all_matrices = []
-        for i in range(0, 6):
+        for i in range(1, 6):
             gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
@@ -38,7 +38,7 @@ def main():
 
         print("WLOA")
         all_matrices = []
-        for i in range(0, 6):
+        for i in range(1, 6):
             gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
@@ -60,8 +60,6 @@ def main():
         all_matrices.append(gm_n)
         print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-
-
 
 
 if __name__ == "__main__":
