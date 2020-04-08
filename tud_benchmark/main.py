@@ -1,5 +1,5 @@
 from __future__ import division
-from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation
+from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation
 from auxiliarymethods.evaluation import gnn_evaluation
 from gnn_baselines.gin import GIN0
 from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
@@ -16,10 +16,10 @@ def main():
     print("XXXX")
 
     targets = dp.get_dataset("ZINC_test", regression=True)
-    gm = kb.compute_lwl_2_sparse("ZINC_test", 2, True, False)
+    gm = kb.compute_lwl_2_sparse("ZINC_test", 2, True, True)
     print("XXXX")
 
-    p = eval.sgd_regressor_evaluation([gm], targets, list(range(0, 4000)), list(range(4000, 4500)),
+    p = sgd_regressor_evaluation([gm], targets, list(range(0, 4000)), list(range(4000, 4500)),
                                       list(range(4500, 5000)))
     print(p)
 
