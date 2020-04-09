@@ -51,11 +51,11 @@ def main():
 
 
     # datataset = [["ENZYMES", True],
-    #              ["IMDB-BINARY", False], ["IMDB-MULTI", False],
-    #              ["NCI1", True],
-    #              ["PROTEINS", True],
-    #              ["REDDIT-BINARY", False],
-    #              ["deezer_ego_nets", False]]
+    #     #              ["IMDB-BINARY", False], ["IMDB-MULTI", False],
+    #     #              ["NCI1", True],
+    #     #              ["PROTEINS", True],
+    #     #              ["REDDIT-BINARY", False],
+    #     #              ["deezer_ego_nets", False]]
     # for d, use_labels in datataset:
     #
     #     dataset = d

@@ -302,23 +302,43 @@ For both methods, we used the evaluation procecude described in~\cref{eval} to o
 See~\cref{t2l}.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
 	\label{t2l}	
-	\resizebox{0.6\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
-		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
+	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+		\begin{tabular}{@{}c <{\enspace}@{}lccccccc@{}}	\toprule
 			
-			& \multirow{3}{*}{\vspace*{4pt}\textbf{Graph Kernel}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
-			& & {\textsc{Data0}}         &  {\textsc{Data1}}      & {\textsc{Data1}}           & {\textsc{Data1}}       & {\textsc{Data1}}           & {\textsc{Data1}}      \\	\toprule
-			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
-				& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
-				& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
-				& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
-			\cmidrule{2-8}	
-			\multirow{4}{*}{\rotatebox{90}{GNN}}	& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
-		& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
-		& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
-		& \text{1-WL}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ \\
+			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{7}{c}{\textbf{Dataset}}\\\cmidrule{3-9}
+			& & {\textsc{Enyzmes}}         &  {\textsc{Imdb-Binary}}      & {\textsc{Imdb-Multi}}           & {\textsc{NCI1}}       & {\textsc{Proteins}}           & {\textsc{Reddit-Binary}}   & {\textsc{deezer\_ego\_nets}}      \\	\toprule
+			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}            &  50.1  \scriptsize $\pm 1.6 \pm 6.2 $       & 72.4 \scriptsize $\pm  0.5 \pm 4.0$ & 50.1  \scriptsize $\pm 0.5 \pm  3.8 $ & 84.3 \scriptsize $\pm 0.3 \pm 1.6$ &73.0  \scriptsize $\pm 0.8 \pm  4.2 $ & 72.6 \scriptsize $\pm  0.4 \pm 3.1 $ &   \scriptsize $\pm $   \\
+				& \text{WLOA}          & 56.8  \scriptsize $\pm  1.7\pm6.4 $       & 72.7  \scriptsize $\pm 0.7 \pm 4.3$ & 49.5 \scriptsize $\pm  0.4 \pm  3.5 $ & 84.9 \scriptsize $\pm  0.4 \pm 1.7$ &73.4  \scriptsize $\pm 0.7 \pm 3.7$ & 88.1 \scriptsize $\pm 0.3 \pm 2.5 $&  \scriptsize $\pm $    \\
+				& \text{GR}            &  31.9   \scriptsize $\pm 1.1 \pm4.8$       & 59.4  \scriptsize $\pm 0.4 \pm 4.6$ & 39.3 \scriptsize $\pm 0.8 \pm  4.1 $ & 58.7  \scriptsize $\pm 0.4 \pm 2.3$ & 69.0  \scriptsize $\pm 0.8 \pm 4.3$ &60.0  \scriptsize $\pm 0.2 \pm 3.2 $&  \scriptsize $\pm $    \\
+				& \text{SP}            &  40.6 \scriptsize $\pm  1.8\pm 5.8 $       & 58.3  \scriptsize $\pm 0.8 \pm  4.9$ & 39.0 \scriptsize $\pm 0.5 \pm  3.8$ &  74.1  \scriptsize $\pm 0.5 \pm 2.0 $  & 75.4  \scriptsize $\pm 0.5 \pm 4.1$ & 84.6 \scriptsize $\pm 0.3 \pm 2.5 $&   \scriptsize $\pm $   \\
+			\cmidrule{2-9}	
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GIN}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ &   \scriptsize $\pm $   \\
+		& \text{Sage}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $   \\
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
