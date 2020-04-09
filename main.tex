@@ -304,26 +304,6 @@ See~\cref{t2l}.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
 	\label{t2l}	
@@ -342,6 +322,53 @@ See~\cref{t2l}.
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
+
+
+
+
+
+
+
+\begin{table*}[t]\centering		
+	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
+	\label{t2l}	
+	\resizebox{0.6\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
+			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
+			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Triangles}}           & {\textsc{github\_stargazers}}       & {\textsc{reddit\_threads}}      \\	\toprule
+							\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}    & 94.23 
+							   \scriptsize $\pm 0.11  \pm 0.49$       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\
+		
+			& \text{GR}            &  91.71 \scriptsize $\pm  0.04   \pm 0.52 $       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\  
+			& \text{SP}             &   91.73 \scriptsize $\pm 0.03  \pm 0.49$       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\   
+			\cmidrule{2-7}	
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GIN}            &    \scriptsize $\pm  \pm $       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ \\
+			& \text{Sage}            &    \scriptsize $\pm \pm$       & \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm $  \\
+			\bottomrule
+	\end{tabular}}
+\end{table*}		
+
+
+
+\begin{table}[t]\centering		
+	\caption{Results for neural and kernel baselines.}
+	\label{t2l}	
+	\resizebox{0.85\columnwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+		\begin{tabular}{@{}c <{\enspace}@{}lcc@{}}	\toprule
+			
+			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{2}{c}{\textbf{Dataset}}\\\cmidrule{3-4}
+			&  & {\textsc{Zinc} (10k)}         &  {\textsc{Zinc} (50k)}         \\	
+			\toprule
+			\multirow{3}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}             &   &     \\
+				& \text{GR}            &  &  \\  
+			& \text{SP}             &  & \\   
+			\cmidrule{2-4}
+			\multirow{2}{*}{\rotatebox{90}{GNN}} & \text{$1$-GNN-E}             &   \scriptsize $\pm $  &	\\	
+			& \text{$1$-GNN}             &  0.383 \scriptsize $\pm  0.020$    &  0.247 \scriptsize $\pm   0.020$ \\
+			\bottomrule
+	\end{tabular}}
+\end{table}		
+
 
 
 \section{Conclusion}
