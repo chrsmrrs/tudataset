@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import LinearSVC, SVC
 from torch_geometric.data import DataLoader
 from torch_geometric.datasets import TUDataset
-from sklearn.linear_model import SGDRegressor
+from sklearn.linear_model import SGDRegressor, Ridge
 from sklearn.metrics import mean_absolute_error as mse
 
 # Return arg max of iterable, e.g., a list.
@@ -78,7 +78,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
             c_val = targets[val_index]
 
             for a in alpha:
-                clf = SGDRegressor(alpha=a)
+                clf = Ridge(alpha=a)
                 clf.fit(train, c_train)
                 p = clf.predict(val)
                 r = mse(c_val, p)
