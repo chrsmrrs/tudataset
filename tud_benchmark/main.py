@@ -67,14 +67,14 @@ def main():
 
     all_matrices = []
     for i in range(4, 5):
-        all_matrices.append(kb.compute_lwl_2_sparse("ZINC_test", i, True, True))
+        all_matrices.append(kb.compute_lwl_2_sparse("ZINC_val", i, True, True))
         print(all_matrices[-1].shape)
     print("###")
 
 
 
     #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
-    p = ridge_regressor_evaluation(all_matrices, targets,list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[3.])
+    p = ridge_regressor_evaluation(all_matrices, targets,list(range(0,18000)),  list(range(18000, 21000)),  list(range(21000,24445)), num_repetitions=1, alpha=[3.])
     print(p)
 
 
