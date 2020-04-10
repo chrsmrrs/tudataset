@@ -42,7 +42,7 @@ def main():
 
     # targets = kb.read_targets("ZINC_train", indices_train)
     # targets.extend(kb.read_targets("ZINC_val", indices_val))
-    targets = kb.read_targets("ZINC_test", list(range(5000)))
+    targets = kb.read_targets("ZINC_val", list(range(24445)))
     targets = np.array(targets)
     print(len(targets))
     #
