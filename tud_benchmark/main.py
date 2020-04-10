@@ -1,5 +1,5 @@
 from __future__ import division
-from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation
+from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation, ridge_regressor_evaluation
 from auxiliarymethods.evaluation import gnn_evaluation
 from gnn_baselines.gin import GIN0
 from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
@@ -54,9 +54,9 @@ def main():
     indices_train = list(range(10000))
     indices_val = list(range(1000))
     indices_test = list(range(1000))
-    p = eval.sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
     print(p)
-    p = eval.ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
     print(p)
 
     print("###")
