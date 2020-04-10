@@ -14,40 +14,116 @@ import numpy as np
 
 
 def main():
-    datataset = [["MCF-7", True, True],
-                 ["MOLT-4", True, True],
-                 ["TRIANGLES", False, False],
-                 ["github_stargazers", False, False],
-                 ["reddit_threads", False, False]]
-    for d, use_labels, use_edge_labels in datataset:
-        dataset = d
-        classes = dp.get_dataset(dataset)
+    dp.get_dataset("ZINC_train", regression=True)
+    dp.get_dataset("ZINC_val", regression=True)
+    dp.get_dataset("ZINC_test", regression=True)
 
-        print("WL1")
-        all_matrices = []
-        for i in range(1, 6):
-            gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)
-            gm_n = aux.normalize_feature_vector(gm)
-            all_matrices.append(gm_n)
-        print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    indices_train = []
+    indices_val = []
+    indices_test = []
 
-        print("GR")
-        all_matrices = []
-        gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
-        gm_n = aux.normalize_feature_vector(gm)
-        all_matrices.append(gm_n)
-        print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    infile = open("datasets/test.index.txt", "r")
+    for line in infile:
+        indices_test = line.split(",")
+        indices_test = [int(i) for i in indices_test]
 
-        print("SP")
-        all_matrices = []
-        gm = kb.compute_shortestpath_sparse(dataset, use_labels)
-        gm_n = aux.normalize_feature_vector(gm)
-        all_matrices.append(gm_n)
-        print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    infile = open("datasets/val.index.txt", "r")
+    for line in infile:
+        indices_val = line.split(",")
+        indices_val = [int(i) for i in indices_val]
 
+    infile = open("datasets/train.index.txt", "r")
+    for line in infile:
+        indices_train = line.split(",")
+        indices_train = [int(i) for i in indices_train]
+
+    targets = kb.read_targets("ZINC_train", indices_train)
+    targets.extend(kb.read_targets("ZINC_val", indices_val))
+    targets.extend(kb.read_targets("ZINC_test", indices_test))
+    targets = np.array(targets)
+    print(len(targets))
+
+    print("###")
+    all_matrices = []
+    for i in range(0, 6):
+        all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
+
+    indices_train = list(range(10000))
+    indices_val = list(range(1000))
+    indices_test = list(range(1000))
+    p = eval.sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    print(p)
+
+    print("####################################################################")
+
+    indices_train = []
+    indices_val = []
+    indices_test = []
+
+    infile = open("data/train_50.index.txt", "r")
+    for line in infile:
+        indices_train = line.split(",")
+        indices_train = [int(i) for i in indices_train]
+
+    infile = open("data/val_50.index.txt", "r")
+    for line in infile:
+        indices_val = line.split(",")
+        indices_val = [int(i) for i in indices_val]
+
+    indices_test = list(range(0, 5000))
+
+    targets = kb.read_targets("ZINC_train", indices_train)
+    targets.extend(kb.read_targets("ZINC_val", indices_val))
+    targets.extend(kb.read_targets("ZINC_test", indices_test))
+    targets = np.array(targets)
+    print(len(targets))
+
+    print("###")
+    all_matrices = []
+    for i in range(0, 6):
+        all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
+
+    indices_train = list(range(50000))
+    indices_val = list(range(5000))
+    indices_test = list(range(5000))
+    p = eval.sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    print(p)
+
+    #
+    # datataset = [["MCF-7", True, True],
+    #              ["MOLT-4", True, True],
+    #              ["TRIANGLES", False, False],
+    #              ["github_stargazers", False, False],
+    #              ["reddit_threads", False, False]]
+    # for d, use_labels, use_edge_labels in datataset:
+    #     dataset = d
+    #     classes = dp.get_dataset(dataset)
+    #
+    #     print("WL1")
+    #     all_matrices = []
+    #     for i in range(1, 6):
+    #         gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)
+    #         gm_n = aux.normalize_feature_vector(gm)
+    #         all_matrices.append(gm_n)
+    #     print("###")
+    #     print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    #
+    #     print("GR")
+    #     all_matrices = []
+    #     gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
+    #     gm_n = aux.normalize_feature_vector(gm)
+    #     all_matrices.append(gm_n)
+    #     print("###")
+    #     print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    #
+    #     print("SP")
+    #     all_matrices = []
+    #     gm = kb.compute_shortestpath_sparse(dataset, use_labels)
+    #     gm_n = aux.normalize_feature_vector(gm)
+    #     all_matrices.append(gm_n)
+    #     print("###")
+    #     print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    #
 
 
     # datataset = [["ENZYMES", True],
