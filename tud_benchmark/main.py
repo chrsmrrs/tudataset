@@ -50,19 +50,19 @@ def main():
     # indices_val = list(range(10000,11000))
     # indices_test = list(range(11000,12000))
 
-    print("###")
-    all_matrices = []
-    for i in range(4, 5):
-        all_matrices.append(kb.compute_lwl_2_sparse("ZINC_test", i, True, True,))
-        print(all_matrices[-1].shape)
-    print("###")
+    # print("###")
+    # all_matrices = []
+    # for i in range(4, 5):
+    #     all_matrices.append(kb.compute_lwl_2_sparse("ZINC_test", i, True, True,))
+    #     print(all_matrices[-1].shape)
+    # print("###")
+    #
+    # all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
+    # print("###")
+    # p = ridge_regressor_evaluation(all_matrices, targets,  list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[1.0])
+    # print(p)
 
-    all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
-    print("###")
-    p = ridge_regressor_evaluation(all_matrices, targets,  list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[1.0])
-    print(p)
 
-    exit()
 
 
     all_matrices = []
@@ -72,8 +72,8 @@ def main():
     print("###")
 
 
-    all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1, alpha=[0.1, 1.0, 10.0])
+    #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
+    p = ridge_regressor_evaluation(all_matrices, targets,list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[1.0])
     print(p)
 
 
