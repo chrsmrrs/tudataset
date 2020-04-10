@@ -61,19 +61,19 @@ def main():
     print(p)
 
 
-
-    print("###")
-    all_matrices = []
-    for i in range(0, 6):
-        all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
-
-    indices_train = list(range(10000))
-    indices_val = list(range(1000))
-    indices_test = list(range(1000))
-    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
-    print(p)
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
-    print(p)
+    #
+    # print("###")
+    # all_matrices = []
+    # for i in range(0, 6):
+    #     all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
+    #
+    # indices_train = list(range(10000))
+    # indices_val = list(range(1000))
+    # indices_test = list(range(1000))
+    # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    # print(p)
+    # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    # print(p)
 
 
 
@@ -85,12 +85,12 @@ def main():
     indices_val = []
     indices_test = []
 
-    infile = open("data/train_50.index.txt", "r")
+    infile = open("datasets/train_50.index.txt", "r")
     for line in infile:
         indices_train = line.split(",")
         indices_train = [int(i) for i in indices_train]
 
-    infile = open("data/val_50.index.txt", "r")
+    infile = open("datasets/val_50.index.txt", "r")
     for line in infile:
         indices_val = line.split(",")
         indices_val = [int(i) for i in indices_val]
@@ -105,7 +105,7 @@ def main():
 
     print("###")
     all_matrices = []
-    for i in range(0, 6):
+    for i in range(4, 5):
         all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
 
     indices_train = list(range(50000))
