@@ -79,7 +79,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
             c_val = targets[val_index]
 
             for a in alpha:
-                clf = Ridge(alpha=a, max_iter=5000,  solver="sag")
+                clf = Ridge(alpha=a, max_iter=10000,  solver="sag")
                 clf.fit(train, c_train)
                 p = clf.predict(val)
                 r = mse(c_val, p)
