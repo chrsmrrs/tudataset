@@ -59,6 +59,45 @@ def sgd_regressor_evaluation(all_feature_matrices, targets, train_index, val_ind
 
         return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
 
+
+def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
+                             alpha=[0.01, 0.1, 1.0, 2.0]):
+    # Acc. over all repetitions.
+    test_accuracies = []
+
+    for _ in range(num_repetitions):
+
+        val_accuracies = []
+        models = []
+        for f in all_feature_matrices:
+
+            train = f[train_index]
+            val = f[val_index]
+
+            c_train = targets[train_index]
+            c_val = targets[val_index]
+
+            for a in alpha:
+                clf = SGDRegressor(alpha=a)
+                clf.fit(train, c_train)
+                p = clf.predict(val)
+                r = mse(c_val, p)
+
+                models.append(clf)
+                val_accuracies.append(r)
+
+            best_i = argmax(val_accuracies)
+            best_model = models[best_i]
+
+            # Eval. model on test split that performed best on val. split.
+            test = all_feature_matrices[int(best_i / len(alpha))][test_index]
+            c_test = targets[test_index]
+            p = best_model.predict(test)
+            a = mse(c_test, p)
+            test_accuracies.append(a)
+
+        return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
+
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                           C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False,

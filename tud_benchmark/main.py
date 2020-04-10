@@ -53,6 +53,8 @@ def main():
     indices_test = list(range(1000))
     p = eval.sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
     print(p)
+    p = eval.ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    print(p)
 
     print("####################################################################")
 
@@ -87,6 +89,8 @@ def main():
     indices_val = list(range(5000))
     indices_test = list(range(5000))
     p = eval.sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    print(p)
+    p = eval.ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
     print(p)
 
     #
