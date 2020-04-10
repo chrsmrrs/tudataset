@@ -59,6 +59,21 @@ def main():
     p = eval.ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
     print(p)
 
+    print("###")
+    all_matrices = []
+    for i in range(0, 6):
+        all_matrices.append(aux.normalize_feature_vector(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test)))
+
+    indices_train = list(range(10000))
+    indices_val = list(range(1000))
+    indices_test = list(range(1000))
+    p = eval.sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    print(p)
+    p = eval.ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    print(p)
+
+
+
     print("####################################################################")
 
     indices_train = []
