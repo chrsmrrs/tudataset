@@ -67,7 +67,7 @@ def main():
 
     all_matrices = []
     for i in range(4, 5):
-        all_matrices.append(kb.compute_lwl_2_sparse("ZINC_val", i, True, True))
+        all_matrices.append(kb.compute_wl_1_sparse("ZINC_val", i, True, True))
         print(all_matrices[-1].shape)
     print("###")
 
