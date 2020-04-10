@@ -84,7 +84,7 @@ GramMatrix compute_lwl_2_sparse_ZINC(int num_iterations,  bool use_labels,  bool
 
     GenerateTwo::GenerateTwo wl(gdb_new);
     GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", false, false, false);
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "local", false, false, false);
 
    cout << "$$$" << endl;
 

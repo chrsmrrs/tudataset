@@ -74,7 +74,7 @@ def main():
 
 
     #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
-    p = ridge_regressor_evaluation(all_matrices, targets,list(range(0,18000)),  list(range(18000, 21000)),  list(range(21000,24445)), num_repetitions=1, alpha=[3.])
+    p = ridge_regressor_evaluation(all_matrices, targets,list(range(0,18000)),  list(range(18000, 21000)),  list(range(21000,24445)), num_repetitions=1, alpha=[1.])
     print(p)
 
 
