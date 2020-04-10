@@ -17,55 +17,57 @@ def main():
 
     ## TODO: Normalise!!
 
-    dp.get_dataset("ZINC_train", regression=True)
-    dp.get_dataset("ZINC_val", regression=True)
-    dp.get_dataset("ZINC_test", regression=True)
+    # dp.get_dataset("ZINC_train", regression=True)
+    # dp.get_dataset("ZINC_val", regression=True)
+    # dp.get_dataset("ZINC_test", regression=True)
+    #
+    # indices_train = []
+    # indices_val = []
+    # indices_test = []
+    #
+    # infile = open("datasets/test.index.txt", "r")
+    # for line in infile:
+    #     indices_test = line.split(",")
+    #     indices_test = [int(i) for i in indices_test]
+    #
+    # infile = open("datasets/val.index.txt", "r")
+    # for line in infile:
+    #     indices_val = line.split(",")
+    #     indices_val = [int(i) for i in indices_val]
+    #
+    # infile = open("datasets/train.index.txt", "r")
+    # for line in infile:
+    #     indices_train = line.split(",")
+    #     indices_train = [int(i) for i in indices_train]
 
-    indices_train = []
-    indices_val = []
-    indices_test = []
-
-    infile = open("datasets/test.index.txt", "r")
-    for line in infile:
-        indices_test = line.split(",")
-        indices_test = [int(i) for i in indices_test]
-
-    infile = open("datasets/val.index.txt", "r")
-    for line in infile:
-        indices_val = line.split(",")
-        indices_val = [int(i) for i in indices_val]
-
-    infile = open("datasets/train.index.txt", "r")
-    for line in infile:
-        indices_train = line.split(",")
-        indices_train = [int(i) for i in indices_train]
-
-    targets = kb.read_targets("ZINC_train", indices_train)
-    targets.extend(kb.read_targets("ZINC_val", indices_val))
-    targets.extend(kb.read_targets("ZINC_test", indices_test))
+    # targets = kb.read_targets("ZINC_train", indices_train)
+    # targets.extend(kb.read_targets("ZINC_val", indices_val))
+    targets = kb.read_targets("ZINC_test", list(range(5000)))
     targets = np.array(targets)
     print(len(targets))
-
-    indices_train = list(range(0,10000))
-    indices_val = list(range(10000,11000))
-    indices_test = list(range(11000,12000))
+    #
+    # indices_train = list(range(0,10000))
+    # indices_val = list(range(10000,11000))
+    # indices_test = list(range(11000,12000))
 
     print("###")
     all_matrices = []
     for i in range(4, 5):
-        all_matrices.append(kb.compute_lwl_2_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
+        all_matrices.append(kb.compute_lwl_2_sparse("ZINC_test", i, True, True,))
         print(all_matrices[-1].shape)
     print("###")
 
     all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
     print("###")
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1, alpha=[0.1, 1.0, 10.0])
+    p = ridge_regressor_evaluation(all_matrices, targets,  list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[1.0])
     print(p)
+
+    exit()
 
 
     all_matrices = []
     for i in range(4, 5):
-        all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
+        all_matrices.append(kb.compute_wl_1_sparse(i, True, True))
         print(all_matrices[-1].shape)
     print("###")
 
