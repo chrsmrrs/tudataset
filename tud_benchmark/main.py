@@ -14,6 +14,9 @@ import numpy as np
 
 
 def main():
+
+    ## TODO: Normalise!!
+
     dp.get_dataset("ZINC_train", regression=True)
     dp.get_dataset("ZINC_val", regression=True)
     dp.get_dataset("ZINC_test", regression=True)
