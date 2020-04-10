@@ -48,7 +48,7 @@ def main():
 
     print("###")
     all_matrices = []
-    for i in range(0, 6):
+    for i in range(4, 5):
         all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
     print("###")
 
