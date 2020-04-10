@@ -46,6 +46,10 @@ def main():
     targets = np.array(targets)
     print(len(targets))
 
+    indices_train = list(range(0,10000))
+    indices_val = list(range(10000,11000))
+    indices_test = list(range(11000,12000))
+
     print("###")
     all_matrices = []
     for i in range(4, 5):
@@ -53,17 +57,8 @@ def main():
         print(all_matrices[-1].shape)
     print("###")
 
-    indices_train = list(range(0,10000))
-    indices_val = list(range(10000,11000))
-    indices_test = list(range(11000,12000))
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1, alpha=[0.1, 1.0, 10.0])
-    print(p)
-
     all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
     print("###")
-    indices_train = list(range(0,10000))
-    indices_val = list(range(10000,11000))
-    indices_test = list(range(11000,12000))
     p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1, alpha=[0.1, 1.0, 10.0])
     print(p)
 
@@ -74,9 +69,8 @@ def main():
         print(all_matrices[-1].shape)
     print("###")
 
-    indices_train = list(range(0,10000))
-    indices_val = list(range(10000,11000))
-    indices_test = list(range(11000,12000))
+
+    all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
     p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1, alpha=[0.1, 1.0, 10.0])
     print(p)
 
