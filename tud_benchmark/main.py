@@ -48,18 +48,19 @@ def main():
 
     print("###")
     all_matrices = []
-    for i in range(0, 6):
+    for i in range(4, 5):
         all_matrices.append(kb.compute_wl_1_sparse_ZINC(i, True, True, indices_train, indices_val, indices_test))
     print("###")
 
     indices_train = list(range(0,10000))
     indices_val = list(range(10000,11000))
     indices_test = list(range(11000,12000))
-    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1, alpha=[0.0001])
     print(p)
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
+    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1, alpha=[1.0])
     print(p)
 
+    exit()
 
     #
     # print("###")
