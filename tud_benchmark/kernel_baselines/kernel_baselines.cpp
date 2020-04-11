@@ -35,6 +35,48 @@ using namespace GraphLibrary;
 
 using namespace std;
 
+GramMatrix compute_wl_1_sparse_ZINC(int num_iterations,  bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
+
+    GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_val");
+    gdb_2.erase(gdb_2.begin() + 0);
+
+   cout << "$$$" << endl;
+    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
+    gdb.erase(gdb.begin() + 0);
+    cout << "$$$" << endl;
+        GraphDatabase gdb_3 = AuxiliaryMethods::read_graph_txt_file("ZINC_test");
+    gdb_3.erase(gdb_3.begin() + 0);
+   cout << "$$$" << endl;
+
+
+   GraphDatabase gdb_new;
+   for (auto i : indices_train) {
+       gdb_new.push_back(gdb[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+   for (auto i : indices_val) {
+       gdb_new.push_back(gdb_2[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+
+   for (auto i : indices_test) {
+       gdb_new.push_back(gdb_3[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+
+    ColorRefinement::ColorRefinementKernel wl(gdb_new);
+    GramMatrix gm;
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, false, false);
+
+    return gm;
+}
+
 
 MatrixXd compute_wl_1_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
