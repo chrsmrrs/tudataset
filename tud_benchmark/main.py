@@ -51,6 +51,9 @@ def main():
     indices_train = list(range(0,10000))
     indices_val = list(range(10000,11000))
     indices_test = list(range(11000,12000))
+
+    all_matrices = [all_matrices[4]]
+
     p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
                                  alpha=[0.0001])
     print(p)
