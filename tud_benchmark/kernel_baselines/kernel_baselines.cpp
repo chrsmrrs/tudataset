@@ -129,7 +129,7 @@ vector<GramMatrix> compute_wl_1_sparse_ZINC(bool use_labels,  bool use_edge_labe
 
     ColorRefinement::ColorRefinementKernel wl(gdb_new);
     GramMatrix gm;
-    vector<GramMatrix> matrices
+    vector<GramMatrix> matrices;
 
     for (int i = 0; i < 6; ++i) {
          cout << i << endl;
