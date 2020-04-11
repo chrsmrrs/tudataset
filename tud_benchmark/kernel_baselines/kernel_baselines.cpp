@@ -91,8 +91,7 @@ GramMatrix compute_lwl_2_sparse_ZINC(int num_iterations,  bool use_labels,  bool
     return gm;
 }
 
-
-vector<GramMatrix> compute_wl_1_sparse_ZINC(bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
+GramMatrix compute_wl_2_sparse_ZINC(int num_iterations,  bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
 
     GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_val");
     gdb_2.erase(gdb_2.begin() + 0);
@@ -129,16 +128,9 @@ vector<GramMatrix> compute_wl_1_sparse_ZINC(bool use_labels,  bool use_edge_labe
 
     ColorRefinement::ColorRefinementKernel wl(gdb_new);
     GramMatrix gm;
-    vector<GramMatrix> matrices;
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, false, false);
 
-    for (int i = 0; i < 6; ++i) {
-         cout << i << endl;
-         gm = wl.compute_gram_matrix(i, use_labels, use_edge_labels, false, false);
-         matrices.push_back(gm);
-    }
-
-
-    return matrices;
+    return gm;
 }
 
 

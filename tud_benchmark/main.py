@@ -48,7 +48,7 @@ def main():
     indices_test = list(range(11000,12000))
 
     print("###")
-    all_matrices = kb.compute_wl_1_sparse_ZINC(True, True, indices_train, indices_val, indices_test)
+    all_matrices = [kb.compute_wl_1_sparse_ZINC(4,True, True, indices_train, indices_val, indices_test)]
     print("###")
 
     #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
