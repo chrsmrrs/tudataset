@@ -61,9 +61,9 @@ def main():
                                    alpha=[1.0])
     print(p)
 
-    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
-                                   alpha=[0.0001])
-    print(p)
+    # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
+    #                                alpha=[0.0001])
+    # print(p)
 
 
     indices_train = []
@@ -106,9 +106,9 @@ def main():
                                    alpha=[1.0])
     print(p)
 
-    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
-                                   alpha=[0.0001])
-    print(p)
+    # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
+    #                                alpha=[0.0001])
+    # print(p)
 
 
 
