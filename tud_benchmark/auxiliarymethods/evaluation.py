@@ -115,7 +115,7 @@ def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index
             train = f[train_index]
             train = train[:,train_index]
             val = f[val_index]
-            val = val[:,val_index]
+            val = val[:,train_index]
 
             c_train = targets[train_index]
             c_val = targets[val_index]
