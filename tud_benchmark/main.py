@@ -67,7 +67,7 @@ def main():
 
     all_matrices = []
     for i in range(4, 5):
-        all_matrices.append(kb.compute_wl_1_dense("ZINC_test", i, True, True))
+        all_matrices.append(kb.compute_lwl_2_dense("ZINC_test", i, True, True))
     print("###")
 
 
