@@ -54,11 +54,11 @@ def main():
 
     all_matrices = [all_matrices[4]]
 
-    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                 alpha=[0.0001])
-    print(p)
+    # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    #                              alpha=[0.0001])
+    # print(p)
     p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                   alpha=[1.0])
+                                   alpha=[0.001, 0.01, 0.1, 1.0, 10.0])
     print(p)
 
     #
