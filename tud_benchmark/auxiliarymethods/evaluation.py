@@ -11,6 +11,7 @@ from sklearn.svm import LinearSVC, SVC
 from torch_geometric.data import DataLoader
 from torch_geometric.datasets import TUDataset
 from sklearn.linear_model import SGDRegressor, Ridge
+from sklearn.kernel_ridge import KernelRidge
 from sklearn.metrics import mean_absolute_error as mse
 
 # Return arg max of iterable, e.g., a list.
@@ -79,7 +80,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
             c_val = targets[val_index]
 
             for a in alpha:
-                clf = Ridge(alpha=a, max_iter=50000,  solver="sag", normalize=False)
+                clf = Ridge(alpha=a,  solver="sag", normalize=False)
                 clf.fit(train, c_train)
                 p = clf.predict(val)
                 r = mse(c_val, p)
@@ -93,6 +94,49 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
             # Eval. model on test split that performed best on val. split.
             test = all_feature_matrices[int(best_i / len(alpha))][test_index]
             c_test = targets[test_index]
+            p = best_model.predict(test)
+            a = mse(c_test, p)
+            test_accuracies.append(a)
+
+        return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
+
+
+def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
+                             alpha=[0.01, 0.1, 1.0, 2.0]):
+    # Acc. over all repetitions.
+    test_accuracies = []
+
+    for _ in range(num_repetitions):
+
+        val_accuracies = []
+        models = []
+        for f in all_feature_matrices:
+
+            train = f[train_index]
+            train = train[:,train_index]
+            val = f[val_index]
+            val = val[:,val_index]
+
+            c_train = targets[train_index]
+            c_val = targets[val_index]
+
+            for a in alpha:
+                clf = kernel_ridge_regressor_evaluation(alpha=a,  solver="sag", normalize=False)
+                clf.fit(train, c_train)
+                p = clf.predict(val)
+                r = mse(c_val, p)
+
+                models.append(clf)
+                val_accuracies.append(r)
+
+            best_i = argmax(val_accuracies)
+            best_model = models[best_i]
+
+            # Eval. model on test split that performed best on val. split.
+            test = all_feature_matrices[int(best_i / len(alpha))][test_index]
+            test = test[:, test_index]
+            c_test = targets[test_index]
+
             p = best_model.predict(test)
             a = mse(c_test, p)
             test_accuracies.append(a)

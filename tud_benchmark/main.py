@@ -1,5 +1,5 @@
 from __future__ import division
-from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation, ridge_regressor_evaluation
+from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation, ridge_regressor_evaluation, kernel_ridge_regressor_evaluation
 from auxiliarymethods.evaluation import gnn_evaluation
 from gnn_baselines.gin import GIN0
 from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
@@ -42,8 +42,8 @@ def main():
 
     # targets = kb.read_targets("ZINC_train", indices_train)
     # targets.extend(kb.read_targets("ZINC_val", indices_val))
-    # targets = kb.read_targets("ZINC_test", list(range(5000)))
-    # targets = np.array(targets)
+    targets = kb.read_targets("ZINC_test", list(range(5000)))
+    targets = np.array(targets)
     # print(len(targets))
     #
     # indices_train = list(range(0,10000))
@@ -63,21 +63,20 @@ def main():
     # print(p)
 
 
-    #
-    #
-    # all_matrices = []
-    # for i in range(4, 5):
-    #     all_matrices.append(kb.compute_lwl_2_sparse("ZINC_test", i, True, True))
-    #     print(all_matrices[-1].shape)
-    # print("###")
-    #
-    #
-    #
-    # #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
-    # p = ridge_regressor_evaluation(all_matrices, targets,list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[0.0001])
-    # print(p)
-    #
-    #
+
+
+    all_matrices = []
+    for i in range(4, 5):
+        all_matrices.append(kb.compute_wl_1_dense("ZINC_test", i, True, True))
+    print("###")
+
+
+
+    #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
+    p = kernel_ridge_regressor_evaluation(all_matrices, targets,list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[0.0001])
+    print(p)
+
+
     # exit()
 
     #
@@ -172,51 +171,51 @@ def main():
     #
 
 
-    datataset = [
-                     # ["ENZYMES", True],
-                     # ["IMDB-BINARY", False], ["IMDB-MULTI", False],
-                     # ["NCI1", True],
-                     # ["PROTEINS", True],
-                     # ["REDDIT-BINARY", False],
-                     ["deezer_ego_nets", False]]
-    for d, use_labels in datataset:
-
-        dataset = d
-        classes = dp.get_dataset(dataset)
-
-        # print("WL1")
-        # all_matrices = []
-        # for i in range(1, 6):
-        #     gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
-        #     gm_n = aux.normalize_gram_matrix(gm)
-        #     all_matrices.append(gm_n)
-        # print("###")
-        # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-
-        print("WLOA")
-        all_matrices = []
-        for i in range(1, 6):
-            gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
-        print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-
-        print("GR")
-        all_matrices = []
-        gm = kb.compute_graphlet_dense(dataset, use_labels, False)
-        gm_n = aux.normalize_gram_matrix(gm)
-        all_matrices.append(gm_n)
-        print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-
-        print("SP")
-        all_matrices = []
-        gm = kb.compute_shortestpath_dense(dataset, use_labels)
-        gm_n = aux.normalize_gram_matrix(gm)
-        all_matrices.append(gm_n)
-        print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+    # datataset = [
+    #                  # ["ENZYMES", True],
+    #                  # ["IMDB-BINARY", False], ["IMDB-MULTI", False],
+    #                  # ["NCI1", True],
+    #                  # ["PROTEINS", True],
+    #                  # ["REDDIT-BINARY", False],
+    #                  ["deezer_ego_nets", False]]
+    # for d, use_labels in datataset:
+    #
+    #     dataset = d
+    #     classes = dp.get_dataset(dataset)
+    #
+    #     # print("WL1")
+    #     # all_matrices = []
+    #     # for i in range(1, 6):
+    #     #     gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
+    #     #     gm_n = aux.normalize_gram_matrix(gm)
+    #     #     all_matrices.append(gm_n)
+    #     # print("###")
+    #     # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+    #
+    #     print("WLOA")
+    #     all_matrices = []
+    #     for i in range(1, 6):
+    #         gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
+    #         gm_n = aux.normalize_gram_matrix(gm)
+    #         all_matrices.append(gm_n)
+    #     print("###")
+    #     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+    #
+    #     print("GR")
+    #     all_matrices = []
+    #     gm = kb.compute_graphlet_dense(dataset, use_labels, False)
+    #     gm_n = aux.normalize_gram_matrix(gm)
+    #     all_matrices.append(gm_n)
+    #     print("###")
+    #     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+    #
+    #     print("SP")
+    #     all_matrices = []
+    #     gm = kb.compute_shortestpath_dense(dataset, use_labels)
+    #     gm_n = aux.normalize_gram_matrix(gm)
+    #     all_matrices.append(gm_n)
+    #     print("###")
+    #     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
 
 if __name__ == "__main__":
