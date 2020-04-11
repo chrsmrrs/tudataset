@@ -85,7 +85,7 @@ vector<GramMatrix> compute_wl_1_sparse_ZINC(bool use_labels,  bool use_edge_labe
     vector<GramMatrix> matrices;
     for (int i = 0; i <= 5; ++i) {
        GramMatrix gm;
-       gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, false, false);
+       gm = wl.compute_gram_matrix(i, use_labels, use_edge_labels, false, false);
        matrices.push_back(gm);
     }
 
