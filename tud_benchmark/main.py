@@ -66,7 +66,7 @@ def main():
 
 
     all_matrices = []
-    for i in range(4, 5):
+    for i in range(1, 5):
         all_matrices.append(aux.normalize_gram_matrix(kb.compute_lwlp_2_dense("ZINC_test", i, True, True)))
     print("###")
 
