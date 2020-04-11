@@ -57,64 +57,58 @@ def main():
     # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
     #                              alpha=[0.0001])
     # print(p)
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
                                    alpha=[1.0])
     print(p)
 
-    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
                                    alpha=[0.0001])
     print(p)
 
-    #
-    #
-    # dp.get_dataset("ZINC_train", regression=True)
-    # dp.get_dataset("ZINC_val", regression=True)
-    # dp.get_dataset("ZINC_test", regression=True)
-    #
-    # indices_train = []
-    # indices_val = []
-    # indices_test = []
-    #
-    # infile = open("datasets/test_50.index.txt", "r")
-    # for line in infile:
-    #     indices_test = line.split(",")
-    #     indices_test = [int(i) for i in indices_test]
-    #
-    # infile = open("datasets/val_50.index.txt", "r")
-    # for line in infile:
-    #     indices_val = line.split(",")
-    #     indices_val = [int(i) for i in indices_val]
-    #
-    #
-    # indices_train = list(range(0,5000))
-    #
-    # targets = kb.read_targets("ZINC_train", indices_train)
-    # targets.extend(kb.read_targets("ZINC_val", indices_val))
-    # targets.extend(kb.read_targets("ZINC_test", indices_test))
-    # targets = np.array(targets)
-    # print(len(targets))
-    #
-    # print("###")
-    #
-    # all_matrices = kb.compute_wl_1_sparse_ZINC(True, True, indices_train, indices_val, indices_test)
-    # print("####")
-    #
-    # indices_train = list(range(0,50000))
-    # indices_val = list(range(50000,55000))
-    # indices_test = list(range(55000,60000))
-    #
-    # #all_matrices = [all_matrices[4]]
-    #
-    # # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-    # #                              alpha=[0.0001])
-    # # print(p)
-    # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
-    #                                alpha=[0.001, 0.01, 0.1, 1.0, 10.0])
+
+    indices_train = []
+    indices_val = []
+    indices_test = []
+
+    infile = open("datasets/train_50.index.txt", "r")
+    for line in infile:
+        indices_train = line.split(",")
+        indices_train = [int(i) for i in indices_train]
+
+    infile = open("datasets/val_50.index.txt", "r")
+    for line in infile:
+        indices_val = line.split(",")
+        indices_val = [int(i) for i in indices_val]
+
+    indices_test = list(range(0,5000))
+
+    targets = kb.read_targets("ZINC_train", indices_train)
+    targets.extend(kb.read_targets("ZINC_val", indices_val))
+    targets.extend(kb.read_targets("ZINC_test", indices_test))
+    targets = np.array(targets)
+    print(len(targets))
+
+    print("###")
+
+    all_matrices = kb.compute_wl_1_sparse_ZINC(True, True, indices_train, indices_val, indices_test)
+    print("####")
+
+    indices_train = list(range(0,50000))
+    indices_val = list(range(50000,55000))
+    indices_test = list(range(55000,60000))
+
+    #all_matrices = [all_matrices[4]]
+
+    # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    #                              alpha=[0.0001])
     # print(p)
-    #
-    # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
-    #                                alpha=[0.001, 0.0001,0.00001])
-    # print(p)
+    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
+                                   alpha=[1.0])
+    print(p)
+
+    p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
+                                   alpha=[0.0001])
+    print(p)
 
 
 
