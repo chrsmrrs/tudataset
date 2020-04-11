@@ -48,18 +48,18 @@ def sgd_regressor_evaluation(all_feature_matrices, targets, train_index, val_ind
                 models.append(clf)
                 val_accuracies.append(r)
 
-            best_i = argmax(val_accuracies)
-            best_model = models[best_i]
+        best_i = argmax(val_accuracies)
+        best_model = models[best_i]
 
-            # Eval. model on test split that performed best on val. split.
-            test = all_feature_matrices[int(best_i / len(alpha))][test_index]
-            c_test = targets[test_index]
-            p = best_model.predict(test)
-            a = mse(c_test, p)
-            print(a)
-            test_accuracies.append(a)
+        # Eval. model on test split that performed best on val. split.
+        test = all_feature_matrices[int(best_i / len(alpha))][test_index]
+        c_test = targets[test_index]
+        p = best_model.predict(test)
+        a = mse(c_test, p)
+        print(a)
+        test_accuracies.append(a)
 
-        return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
+    return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
 
 
 def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
@@ -88,20 +88,21 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
                 models.append(clf)
                 val_accuracies.append(r)
 
-            best_i = argmax(val_accuracies)
-            best_model = models[best_i]
+        best_i = argmax(val_accuracies)
+        best_model = models[best_i]
 
-            print(len(all_feature_matrices))
-            print(best_i)
+        print(len(val_accuracies))
+        print(len(all_feature_matrices))
+        print(best_i)
 
-            # Eval. model on test split that performed best on val. split.
-            test = all_feature_matrices[int(best_i / len(alpha))][test_index]
-            c_test = targets[test_index]
-            p = best_model.predict(test)
-            a = mse(c_test, p)
-            test_accuracies.append(a)
+        # Eval. model on test split that performed best on val. split.
+        test = all_feature_matrices[int(best_i / len(alpha))][test_index]
+        c_test = targets[test_index]
+        p = best_model.predict(test)
+        a = mse(c_test, p)
+        test_accuracies.append(a)
 
-        return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
+    return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
 
 
 def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
