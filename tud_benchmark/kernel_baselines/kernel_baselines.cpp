@@ -89,7 +89,7 @@ vector<GramMatrix> compute_wl_1_sparse_ZINC(bool use_labels,  bool use_edge_labe
        matrices.push_back(gm);
     }
 
-    return gm;
+    return matrices;
 }
 
 
