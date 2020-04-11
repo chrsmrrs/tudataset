@@ -134,7 +134,7 @@ def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index
 
             # Eval. model on test split that performed best on val. split.
             test = all_feature_matrices[int(best_i / len(alpha))][test_index]
-            test = test[:, test_index]
+            test = test[:, train_index]
             c_test = targets[test_index]
 
             p = best_model.predict(test)
