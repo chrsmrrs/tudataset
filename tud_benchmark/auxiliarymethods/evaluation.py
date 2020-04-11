@@ -121,7 +121,7 @@ def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index
             c_val = targets[val_index]
 
             for a in alpha:
-                clf = KernelRidge(alpha=a)
+                clf = KernelRidge(alpha=a, kernel="precomputed")
                 clf.fit(train, c_train)
                 p = clf.predict(val)
                 r = mse(c_val, p)
