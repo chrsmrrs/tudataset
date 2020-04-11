@@ -67,13 +67,13 @@ def main():
 
     all_matrices = []
     for i in range(4, 5):
-        all_matrices.append(kb.compute_lwlp_2_dense("ZINC_test", i, True, True))
+        all_matrices.append(aux.normalize_gram_matrix(kb.compute_lwlp_2_dense("ZINC_test", i, True, True)))
     print("###")
 
 
 
     #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
-    p = kernel_ridge_regressor_evaluation(all_matrices, targets,list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[.000001])
+    p = kernel_ridge_regressor_evaluation(all_matrices, targets,list(range(0,4000)),  list(range(4000, 4500)),  list(range(4500,5000)), num_repetitions=1, alpha=[1.0])
     print(p)
 
 
