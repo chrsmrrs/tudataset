@@ -56,7 +56,7 @@ def main():
 
     #all_matrices = [aux.normalize_feature_vector(all_matrices[-1])]
     print("###")
-    p = ridge_regressor_evaluation(all_matrices, targets,  indices_train, indices_val, indices_test, num_repetitions=1, alpha=[1.0])
+    p = ridge_regressor_evaluation(all_matrices, targets,  indices_train, indices_val, indices_test, num_repetitions=1, alpha=[0.1, 1.0])
     print(p)
 
     #
