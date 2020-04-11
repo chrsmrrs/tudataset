@@ -128,19 +128,19 @@ def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index
                 models.append(clf)
                 val_accuracies.append(r)
 
-            best_i = argmax(val_accuracies)
-            best_model = models[best_i]
+        best_i = argmax(val_accuracies)
+        best_model = models[best_i]
 
-            # Eval. model on test split that performed best on val. split.
-            test = all_feature_matrices[int(best_i / len(alpha))][test_index]
-            test = test[:, train_index]
-            c_test = targets[test_index]
+        # Eval. model on test split that performed best on val. split.
+        test = all_feature_matrices[int(best_i / len(alpha))][test_index]
+        test = test[:, train_index]
+        c_test = targets[test_index]
 
-            p = best_model.predict(test)
-            a = mse(c_test, p)
-            test_accuracies.append(a)
+        p = best_model.predict(test)
+        a = mse(c_test, p)
+        test_accuracies.append(a)
 
-        return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
+    return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
