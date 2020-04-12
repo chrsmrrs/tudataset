@@ -14,28 +14,68 @@ import numpy as np
 
 
 def main():
-    # dp.get_dataset("ZINC_train", regression=True)
-    # dp.get_dataset("ZINC_val", regression=True)
-    # dp.get_dataset("ZINC_test", regression=True)
-    #
+    dp.get_dataset("ZINC_train", regression=True)
+    dp.get_dataset("ZINC_val", regression=True)
+    dp.get_dataset("ZINC_test", regression=True)
+
+    indices_train = []
+    indices_val = []
+    indices_test = []
+
+    infile = open("datasets/test.index.txt", "r")
+    for line in infile:
+        indices_test = line.split(",")
+        indices_test = [int(i) for i in indices_test]
+
+    infile = open("datasets/val.index.txt", "r")
+    for line in infile:
+        indices_val = line.split(",")
+        indices_val = [int(i) for i in indices_val]
+
+    infile = open("datasets/train.index.txt", "r")
+    for line in infile:
+        indices_train = line.split(",")
+        indices_train = [int(i) for i in indices_train]
+
+    targets = kb.read_targets("ZINC_train", indices_train)
+    targets.extend(kb.read_targets("ZINC_val", indices_val))
+    targets.extend(kb.read_targets("ZINC_test", indices_test))
+    targets = np.array(targets)
+    print(len(targets))
+
+    print("###")
+
+    all_matrices = [aux.normalize_feature_vector(kb.compute_gr_sparse_ZINC(True, True, indices_train, indices_val, indices_test))]
+
+    print("####")
+    indices_train = list(range(0,10000))
+    indices_val = list(range(10000,11000))
+    indices_test = list(range(11000,12000))
+
+    #all_matrices = [all_matrices[4]]
+
+    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
+                                   alpha=[1.0])
+    print(p)
+
+    exit()
+
+
     # indices_train = []
     # indices_val = []
     # indices_test = []
     #
-    # infile = open("datasets/test.index.txt", "r")
+    # infile = open("datasets/train_50.index.txt", "r")
     # for line in infile:
-    #     indices_test = line.split(",")
-    #     indices_test = [int(i) for i in indices_test]
+    #     indices_train = line.split(",")
+    #     indices_train = [int(i) for i in indices_train]
     #
-    # infile = open("datasets/val.index.txt", "r")
+    # infile = open("datasets/val_50.index.txt", "r")
     # for line in infile:
     #     indices_val = line.split(",")
     #     indices_val = [int(i) for i in indices_val]
     #
-    # infile = open("datasets/train.index.txt", "r")
-    # for line in infile:
-    #     indices_train = line.split(",")
-    #     indices_train = [int(i) for i in indices_train]
+    # indices_test = list(range(0,5000))
     #
     # targets = kb.read_targets("ZINC_train", indices_train)
     # targets.extend(kb.read_targets("ZINC_val", indices_val))
@@ -46,60 +86,20 @@ def main():
     # print("###")
     #
     # all_matrices = [kb.compute_sp_sparse_ZINC(True, True, indices_train, indices_val, indices_test)]
-    #
     # print("####")
-    # indices_train = list(range(0,10000))
-    # indices_val = list(range(10000,11000))
-    # indices_test = list(range(11000,12000))
+    #
+    # indices_train = list(range(0,50000))
+    # indices_val = list(range(50000,55000))
+    # indices_test = list(range(55000,60000))
     #
     # #all_matrices = [all_matrices[4]]
     #
+    # # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    # #                              alpha=[0.0001])
+    # # print(p)
     # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
     #                                alpha=[1.0])
     # print(p)
-    #
-    #
-    #
-
-    indices_train = []
-    indices_val = []
-    indices_test = []
-
-    infile = open("datasets/train_50.index.txt", "r")
-    for line in infile:
-        indices_train = line.split(",")
-        indices_train = [int(i) for i in indices_train]
-
-    infile = open("datasets/val_50.index.txt", "r")
-    for line in infile:
-        indices_val = line.split(",")
-        indices_val = [int(i) for i in indices_val]
-
-    indices_test = list(range(0,5000))
-
-    targets = kb.read_targets("ZINC_train", indices_train)
-    targets.extend(kb.read_targets("ZINC_val", indices_val))
-    targets.extend(kb.read_targets("ZINC_test", indices_test))
-    targets = np.array(targets)
-    print(len(targets))
-
-    print("###")
-
-    all_matrices = [kb.compute_sp_sparse_ZINC(True, True, indices_train, indices_val, indices_test)]
-    print("####")
-
-    indices_train = list(range(0,50000))
-    indices_val = list(range(50000,55000))
-    indices_test = list(range(55000,60000))
-
-    #all_matrices = [all_matrices[4]]
-
-    # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-    #                              alpha=[0.0001])
-    # print(p)
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
-                                   alpha=[1.0])
-    print(p)
 
     # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
     #                                alpha=[0.0001])
