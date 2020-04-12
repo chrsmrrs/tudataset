@@ -17,7 +17,7 @@ def main():
     classes = dp.get_dataset("ogbg-mol-hiv_full")
 
     all_matrices = []
-    for i in range(1, 6):
+    for i in range(4, 5):
         print(i)
         gm = kb.compute_wl_1_sparse("ogbg-mol-hiv_full", i, False, False)
         #gm_n = aux.normalize_feature_vector(gm)
