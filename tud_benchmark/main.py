@@ -23,7 +23,7 @@ def main():
         #gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm)
     print("###")
-    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True, primal=True))
 
     exit()
     dp.get_dataset("ZINC_train", regression=True)
