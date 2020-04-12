@@ -19,21 +19,21 @@ def main():
     print(sum(classes)/len(classes))
 
 
-    # all_matrices = []
-    # for i in range(4, 5):
-    #     print(i)
-    #     gm = kb.compute_wl_1_dense("Tox21_AhR_training", i, True, True)
-    #     #gm_n = aux.normalize_feature_vector(gm)
-    #     all_matrices.append(gm)
-    # print("###")
-    # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
+    all_matrices = []
+    for i in range(4, 5):
+        print(i)
+        gm = kb.compute_wl_1_dense("Tox21_AhR_training", i, True, True)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
     all_matrices = []
     for i in range(4, 5):
         print(i)
         gm = kb.compute_lwl_2_dense("Tox21_AhR_training", i, True, True)
-        #gm_n = aux.normalize_feature_vector(gm)
-        all_matrices.append(gm)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm_n)
     print("###")
     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
