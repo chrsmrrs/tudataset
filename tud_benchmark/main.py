@@ -53,7 +53,7 @@ def main():
     indices_val = list(range(10000,11000))
     indices_test = list(range(11000,12000))
 
-    all_matrices = [all_matrices[4]]
+    all_matrices = [all_matrices[-1]]
 
     p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
                                    alpha=[1.0])
@@ -92,7 +92,7 @@ def main():
     indices_val = list(range(50000,55000))
     indices_test = list(range(55000,60000))
 
-    all_matrices = [all_matrices[4]]
+    all_matrices = [all_matrices[-1]]
 
     # p = sgd_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
     #                              alpha=[0.0001])
