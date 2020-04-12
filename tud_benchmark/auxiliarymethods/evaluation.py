@@ -140,6 +140,7 @@ def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index
         a = mse(c_test, p)
         test_accuracies.append(a)
 
+    print(test_accuracies)
     return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
