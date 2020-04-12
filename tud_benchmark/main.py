@@ -45,7 +45,7 @@ def main():
 
     print("###")
 
-    all_matrices = kb.compute_wl_2_sparse_ZINC(True, True, indices_train, indices_val, indices_test)
+    all_matrices = kb.compute_wl_2_sparse_ZINC(4, (True, True, indices_train, indices_val, indices_test)
 
     print("####")
     indices_train = list(range(0,10000))
