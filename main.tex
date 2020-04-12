@@ -329,11 +329,11 @@ See~\cref{t2l}.
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
 	\label{t2l}	
-	\resizebox{0.6\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+	\resizebox{0.7\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
 		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
 			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Triangles}}           & {\textsc{github\_stargazers}}       & {\textsc{reddit\_threads}}      \\	\toprule
-							\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}    & 94.23 
+							\multirow{3}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}    & 94.23 
 							   \scriptsize $\pm 0.11  \pm 0.49$       & 94.29 \scriptsize $\pm 0.07  \pm 0.39$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\
 		
 			& \text{GR}            &  91.71 \scriptsize $\pm  0.04   \pm 0.52 $       & 92.10  \scriptsize $\pm 0.02 \pm 0.45$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\  
@@ -358,8 +358,8 @@ See~\cref{t2l}.
 			&  & {\textsc{Zinc} (10k)}         &  {\textsc{Zinc} (50k)}         \\	
 			\toprule
 			\multirow{3}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}             &    0.327  \scriptsize $<\!0.000$ & 0.217 \scriptsize $ <\!0.000$  \\  
-				& \text{GR}            &  &  \\  
-			& \text{SP}             &  & \\   
+				& \text{GR}            & 1.709  \scriptsize $ <\!0.000$ &  \scriptsize $ <\!0.000$  \\  
+			& \text{SP}             & 0.740  \scriptsize $ <\!0.000$  &  \scriptsize $ <\!0.000$ \\   
 			\cmidrule{2-4}
 			\multirow{2}{*}{\rotatebox{90}{GNN}} & \text{$1$-GNN-E}             &  0.278 \scriptsize $\pm 0.022$  & 0.145 \scriptsize $\pm  0.006  $		\\	
 			& \text{$1$-GNN}             &  0.383 \scriptsize $\pm  0.020$    &  0.247 \scriptsize $\pm   0.020$ \\
