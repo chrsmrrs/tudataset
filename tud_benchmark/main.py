@@ -58,8 +58,6 @@ def main():
                                    alpha=[1.0])
     print(p)
 
-    exit()
-
 
     indices_train = []
     indices_val = []
