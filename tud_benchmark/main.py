@@ -14,16 +14,19 @@ import numpy as np
 
 
 def main():
-    classes = dp.get_dataset("ogbg-mol-hiv_full")
+    classes = dp.get_dataset("Tox21_AhR_training")
+
+    print(sum(classes)/len(classes))
+
 
     all_matrices = []
     for i in range(4, 5):
         print(i)
-        gm = kb.compute_wl_1_sparse("ogbg-mol-hiv_full", i, False, False)
+        gm = kb.compute_wl_1_dense("Tox21_AhR_training", i, True, True)
         #gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm)
     print("###")
-    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True, primal=True))
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
     exit()
     dp.get_dataset("ZINC_train", regression=True)
