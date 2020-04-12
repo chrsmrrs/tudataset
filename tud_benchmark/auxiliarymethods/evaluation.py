@@ -79,7 +79,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
             c_val = targets[val_index]
 
             for a in alpha:
-                clf = Ridge(alpha=a, solver="sag", max_iter=5000)
+                clf = Ridge(alpha=a, solver="sag", max_iter=5000, random_state = np.random.RandomState())
                 clf.fit(train, c_train)
                 p = clf.predict(val)
                 r = mse(c_val, p)
@@ -120,7 +120,7 @@ def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index
             c_val = targets[val_index]
 
             for a in alpha:
-                clf = KernelRidge(alpha=a, kernel="precomputed")
+                clf = KernelRidge(alpha=a, kernel="precomputed",)
                 clf.fit(train, c_train)
                 p = clf.predict(val)
                 r = mse(c_val, p)
