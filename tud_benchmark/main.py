@@ -85,7 +85,7 @@ def main():
 
     print("###")
 
-    all_matrices = [kb.compute_gr_sparse_ZINC(True, True, indices_train, indices_val, indices_test)]
+    all_matrices = [kb.compute_sp_sparse_ZINC(True, True, indices_train, indices_val, indices_test)]
     print("####")
 
     indices_train = list(range(0,50000))
