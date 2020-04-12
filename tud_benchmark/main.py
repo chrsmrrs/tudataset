@@ -28,6 +28,17 @@ def main():
     print("###")
     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
+    all_matrices = []
+    for i in range(4, 5):
+        print(i)
+        gm = kb.compute_lwl_2_dense("Tox21_AhR_training", i, True, True)
+        #gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm)
+    print("###")
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
+
+
+
     exit()
     dp.get_dataset("ZINC_train", regression=True)
     dp.get_dataset("ZINC_val", regression=True)
