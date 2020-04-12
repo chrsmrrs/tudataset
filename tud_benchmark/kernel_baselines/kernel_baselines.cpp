@@ -129,9 +129,9 @@ GramMatrix compute_wl_2_sparse_ZINC(int num_iterations,  bool use_labels,  bool 
    cout << "$$$" << endl;
 
 
-    ColorRefinement::ColorRefinementKernel wl(gdb_new);
+    GenerateTwo::GenerateTwo wl(gdb_new);
     GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, false, false);
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", false, false, false);
 
     return gm;
 }
