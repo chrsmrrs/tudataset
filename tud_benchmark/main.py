@@ -31,7 +31,7 @@ def main():
     all_matrices = []
     for i in range(4, 5):
         print(i)
-        gm = kb.compute_lwl_2_dense("Tox21_AhR_training", i, True, True)
+        gm = kb.compute_lwlp_2_dense("Tox21_AhR_training", i, True, True)
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
     print("###")
