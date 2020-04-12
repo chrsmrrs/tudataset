@@ -295,6 +295,7 @@ PYBIND11_MODULE(kernel_baselines, m) {
     m.def("compute_wloa_dense", &compute_wloa_dense);
     m.def("compute_wl_1_sparse", &compute_wl_1_sparse);
     m.def("compute_wl_1_sparse_ZINC", &compute_wl_1_sparse_ZINC);
+    m.def("compute_wl_2_sparse_ZINC", &compute_wl_2_sparse_ZINC);
 
     m.def("read_targets", &read_targets);
 
