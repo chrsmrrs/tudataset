@@ -14,6 +14,18 @@ import numpy as np
 
 
 def main():
+    classes = dp.get_dataset("ogbg-mol-hiv_full")
+
+    all_matrices = []
+    for i in range(0, 6):
+        print(i)
+        gm = kb.compute_wl_1_sparse("ogbg-mol-hiv_full", i, False, False)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+
+    exit()
     dp.get_dataset("ZINC_train", regression=True)
     dp.get_dataset("ZINC_val", regression=True)
     dp.get_dataset("ZINC_test", regression=True)
