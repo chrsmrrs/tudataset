@@ -93,6 +93,46 @@ vector<GramMatrix> compute_wl_1_sparse_ZINC(bool use_labels,  bool use_edge_labe
 }
 
 
+vector<GramMatrix> compute_wl_1_sparse_alchem(bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
+
+    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("alchemy_full");
+    gdb.erase(gdb.begin() + 0);
+
+
+
+   GraphDatabase gdb_new;
+   for (auto i : indices_train) {
+       gdb_new.push_back(gdb[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+   for (auto i : indices_val) {
+       gdb_new.push_back(gdb[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+
+   for (auto i : indices_test) {
+       gdb_new.push_back(gdb[int(i)]);
+   }
+   cout << gdb_new.size() << endl;
+   cout << "$$$" << endl;
+
+
+    ColorRefinement::ColorRefinementKernel wl(gdb_new);
+    vector<GramMatrix> matrices;
+    for (int i = 4; i < 5; ++i) {
+       GramMatrix gm;
+       gm = wl.compute_gram_matrix(i, use_labels, use_edge_labels, false, false);
+       matrices.push_back(gm);
+    }
+
+    return matrices;
+}
+
+
 
 GramMatrix compute_wl_2_sparse_ZINC(int num_iterations,  bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
 
@@ -381,6 +421,7 @@ PYBIND11_MODULE(kernel_baselines, m) {
     m.def("compute_wloa_dense", &compute_wloa_dense);
     m.def("compute_wl_1_sparse", &compute_wl_1_sparse);
     m.def("compute_wl_1_sparse_ZINC", &compute_wl_1_sparse_ZINC);
+    m.def("compute_wl_1_sparse_alchem", &compute_wl_1_sparse_alchem);
     m.def("compute_wl_2_sparse_ZINC", &compute_wl_2_sparse_ZINC);
 
 

@@ -14,65 +14,63 @@ import numpy as np
 
 
 def main():
-    classes = dp.get_dataset("Tox21_AhR_training")
-
-    print(sum(classes)/len(classes))
-
-
+    # classes = dp.get_dataset("Tox21_AhR_training")
+    #
+    # print(sum(classes)/len(classes))
+    #
+    #
+    # # all_matrices = []
+    # # for i in range(4, 5):
+    # #     print(i)
+    # #     gm = kb.compute_wl_1_dense("Tox21_AhR_training", i, True, True)
+    # #     gm_n = aux.normalize_gram_matrix(gm)
+    # #     all_matrices.append(gm_n)
+    # # print("###")
+    # # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
+    #
     # all_matrices = []
     # for i in range(4, 5):
     #     print(i)
-    #     gm = kb.compute_wl_1_dense("Tox21_AhR_training", i, True, True)
+    #     gm = kb.compute_lwlp_2_dense("Tox21_AhR_training", i, True, True)
     #     gm_n = aux.normalize_gram_matrix(gm)
     #     all_matrices.append(gm_n)
     # print("###")
     # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
-    all_matrices = []
-    for i in range(4, 5):
-        print(i)
-        gm = kb.compute_lwlp_2_dense("Tox21_AhR_training", i, True, True)
-        gm_n = aux.normalize_gram_matrix(gm)
-        all_matrices.append(gm_n)
-    print("###")
-    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
-
-
-
-    exit()
-    dp.get_dataset("ZINC_train", regression=True)
-    dp.get_dataset("ZINC_val", regression=True)
-    dp.get_dataset("ZINC_test", regression=True)
+    dp.get_dataset("alchemy_full", multigregression=True)
 
     indices_train = []
     indices_val = []
     indices_test = []
 
-    infile = open("datasets/test.index.txt", "r")
+    infile = open("data/test_al_10.index", "r")
     for line in infile:
         indices_test = line.split(",")
         indices_test = [int(i) for i in indices_test]
 
-    infile = open("datasets/val.index.txt", "r")
+    infile = open("data/val_al_10.index", "r")
     for line in infile:
         indices_val = line.split(",")
         indices_val = [int(i) for i in indices_val]
 
-    infile = open("datasets/train.index.txt", "r")
+    infile = open("data/train_al_10.index", "r")
     for line in infile:
         indices_train = line.split(",")
         indices_train = [int(i) for i in indices_train]
 
-    targets = kb.read_targets("ZINC_train", indices_train)
-    targets.extend(kb.read_targets("ZINC_val", indices_val))
-    targets.extend(kb.read_targets("ZINC_test", indices_test))
+    targets = dp.get_dataset("alchemy_full", multigregression=True)
+    tmp1 = targets[indices_train].tolist()
+    tmp2 = targets[indices_val].tolist()
+    tmp3 = targets[indices_test].tolist()
+    targets = tmp1
+    targets.extend(tmp2)
+    targets.extend(tmp3)
     targets = np.array(targets)
     print(len(targets))
-
     print("###")
 
     all_matrices = [aux.normalize_feature_vector(
-        kb.compute_wl_1_sparse_ZINC(True, True, indices_train, indices_val, indices_test)[-1])]
+        kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1])]
 
     print("####")
     indices_train = list(range(0,10000))
