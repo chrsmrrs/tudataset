@@ -42,17 +42,17 @@ def main():
     indices_val = []
     indices_test = []
 
-    infile = open("dataset/test_al_10.index", "r")
+    infile = open("datasets/test_al_10.index", "r")
     for line in infile:
         indices_test = line.split(",")
         indices_test = [int(i) for i in indices_test]
 
-    infile = open("dataset/val_al_10.index", "r")
+    infile = open("datasets/val_al_10.index", "r")
     for line in infile:
         indices_val = line.split(",")
         indices_val = [int(i) for i in indices_val]
 
-    infile = open("dataset/train_al_10.index", "r")
+    infile = open("datasets/train_al_10.index", "r")
     for line in infile:
         indices_train = line.split(",")
         indices_train = [int(i) for i in indices_train]
