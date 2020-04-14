@@ -112,6 +112,8 @@ def main():
     print(len(targets))
     print("###")
 
+    TOOD Normalize
+    exit()
     all_matrices = [aux.normalize_feature_vector(
         kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1])]
 
