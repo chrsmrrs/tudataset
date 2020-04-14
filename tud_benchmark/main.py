@@ -37,23 +37,22 @@ def main():
     # print("###")
     # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
-    dp.get_dataset("alchemy_full", multigregression=True)
 
     indices_train = []
     indices_val = []
     indices_test = []
 
-    infile = open("data/test_al_10.index", "r")
+    infile = open("dataset/test_al_10.index", "r")
     for line in infile:
         indices_test = line.split(",")
         indices_test = [int(i) for i in indices_test]
 
-    infile = open("data/val_al_10.index", "r")
+    infile = open("dataset/val_al_10.index", "r")
     for line in infile:
         indices_val = line.split(",")
         indices_val = [int(i) for i in indices_val]
 
-    infile = open("data/train_al_10.index", "r")
+    infile = open("dataset/train_al_10.index", "r")
     for line in infile:
         indices_train = line.split(",")
         indices_train = [int(i) for i in indices_train]
