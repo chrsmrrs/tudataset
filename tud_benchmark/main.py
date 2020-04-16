@@ -58,6 +58,13 @@ def main():
         indices_train = [int(i) for i in indices_train]
 
     targets = dp.get_dataset("alchemy_full", multigregression=True)
+
+    mean = targets.mean(axis=0, keepdim=True)
+    std = targets.std(axis=0, keepdim=True)
+    targets = (targets - mean) / std
+
+    exit()
+
     tmp1 = targets[indices_train].tolist()
     tmp2 = targets[indices_val].tolist()
     tmp3 = targets[indices_test].tolist()
