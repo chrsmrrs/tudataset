@@ -55,7 +55,7 @@ def sgd_regressor_evaluation(all_feature_matrices, targets, train_index, val_ind
         test = all_feature_matrices[int(best_i / len(alpha))][test_index]
         c_test = targets[test_index]
         p = best_model.predict(test)
-        a = mse(c_test, p)
+        a = mse(c_test, p, multioutput='uniform_average')
         test_accuracies.append(a)
 
     return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
