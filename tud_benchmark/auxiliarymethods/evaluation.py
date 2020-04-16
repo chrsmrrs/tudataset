@@ -62,7 +62,7 @@ def sgd_regressor_evaluation(all_feature_matrices, targets, train_index, val_ind
 
 
 def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
-                             alpha=[0.01, 0.1, 1.0, 2.0]):
+                             alpha=[0.01, 0.1, 1.0, 2.0],  std=None):
     # Acc. over all repetitions.
     test_accuracies = []
 
@@ -94,7 +94,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
         test = all_feature_matrices[int(best_i / len(alpha))][test_index]
         c_test = targets[test_index]
         p = best_model.predict(test)
-        a = mse(c_test, p)
+        a = mse(std*c_test, std,p)
         test_accuracies.append(a)
     print(test_accuracies)
     return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
