@@ -94,7 +94,10 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
         test = all_feature_matrices[int(best_i / len(alpha))][test_index]
         c_test = targets[test_index]
         p = best_model.predict(test)
-        a = mse(std*c_test, std*p)
+
+        print(c_test.shape, std.shape)
+
+        a = mse(std*c_test, std*p, multioutput='uniform_average')
         test_accuracies.append(a)
     print(test_accuracies)
     return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())

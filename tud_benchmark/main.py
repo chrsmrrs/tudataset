@@ -91,51 +91,6 @@ def main():
                                    alpha=[1.0], std=std)
     print(p)
 
-    # indices_train = []
-    # indices_val = []
-    # indices_test = []
-    #
-    # infile = open("datasets/test_al_10.index", "r")
-    # for line in infile:
-    #     indices_test = line.split(",")
-    #     indices_test = [int(i) for i in indices_test]
-    #
-    # infile = open("datasets/val_al_10.index", "r")
-    # for line in infile:
-    #     indices_val = line.split(",")
-    #     indices_val = [int(i) for i in indices_val]
-    #
-    # infile = open("datasets/train_al_10.index", "r")
-    # for line in infile:
-    #     indices_train = line.split(",")
-    #     indices_train = [int(i) for i in indices_train]
-    #
-    # targets = dp.get_dataset("alchemy_full", multigregression=True)
-    # tmp1 = targets[indices_train].tolist()
-    # tmp2 = targets[indices_val].tolist()
-    # tmp3 = targets[indices_test].tolist()
-    # targets = tmp1
-    # targets.extend(tmp2)
-    # targets.extend(tmp3)
-    # targets = np.array(targets)
-    # print(len(targets))
-    # print("###")
-    #
-    # TOOD Normalize
-    # exit()
-    # all_matrices = [aux.normalize_feature_vector(
-    #     kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1])]
-    #
-    # print("####")
-    # indices_train = list(range(0, 50000))
-    # indices_val = list(range(50000, 55000))
-    # indices_test = list(range(55000, 60000))
-    #
-    # all_matrices = [all_matrices[-1]]
-    #
-    # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=5,
-    #                                alpha=[1.0])
-    # print(p)
 
     #
     # print("###")
