@@ -95,7 +95,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
         c_test = targets[test_index]
         p = best_model.predict(test)
 
-        print(c_test.shape, std.shape)
+        #print(c_test.shape, std.shape)
 
         #a = mse(c_test * std, p * std, multioutput='uniform_average')
         a = mse(c_test * std, p * std, multioutput='uniform_average')
