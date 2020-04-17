@@ -61,9 +61,9 @@ def main():
     targets = dp.get_dataset("alchemy_full", multigregression=True)
     targets = targets[:, 1:]
 
-    mean = np.mean(targets, axis=0, keepdims=True)
-    std = np.std(targets, axis=0, keepdims=True)
-    targets = (targets - mean) / std
+    # mean = np.mean(targets, axis=0, keepdims=True)
+    # std = np.std(targets, axis=0, keepdims=True)
+    # targets = (targets - mean) / std
 
     print(targets.shape)
 
