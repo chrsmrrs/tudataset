@@ -123,7 +123,7 @@ vector<GramMatrix> compute_wl_1_sparse_alchem(bool use_labels,  bool use_edge_la
 
     ColorRefinement::ColorRefinementKernel wl(gdb_new);
     vector<GramMatrix> matrices;
-    for (int i = 6; i < 7; ++i) {
+    for (int i = 2; i < 3; ++i) {
        GramMatrix gm;
        gm = wl.compute_gram_matrix(i, use_labels, use_edge_labels, false, false);
        matrices.push_back(gm);
