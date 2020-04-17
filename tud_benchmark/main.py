@@ -91,13 +91,13 @@ def main():
     all_matrices = [all_matrices[-1]]
 
     p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                   alpha=[1.0], std=std)
+                                   alpha=[1.0])
     print(p)
     p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                   alpha=[.1], std=std)
+                                   alpha=[.1])
     print(p)
     p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                   alpha=[0.0001], std=std)
+                                   alpha=[0.0001])
     print(p)
 
 
