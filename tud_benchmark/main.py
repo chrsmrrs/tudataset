@@ -77,8 +77,11 @@ def main():
     print(len(targets))
     print("###")
 
-    all_matrices = [aux.normalize_feature_vector(
-        kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1])]
+    # all_matrices = [aux.normalize_feature_vector(
+    #     kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1])]
+
+
+    all_matrices = [kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1]]
 
     print("####")
     indices_train = list(range(0,10000))
