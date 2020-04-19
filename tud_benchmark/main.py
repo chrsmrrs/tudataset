@@ -1,5 +1,6 @@
 from __future__ import division
-from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation, ridge_regressor_evaluation, kernel_ridge_regressor_evaluation
+from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation, \
+    ridge_regressor_evaluation, kernel_ridge_regressor_evaluation
 from auxiliarymethods.evaluation import gnn_evaluation
 from gnn_baselines.gin import GIN0
 from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
@@ -37,69 +38,68 @@ def main():
     # print("###")
     # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
-
-    indices_train = []
-    indices_val = []
-    indices_test = []
-
-    infile = open("datasets/test_al_10.index", "r")
-    for line in infile:
-        indices_test = line.split(",")
-        indices_test = [int(i) for i in indices_test]
-
-    infile = open("datasets/val_al_10.index", "r")
-    for line in infile:
-        indices_val = line.split(",")
-        indices_val = [int(i) for i in indices_val]
-
-    infile = open("datasets/train_al_10.index", "r")
-    for line in infile:
-        indices_train = line.split(",")
-        indices_train = [int(i) for i in indices_train]
-
-
-    targets = dp.get_dataset("alchemy_full", multigregression=True)
-    targets = targets[:, 1:]
-
-    # mean = np.mean(targets, axis=0, keepdims=True)
-    # std = np.std(targets, axis=0, keepdims=True)
-    # targets = (targets - mean) / std
-
-    print(targets.shape)
-
-    tmp1 = targets[indices_train].tolist()
-    tmp2 = targets[indices_val].tolist()
-    tmp3 = targets[indices_test].tolist()
-    targets = tmp1
-    targets.extend(tmp2)
-    targets.extend(tmp3)
-    targets = np.array(targets)
-    print(len(targets))
-    print("###")
-
-    # all_matrices = [aux.normalize_feature_vector(
-    #     kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1])]
-
-
-    all_matrices = [kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1]]
-
-    print("####")
-    indices_train = list(range(0,10000))
-    indices_val = list(range(10000,11000))
-    indices_test = list(range(11000,12000))
-
-    all_matrices = [all_matrices[-1]]
-
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                   alpha=[1.0])
-    print(p)
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                   alpha=[.1])
-    print(p)
-    p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
-                                   alpha=[0.0001])
-    print(p)
-
+    # indices_train = []
+    # indices_val = []
+    # indices_test = []
+    #
+    # infile = open("datasets/test_al_10.index", "r")
+    # for line in infile:
+    #     indices_test = line.split(",")
+    #     indices_test = [int(i) for i in indices_test]
+    #
+    # infile = open("datasets/val_al_10.index", "r")
+    # for line in infile:
+    #     indices_val = line.split(",")
+    #     indices_val = [int(i) for i in indices_val]
+    #
+    # infile = open("datasets/train_al_10.index", "r")
+    # for line in infile:
+    #     indices_train = line.split(",")
+    #     indices_train = [int(i) for i in indices_train]
+    #
+    #
+    # targets = dp.get_dataset("alchemy_full", multigregression=True)
+    # targets = targets[:, 1:]
+    #
+    # # mean = np.mean(targets, axis=0, keepdims=True)
+    # # std = np.std(targets, axis=0, keepdims=True)
+    # # targets = (targets - mean) / std
+    #
+    # print(targets.shape)
+    #
+    # tmp1 = targets[indices_train].tolist()
+    # tmp2 = targets[indices_val].tolist()
+    # tmp3 = targets[indices_test].tolist()
+    # targets = tmp1
+    # targets.extend(tmp2)
+    # targets.extend(tmp3)
+    # targets = np.array(targets)
+    # print(len(targets))
+    # print("###")
+    #
+    # # all_matrices = [aux.normalize_feature_vector(
+    # #     kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1])]
+    #
+    #
+    # all_matrices = [kb.compute_wl_1_sparse_alchem(True, True, indices_train, indices_val, indices_test)[-1]]
+    #
+    # print("####")
+    # indices_train = list(range(0,10000))
+    # indices_val = list(range(10000,11000))
+    # indices_test = list(range(11000,12000))
+    #
+    # all_matrices = [all_matrices[-1]]
+    #
+    # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    #                                alpha=[1.0])
+    # print(p)
+    # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    #                                alpha=[.1])
+    # print(p)
+    # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test, num_repetitions=1,
+    #                                alpha=[0.0001])
+    # print(p)
+    #
 
     #
     # print("###")
@@ -114,7 +114,6 @@ def main():
     # print(p)
     # p = ridge_regressor_evaluation(all_matrices, targets, indices_train, indices_val, indices_test)
     # print(p)
-
 
     #
     #
@@ -191,51 +190,28 @@ def main():
     #
     #
 
-    # datataset = [
-    #                  # ["ENZYMES", True],
-    #                  # ["IMDB-BINARY", False], ["IMDB-MULTI", False],
-    #                  # ["NCI1", True],
-    #                  # ["PROTEINS", True],
-    #                  # ["REDDIT-BINARY", False],
-    #                  ["deezer_ego_nets", False]]
-    # for d, use_labels in datataset:
-    #
-    #     dataset = d
-    #     classes = dp.get_dataset(dataset)
-    #
-    #     # print("WL1")
-    #     # all_matrices = []
-    #     # for i in range(1, 6):
-    #     #     gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
-    #     #     gm_n = aux.normalize_gram_matrix(gm)
-    #     #     all_matrices.append(gm_n)
-    #     # print("###")
-    #     # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-    #
-    #     print("WLOA")
-    #     all_matrices = []
-    #     for i in range(1, 6):
-    #         gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
-    #         gm_n = aux.normalize_gram_matrix(gm)
-    #         all_matrices.append(gm_n)
-    #     print("###")
-    #     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-    #
-    #     print("GR")
-    #     all_matrices = []
-    #     gm = kb.compute_graphlet_dense(dataset, use_labels, False)
-    #     gm_n = aux.normalize_gram_matrix(gm)
-    #     all_matrices.append(gm_n)
-    #     print("###")
-    #     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-    #
-    #     print("SP")
-    #     all_matrices = []
-    #     gm = kb.compute_shortestpath_dense(dataset, use_labels)
-    #     gm_n = aux.normalize_gram_matrix(gm)
-    #     all_matrices.append(gm_n)
-    #     print("###")
-    #     print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+    datataset = [
+        ["ENZYMES", True],
+        ["IMDB-BINARY", False], ["IMDB-MULTI", False],
+        ["NCI1", True],
+        ["PROTEINS", True],
+        ["REDDIT-BINARY", False],
+        ["deezer_ego_nets", False]]
+    for d, use_labels in datataset:
+
+        dataset = d
+        classes = dp.get_dataset(dataset)
+
+        print("LWL2")
+        all_matrices = []
+        for i in range(1, 6):
+            gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
+            gm_n = aux.normalize_gram_matrix(gm)
+            all_matrices.append(gm_n)
+        print("###")
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+
 
 
 if __name__ == "__main__":

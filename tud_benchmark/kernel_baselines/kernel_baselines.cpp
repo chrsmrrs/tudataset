@@ -286,6 +286,7 @@ GramMatrix compute_wl_1_sparse(string ds, int num_iterations, bool use_labels, b
     return gm;
 }
 
+
 MatrixXd compute_lwl_2_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels,  bool simple) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
@@ -297,13 +298,25 @@ MatrixXd compute_lwl_2_dense(string ds, int num_iterations,  bool use_labels,  b
     return MatrixXd(gm);
 }
 
+MatrixXd compute_lwlp_2_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels,  bool simple) {
+    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
+    gdb.erase(gdb.begin() + 0);
+
+    GenerateTwo::GenerateTwo wl(gdb);
+    GramMatrix gm;
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", simple, true, false);
+
+    return MatrixXd(gm);
+}
+
+
 MatrixXd compute_lwl_2_wloa_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels, bool simple) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
 
     GenerateTwo::GenerateTwo wl(gdb);
     GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", simple, true, true);
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "local", simple, true, true);
 
     return MatrixXd(gm);
 }
@@ -320,7 +333,6 @@ MatrixXd compute_lwlp_2_wloa_dense(string ds, int num_iterations,  bool use_labe
 }
 
 
-
 GramMatrix compute_lwl_2_sparse(string ds, int num_iterations, bool use_labels,  bool use_edge_labels,  bool simple) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
@@ -332,24 +344,13 @@ GramMatrix compute_lwl_2_sparse(string ds, int num_iterations, bool use_labels, 
     return gm;
 }
 
-MatrixXd compute_lwlp_2_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels,  bool simple) {
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
-    gdb.erase(gdb.begin() + 0);
-
-    GenerateTwo::GenerateTwo wl(gdb);
-    GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", simple, true, false);
-
-    return MatrixXd(gm);
-}
-
 GramMatrix compute_lwlp_2_sparse(string ds, int num_iterations, bool use_labels,  bool use_edge_labels,  bool simple) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
 
     GenerateTwo::GenerateTwo wl(gdb);
     GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", simple, true, false);
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", simple, false, false);
 
     return gm;
 }
@@ -435,7 +436,6 @@ PYBIND11_MODULE(kernel_baselines, m) {
     m.def("compute_lwl_2_sparse", &compute_lwl_2_sparse);
     m.def("compute_lwl_2_wloa_dense", &compute_lwl_2_wloa_dense);
     m.def("compute_lwlp_2_wloa_dense", &compute_lwlp_2_wloa_dense);
-
     m.def("compute_lwlp_2_dense", &compute_lwlp_2_dense);
     m.def("compute_lwlp_2_sparse", &compute_lwlp_2_sparse);
 
