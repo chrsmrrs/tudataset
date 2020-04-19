@@ -204,12 +204,33 @@ def main():
 
         print("LWL2")
         all_matrices = []
-        for i in range(1, 6):
-            gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
-        print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+    for i in range(1, 6):
+        gm = kb.compute_lwl_2_dense(dataset, i, use_labels, False, True)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+    for i in range(1, 6):
+        gm = kb.compute_lwl_2_wloa_dense(dataset, i, use_labels, False, True)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+    for i in range(1, 6):
+        gm = kb.compute_lwlp_2_dense(dataset, i, use_labels, False, True)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+    for i in range(1, 6):
+        gm = kb.compute_lwlp_2_wloa_dense(dataset, i, use_labels, False, True)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
+    print("###")
+    print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
 
 
