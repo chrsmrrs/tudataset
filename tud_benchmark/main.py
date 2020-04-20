@@ -201,7 +201,7 @@ def main():
         print("LWL2")
         all_matrices = []
         for i in range(1, 6):
-            gm = kb.ccompute_wl_1_dense(dataset, i, use_labels, False, True)
+            gm = kb.compute_wl_1_dense(dataset, i, use_labels, False, True)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
         print("###")
