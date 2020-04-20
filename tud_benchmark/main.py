@@ -208,14 +208,14 @@ def main():
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         for i in range(1, 6):
-            gm = kb.compute_graphlet_dense(dataset, i, use_labels, False, True)
+            gm = kb.compute_graphlet_dense(dataset, use_labels, False)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
         print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         for i in range(1, 6):
-            gm = kb.compute_shortestpath_dense(dataset, i, use_labels, False, True)
+            gm = kb.compute_shortestpath_dense(dataset, use_labels)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
         print("###")
