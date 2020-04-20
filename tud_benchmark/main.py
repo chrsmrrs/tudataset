@@ -190,13 +190,7 @@ def main():
     # #
     #
     #
-    datataset = [
-        ["ENZYMES", True],
-        ["IMDB-BINARY", False], ["IMDB-MULTI", False],
-        ["NCI1", True],
-        ["PROTEINS", True],
-        ["REDDIT-BINARY", False],
-        ["deezer_ego_nets", False]]
+    datataset = [["deezer_ego_nets", False]]
 
     datataset = [["deezer_ego_nets", False]]
 
