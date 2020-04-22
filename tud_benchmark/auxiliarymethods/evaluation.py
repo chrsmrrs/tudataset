@@ -190,7 +190,6 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
             p = best_model.predict(test)
             a = np.sum(np.equal(p, c_test)) / test.shape[0]
             test_accuracies.append(a * 100.0)
-            print(a)
 
             if all_std:
                 test_accuracies_complete.append(a * 100.0)
