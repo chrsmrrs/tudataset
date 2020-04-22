@@ -160,6 +160,7 @@ def main():
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
     for d, use_labels, use_edge_labels in datataset:
+        print(d)
         dataset = d
         classes = dp.get_dataset(dataset)
 
