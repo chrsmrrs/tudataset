@@ -163,31 +163,31 @@ def main():
         dataset = d
         classes = dp.get_dataset(dataset)
 
-    print("WL1")
-    all_matrices = []
-    for i in range(1, 6):
-        gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)
+        print("WL1")
+        all_matrices = []
+        for i in range(1, 6):
+            gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)
+            gm_n = aux.normalize_feature_vector(gm)
+            all_matrices.append(gm_n)
+        print("###")
+        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+
+        print("GR")
+        all_matrices = []
+        gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
-    print("###")
-    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+        print("###")
+        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
 
-    print("GR")
-    all_matrices = []
-    gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
-    gm_n = aux.normalize_feature_vector(gm)
-    all_matrices.append(gm_n)
-    print("###")
-    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
-
-    print("SP")
-    all_matrices = []
-    gm = kb.compute_shortestpath_sparse(dataset, use_labels)
-    gm_n = aux.normalize_feature_vector(gm)
-    all_matrices.append(gm_n)
-    print("###")
-    print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
-    #
+        print("SP")
+        all_matrices = []
+        gm = kb.compute_shortestpath_sparse(dataset, use_labels)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm_n)
+        print("###")
+        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True))
+        #
 
     #
     # datataset = [["deezer_ego_nets", False]]
