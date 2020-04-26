@@ -14,55 +14,15 @@ from sklearn.linear_model import SGDRegressor, Ridge
 from sklearn.kernel_ridge import KernelRidge
 from sklearn.metrics import mean_absolute_error as mse
 
+
 # Return arg max of iterable, e.g., a list.
 def argmax(iterable):
     return max(enumerate(iterable), key=lambda x: x[1])[0]
 
 
-
-
-# 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
-def sgd_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
-                             alpha=[0.00001, 0.0001, 0.001, 0.01]):
-    # Acc. over all repetitions.
-    test_accuracies = []
-
-    for _ in range(num_repetitions):
-
-        val_accuracies = []
-        models = []
-        for f in all_feature_matrices:
-
-            train = f[train_index]
-            val = f[val_index]
-
-            c_train = targets[train_index]
-            c_val = targets[val_index]
-
-            for a in alpha:
-                clf = SGDRegressor(alpha=a)
-                clf.fit(train, c_train)
-                p = clf.predict(val)
-                r = mse(c_val, p)
-
-                models.append(clf)
-                val_accuracies.append(r)
-
-        best_i = argmax(val_accuracies)
-        best_model = models[best_i]
-
-        # Eval. model on test split that performed best on val. split.
-        test = all_feature_matrices[int(best_i / len(alpha))][test_index]
-        c_test = targets[test_index]
-        p = best_model.predict(test)
-        a = mse(c_test, p, multioutput='uniform_average')
-        test_accuracies.append(a)
-
-    return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
-
-
+# TODO: Check this.
 def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
-                             alpha=[0.01, 0.1, 1.0, 2.0],  std=None):
+                               alpha=[0.01, 0.1, 1.0, 2.0], std=None):
     # Acc. over all repetitions.
     test_accuracies = []
 
@@ -79,7 +39,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
             c_val = targets[val_index]
 
             for a in alpha:
-                clf = Ridge(alpha=a, solver="sag", max_iter=5000, random_state = np.random.RandomState())
+                clf = Ridge(alpha=a, solver="sag", max_iter=5000, random_state=np.random.RandomState())
                 clf.fit(train, c_train)
                 p = clf.predict(val)
                 r = mse(c_val, p)
@@ -95,57 +55,14 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
         c_test = targets[test_index]
         p = best_model.predict(test)
 
-        #print(c_test.shape, std.shape)
+        # print(c_test.shape, std.shape)
 
-        #a = mse(c_test * std, p * std, multioutput='uniform_average')
+        # a = mse(c_test * std, p * std, multioutput='uniform_average')
         a = mse(c_test, p, multioutput='uniform_average')
         test_accuracies.append(a)
     print(test_accuracies)
     return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
 
-
-def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
-                             alpha=[0.01, 0.1, 1.0, 2.0]):
-    # Acc. over all repetitions.
-    test_accuracies = []
-
-    for _ in range(num_repetitions):
-
-        val_accuracies = []
-        models = []
-        for f in all_feature_matrices:
-
-            train = f[train_index]
-            train = train[:,train_index]
-            val = f[val_index]
-            val = val[:,train_index]
-
-            c_train = targets[train_index]
-            c_val = targets[val_index]
-
-            for a in alpha:
-                clf = KernelRidge(alpha=a, kernel="precomputed",)
-                clf.fit(train, c_train)
-                p = clf.predict(val)
-                r = mse(c_val, p)
-
-                models.append(clf)
-                val_accuracies.append(r)
-
-        best_i = argmax(val_accuracies)
-        best_model = models[best_i]
-
-        # Eval. model on test split that performed best on val. split.
-        test = all_feature_matrices[int(best_i / len(alpha))][test_index]
-        test = test[:, train_index]
-        c_test = targets[test_index]
-
-        p = best_model.predict(test)
-        a = mse(c_test, p)
-        test_accuracies.append(a)
-
-    print(test_accuracies)
-    return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
@@ -284,19 +201,29 @@ def test(loader, model, device):
     return correct / len(loader.dataset)
 
 
-# Train GNN modell
-def train_model(train_loader, val_loader, test_loader, model, optimizer, device, num_epochs):
-    test_acc = None
-    for epoch in range(1, num_epochs):
-        train(train_loader, model, optimizer, device)
+# Train GNN model.
+def train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler, device, num_epochs):
+    test_error = None
+    best_val_error = None
 
-    test_acc = test(test_loader, model, device)
-    val_acc = test(val_loader, model, device)
-    return val_acc, test_acc
+    for epoch in range(1, num_epochs):
+        lr = scheduler.optimizer.param_groups[0]['lr']
+        loss = train(train_loader, model, optimizer, device)
+        val_error = test(val_loader, model, device)
+        scheduler.step(val_error)
+
+        if best_val_error is None or val_error <= best_val_error:
+            test_error = test(test_loader, model, device)
+            best_val_error = val_error
+
+        if lr < 0.000001:
+            break
+
+    return best_val_error, test_error
 
 
 # 10-CV for GNN training and hyperparameter selection.
-def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, lr=0.1, num_repetitions=10,
+def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=25, start_lr=0.001, num_repetitions=10,
                    all_std=False):
     # Load dataset.
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
@@ -311,9 +238,8 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, 
         # Test acc. over all folds.
         test_accuracies = []
 
-        # TODO rest????############################################################
-
         for train_index, test_index in kf.split(list(range(len(dataset)))):
+
             train_index, val_index = train_test_split(train_index, test_size=0.1)
 
             test_dataset = dataset[test_index.tolist()]
@@ -329,9 +255,16 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, num_epochs=100, batch_size=25, 
             for l in layers:
                 for h in hidden:
                     model = gnn(dataset, l, h).to(device)
-                    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-                    val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, device,
-                                                    num_epochs)
+                    # Reset hyperparameter before each run.
+                    model.reset_parameters()
+
+                    optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
+                    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
+                                                                           factor=0.5, patience=5,
+                                                                           min_lr=0.0000001)
+
+                    val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler, device,
+                                                    max_num_epochs)
                     vals.append(val_acc)
                     tests.append(test_acc)
 
