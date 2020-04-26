@@ -150,7 +150,7 @@ def kernel_ridge_regressor_evaluation(all_feature_matrices, targets, train_index
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                           C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False,
-                          primal=True):
+                          primal=True, max_iterations=5000):
     # Acc. over all repetitions.
     test_accuracies_all = []
     # All acc. over all folds and repetitions.
@@ -173,7 +173,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 c_val = classes[val_index]
 
                 for c in C:
-                    clf = LinearSVC(C=c, dual=not primal)
+                    clf = LinearSVC(C=c, dual=not primal, max_iterations=max_iterations)
                     clf.fit(train, c_train)
                     p = clf.predict(val)
                     a = np.sum(np.equal(p, c_val)) / val.shape[0]
