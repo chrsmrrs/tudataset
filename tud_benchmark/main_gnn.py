@@ -13,6 +13,10 @@ import numpy as np
 
 
 def main():
+    results = gnn_evaluation(GIN0, "MUTAG", [2], [64], max_num_epochs=50, batch_size=25, start_lr=0.001, num_repetitions=2,
+                   all_std=True)
+    print(results)
+
     results = gnn_evaluation(GIN0, "MUTAG", [1,2,3,4,5], [16, 32, 64, 128], max_num_epochs=200, batch_size=25, start_lr=0.001, num_repetitions=10,
                    all_std=True)
 
