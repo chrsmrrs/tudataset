@@ -208,7 +208,7 @@ def train_model(train_loader, val_loader, test_loader, model, optimizer, schedul
 
     for epoch in range(1, num_epochs):
         lr = scheduler.optimizer.param_groups[0]['lr']
-        loss = train(train_loader, model, optimizer, device)
+        train(train_loader, model, optimizer, device)
         val_error = test(val_loader, model, device)
         scheduler.step(val_error)
 

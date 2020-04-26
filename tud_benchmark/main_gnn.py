@@ -1,8 +1,6 @@
 from __future__ import division
-from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation, \
-    ridge_regressor_evaluation, kernel_ridge_regressor_evaluation
 from auxiliarymethods.evaluation import gnn_evaluation
-from gnn_baselines.gin import GIN0
+from gnn_baselines.gnn_architectures import GIN0
 from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
 
 from sklearn.model_selection import train_test_split
@@ -15,8 +13,10 @@ import numpy as np
 
 
 def main():
+    results = gnn_evaluation(GIN0, "MUTAG", [1,2,3,4,5], [16, 32, 64, 128], max_num_epochs=200, batch_size=25, start_lr=0.001, num_repetitions=10,
+                   all_std=True)
 
-
+    print(results)
 
 
 if __name__ == "__main__":
