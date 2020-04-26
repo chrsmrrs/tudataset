@@ -1,6 +1,6 @@
 from __future__ import division
 from auxiliarymethods.evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GIN0
+from gnn_baselines.gnn_architectures import GIN0, GINWithJK
 from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
 
 from sklearn.model_selection import train_test_split
@@ -13,7 +13,7 @@ import numpy as np
 
 
 def main():
-    results = gnn_evaluation(GIN0, "PROTEINS", [2], [64], max_num_epochs=100, batch_size=25, start_lr=0.001, num_repetitions=2,
+    results = gnn_evaluation(GINWithJK, "PROTEINS", [2], [64], max_num_epochs=100, batch_size=25, start_lr=0.001, num_repetitions=2,
                    all_std=True)
     print(results)
 

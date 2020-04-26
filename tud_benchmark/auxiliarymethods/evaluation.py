@@ -206,7 +206,7 @@ def train_model(train_loader, val_loader, test_loader, model, optimizer, schedul
     test_error = None
     best_val_error = None
 
-    for epoch in range(1, num_epochs):
+    for epoch in range(1, num_epochs+1):
         lr = scheduler.optimizer.param_groups[0]['lr']
         train(train_loader, model, optimizer, device)
         val_error = test(val_loader, model, device)
