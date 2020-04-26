@@ -13,7 +13,7 @@ import numpy as np
 
 
 def main():
-    results = gnn_evaluation(GIN0, "MUTAG", [2], [64], max_num_epochs=50, batch_size=25, start_lr=0.001, num_repetitions=2,
+    results = gnn_evaluation(GIN0, "PROTEINS", [2], [64], max_num_epochs=100, batch_size=25, start_lr=0.001, num_repetitions=2,
                    all_std=True)
     print(results)
 
