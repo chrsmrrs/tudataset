@@ -268,7 +268,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                     vals.append(val_acc)
                     tests.append(test_acc)
 
-            # Determine best model.
+            # Determine best model based on validation set performance.
             best_i = argmax(vals)
             best_test = tests[best_i]
             test_accuracies.append(best_test)
