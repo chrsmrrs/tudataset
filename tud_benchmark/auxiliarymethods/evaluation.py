@@ -239,7 +239,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
         test_accuracies = []
 
         for train_index, test_index in kf.split(list(range(len(dataset)))):
-
+            # Sample 10% split from training split for validation.
             train_index, val_index = train_test_split(train_index, test_size=0.1)
 
             test_dataset = dataset[test_index.tolist()]
