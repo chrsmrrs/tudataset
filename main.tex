@@ -1,8 +1,4 @@
-%%%%%%%% ICML 2020 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
-
 \documentclass{article}
-
-
 
 \usepackage{graphicx}
 \usepackage{subfigure}
@@ -155,6 +151,7 @@
 \renewcommand{\vec}[1]{\mathbf{#1}}
 
 \newcommand{\nk}[1]{{{\textcolor{brown}{\textbf{[NK:} {#1}\textbf{]}}}}}
+\newcommand{\cm}[1]{{{\textcolor{red}{\textbf{[CM:} {#1}\textbf{]}}}}}
 
 \usepackage{ifthen}
 \newcommand{\CPP}[1][]{$\text{C\hspace{-.25ex}}^{_{_{_{++}}}}
@@ -171,7 +168,7 @@
 \begin{document}
 
 \twocolumn[
-\icmltitle{TUDatasets: A collection of benchmark datasets for learning with graphs}
+\icmltitle{TUDataset: A collection of benchmark datasets for learning with graphs}
 \icmlsetsymbol{equal}{*}
 
 \begin{icmlauthorlist}
@@ -198,29 +195,26 @@
 %\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-Recently, there has been an increasing interest in learning with graph data, especially using graph neural networks.  However, the development of meaningful benchmark datasets and standardized evaluation procedures is lagging behind. That is, most paper papers evaluate their methods on small-scale datasets leading to high standard deviations and hard to interpret results, consequently hindering advancements in this area. To address this, we introduce the \textsc{Tud dataset} for graph classification and regression. The dataset consists of over 150 \nk{Zur Zeit sind es 128. Mehr als 100 klingt auch gut oder?} datasets from a wide range of applications and varying sizes. We provide Python-based data loaders, baseline implementations, and evaluation tools. Here, we give an overview of the datasets, evaluation tools, and provide baseline experiments. 
-\nk{Make clear that these are datasets collected from the authors of various papers}
+Recently, there has been an increasing interest in learning with graph data, especially using graph neural networks.  However, the development of meaningful benchmark datasets and standardized evaluation procedures is lagging. That is, most papers still evaluate their methods on small-scale datasets leading to high standard deviations and hard to interpret results, consequently hindering advancements in this area. To address this, we introduce the \textsc{TuDataset} for graph classification and regression. The dataset consists of over 120 datasets from a wide range of applications and varying sizes. We provide Python-based data loaders, baseline method implementations, and evaluation tools. Here, we give an overview of the datasets, evaluation tools, and provide baseline experiments. All datasets can be obtained from \url{www.graphlearning.io}. The experiments are fully reproduceable from the code available at \url{www.github.com/chrsmrrs/tudatasets}.
 \end{abstract}
 
 \section{Introduction}
-
 Graph-structured data is ubiquitous across application domains ranging from chemo- and bioinformatics to image and social network analysis. To develop successful machine learning models in these domains, we need techniques that can exploit the rich information inherent in the graph structure, as well as the feature information contained within nodes and edges. In recent years, numerous approaches have been proposed for machine learning with graphs---most notably, approaches based on graph \new{kernels}~\cite{Kri+2019} or using \new{graph neural networks} (GNNs)~\cite{Gil+2017}. However, most papers, even recent ones, evaluate newly proposed architectures or methods on a fixed set of small-scale benchmark datasets leading to high standard deviations and hard to interpret results. 
 
-Here, we give an overview of \textsc{Tud datasets}. The benchmark collection consists of over 150 datasets from a wide range of domains for supervised learning with graphs, i.e., classificiation and regression. All datasets are provided in a common dataset format at \url{graphlearning.io}, and can easily be accessed from popular graph learning frameworks such as \emph{Pytorch Geometric}~\cite{Fey+2019} and \emph{DGL}~\cite{Wan+2019}.
+Here, we give an overview of \textsc{Tud datasets}. The benchmark collection consists of over 120 datasets from a wide range of domains for supervised learning with graphs, i.e., classificiation and regression. All datasets are provided in a common dataset format at \url{graphlearning.io}, and can easily be accessed from popular graph learning frameworks such as \emph{Pytorch Geometric}~\cite{Fey+2019} and \emph{DGL}~\cite{Wan+2019}.
 
 \paragraph{Related work.}
-
-There exists two approaches to supervised learing with graphs, graph kernels and graph neural networks (GNNs). Graph kernels have been studied extensively in the past 15 years, see ~\cite{Kri+2019} for a thorough overview. 
+There exists two main approaches to supervised learning with graphs, graph kernels and graph neural networks (GNNs). Graph kernels have been studied extensively in the past 15 years, see ~\cite{Kri+2019} for a thorough overview. 
 Important approaches include random-walk and shortest paths based kernels~\cite{Gaertner2003,Sugiyama2015,Bor+2005,Kri+2017b}, as well as the Weisfeiler-Lehman subtree kernel~\cite{She+2011,Mor+2017}. 
 Further recent works focus on assignment-based approaches~\cite{Kri+2016,Nik+2017}, spectral approaches~\cite{Kon+2016}, and graph decomposition approaches~\cite{Nik+2018}.
 
-Recently, GNNs~\cite{Gil+2017} emerged as a alternative to graph kernels. Notable instances of this model include~\cite{Duv+2015},~\cite{Li+2016},~\cite{Ham+2017} and the spectral approaches proposed in~\cite{Bru+2014,Def+2015,Kip+2017}---all of which descend from early work in~\cite{Kir+1995,Mer+2005,Sca+2009}. A unifying message passing architecture can be found in~\cite{Gil+2017}. Two recent surveys~\cite{wu2019comprehensive,zhou2018graph} provide a thorough overview of graph neural networks
+\cm{Add new work from Borgwardt and Pascale Frossard.}
 
-The papers~\cite{Fey+2019,Err+2019,Dwi+2020} evalute GNNs using a unified evaluation procedure, however, both only use small scale datasets. Recently, \url{ogb.stanford.edu} launchend, however the provided datasets for graph classification focus on chemistry applications, and the number is quite limited at this point.
+Recently, GNNs~\cite{Gil+2017} emerged as a alternative to graph kernels. Notable instances of this model include~\cite{Duv+2015},~\cite{Li+2016},~\cite{Ham+2017} and the spectral approaches proposed in~\cite{Bru+2014,Def+2015,Kip+2017}---all of which descend from early work in~\cite{Kir+1995,Mer+2005,Sca+2009}. More expressive higher-order approaches are proposed in~\cite{Mor+2019,Mar+2019}. A unifying message passing architecture can be found in~\cite{Gil+2017}. Two recent surveys~\cite{wu2019comprehensive,zhou2018graph} provide a thorough overview of graph neural networks.
 
+The papers~\cite{Fey+2019,Err+2019,Dwi+2020} evalute GNNs using a unified evaluation procedure, however, they only use small- or medium scale datasets. Recently, \url{ogb.stanford.edu} launchend, however the provided datasets for graph classification focus on chemistry and bioinformatic applications, and the number is quite limited at this point.
 
-
-\paragraph{Contributions} We give an overview of \textsc{Tud dataset}, its unified evalution procudures, and baseline methods. Moreover, we report results on a experimental study comparing graph kernels and GNNs on a subset of the \textsc{Tud dataset}.
+\paragraph{Contributions} We give an overview of \textsc{TuDataset}, its unified evalution procudures, and baseline methods. Moreover, we report results on a experimental study comparing graph kernels and GNNs on a subset of the \textsc{Tud dataset}.
 
 \section{The TUD dataset collection}
 
