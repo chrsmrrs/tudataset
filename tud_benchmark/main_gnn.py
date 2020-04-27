@@ -11,6 +11,7 @@ import auxiliarymethods.datasets as dp
 from sklearn.preprocessing import StandardScaler
 import numpy as np
 
+# TODO: Add one-hot.
 
 def main():
     datasets = [
@@ -20,13 +21,15 @@ def main():
         ["PROTEINS", True]]
 
     for d, use_labels in datasets:
-        results = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [64], max_num_epochs=200, batch_size=25, start_lr=0.001,
+        classes = dp.get_dataset(d)
+
+        results = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [16, 32, 64, 128], max_num_epochs=200, batch_size=32, start_lr=0.01,
                                  num_repetitions=10,
                                  all_std=True)
         print(results)
 
         results = gnn_evaluation(GraphSAGEWithJK, d, [1, 2, 3, 4, 5], [16, 32, 64, 128], max_num_epochs=200,
-                                 batch_size=25, start_lr=0.001, num_repetitions=10,
+                                 batch_size=32, start_lr=0.01, num_repetitions=10,
                                  all_std=True)
         print(results)
 
