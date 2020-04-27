@@ -35,7 +35,7 @@ def read_multi_targets(ds_name):
 
 def get_dataset(dataset, regression=False, multigregression=False, one_hot=False):
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', dataset)
-    TUDataset(path, name=dataset, transform=)
+    TUDataset(path, name=dataset)
 
     if multigregression:
         return read_multi_targets(dataset)
