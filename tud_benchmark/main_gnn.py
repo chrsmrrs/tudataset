@@ -1,6 +1,6 @@
 from __future__ import division
 from auxiliarymethods.evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GIN0, GINWithJK
+from gnn_baselines.gnn_architectures import GINWithJK, GraphSAGEWithJK
 from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
 
 from sklearn.model_selection import train_test_split
@@ -13,12 +13,22 @@ import numpy as np
 
 
 def main():
-    results = gnn_evaluation(GINWithJK, "PROTEINS", [1,2,3,4,5], [64], max_num_epochs=100, batch_size=25, start_lr=0.001, num_repetitions=10,
-                   all_std=True)
-    print(results)
+    datasets = [
+        ["ENZYMES", True],
+        # ["IMDB-BINARY", False], ["IMDB-MULTI", False],["REDDIT-BINARY", False]
+        ["NCI1", True],
+        ["PROTEINS", True]]
 
-    results = gnn_evaluation(GIN0, "MUTAG", [1,2,3,4,5], [16, 32, 64, 128], max_num_epochs=200, batch_size=25, start_lr=0.001, num_repetitions=10,
-                   all_std=True)
+    for d, use_labels in datasets:
+        results = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [64], max_num_epochs=200, batch_size=25, start_lr=0.001,
+                                 num_repetitions=10,
+                                 all_std=True)
+        print(results)
+
+        results = gnn_evaluation(GraphSAGEWithJK, d, [1, 2, 3, 4, 5], [16, 32, 64, 128], max_num_epochs=200,
+                                 batch_size=25, start_lr=0.001, num_repetitions=10,
+                                 all_std=True)
+        print(results)
 
     print(results)
 
