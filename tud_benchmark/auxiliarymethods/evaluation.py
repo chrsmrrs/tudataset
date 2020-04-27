@@ -90,7 +90,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 c_val = classes[val_index]
 
                 for c in C:
-                    clf = LinearSVC(C=c, dual=not primal, max_iterations=max_iterations)
+                    clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations)
                     clf.fit(train, c_train)
                     p = clf.predict(val)
                     a = np.sum(np.equal(p, c_val)) / val.shape[0]
@@ -255,7 +255,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
             for l in layers:
                 for h in hidden:
                     model = gnn(dataset, l, h).to(device)
-                    # Reset hyperparameter before each run.
+                    # Reset parameters before each run.
                     model.reset_parameters()
 
                     optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
