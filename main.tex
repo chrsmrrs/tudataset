@@ -214,20 +214,22 @@ Recently, GNNs~\cite{Gil+2017} emerged as a alternative to graph kernels. Notabl
 
 The papers~\cite{Fey+2019,Err+2019,Dwi+2020} evalute GNNs using a unified evaluation procedure, however, they only use small- or medium scale datasets. Recently, \url{ogb.stanford.edu} launchend, however the provided datasets for graph classification focus on chemistry and bioinformatic applications, and the number is quite limited at this point.
 
-\paragraph{Contributions} We give an overview of \textsc{TuDataset}, its unified evalution procudures, and baseline methods. Moreover, we report results on a experimental study comparing graph kernels and GNNs on a subset of the \textsc{Tud dataset}.
+\paragraph{Contributions} We give an overview of \textsc{TuDataset}, its unified evalution procedures, and baseline methods. Moreover, we report results on a experimental study comparing graph kernels and GNNs on a subset of the \textsc{TuDataset}.
 
-\section{The TUD dataset collection}
+\section{The TUDataset collection}
 
-The \textsc{Tud dataset} contain over 150 datasets provided at \url{graphlearning.io}. The data loader, baseline methods, experimental evaluation tool can be installed by running \texttt{pip install tud-datasets}, see \url{XXX} for further details.
+The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning.io}. The data  baseline methods and experimental evaluation tools can be installed by running \texttt{pip install tudatasets}. See the website for dataset statistics and further documentation.
 
 \subsection{Datasets}
 
-Our collection of datasets covers graphs from various domains, which were provided by different authors. Therefore, they differ regarding the used graph model even within the same domain and the provided annotations, e.g., discrete or continuous node/edge attributes. We give an overview of some representative domains and graph models.
+Our collection of datasets covers graphs from various domains, which were provided by different authors. Therefore, they differ regarding the used graph model even within the same domain and the provided annotations, e.g., discrete or continuous node and edge attributes. Here, we give an overview of some representative domains and graph models.
 
 \paragraph{Small molecules.} 
 A commonly used class of graph datasets are derived from small molecules with class labels representing, e.g., toxicity or biological activity determined in the context of drug discovery. A molecule is represented by a graph in which nodes take the places of atoms and edges that of chemical bonds. Consequently, the labels indicate atom and bond types, where additional chemical attributes are possible. The graph models differs, e.g., in whether hydrogen atoms represented explicitly by nodes and bonds in aromatic rings are annotated accordingly.
 Our collection contains small datasets commonly used in the early graph kernel literature such as \textsc{Mutag}~\citep{Deb+1991} and \textsc{Ptc}~\cite{Helma2001}, medium-sized datasets, e.g., \textsc{Nci1} and \textsc{Nci109}~\citep{Wal+2008,She+2011}, as well as several large datasets derived from the \emph{Tox21 Challenge 2014} or \emph{PubChem}~\citep{Kim2018}. This includes the 11 datasets from anticancer screen tests with different cancer cell lines used by \citet{Yan2008} to demonstrate the efficacy of classifiers based on significant graph patterns. These datasets, the largest of which contain more than 79k graphs, are typically not balanced and contain far more small molecules that are identified as inactive against cancer cells.
 The \textsc{Alchemy} was proposed by~\citet{Chen2019a} for benchmarking {AI} models.
+
+\cm{Mention \textsc{ZINC} and the also mention size of DS, 200k}
 
 For some cheminformatics prediction tasks, the geometrical arrangement of atoms has been determined and should be taken into account in a rotation-invariant manner. In order to achieve this, complete graphs with edges annotated by distances are commonly used~\citep{Kri+2012,Gil+2017}. Our collection contains the four datasets \textsc{Bzr}, \textsc{Cox2}, \textsc{Dhfr}, \textsc{Er} initially published by \citet{Sut+2003} in two versions, with 3d coordinates of atoms and inter-atom distances, respectively, cf.~\citep{Mah+2006,Kri+2012}.
 
@@ -252,29 +254,22 @@ With the same goal, the dataset \textsc{Frankenstein} was obtained from a small 
 
 \citet{Knyazev2019} introduced the datasets \textsc{Colors} and \textsc{Triangles}, where the task is to count the number of nodes with a given one-hot-encoded color and the number of triangles, respectively. These classification tasks were considered particularly challenging for graph neural networks.
 
-\subsection{Baselines}
+\subsection{Baselines Methods}
 
-In order to provide meaningful baselines, we provide implementation of common graph kernels was well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009} \nk{Das ist eine Variante mit Labeln und 3 Knoten oder?}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel, as well as the higher-order WL kernels~\cite{Mor+2019b}, in \CPP and made them accessable through the Python interface of \textsc{Tud dataset}, see \url{XXX} for further details.  Moreover, all GNN architectures implemented in PyTorch Geometric can be used as baseline as well. 
+To provide meaningful baselines, we provide implementations of common graph kernel as well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009} \nk{Das ist eine Variante mit Labeln und 3 Knoten oder? CM: Ja}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel, as well as the higher-order WL kernels~\cite{Mor+2019b}, in \CPP and made them accessible through the Python interface of \textsc{Tud dataset}, see the website for further details.  Moreover, all GNN architectures provided by PyTorch Geometric can be conveniently used as a baseline as well. 
 
-Vertex kernel and edge kernel? \nk{Wäre interessant!}
+\subsection{Evaluation Methods}\label{eval}
 
-
-\subsection{Evaluation tools}\label{eval}
-
-In order to insure a fair and meaningful comparision between methods, we propose the following evaluation proceudres, and software tools for kernels and GNN approaches. All proposed methods can be conviently accessed from the Python interface, see \url{XXX} for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{}. Too compute accuracies and other metrics for evaluation, we propose to use $10$-fold cross validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparamets, e.g., number of iterations, $C$ parameter, number of layers, learning rate, feature dimension, etc.  
-
-
-Repeat ten times?
-
-
+To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNN approaches. All proposed methods can be conveniently accessed from the Python interface, see the website for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{}. Too compute accuracies and MAE, we propose to use $10$-fold cross-validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparameters, e.g., number of iterations, $C$ parameter, number of layers, feature dimension, dots Moreover, we repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each.). 
 
 \section{Experimental evaluation}
 
-Our intention here is to provide baseline experiments, and compare graph kernels and GNNs. More precisely, we address the following questions:
+\cm{work on this}
+
+Our intention here is to provide baseline experiments and compare graph kernels and GNNs. More precisely, we address the following questions:
 \begin{description}
 	\item[Q1] Are GNNs superior to graph kernels? Is there a single method that dominates?
-	\item[Q2] ?
-	\item[Q3] ?
+	\item[Q2] How do kernels compare to GNNs on large-scale molecular learning tasks.
 \end{description}
 
 \subsection{Experimental protocol}
@@ -283,7 +278,7 @@ We used the following datasets, graph kernels, and GNN baselines.
 
 \paragraph{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes},
 \textsc{Imdb-BINARY}, \textsc{Imdb-MULTI}, \textsc{Mcf-7}, \textsc{Molt-4},	\textsc{Nci1}, \textsc{Proteins},
-\textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257}. See the appendix for dataset statistics.
+\textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257}. See the website for dataset statistics.
 
 \paragraph{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016}, and $\delta$-$2$-LWL$^+$ kernel~\cite{Mor+2019b} included in the \textsc{TUD Dataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL}, \textsc{WL-OA}, and the  $\delta$-$2$-LWL$^+$ were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
 
@@ -291,6 +286,8 @@ We used the following datasets, graph kernels, and GNN baselines.
 \{16, 32, 64, 128\}$, the number of layers from $ \{2, 3, 4, 5\}$ and the learning rate from $ \{0.0001, 0.001, 0.01 \}$ with respect to the validation set. The batch size was fixed to $128$.
 
 For both methods, we used the evaluation procecude described in~\cref{eval} to optimize hyperparameters and compute accuracies. All experiments can be reproduced using the scripts provided at \url{XXX}.
+
+\cm{Add regression}
 
 \subsection{Results and discussion}
 See~\cref{t2l}.
