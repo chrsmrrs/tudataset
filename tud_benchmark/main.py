@@ -1,9 +1,5 @@
 from __future__ import division
-from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation, sgd_regressor_evaluation, \
-    ridge_regressor_evaluation, kernel_ridge_regressor_evaluation
-from auxiliarymethods.evaluation import gnn_evaluation
-from gnn_baselines.gin import GIN0
-from sklearn.linear_model import LinearRegression, Ridge, ElasticNet, SGDRegressor
+from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error as mse
@@ -156,6 +152,8 @@ def main():
     # print(p)
     #
 
+
+    # TODO: redo other datasets
     datataset = [["TRIANGLES", False, False],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
