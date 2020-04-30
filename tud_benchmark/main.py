@@ -162,7 +162,7 @@ def main():
         dataset = d
         classes = dp.get_dataset(dataset)
 
-        print("PRIMAL TRUE")
+    
         print("WL1")
         all_matrices = []
         for i in range(1, 6):
