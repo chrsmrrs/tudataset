@@ -154,7 +154,7 @@ def main():
 
 
     # TODO: redo other datasets
-    datataset = [["TRIANGLES", False, False],
+    datataset = [["MCF-7", True, True], ["MOLT-4", True, True], ["TRIANGLES", False, False],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
     for d, use_labels, use_edge_labels in datataset:
@@ -170,7 +170,7 @@ def main():
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False, max_iterations=1000))
+        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False, max_iterations=5000))
 
         print("GR")
         all_matrices = []
@@ -178,7 +178,7 @@ def main():
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False, max_iterations=1000))
+        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False, max_iterations=5000))
 
         print("SP")
         all_matrices = []
