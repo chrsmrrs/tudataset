@@ -67,7 +67,7 @@ def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_i
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                           C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False,
-                          primal=True, max_iterations=5000):
+                          primal=True, max_iterations=-1):
     # Acc. over all repetitions.
     test_accuracies_all = []
     # All acc. over all folds and repetitions.
