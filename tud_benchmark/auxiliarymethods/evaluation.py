@@ -5,64 +5,18 @@ import os.path as osp
 import numpy as np
 import torch
 import torch.nn.functional as F
+from sklearn.linear_model import Ridge
+from sklearn.metrics import mean_absolute_error as mse
 from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split
 from sklearn.svm import LinearSVC, SVC
 from torch_geometric.data import DataLoader
 from torch_geometric.datasets import TUDataset
-from sklearn.linear_model import SGDRegressor, Ridge
-from sklearn.kernel_ridge import KernelRidge
-from sklearn.metrics import mean_absolute_error as mse
 
 
 # Return arg max of iterable, e.g., a list.
 def argmax(iterable):
     return max(enumerate(iterable), key=lambda x: x[1])[0]
-
-
-# TODO: Check this.
-def ridge_regressor_evaluation(all_feature_matrices, targets, train_index, val_index, test_index, num_repetitions=5,
-                               alpha=[0.01, 0.1, 1.0, 2.0], std=None):
-    # Acc. over all repetitions.
-    test_accuracies = []
-
-    for _ in range(num_repetitions):
-
-        val_accuracies = []
-        models = []
-        for f in all_feature_matrices:
-
-            train = f[train_index]
-            val = f[val_index]
-
-            c_train = targets[train_index]
-            c_val = targets[val_index]
-
-            for a in alpha:
-                clf = Ridge(alpha=a, solver="sag", max_iter=5000, random_state=np.random.RandomState())
-                clf.fit(train, c_train)
-                p = clf.predict(val)
-                r = mse(c_val, p)
-
-                models.append(clf)
-                val_accuracies.append(r)
-
-        best_i = argmax(val_accuracies)
-        best_model = models[best_i]
-
-        # Eval. model on test split that performed best on val. split.
-        test = all_feature_matrices[int(best_i / len(alpha))][test_index]
-        c_test = targets[test_index]
-        p = best_model.predict(test)
-
-        # print(c_test.shape, std.shape)
-
-        # a = mse(c_test * std, p * std, multioutput='uniform_average')
-        a = mse(c_test, p, multioutput='uniform_average')
-        test_accuracies.append(a)
-    print(test_accuracies)
-    return (np.array(test_accuracies).mean(), np.array(test_accuracies).std())
-
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
@@ -122,7 +76,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
 
 # 10-CV for kernel svm and hyperparameter selection.
 def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
-                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False):
+                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], tolerance=0.001, all_std=False):
     test_accuracies_all = []
     test_accuracies_complete = []
 
@@ -145,7 +99,7 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                 c_val = classes[val_index]
 
                 for c in C:
-                    clf = SVC(C=c, kernel="precomputed")
+                    clf = SVC(C=c, kernel="precomputed", tol=tolerance)
                     clf.fit(train, c_train)
                     p = clf.predict(val)
                     a = np.sum(np.equal(p, c_val)) / val.shape[0]
@@ -206,7 +160,7 @@ def train_model(train_loader, val_loader, test_loader, model, optimizer, schedul
     test_error = None
     best_val_error = None
 
-    for epoch in range(1, num_epochs+1):
+    for epoch in range(1, num_epochs + 1):
         lr = scheduler.optimizer.param_groups[0]['lr']
         train(train_loader, model, optimizer, device)
         val_error = test(val_loader, model, device)
@@ -263,7 +217,8 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                                                                            factor=0.5, patience=5,
                                                                            min_lr=0.0000001)
 
-                    val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler, device,
+                    val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler,
+                                                    device,
                                                     max_num_epochs)
                     vals.append(val_acc)
                     tests.append(test_acc)
