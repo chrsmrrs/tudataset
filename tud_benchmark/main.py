@@ -19,7 +19,7 @@ def main():
         dataset = d
         classes = dp.get_dataset(dataset)
 
-        # print("WL1")
+        # print(d + " " + "WL1")
         # all_matrices = []
         # for i in range(1, 6):
         #     gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
@@ -28,7 +28,7 @@ def main():
         # print("###")
         # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
         #
-        # print("WLOA")
+        # print(d + " " + "WLOA")
         # all_matrices = []
         # for i in range(1, 6):
         #     gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
@@ -36,8 +36,8 @@ def main():
         #     all_matrices.append(gm_n)
         # print("###")
         # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-        print(d)
-        print("GR")
+
+        print(d + " " + "GR")
         all_matrices = []
         gm = kb.compute_graphlet_dense(dataset, use_labels, False)
         gm_n = aux.normalize_gram_matrix(gm)
@@ -45,7 +45,7 @@ def main():
         print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
-        # print("SP")
+        # print(d + " " + "SP")
         # all_matrices = []
         # gm = kb.compute_shortestpath_dense(dataset, use_labels)
         # gm_n = aux.normalize_gram_matrix(gm)
@@ -67,7 +67,7 @@ def main():
         dataset = d
         classes = dp.get_dataset(dataset)
 
-        print("WL1")
+        print(d + " " + "WL1")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)
@@ -77,7 +77,7 @@ def main():
         print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1))
 
-        print("GR")
+        print(d + " " + "GR")
         all_matrices = []
         gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
         gm_n = aux.normalize_feature_vector(gm)
@@ -86,7 +86,7 @@ def main():
         print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1))
 
-        print("SP")
+        print(d + " " + "SP")
         all_matrices = []
         gm = kb.compute_shortestpath_sparse(dataset, use_labels)
         gm_n = aux.normalize_feature_vector(gm)
