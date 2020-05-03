@@ -99,59 +99,49 @@ def main():
         dataset = d
         classes = dp.get_dataset(dataset)
 
-        print(d + " " + "WL1")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
-        print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
         print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "LWL2")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_lwl_2_sparse(dataset, i, use_labels, use_edge_labels, False)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
-        print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
         print(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "LWLP2")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_lwlp_2_sparse(dataset, i, use_labels, use_edge_labels, False)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
-        print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
         print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "GR")
         all_matrices = []
         gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
-        print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
         print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "SP")
         all_matrices = []
         gm = kb.compute_shortestpath_sparse(dataset, use_labels)
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
-        print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
         print(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
