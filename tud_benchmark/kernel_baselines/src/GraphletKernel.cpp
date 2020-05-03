@@ -157,12 +157,6 @@ namespace GraphletKernel {
                                     new_label = AuxiliaryMethods::pairing(new_label, d);
                                 }
 
-                                sort(new_labels.begin(), new_labels.end());
-                                for (Label d: new_labels) {
-                                    new_label = AuxiliaryMethods::pairing(new_label, d);
-                                }
-
-
                             } else {
                                 new_label = 2;
                             }

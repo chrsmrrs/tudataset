@@ -12,30 +12,45 @@ def main():
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                  ["REDDIT-BINARY", False]]
 
-    dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
-                 ["REDDIT-BINARY", False]]
-
     for d, use_labels in dataset:
         dataset = d
         classes = dp.get_dataset(dataset)
 
-        # print(d + " " + "WL1")
-        # all_matrices = []
-        # for i in range(1, 6):
-        #     gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
-        #     gm_n = aux.normalize_gram_matrix(gm)
-        #     all_matrices.append(gm_n)
-        # print("###")
-        # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-        #
-        # print(d + " " + "WLOA")
-        # all_matrices = []
-        # for i in range(1, 6):
-        #     gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
-        #     gm_n = aux.normalize_gram_matrix(gm)
-        #     all_matrices.append(gm_n)
-        # print("###")
-        # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        print(d + " " + "WL1")
+        all_matrices = []
+        for i in range(1, 6):
+            gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
+            gm_n = aux.normalize_gram_matrix(gm)
+            all_matrices.append(gm_n)
+        print("###")
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+        print(d + " " + "LWL2")
+        all_matrices = []
+        for i in range(1, 6):
+            gm = kb.compute_lwl_2_dense(dataset, i, use_labels, False, False)
+            gm_n = aux.normalize_gram_matrix(gm)
+            all_matrices.append(gm_n)
+        print("###")
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+        print(d + " " + "LWLP2")
+        all_matrices = []
+        for i in range(1, 6):
+            gm = kb.compute_lwlp_2_dense(dataset, i, use_labels, False, False)
+            gm_n = aux.normalize_gram_matrix(gm)
+            all_matrices.append(gm_n)
+        print("###")
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+        print(d + " " + "WLOA")
+        all_matrices = []
+        for i in range(1, 6):
+            gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
+            gm_n = aux.normalize_gram_matrix(gm)
+            all_matrices.append(gm_n)
+        print("###")
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         print(d + " " + "GR")
         all_matrices = []
@@ -45,18 +60,16 @@ def main():
         print("###")
         print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
-        # print(d + " " + "SP")
-        # all_matrices = []
-        # gm = kb.compute_shortestpath_dense(dataset, use_labels)
-        # gm_n = aux.normalize_gram_matrix(gm)
-        # all_matrices.append(gm_n)
-        # print("###")
-        # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        print(d + " " + "SP")
+        all_matrices = []
+        gm = kb.compute_shortestpath_dense(dataset, use_labels)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
+        print("###")
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
 
     ####################################################################################################################
-
-    exit()
 
     # Larger datasets using LIBLINEAR.
     datataset = [["MCF-7", True, True], ["MOLT-4", True, True], ["TRIANGLES", False, False],
