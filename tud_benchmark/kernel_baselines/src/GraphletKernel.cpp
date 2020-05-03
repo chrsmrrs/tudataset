@@ -16,7 +16,7 @@ namespace GraphletKernel {
 
     GramMatrix
     GraphletKernel::compute_gram_matrix(const bool use_labels, const bool use_edge_labels, const bool compute_gram) {
-        vector<GraphletCounter> graphlet_counters;
+        vector <GraphletCounter> graphlet_counters;
         graphlet_counters.reserve(m_graph_database.size());
 
         // Compute graphlet count for each graph in graph database.
@@ -25,7 +25,7 @@ namespace GraphletKernel {
         }
 
         size_t num_graphs = m_graph_database.size();
-        vector<S> nonzero_compenents;
+        vector <S> nonzero_compenents;
 
         // Compute feature vector.
         for (Node i = 0; i < num_graphs; ++i) {
@@ -87,12 +87,14 @@ namespace GraphletKernel {
                                 Label l_v = labels[v];
                                 Label l_w = labels[w];
 
+                                Labels new_labels;
+
                                 if (use_edge_labels) {
                                     uint uv = edge_labels.find(make_tuple(u, v))->second;
                                     uint uw = edge_labels.find(make_tuple(u, w))->second;
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
 
-                                    Labels labels(
+                                    new_labels(
                                             // All vertices have degree two.
                                             {{AuxiliaryMethods::pairing(2, l_u),
                                                      AuxiliaryMethods::pairing(uv, l_u),
@@ -105,7 +107,7 @@ namespace GraphletKernel {
 
                                 } else {
                                     // Map every labeled triangle to a unique integer.
-                                    Labels labels(
+                                    new_labels(
                                             {{AuxiliaryMethods::pairing(2,
                                                                         l_u), AuxiliaryMethods::pairing(
                                                     2,
@@ -114,12 +116,12 @@ namespace GraphletKernel {
                                                     l_w)}});
                                 }
 
-                                sort(labels.begin(), labels.end());
-                                for (Label d: labels) {
+                                sort(new_labels.begin(), new_labels.end());
+                                for (Label d: new_labels) {
                                     new_label = AuxiliaryMethods::pairing(new_label, d);
                                 }
 
-                            // No labels.
+                                // No labels.
                             } else {
                                 new_label = 3;
                             }
@@ -139,11 +141,13 @@ namespace GraphletKernel {
                                 Label l_v = labels[v];
                                 Label l_w = labels[w];
 
+                                Labels new_labels;
+
                                 if (use_edge_labels) {
                                     uint uv = edge_labels.find(make_tuple(u, v))->second;
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
 
-                                    Labels labels(
+                                    new_labels(
                                             {{AuxiliaryMethods::pairing(1, l_u),
                                                      AuxiliaryMethods::pairing(uv, l_u),
                                                      AuxiliaryMethods::pairing(2, l_v),
@@ -153,14 +157,14 @@ namespace GraphletKernel {
                                 } else {
 
                                     // Map every labeled triangle to a unique integer.
-                                    Labels labels(
+                                    new_labels(
                                             {{AuxiliaryMethods::pairing(1,
                                                                         l_u), AuxiliaryMethods::pairing(
                                                     2, l_v), AuxiliaryMethods::pairing(
                                                     1, l_w)}});
                                 }
 
-                                sort(labels.begin(), labels.end());
+                                sort(new_labels.begin(), new_labels.end());
                                 for (Label d: labels) {
                                     new_label = AuxiliaryMethods::pairing(new_label, d);
                                 }
