@@ -17,7 +17,7 @@ def main():
     d = "IMDB-BINARY"
     dp.get_dataset(d)
 
-    results = gnn_evaluation(GINWithJK, d, [4], [64], max_num_epochs=50, batch_size=32, start_lr=0.001, num_repetitions=1, all_std=True)
+    results = gnn_evaluation(GINWithJK, d, [1,2,3,5,6], [32,64,128], max_num_epochs=100, batch_size=32, start_lr=0.001, num_repetitions=1, all_std=True)
     print(results)
 
 

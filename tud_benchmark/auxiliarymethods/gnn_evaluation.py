@@ -83,6 +83,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
     dataset = TUDataset(path, name=ds_name).shuffle()
 
+    # One-hot degree if node labels are not available.
     if dataset.data.x is None:
         max_degree = 0
         degs = []
@@ -136,6 +137,9 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                     val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler,
                                                     device,
                                                     max_num_epochs)
+                    print(l, h)
+                    print(val_acc, test_acc)
+
                     vals.append(val_acc)
                     tests.append(test_acc)
 
