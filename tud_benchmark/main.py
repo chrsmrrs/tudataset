@@ -3,8 +3,8 @@ from __future__ import division
 import auxiliarymethods.auxiliary_methods as aux
 import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
-from auxiliarymethods.kernel_evauluation import linear_svm_evaluation
-from auxiliarymethods.kernel_evauluation import kernel_svm_evaluation
+from auxiliarymethods.kernel_evaluation import linear_svm_evaluation
+from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 
 
 def main():
