@@ -1,16 +1,15 @@
 from __future__ import division
-from auxiliarymethods.evaluation import kernel_svm_evaluation, linear_svm_evaluation
 
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error as mse
-import kernel_baselines as kb
 import auxiliarymethods.auxiliary_methods as aux
 import auxiliarymethods.datasets as dp
-from sklearn.preprocessing import StandardScaler
-import numpy as np
+import kernel_baselines as kb
+from auxiliarymethods.kernel_evauluation import linear_svm_evaluation
 
 
 def main():
+    # Smaller datasets using LIBSVM.
+
+    # Larger datasets using LIBLINEAR.
     datataset = [["MCF-7", True, True], ["MOLT-4", True, True], ["TRIANGLES", False, False],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]

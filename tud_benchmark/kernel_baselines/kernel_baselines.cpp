@@ -46,235 +46,6 @@ MatrixXd compute_wl_1_dense(string ds, int num_iterations,  bool use_labels,  bo
     return MatrixXd(gm);
 }
 
-vector<GramMatrix> compute_wl_1_sparse_ZINC(bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
-
-    GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_val");
-    gdb_2.erase(gdb_2.begin() + 0);
-
-   cout << "$$$" << endl;
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
-    gdb.erase(gdb.begin() + 0);
-    cout << "$$$" << endl;
-        GraphDatabase gdb_3 = AuxiliaryMethods::read_graph_txt_file("ZINC_test");
-    gdb_3.erase(gdb_3.begin() + 0);
-   cout << "$$$" << endl;
-
-
-   GraphDatabase gdb_new;
-   for (auto i : indices_train) {
-       gdb_new.push_back(gdb[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-   for (auto i : indices_val) {
-       gdb_new.push_back(gdb_2[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-   for (auto i : indices_test) {
-       gdb_new.push_back(gdb_3[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-    ColorRefinement::ColorRefinementKernel wl(gdb_new);
-    vector<GramMatrix> matrices;
-    for (int i = 4; i < 5; ++i) {
-       GramMatrix gm;
-       gm = wl.compute_gram_matrix(i, use_labels, use_edge_labels, false, false);
-       matrices.push_back(gm);
-    }
-
-    return matrices;
-}
-
-
-vector<GramMatrix> compute_wl_1_sparse_alchem(bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
-
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("alchemy_full");
-    gdb.erase(gdb.begin() + 0);
-
-
-
-   GraphDatabase gdb_new;
-   for (auto i : indices_train) {
-       gdb_new.push_back(gdb[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-   for (auto i : indices_val) {
-       gdb_new.push_back(gdb[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-   for (auto i : indices_test) {
-       gdb_new.push_back(gdb[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-    ColorRefinement::ColorRefinementKernel wl(gdb_new);
-    vector<GramMatrix> matrices;
-    for (int i = 2; i < 3; ++i) {
-       GramMatrix gm;
-       gm = wl.compute_gram_matrix(i, use_labels, use_edge_labels, false, false);
-       matrices.push_back(gm);
-    }
-
-    return matrices;
-}
-
-
-
-GramMatrix compute_wl_2_sparse_ZINC(int num_iterations,  bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
-
-    GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_val");
-    gdb_2.erase(gdb_2.begin() + 0);
-
-   cout << "$$$" << endl;
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
-    gdb.erase(gdb.begin() + 0);
-    cout << "$$$" << endl;
-        GraphDatabase gdb_3 = AuxiliaryMethods::read_graph_txt_file("ZINC_test");
-    gdb_3.erase(gdb_3.begin() + 0);
-   cout << "$$$" << endl;
-
-
-   GraphDatabase gdb_new;
-   for (auto i : indices_train) {
-       gdb_new.push_back(gdb[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-   for (auto i : indices_val) {
-       gdb_new.push_back(gdb_2[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-   for (auto i : indices_test) {
-       gdb_new.push_back(gdb_3[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-    GenerateTwo::GenerateTwo wl(gdb_new);
-    GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, "localp", false, false, false);
-
-    return gm;
-}
-
-
-GramMatrix compute_sp_sparse_ZINC(bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
-
-    GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_val");
-    gdb_2.erase(gdb_2.begin() + 0);
-
-   cout << "$$$" << endl;
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
-    gdb.erase(gdb.begin() + 0);
-    cout << "$$$" << endl;
-        GraphDatabase gdb_3 = AuxiliaryMethods::read_graph_txt_file("ZINC_test");
-    gdb_3.erase(gdb_3.begin() + 0);
-   cout << "$$$" << endl;
-
-
-   GraphDatabase gdb_new;
-   for (auto i : indices_train) {
-       gdb_new.push_back(gdb[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-   for (auto i : indices_val) {
-       gdb_new.push_back(gdb_2[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-   for (auto i : indices_test) {
-       gdb_new.push_back(gdb_3[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-    ShortestPathKernel::ShortestPathKernel wl(gdb_new);
-    GramMatrix gm;
-    gm = wl.compute_gram_matrix(use_labels, false);
-
-    return gm;
-}
-
-
-GramMatrix compute_gr_sparse_ZINC(bool use_labels,  bool use_edge_labels, const std::vector<int> &indices_train, const std::vector<int> &indices_val, const std::vector<int> &indices_test) {
-
-    GraphDatabase gdb_2 = AuxiliaryMethods::read_graph_txt_file("ZINC_val");
-    gdb_2.erase(gdb_2.begin() + 0);
-
-   cout << "$$$" << endl;
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file("ZINC_train");
-    gdb.erase(gdb.begin() + 0);
-    cout << "$$$" << endl;
-        GraphDatabase gdb_3 = AuxiliaryMethods::read_graph_txt_file("ZINC_test");
-    gdb_3.erase(gdb_3.begin() + 0);
-   cout << "$$$" << endl;
-
-
-   GraphDatabase gdb_new;
-   for (auto i : indices_train) {
-       gdb_new.push_back(gdb[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-   for (auto i : indices_val) {
-       gdb_new.push_back(gdb_2[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-   for (auto i : indices_test) {
-       gdb_new.push_back(gdb_3[int(i)]);
-   }
-   cout << gdb_new.size() << endl;
-   cout << "$$$" << endl;
-
-
-    GraphletKernel::GraphletKernel wl(gdb_new);
-    GramMatrix gm;
-    gm = wl.compute_gram_matrix(use_labels, use_edge_labels, false);
-
-    return gm;
-}
-
-
-MatrixXd compute_wloa_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels) {
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
-    gdb.erase(gdb.begin() + 0);
-
-    ColorRefinement::ColorRefinementKernel wl(gdb);
-    GramMatrix gm;
-    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, true, true);
-
-    return MatrixXd(gm);
-}
-
-
 GramMatrix compute_wl_1_sparse(string ds, int num_iterations, bool use_labels, bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
@@ -286,6 +57,16 @@ GramMatrix compute_wl_1_sparse(string ds, int num_iterations, bool use_labels, b
     return gm;
 }
 
+MatrixXd compute_wloa_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels) {
+    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
+    gdb.erase(gdb.begin() + 0);
+
+    ColorRefinement::ColorRefinementKernel wl(gdb);
+    GramMatrix gm;
+    gm = wl.compute_gram_matrix(num_iterations, use_labels, use_edge_labels, true, true);
+
+    return MatrixXd(gm);
+}
 
 MatrixXd compute_lwl_2_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels,  bool simple) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
@@ -332,7 +113,6 @@ MatrixXd compute_lwlp_2_wloa_dense(string ds, int num_iterations,  bool use_labe
     return MatrixXd(gm);
 }
 
-
 GramMatrix compute_lwl_2_sparse(string ds, int num_iterations, bool use_labels,  bool use_edge_labels,  bool simple) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
@@ -355,18 +135,6 @@ GramMatrix compute_lwlp_2_sparse(string ds, int num_iterations, bool use_labels,
     return gm;
 }
 
-GramMatrix compute_graphlet_sparse(string ds, bool use_labels, bool use_edge_labels) {
-    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
-    gdb.erase(gdb.begin() + 0);
-    vector<int> classes = AuxiliaryMethods::read_classes(ds);
-
-    GraphletKernel::GraphletKernel graphlet(gdb);
-    GramMatrix gm;
-    gm = graphlet.compute_gram_matrix(use_labels, use_edge_labels, false);
-
-    return gm;
-}
-
 MatrixXd compute_graphlet_dense(string ds, bool use_labels, bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
     gdb.erase(gdb.begin() + 0);
@@ -377,6 +145,18 @@ MatrixXd compute_graphlet_dense(string ds, bool use_labels, bool use_edge_labels
     gm = graphlet.compute_gram_matrix(use_labels, use_edge_labels, true);
 
     return MatrixXd(gm);
+}
+
+GramMatrix compute_graphlet_sparse(string ds, bool use_labels, bool use_edge_labels) {
+    GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
+    gdb.erase(gdb.begin() + 0);
+    vector<int> classes = AuxiliaryMethods::read_classes(ds);
+
+    GraphletKernel::GraphletKernel graphlet(gdb);
+    GramMatrix gm;
+    gm = graphlet.compute_gram_matrix(use_labels, use_edge_labels, false);
+
+    return gm;
 }
 
 MatrixXd compute_shortestpath_dense(string ds, bool use_labels) {
@@ -403,34 +183,10 @@ GramMatrix compute_shortestpath_sparse(string ds, bool use_labels) {
     return gm;
 }
 
-
-vector<float> read_targets(string data_set_name, const std::vector<int> &indices) {
-
-   vector<float> targets =  AuxiliaryMethods::read_targets(data_set_name);
-
-   vector<float> new_targets;
-   for (auto i : indices) {
-       new_targets.push_back(targets[i]);
-   }
-
-  return new_targets;
-
-}
-
 PYBIND11_MODULE(kernel_baselines, m) {
     m.def("compute_wl_1_dense", &compute_wl_1_dense);
-    m.def("compute_wloa_dense", &compute_wloa_dense);
     m.def("compute_wl_1_sparse", &compute_wl_1_sparse);
-    m.def("compute_wl_1_sparse_ZINC", &compute_wl_1_sparse_ZINC);
-    m.def("compute_wl_1_sparse_alchem", &compute_wl_1_sparse_alchem);
-    m.def("compute_wl_2_sparse_ZINC", &compute_wl_2_sparse_ZINC);
-
-
-    m.def("compute_gr_sparse_ZINC", &compute_gr_sparse_ZINC);
-    m.def("compute_sp_sparse_ZINC", &compute_sp_sparse_ZINC);
-
-    m.def("read_targets", &read_targets);
-
+    m.def("compute_wloa_dense", &compute_wloa_dense);
 
     m.def("compute_lwl_2_dense", &compute_lwl_2_dense);
     m.def("compute_lwl_2_sparse", &compute_lwl_2_sparse);
