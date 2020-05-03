@@ -4,10 +4,59 @@ import auxiliarymethods.auxiliary_methods as aux
 import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
 from auxiliarymethods.kernel_evauluation import linear_svm_evaluation
+from auxiliarymethods.kernel_evauluation import kernel_svm_evaluation
 
 
 def main():
     # Smaller datasets using LIBSVM.
+    datataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
+                 ["REDDIT-BINARY", False]]
+
+    datataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
+                 ["REDDIT-BINARY", False]]
+
+    for d, use_labels in datataset:
+        dataset = d
+        classes = dp.get_dataset(dataset)
+
+        # print("WL1")
+        # all_matrices = []
+        # for i in range(1, 6):
+        #     gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
+        #     gm_n = aux.normalize_gram_matrix(gm)
+        #     all_matrices.append(gm_n)
+        # print("###")
+        # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        #
+        # print("WLOA")
+        # all_matrices = []
+        # for i in range(1, 6):
+        #     gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
+        #     gm_n = aux.normalize_gram_matrix(gm)
+        #     all_matrices.append(gm_n)
+        # print("###")
+        # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+        print("GR")
+        all_matrices = []
+        gm = kb.compute_graphlet_dense(dataset, use_labels, False)
+        gm_n = aux.normalize_gram_matrix(gm)
+        all_matrices.append(gm_n)
+        print("###")
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+        # print("SP")
+        # all_matrices = []
+        # gm = kb.compute_shortestpath_dense(dataset, use_labels)
+        # gm_n = aux.normalize_gram_matrix(gm)
+        # all_matrices.append(gm_n)
+        # print("###")
+        # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+
+
+    ####################################################################################################################
+
+    exit()
 
     # Larger datasets using LIBLINEAR.
     datataset = [["MCF-7", True, True], ["MOLT-4", True, True], ["TRIANGLES", False, False],
