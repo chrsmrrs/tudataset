@@ -102,7 +102,7 @@ def main():
         print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWL2")
         all_matrices = []
@@ -113,7 +113,7 @@ def main():
         print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWLP2")
         all_matrices = []
@@ -124,7 +124,7 @@ def main():
         print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "GR")
         all_matrices = []
@@ -134,7 +134,7 @@ def main():
         print("###")
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "SP")
         all_matrices = []
