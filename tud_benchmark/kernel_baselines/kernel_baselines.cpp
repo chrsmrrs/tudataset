@@ -9,12 +9,9 @@
 #include "src/GraphletKernel.h"
 #include "src/ShortestPathKernel.h"
 #include "src/GenerateTwo.h"
-
-
 #include "src/Graph.h"
 #include <iostream>
 #include <chrono>
-
 
 #ifdef __linux__
     #include <pybind11/pybind11.h>
@@ -26,14 +23,11 @@
     #include </usr/local/include/pybind11/eigen.h>
 #endif
 
-
 namespace py = pybind11;
 using namespace std::chrono;
 using namespace std;
 using namespace GraphLibrary;
-
 using namespace std;
-
 
 MatrixXd compute_wl_1_dense(string ds, int num_iterations,  bool use_labels,  bool use_edge_labels) {
     GraphDatabase gdb = AuxiliaryMethods::read_graph_txt_file(ds);
