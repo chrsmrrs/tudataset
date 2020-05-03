@@ -131,6 +131,8 @@ def main():
         print(d + " " + "SPSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "SPSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
+
+    print("DONE! :*")
     for r in results:
         print(r)
 
