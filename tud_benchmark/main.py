@@ -18,7 +18,6 @@ def main():
         dataset = d
         classes = dp.get_dataset(dataset)
 
-        print(d + " " + "WL1")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
@@ -29,7 +28,6 @@ def main():
         print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "LWL2")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_lwl_2_dense(dataset, i, use_labels, False, False)
@@ -40,7 +38,6 @@ def main():
         print(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "LWLP2")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_lwlp_2_dense(dataset, i, use_labels, False, False)
@@ -51,7 +48,6 @@ def main():
         print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "WLOA")
         all_matrices = []
         for i in range(1, 6):
             gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
@@ -62,7 +58,6 @@ def main():
         print(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "GR")
         all_matrices = []
         gm = kb.compute_graphlet_dense(dataset, use_labels, False)
         gm_n = aux.normalize_gram_matrix(gm)
@@ -72,7 +67,6 @@ def main():
         print(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        print(d + " " + "SP")
         all_matrices = []
         gm = kb.compute_shortestpath_dense(dataset, use_labels)
         gm_n = aux.normalize_gram_matrix(gm)
@@ -81,8 +75,6 @@ def main():
         acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
         print(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-
 
     ####################################################################################################################
     # Larger datasets using LIBLINEAR.
