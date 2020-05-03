@@ -12,6 +12,8 @@ def main():
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                  ["REDDIT-BINARY", False]]
 
+    results = []
+
     for d, use_labels in dataset:
         dataset = d
         classes = dp.get_dataset(dataset)
@@ -23,7 +25,8 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWL2")
         all_matrices = []
@@ -32,7 +35,8 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWLP2")
         all_matrices = []
@@ -41,7 +45,8 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "WLOA")
         all_matrices = []
@@ -50,7 +55,8 @@ def main():
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        results.append(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "GR")
         all_matrices = []
@@ -58,7 +64,8 @@ def main():
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "SP")
         all_matrices = []
@@ -66,16 +73,22 @@ def main():
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
+
+    for r in results:
+        print(r)
 
     ####################################################################################################################
-
     # Larger datasets using LIBLINEAR.
-    datataset = [["MCF-7", True, True], ["MOLT-4", True, True], ["TRIANGLES", False, False],
+
+    results = []
+    dataset = [["MCF-7", True, True], ["MOLT-4", True, True], ["TRIANGLES", False, False],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
-    for d, use_labels, use_edge_labels in datataset:
+
+    for d, use_labels, use_edge_labels in dataset:
         print(d)
         dataset = d
         classes = dp.get_dataset(dataset)
@@ -87,8 +100,9 @@ def main():
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
-                                    max_iterations=-1))
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
+                                    max_iterations=-1)
+        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWL2")
         all_matrices = []
@@ -97,8 +111,9 @@ def main():
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
-                                    max_iterations=-1))
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
+                                    max_iterations=-1)
+        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWLP2")
         all_matrices = []
@@ -107,8 +122,9 @@ def main():
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
-                                    max_iterations=-1))
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
+                                    max_iterations=-1)
+        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "GR")
         all_matrices = []
@@ -116,8 +132,9 @@ def main():
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
-                                    max_iterations=-1))
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
+                                    max_iterations=-1)
+        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "SP")
         all_matrices = []
@@ -125,8 +142,12 @@ def main():
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
-                                    max_iterations=-1))
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
+                                    max_iterations=-1)
+        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+    for r in results:
+        print(r)
 
 
 if __name__ == "__main__":
