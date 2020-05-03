@@ -174,6 +174,7 @@
 \begin{icmlauthorlist}
 \icmlauthor{C. Morris}{p}
 \icmlauthor{N.\,M.\,Kriege}{vie}
+\icmlauthor{Franka Bause}{vie}
 \icmlauthor{K. Kersting}{darm}
 \icmlauthor{P. Mutzw}{bonn}
 \icmlauthor{N. Neumann}{wustl}
@@ -195,7 +196,7 @@
 %\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-Recently, there has been an increasing interest in learning with graph data, especially using graph neural networks.  However, the development of meaningful benchmark datasets and standardized evaluation procedures is lagging. That is, most papers still evaluate their methods on small-scale datasets leading to high standard deviations and hard to interpret results, consequently hindering advancements in this area. To address this, we introduce the \textsc{TuDataset} for graph classification and regression. The dataset consists of over 120 datasets from a wide range of applications and varying sizes. We provide Python-based data loaders, baseline method implementations, and evaluation tools. Here, we give an overview of the datasets, evaluation tools, and provide baseline experiments. All datasets can be obtained from \url{www.graphlearning.io}. The experiments are fully reproduceable from the code available at \url{www.github.com/chrsmrrs/tudatasets}.
+Recently, there has been an increasing interest in (supervised) learning with graph data, especially using graph neural networks.  However, the development of meaningful benchmark datasets and standardized evaluation procedures is lagging. That is, most papers still evaluate their methods on small-scale datasets leading to high standard deviations and hard to interpret results, consequently hindering advancements in this area. To address this, we introduce the \textsc{TuDataset} for graph classification and regression. The dataset consists of over 120 datasets from a wide range of applications and varying sizes. We provide Python-based data loaders, kernel and graph neural network baseline methods implementations, and evaluation tools. Here, we give an overview of the datasets, evaluation tools, and provide baseline experiments. All datasets can be obtained from \url{www.graphlearning.io}. The experiments are fully reproduceable from the code available at \url{www.github.com/chrsmrrs/tudatasets}.
 \end{abstract}
 
 \section{Introduction}
@@ -261,7 +262,7 @@ To provide meaningful baselines, we provide implementations of common graph kern
 
 \subsection{Evaluation Methods}\label{eval}
 
-To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNN approaches. All proposed methods can be conveniently accessed from the Python interface, see the website for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{}. Too compute accuracies and MAE, we propose to use $10$-fold cross-validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparameters, e.g., number of iterations, $C$ parameter, number of layers, feature dimension, dots Moreover, we repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each.). 
+To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNN approaches. All proposed methods can be conveniently accessed from the Python interface, see the website for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{}. Too compute accuracies and MAE, we propose to use $10$-fold cross-validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparameters, e.g., number of iterations, $C$ parameter, number of layers, feature dimension, dots Moreover, we repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each.). See the appendix for examples balbalb
 
 \section{Experimental evaluation}
 
@@ -280,11 +281,12 @@ We used the following datasets, graph kernels, and GNN baselines.
 \paragraph{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes},
 \textsc{Imdb-BINARY}, \textsc{Imdb-MULTI}, \textsc{Mcf-7}, \textsc{Molt-4},	\textsc{Nci1}, \textsc{Proteins},
 \textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257}. See the website for dataset statistics.
+\cm{ZINC ALche}
 
-\paragraph{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016}, and $\delta$-$2$-LWL$^+$ kernel~\cite{Mor+2019b} included in the \textsc{TUD Dataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL}, \textsc{WL-OA}, and the  $\delta$-$2$-LWL$^+$ were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
+\paragraph{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016}, and $\delta$-$2$-LWL$^+$ kernel~\cite{Mor+2019b} included in the \textsc{TUD Dataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL}, \textsc{WL-OA}, and the  $\delta$-$2$-LWL$^+$ were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}\cm{Cite sklearn}
 
 \paragraph{GNNs.} We used the GNN architectures \textsc{GCN}~\cite{Kip+2017}, \textsc{Sage}~\cite{Ham+2017}, \textsc{Gin} and \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} as neural baselines. For all experiments, we used the global mean operator to obtain graph-level outputs. For each dataset, we optimize the number of hidden units from $
-\{16, 32, 64, 128\}$, the number of layers from $ \{2, 3, 4, 5\}$ and the learning rate from $ \{0.0001, 0.001, 0.01 \}$ with respect to the validation set. The batch size was fixed to $128$.
+\{16, 32, 64, 128\}$, the number of layers from $ \{2, 3, 4, 5\}$ and the learning rate from $ \{0.0001, 0.001, 0.01 \}$ with respect to the validation set. The batch size was fixed to $128$.\cm{change this }
 
 For both methods, we used the evaluation procecude described in~\cref{eval} to optimize hyperparameters and compute accuracies. All experiments can be reproduced using the scripts provided at \url{XXX}.
 
@@ -306,12 +308,14 @@ See~\cref{t2l}.
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
 			& & {\textsc{Enyzmes}}         &  {\textsc{Imdb-Binary}}      & {\textsc{Imdb-Multi}}           & {\textsc{NCI1}}       & {\textsc{Proteins}}           & {\textsc{Reddit-Binary}}     \\	\toprule
 			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &    \scriptsize $\pm  \pm  $       & \scriptsize $\pm   \pm $ &  \scriptsize $\pm  \pm   $ &  \scriptsize $\pm  \pm $ &  \scriptsize $\pm  \pm   $ & \scriptsize $\pm  \pm $  \\
+				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 				& \text{WLOA} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 				& \text{GR}            &     \scriptsize $\pm  \pm$       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm \pm   $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm \pm $ & \scriptsize $\pm  \pm  $   \\
 				& \text{SP}            &   \scriptsize $\pm  \pm $       &  \scriptsize $\pm  \pm  $ &  \scriptsize $\pm  \pm $ &  \scriptsize $\pm \pm  $  & \scriptsize $\pm  \pm $ &  \scriptsize $\pm\pm $  \\
 			\cmidrule{2-8}	
-			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GIN-$\varepsilon$}    &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $    \\
-		& \text{Sage}            &    \scriptsize $\pm $       & \scriptsize $\pm $ & \scriptsize $\pm $ &  \scriptsize $\pm $ & \scriptsize $\pm $ & \scriptsize $\pm $  \\
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GIN-$\varepsilon$}    & \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+		& \text{GraphSage} &          \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
@@ -332,7 +336,7 @@ See~\cref{t2l}.
 			& \text{SP}             &    \scriptsize $\pm  \pm $       &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\   
 			\cmidrule{2-7}	
 			\multirow{2}{*}{\rotatebox{90}{GNN}}	&  \text{GIN-E-$\varepsilon$}         &    \scriptsize $\pm  \pm $       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ \\
-			& \text{Sage}            &    \scriptsize $\pm \pm$       & \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm $  \\
+			& \text{GraphSage}            &    \scriptsize $\pm \pm$       & \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm $  \\
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
