@@ -43,7 +43,7 @@ def main():
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
 
         # print(d + " " + "SP")
         # all_matrices = []
