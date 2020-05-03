@@ -9,13 +9,13 @@ from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 
 def main():
     # Smaller datasets using LIBSVM.
-    datataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
+    dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                  ["REDDIT-BINARY", False]]
 
-    datataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
+    dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                  ["REDDIT-BINARY", False]]
 
-    for d, use_labels in datataset:
+    for d, use_labels in dataset:
         dataset = d
         classes = dp.get_dataset(dataset)
 
@@ -36,14 +36,14 @@ def main():
         #     all_matrices.append(gm_n)
         # print("###")
         # print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
-
+        print(d)
         print("GR")
         all_matrices = []
         gm = kb.compute_graphlet_dense(dataset, use_labels, False)
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True))
+        print(kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True))
 
         # print("SP")
         # all_matrices = []
