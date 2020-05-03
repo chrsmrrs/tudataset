@@ -83,8 +83,6 @@ def main():
         results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
-    for r in results:
-        print(r)
 
     ####################################################################################################################
     # Larger datasets using LIBLINEAR.
@@ -106,8 +104,8 @@ def main():
             all_matrices.append(gm_n)
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
         for i in range(1, 6):
@@ -116,8 +114,8 @@ def main():
             all_matrices.append(gm_n)
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        print(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "LWL2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "LWL2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
         for i in range(1, 6):
@@ -126,8 +124,8 @@ def main():
             all_matrices.append(gm_n)
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "LWLP2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "LWLP2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
         gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
@@ -135,8 +133,8 @@ def main():
         all_matrices.append(gm_n)
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GRSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GRSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
         gm = kb.compute_shortestpath_sparse(dataset, use_labels)
@@ -144,8 +142,8 @@ def main():
         all_matrices.append(gm_n)
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1)
-        print(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "SPSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "SPSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     for r in results:
         print(r)
