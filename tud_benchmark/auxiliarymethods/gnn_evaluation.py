@@ -136,8 +136,6 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                     val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler,
                                                     device,
                                                     max_num_epochs)
-                    print(l, h)
-                    print(val_acc, test_acc)
 
                     vals.append(val_acc)
                     tests.append(test_acc)
@@ -146,6 +144,8 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
             best_i = argmax(vals)
             best_test = tests[best_i]
             test_accuracies.append(best_test)
+
+            print(vals[best_i], best_test)
 
         if all_std:
             test_accuracies_complete.extend(test_accuracies)
