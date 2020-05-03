@@ -16,7 +16,6 @@ def argmax(iterable):
     return max(enumerate(iterable), key=lambda x: x[1])[0]
 
 
-
 # One training epoch for GNN model.
 def train(train_loader, model, optimizer, device):
     model.train()
@@ -84,12 +83,14 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
             # Sample 10% split from training split for validation.
             train_index, val_index = train_test_split(train_index, test_size=0.1)
 
-            test_dataset = dataset[test_index.tolist()]
-            val_dataset = dataset[val_index.tolist()]
             train_dataset = dataset[train_index.tolist()]
-            test_loader = DataLoader(test_dataset, batch_size=batch_size)
+            val_dataset = dataset[val_index.tolist()]
+            test_dataset = dataset[test_index.tolist()]
+
+
             train_loader = DataLoader(train_dataset, batch_size=batch_size)
             val_loader = DataLoader(val_dataset, batch_size=batch_size)
+            test_loader = DataLoader(test_dataset, batch_size=batch_size)
 
             # Collect val. and test acc. over all hyperparameter combinations.
             vals = []
@@ -98,7 +99,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                 for h in hidden:
                     model = gnn(dataset, l, h).to(device)
                     # Reset parameters before each run.
-                    model.reset_parameters()
+                    #model.reset_parameters()
 
                     optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
                     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',

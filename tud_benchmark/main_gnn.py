@@ -12,10 +12,18 @@ def main():
         #["ENZYMES", True],
         # ["IMDB-BINARY", False], ["IMDB-MULTI", False],["REDDIT-BINARY", False]
         #["NCI1", True],
-        ["PROTEINS", True]]
+        ["NCI1", True]]
 
     for d, use_labels in datasets:
+
         classes = dp.get_dataset(d)
+
+        results = gnn_evaluation(GINWithJK, d, [2], [64], max_num_epochs=50, batch_size=32, start_lr=0.01,
+                                 num_repetitions=1,
+                                 all_std=True)
+        print(results)
+        exit()
+
 
         results = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [16, 32, 64, 128], max_num_epochs=200, batch_size=32, start_lr=0.01,
                                  num_repetitions=10,
