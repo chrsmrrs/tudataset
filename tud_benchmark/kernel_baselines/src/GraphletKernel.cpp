@@ -32,6 +32,7 @@ namespace GraphletKernel {
             GraphletCounter c = graphlet_counters[i];
             for (const auto &j: c) {
                 Label key = j.first;
+                // Divide by six to not double count graphlets.
                 double value = j.second / 6.0;
                 uint index = m_label_to_index.find(key)->second;
                 nonzero_compenents.push_back(S(i, index, value));
@@ -69,7 +70,7 @@ namespace GraphletKernel {
             edge_labels = g.get_edge_labels();
         }
 
-        // Generate all 3-node graplets.
+        // Generate all connected 3-node graplets.
         // We search for every path of length three, and then distinguish if it is a triangle or a wedge.
         for (Node u = 0; u < num_nodes; ++u) {
             Nodes u_neighbors = g.get_neighbours(u);
@@ -92,6 +93,7 @@ namespace GraphletKernel {
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
 
                                     Labels labels(
+                                            // All vertices have degree two.
                                             {{AuxiliaryMethods::pairing(2, l_u),
                                                      AuxiliaryMethods::pairing(uv, l_u),
                                                      AuxiliaryMethods::pairing(uw, l_u),
@@ -99,6 +101,8 @@ namespace GraphletKernel {
                                                      AuxiliaryMethods::pairing(2, l_w),
                                                      AuxiliaryMethods::pairing(vw, l_v)
                                              }});
+
+
                                 } else {
                                     // Map every labeled triangle to a unique integer.
                                     Labels labels(
@@ -108,13 +112,14 @@ namespace GraphletKernel {
                                                     l_v), AuxiliaryMethods::pairing(
                                                     2,
                                                     l_w)}});
-                                    sort(labels.begin(), labels.end());
                                 }
 
+                                sort(labels.begin(), labels.end());
                                 for (Label d: labels) {
                                     new_label = AuxiliaryMethods::pairing(new_label, d);
                                 }
 
+                            // No labels.
                             } else {
                                 new_label = 3;
                             }
@@ -139,9 +144,9 @@ namespace GraphletKernel {
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
 
                                     Labels labels(
-                                            {{AuxiliaryMethods::pairing(2, l_u),
+                                            {{AuxiliaryMethods::pairing(1, l_u),
                                                      AuxiliaryMethods::pairing(uv, l_u),
-                                                     AuxiliaryMethods::pairing(1, l_v),
+                                                     AuxiliaryMethods::pairing(2, l_v),
                                                      AuxiliaryMethods::pairing(1, l_w),
                                                      AuxiliaryMethods::pairing(vw, l_v)
                                              }});
@@ -149,14 +154,13 @@ namespace GraphletKernel {
 
                                     // Map every labeled triangle to a unique integer.
                                     Labels labels(
-                                            {{AuxiliaryMethods::pairing(2,
+                                            {{AuxiliaryMethods::pairing(1,
                                                                         l_u), AuxiliaryMethods::pairing(
-                                                    1, l_v), AuxiliaryMethods::pairing(
+                                                    2, l_v), AuxiliaryMethods::pairing(
                                                     1, l_w)}});
                                 }
 
                                 sort(labels.begin(), labels.end());
-
                                 for (Label d: labels) {
                                     new_label = AuxiliaryMethods::pairing(new_label, d);
                                 }
