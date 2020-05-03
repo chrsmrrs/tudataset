@@ -44,7 +44,7 @@ def main():
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
         print("###")
-        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True,
+        print(linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                     max_iterations=-1))
 
 
