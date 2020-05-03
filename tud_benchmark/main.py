@@ -26,6 +26,7 @@ def main():
             all_matrices.append(gm_n)
         print("###")
         acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWL2")
@@ -36,6 +37,7 @@ def main():
             all_matrices.append(gm_n)
         print("###")
         acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        print(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "LWLP2")
@@ -46,6 +48,7 @@ def main():
             all_matrices.append(gm_n)
         print("###")
         acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "WLOA")
@@ -56,6 +59,7 @@ def main():
             all_matrices.append(gm_n)
         print("###")
         acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        print(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "GR")
@@ -65,6 +69,7 @@ def main():
         all_matrices.append(gm_n)
         print("###")
         acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        print(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         print(d + " " + "SP")
@@ -74,6 +79,7 @@ def main():
         all_matrices.append(gm_n)
         print("###")
         acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        print(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
