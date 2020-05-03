@@ -5,16 +5,29 @@ import os.path as osp
 import numpy as np
 import torch
 import torch.nn.functional as F
+import torch_geometric.transforms as T
 from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split
 from torch_geometric.data import DataLoader
 from torch_geometric.datasets import TUDataset
+from torch_geometric.utils import degree
 
 
 # Return arg max of iterable, e.g., a list.
 def argmax(iterable):
     return max(enumerate(iterable), key=lambda x: x[1])[0]
 
+
+class NormalizedDegree(object):
+    def __init__(self, mean, std):
+        self.mean = mean
+        self.std = std
+
+    def __call__(self, data):
+        deg = degree(data.edge_index[0], dtype=torch.float)
+        deg = (deg - self.mean) / self.std
+        data.x = deg.view(-1, 1)
+        return data
 
 # One training epoch for GNN model.
 def train(train_loader, model, optimizer, device):
@@ -69,6 +82,21 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
     # Load dataset.
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
     dataset = TUDataset(path, name=ds_name).shuffle()
+
+    if dataset.data.x is None:
+        max_degree = 0
+        degs = []
+        for data in dataset:
+            degs += [degree(data.edge_index[0], dtype=torch.long)]
+            max_degree = max(max_degree, degs[-1].max().item())
+
+        if max_degree < 1000:
+            dataset.transform = T.OneHotDegree(max_degree)
+        else:
+            deg = torch.cat(degs, dim=0).to(torch.float)
+            mean, std = deg.mean().item(), deg.std().item()
+            dataset.transform = NormalizedDegree(mean, std)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     test_accuracies_all = []
@@ -87,7 +115,6 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
             val_dataset = dataset[val_index.tolist()]
             test_dataset = dataset[test_index.tolist()]
 
-
             train_loader = DataLoader(train_dataset, batch_size=batch_size)
             val_loader = DataLoader(val_dataset, batch_size=batch_size)
             test_loader = DataLoader(test_dataset, batch_size=batch_size)
@@ -99,7 +126,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                 for h in hidden:
                     model = gnn(dataset, l, h).to(device)
                     # Reset parameters before each run.
-                    #model.reset_parameters()
+                    # model.reset_parameters()
 
                     optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
                     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
