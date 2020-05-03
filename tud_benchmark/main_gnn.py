@@ -1,5 +1,3 @@
-from __future__ import division
-
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
 from gnn_baselines.gnn_architectures import GINWithJK, GraphSAGEWithJK

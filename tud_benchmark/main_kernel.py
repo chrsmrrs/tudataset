@@ -1,5 +1,3 @@
-from __future__ import division
-
 import auxiliarymethods.auxiliary_methods as aux
 import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
