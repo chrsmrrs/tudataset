@@ -14,7 +14,7 @@ def main():
         gm = kb.compute_wl_1_sparse(dataset, i, True, False)
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
-    acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=True,
+    acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True, primal=False,
                                           max_iterations=-1)
     print(dataset + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
