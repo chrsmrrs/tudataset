@@ -11,7 +11,7 @@ def main():
 
     all_matrices = []
     for i in range(1, 6):
-        gm = kb.compute_wl_1_dense(dataset, i, True, False)
+        gm = kb.compute_wloa_dense(dataset, i, True, False)
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
 
