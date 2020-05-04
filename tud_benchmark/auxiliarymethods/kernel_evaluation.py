@@ -52,12 +52,14 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                     if val_acc < best_val_acc:
                         best_val_acc = val_acc
 
-                    p = clf.predict(test)
-                    a = np.sum(np.equal(p, c_test)) / test.shape[0]
-                    test_accuracies.append(a * 100.0)
+                        p = clf.predict(test)
+                        a = np.sum(np.equal(p, c_test)) / test.shape[0]
+                        best_test = a * 100.0
 
-                    if all_std:
-                        test_accuracies_complete.append(a * 100.0)
+            test_accuracies.append(best_test)
+
+            if all_std:
+                test_accuracies_complete.append(best_test)
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
