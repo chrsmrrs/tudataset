@@ -23,10 +23,12 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
             best_val_acc = 0.0
             best_test = 0.0
 
-            for f in all_feature_matrices:
-                train = f[train_index]
-                val = f[val_index]
-                test = f[test_index]
+            for feature_vector in all_feature_matrices:
+                train = feature_vector[train_index, :]
+                val = feature_vector[val_index, :]
+                test = feature_vector[test_index, :]
+
+
                 c_train = classes[train_index]
                 c_val = classes[val_index]
                 c_test = classes[test_index]
