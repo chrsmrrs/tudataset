@@ -47,6 +47,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
             if all_std:
                 test_accuracies_complete.append(best_test)
 
+        print(len(test_accuracies))
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
         if all_std:
