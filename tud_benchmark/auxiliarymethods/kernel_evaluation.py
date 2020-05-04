@@ -48,7 +48,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                     p = clf.predict(val)
                     val_acc = np.sum(np.equal(p, c_val)) / val.shape[0]
 
-                    if val_acc < best_val_acc:
+                    if val_acc > best_val_acc:
                         best_val_acc = val_acc
 
                         p = clf.predict(test)
