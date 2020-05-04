@@ -77,7 +77,7 @@ def train_model(train_loader, val_loader, test_loader, model, optimizer, schedul
 # 10-CV for GNN training and hyperparameter selection.
 def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=25, start_lr=0.001, num_repetitions=10,
                    all_std=False):
-    # Load dataset.
+    # Load dataset and shuffle.
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
     dataset = TUDataset(path, name=ds_name).shuffle()
 
@@ -96,6 +96,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
             mean, std = deg.mean().item(), deg.std().item()
             dataset.transform = NormalizedDegree(mean, std)
 
+    # Set device.
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     test_accuracies_all = []
@@ -108,51 +109,48 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
 
         for train_index, test_index in kf.split(list(range(len(dataset)))):
             # Sample 10% split from training split for validation.
-
             train_index, val_index = train_test_split(train_index, test_size=0.1)
+            best_val_acc = 0.0
+            best_test = 0.0
 
+            # Split data.
             train_dataset = dataset[train_index.tolist()]
             val_dataset = dataset[val_index.tolist()]
             test_dataset = dataset[test_index.tolist()]
 
+            # Prepare batching.
             train_loader = DataLoader(train_dataset, batch_size=batch_size)
             val_loader = DataLoader(val_dataset, batch_size=batch_size)
             test_loader = DataLoader(test_dataset, batch_size=batch_size)
 
             # Collect val. and test acc. over all hyperparameter combinations.
-            vals = []
-            tests = []
             for l in layers:
                 for h in hidden:
+                    # Setup model.
                     model = gnn(dataset, l, h).to(device)
-                    # Reset parameters before each run.
-                    # model.reset_parameters()
+                    # TODO Check
+                    model.reset_parameters()
 
                     optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
                     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
                                                                            factor=0.5, patience=5,
                                                                            min_lr=0.0000001)
-
+                    # TODO Maybe change this.
                     val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler,
-                                                    device,
-                                                    max_num_epochs)
+                                                    device, max_num_epochs)
+                    if val_acc > best_val_acc:
+                        # Get test acc.
+                        best_val_acc = val_acc
+                        best_test = test_acc
 
-                    vals.append(val_acc)
-                    tests.append(test_acc)
-
-            # Determine best model based on validation set performance.
-            best_i = argmax(vals)
-            best_test = tests[best_i]
             test_accuracies.append(best_test)
 
-            print(vals[best_i], best_test)
+            if all_std:
+                test_accuracies_complete.append(best_test)
+        test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
         if all_std:
-            test_accuracies_complete.extend(test_accuracies)
-        test_accuracies_all.append(np.array(test_accuracies).mean())
-
-    if all_std:
-        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
-                np.array(test_accuracies_complete).std())
-    else:
-        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
+            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
+                    np.array(test_accuracies_complete).std())
+        else:
+            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
