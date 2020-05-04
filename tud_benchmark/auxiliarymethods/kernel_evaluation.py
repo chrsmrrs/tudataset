@@ -6,8 +6,7 @@ from sklearn.metrics import accuracy_score
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
-                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False,
-                          primal=True, max_iterations=-1):
+                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False, primal=True, max_iterations=-1):
     # Acc. over all repetitions.
     test_accuracies_all = []
     # All acc. over all folds and repetitions.
@@ -19,12 +18,12 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
         kf = KFold(n_splits=10, shuffle=True)
 
         for train_index, test_index in kf.split(list(range(len(classes)))):
+            # Sample 10% for validation.
+            train_index, val_index = train_test_split(train_index, test_size=0.1)
             best_val_acc = 0.0
             best_test = 0.0
 
             for f in all_feature_matrices:
-                # Sample 10% for validation.
-                train_index, val_index = train_test_split(train_index, test_size=0.1)
                 train = f[train_index]
                 val = f[val_index]
                 test = f[test_index]
@@ -39,22 +38,18 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                     #     clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.1, penalty="l2")
                     # else:
                     #     clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.01, penalty="l2")
-
                     clf.fit(train, c_train)
                     p = clf.predict(val)
-                    val_acc = np.sum(np.equal(p, c_val)) / val.shape[0]
-
+                    val_acc = accuracy_score(c_val, p)* 100.0
 
                     if val_acc > best_val_acc:
                         best_val_acc = val_acc
 
                         # Get test acc.
                         p = clf.predict(test)
-                        a = np.sum(np.equal(p, c_test)) / test.shape[0]
-                        best_test = a * 100.0
+                        best_test = accuracy_score(c_test, p) * 100.0
                         print(val_acc, best_test)
             test_accuracies.append(best_test)
-
             if all_std:
                 test_accuracies_complete.append(best_test)
 
@@ -70,7 +65,9 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
 # 10-CV for kernel svm and hyperparameter selection.
 def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                           C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False, max_iterations=-1):
+    # Acc. over all repetitions.
     test_accuracies_all = []
+    # All acc. over all folds and repetitions.
     test_accuracies_complete = []
 
     for i in range(num_repetitions):
@@ -79,8 +76,8 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
         kf = KFold(n_splits=10, shuffle=True)
 
         for train_index, test_index in kf.split(list(range(len(classes)))):
+            # Sample 10% for validation.
             train_index, val_index = train_test_split(train_index, test_size=0.1)
-
             best_val_acc = 0.0
             best_test = 0.0
 
@@ -100,13 +97,13 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                     clf = SVC(C=c, kernel="precomputed", tol=0.001, max_iter=max_iterations)
                     clf.fit(train, c_train)
                     p = clf.predict(val)
-                    val_acc = np.sum(np.equal(p, c_val)) / val.shape[0]
+                    val_acc = accuracy_score(c_val, p) * 100.0
 
                     if val_acc > best_val_acc:
                         best_val_acc = val_acc
 
                         p = clf.predict(test)
-                        best_test = accuracy_score(c_test, p)
+                        best_test = accuracy_score(c_test, p) * 100.0
 
             test_accuracies.append(best_test)
             if all_std:
