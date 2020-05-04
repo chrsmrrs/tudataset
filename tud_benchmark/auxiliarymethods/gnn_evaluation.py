@@ -58,20 +58,6 @@ def train_model(train_loader, val_loader, test_loader, model, optimizer, schedul
     test_error = None
     best_val_error = None
 
-    for epoch in range(1, num_epochs + 1):
-        lr = scheduler.optimizer.param_groups[0]['lr']
-        train(train_loader, model, optimizer, device)
-        val_error = test(val_loader, model, device)
-        scheduler.step(val_error)
-
-        if best_val_error is None or val_error <= best_val_error:
-            test_error = test(test_loader, model, device)
-            best_val_error = val_error
-
-        if lr < 0.000001:
-            break
-
-    return best_val_error, test_error
 
 
 # 10-CV for GNN training and hyperparameter selection.
@@ -135,13 +121,19 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
                                                                            factor=0.5, patience=5,
                                                                            min_lr=0.0000001)
-                    # TODO Maybe change this.
-                    val_acc, test_acc = train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler,
-                                                    device, max_num_epochs)
-                    if val_acc > best_val_acc:
-                        # Get test acc.
-                        best_val_acc = val_acc
-                        best_test = test_acc
+
+                    for epoch in range(1, max_num_epochs + 1):
+                        lr = scheduler.optimizer.param_groups[0]['lr']
+                        train(train_loader, model, optimizer, device)
+                        val_error = test(val_loader, model, device)
+                        scheduler.step(val_error)
+
+                        if val_error >= best_val_acc:
+                            best_val_acc = val_error
+                            best_test = test(test_loader, model, device)
+
+                        if lr < 0.000001:
+                            break
 
             test_accuracies.append(best_test)
 
