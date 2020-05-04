@@ -19,7 +19,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
         kf = KFold(n_splits=10, shuffle=True)
 
         for train_index, test_index in kf.split(list(range(len(classes)))):
-            # Sample 10% for validation.
+            # Sample 10% split from training split for validation.
             train_index, val_index = train_test_split(train_index, test_size=0.1)
             best_val_acc = 0.0
             best_test = 0.0

@@ -82,9 +82,9 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
     test_accuracies_complete = []
 
     for i in range(num_repetitions):
-        kf = KFold(n_splits=10, shuffle=True)
         # Test acc. over all folds.
         test_accuracies = []
+        kf = KFold(n_splits=10, shuffle=True)
 
         for train_index, test_index in kf.split(list(range(len(dataset)))):
             # Sample 10% split from training split for validation.
@@ -117,11 +117,11 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                     for epoch in range(1, max_num_epochs + 1):
                         lr = scheduler.optimizer.param_groups[0]['lr']
                         train(train_loader, model, optimizer, device)
-                        val_error = test(val_loader, model, device)
-                        scheduler.step(val_error)
+                        val_acc = test(val_loader, model, device)
+                        scheduler.step(val_acc)
 
-                        if val_error > best_val_acc:
-                            best_val_acc = val_error
+                        if val_acc > best_val_acc:
+                            best_val_acc = val_acc
                             best_test = test(test_loader, model, device)
 
                         # Break if learning rate is smaller 10**-6.
