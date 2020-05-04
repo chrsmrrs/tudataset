@@ -113,8 +113,10 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                         p = clf.predict(test)
                         best_test = (np.sum(np.equal(p, c_test)) / test.shape[0]) * 100.0
 
+            test_accuracies.append(best_test)
             if all_std:
                 test_accuracies_complete.append(best_test)
+
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
