@@ -12,10 +12,10 @@ def main():
     all_matrices = []
     for i in range(1, 6):
         gm = kb.compute_wl_1_dense(dataset, i, True, False)
-        gm_n = aux.normalize_feature_vector(gm)
+        gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
 
-    acc, s_1, s_2 = aux.normalize_gram_matrix(all_matrices, classes, num_repetitions=1, all_std=True)
+    acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True)
     print(dataset + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
