@@ -47,14 +47,14 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
             if all_std:
                 test_accuracies_complete.append(best_test)
 
-        print(len(test_accuracies))
-        test_accuracies_all.append(float(np.array(test_accuracies).mean()))
+    print(len(test_accuracies))
+    test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
-        if all_std:
-            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
-                    np.array(test_accuracies_complete).std())
-        else:
-            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
+    if all_std:
+        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
+                np.array(test_accuracies_complete).std())
+    else:
+        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
 
 
 # 10-CV for kernel svm and hyperparameter selection.
@@ -64,7 +64,7 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, C=[10 ** 3,
     # All acc. over all folds and repetitions.
     test_accuracies_complete = []
 
-    print(num_repetitions)
+
     for i in range(num_repetitions):
         print(i)
         # Test acc. over all folds.
@@ -104,11 +104,11 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, C=[10 ** 3,
                 test_accuracies_complete.append(best_test)
 
 
-        test_accuracies_all.append(float(np.array(test_accuracies).mean()))
-        #print(len(test_accuracies_all), len(test_accuracies_complete))
+    test_accuracies_all.append(float(np.array(test_accuracies).mean()))
+    #print(len(test_accuracies_all), len(test_accuracies_complete))
 
-        if all_std:
-            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
-                    np.array(test_accuracies_complete).std())
-        else:
-            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
+    if all_std:
+        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
+                np.array(test_accuracies_complete).std())
+    else:
+        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
