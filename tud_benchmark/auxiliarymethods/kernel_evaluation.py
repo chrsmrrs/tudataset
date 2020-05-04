@@ -33,7 +33,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 train_index, val_index = train_test_split(train_index, test_size=0.1)
                 train = f[train_index]
                 val = f[val_index]
-                test = f[train_index]
+                test = f[test_index]
                 c_train = classes[train_index]
                 c_val = classes[val_index]
                 c_test = classes[test_index]
@@ -54,7 +54,6 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                     if val_acc < best_val_acc:
                         best_val_acc = val_acc
 
-                    c_test = classes[test_index]
                     p = clf.predict(test)
                     a = np.sum(np.equal(p, c_test)) / test.shape[0]
                     test_accuracies.append(a * 100.0)
