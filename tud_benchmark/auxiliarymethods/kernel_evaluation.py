@@ -74,7 +74,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
 
 # 10-CV for kernel svm and hyperparameter selection.
 def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
-                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False):
+                          C=[10 ** 3, 10 ** 2, 10 ** 1, 10 ** 0, 10 ** -1, 10 ** -2, 10 ** -3], all_std=False, max_iterations=-1):
     test_accuracies_all = []
     test_accuracies_complete = []
 
