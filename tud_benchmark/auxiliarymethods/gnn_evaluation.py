@@ -53,13 +53,6 @@ def test(loader, model, device):
     return correct / len(loader.dataset)
 
 
-# Train GNN model.
-def train_model(train_loader, val_loader, test_loader, model, optimizer, scheduler, device, num_epochs):
-    test_error = None
-    best_val_error = None
-
-
-
 # 10-CV for GNN training and hyperparameter selection.
 def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=25, start_lr=0.001, num_repetitions=10,
                    all_std=False):
@@ -121,17 +114,17 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
                                                                            factor=0.5, patience=5,
                                                                            min_lr=0.0000001)
-
                     for epoch in range(1, max_num_epochs + 1):
                         lr = scheduler.optimizer.param_groups[0]['lr']
                         train(train_loader, model, optimizer, device)
                         val_error = test(val_loader, model, device)
                         scheduler.step(val_error)
 
-                        if val_error >= best_val_acc:
+                        if val_error > best_val_acc:
                             best_val_acc = val_error
                             best_test = test(test_loader, model, device)
 
+                        # Break if learning rate is smaller 10**-6.
                         if lr < 0.000001:
                             break
 
