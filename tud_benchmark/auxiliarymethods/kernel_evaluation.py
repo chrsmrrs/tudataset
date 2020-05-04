@@ -39,15 +39,13 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                     # else:
                     #     clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.01, penalty="l2")
                     clf.fit(train, c_train)
-                    p = clf.predict(val)
-                    val_acc = accuracy_score(c_val, p)* 100.0
+                    val_acc = accuracy_score(c_val, clf.predict(val)) * 100.0
 
                     if val_acc > best_val_acc:
                         best_val_acc = val_acc
 
                         # Get test acc.
-                        p = clf.predict(test)
-                        best_test = accuracy_score(c_test, p) * 100.0
+                        best_test = accuracy_score(c_test, clf.predict(test)) * 100.0
                         print(val_acc, best_test)
             test_accuracies.append(best_test)
             if all_std:
@@ -96,19 +94,16 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                 for c in C:
                     clf = SVC(C=c, kernel="precomputed", tol=0.001, max_iter=max_iterations)
                     clf.fit(train, c_train)
-                    p = clf.predict(val)
-                    val_acc = accuracy_score(c_val, p) * 100.0
+                    val_acc = accuracy_score(c_val, clf.predict(val)) * 100.0
 
                     if val_acc > best_val_acc:
+                        # Get test acc.
                         best_val_acc = val_acc
-
-                        p = clf.predict(test)
-                        best_test = accuracy_score(c_test, p) * 100.0
+                        best_test = accuracy_score(c_test, clf.predict(test)) * 100.0
 
             test_accuracies.append(best_test)
             if all_std:
                 test_accuracies_complete.append(best_test)
-
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
