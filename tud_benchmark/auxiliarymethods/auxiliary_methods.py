@@ -5,7 +5,7 @@ from scipy import sparse as sp
 # Cosine normalization for a gram matrix.
 def normalize_gram_matrix(gram_matrix):
     n = gram_matrix.shape[0]
-    gram_matrix_norm = np.zeros([n, n], dtype=np.float64)
+    gram_matrix_norm = np.zeros([n, n])
 
     for i in range(0, n):
         for j in range(i, n):
