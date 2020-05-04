@@ -2,12 +2,7 @@ import numpy as np
 from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split
 from sklearn.svm import LinearSVC, SVC
-
-
-# Return arg max of iterable, e.g., a list.
-def argmax(iterable):
-    return max(enumerate(iterable), key=lambda x: x[1])[0]
-
+from sklearn.metrics import accuracy_score
 
 # 10-CV for linear svm with sparse feature vectors and hyperparameter selection.
 def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
@@ -111,7 +106,7 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                         best_val_acc = val_acc
 
                         p = clf.predict(test)
-                        best_test = (np.sum(np.equal(p, c_test)) / test.shape[0]) * 100.0
+                        best_test = accuracy_score(c_test, p)
 
             test_accuracies.append(best_test)
             if all_std:
