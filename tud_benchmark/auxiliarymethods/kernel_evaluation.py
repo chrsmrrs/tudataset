@@ -32,32 +32,26 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 c_test = classes[test_index]
 
                 for c in C:
-                    # Default values of https://github.com/cjlin1/liblinear/blob/master/README.
-                    clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations)
-                    # if not primal:
-                    #     clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.1, penalty="l2")
-                    # else:
-                    #     clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.01, penalty="l2")
+                    clf = LinearSVC(C=c, tol=0.001, max_iter=max_iterations)
                     clf.fit(train, c_train)
                     val_acc = accuracy_score(c_val, clf.predict(val)) * 100.0
 
                     if val_acc > best_val_acc:
-                        best_val_acc = val_acc
-
                         # Get test acc.
+                        best_val_acc = val_acc
                         best_test = accuracy_score(c_test, clf.predict(test)) * 100.0
-                        print(val_acc, best_test)
+
             test_accuracies.append(best_test)
             if all_std:
                 test_accuracies_complete.append(best_test)
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
-    if all_std:
-        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
-                np.array(test_accuracies_complete).std())
-    else:
-        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
+        if all_std:
+            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
+                    np.array(test_accuracies_complete).std())
+        else:
+            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
 
 
 # 10-CV for kernel svm and hyperparameter selection.
@@ -107,8 +101,8 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
-    if all_std:
-        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
-                np.array(test_accuracies_complete).std())
-    else:
-        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
+        if all_std:
+            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
+                    np.array(test_accuracies_complete).std())
+        else:
+            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
