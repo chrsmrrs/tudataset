@@ -24,15 +24,19 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
         kf = KFold(n_splits=10, shuffle=True)
 
         for train_index, test_index in kf.split(list(range(len(classes)))):
-            val_accuracies = []
+            best_val_acc = 0.0
+            best_test = 0.0
+
             models = []
             for f in all_feature_matrices:
+                # Sample 10% for validation.
                 train_index, val_index = train_test_split(train_index, test_size=0.1)
                 train = f[train_index]
                 val = f[val_index]
-
+                test = f[train_index]
                 c_train = classes[train_index]
                 c_val = classes[val_index]
+                c_test = classes[test_index]
 
                 for c in C:
                     # Default values of https://github.com/cjlin1/liblinear/blob/master/README.
@@ -45,23 +49,18 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
 
                     clf.fit(train, c_train)
                     p = clf.predict(val)
-                    a = np.sum(np.equal(p, c_val)) / val.shape[0]
+                    val_acc = np.sum(np.equal(p, c_val)) / val.shape[0]
 
-                    models.append(clf)
-                    val_accuracies.append(a)
+                    if val_acc < best_val_acc:
+                        best_val_acc = val_acc
 
-            best_i = argmax(val_accuracies)
-            best_model = models[best_i]
+                    c_test = classes[test_index]
+                    p = clf.predict(test)
+                    a = np.sum(np.equal(p, c_test)) / test.shape[0]
+                    test_accuracies.append(a * 100.0)
 
-            # Eval. model on test split that performed best on val. split.
-            test = all_feature_matrices[int(best_i / len(C))][test_index]
-            c_test = classes[test_index]
-            p = best_model.predict(test)
-            a = np.sum(np.equal(p, c_test)) / test.shape[0]
-            test_accuracies.append(a * 100.0)
-
-            if all_std:
-                test_accuracies_complete.append(a * 100.0)
+                    if all_std:
+                        test_accuracies_complete.append(a * 100.0)
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 

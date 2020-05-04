@@ -1,6 +1,6 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GIN, GraphSAGEWithJK
+from gnn_baselines.gnn_architectures import GIN, GraphSAGEWithJK, GINwithJK
 
 
 # TODO: Add one-hot.
