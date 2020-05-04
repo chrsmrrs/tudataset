@@ -14,7 +14,7 @@ def main():
         gm = kb.compute_wl_1_dense(dataset, i, True, False)
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True,
+    acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True,
                                           max_iterations=-1)
     print(dataset + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
