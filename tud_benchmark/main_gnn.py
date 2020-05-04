@@ -8,7 +8,7 @@ from gnn_baselines.gnn_architectures import GIN
 def main():
 
 
-    d = "MUTAG"
+    d = "ENZYMES"
     dp.get_dataset(d)
 
     results = gnn_evaluation(GIN, d, [2,3,5,6], [32,64,128], max_num_epochs=100, batch_size=128, start_lr=0.01, num_repetitions=1, all_std=True)
