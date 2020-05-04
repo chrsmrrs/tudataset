@@ -123,12 +123,12 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=100, batch_size=
                         if val_acc > best_val_acc:
                             best_val_acc = val_acc
                             best_test = test(test_loader, model, device)
-                            print(best_test)
+
 
                         # Break if learning rate is smaller 10**-6.
                         if lr < 0.000001:
                             break
-
+            print(best_test)
             test_accuracies.append(best_test)
 
             if all_std:
