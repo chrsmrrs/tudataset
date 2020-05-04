@@ -39,10 +39,14 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
 
                 for c in C:
                     # Default values of https://github.com/cjlin1/liblinear/blob/master/README.
-                    if not primal:
-                        clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.1, penalty="l2")
-                    else:
-                        clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.01, penalty="l2")
+
+                    clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations)
+
+
+                    # if not primal:
+                    #     clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.1, penalty="l2")
+                    # else:
+                    #     clf = LinearSVC(C=c, dual=not primal, max_iter=max_iterations, tol=0.01, penalty="l2")
 
                     clf.fit(train, c_train)
                     p = clf.predict(val)
@@ -51,6 +55,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                     if val_acc > best_val_acc:
                         best_val_acc = val_acc
 
+                        # Get test acc.
                         p = clf.predict(test)
                         a = np.sum(np.equal(p, c_test)) / test.shape[0]
                         best_test = a * 100.0
