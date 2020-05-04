@@ -6,7 +6,7 @@ from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 
 
 def main():
-    dataset = "PROTEINS"
+    dataset = "ENZYMES"
     classes = dp.get_dataset(dataset)
 
     all_matrices = []
