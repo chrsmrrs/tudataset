@@ -85,38 +85,36 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
 
         for train_index, test_index in kf.split(list(range(len(classes)))):
             train_index, val_index = train_test_split(train_index, test_size=0.1)
-            val_accuracies = []
-            models = []
+
+            best_val_acc = 0.0
+            best_test = 0.0
+
             for gram_matrix in all_matrices:
                 train = gram_matrix[train_index, :]
                 train = train[:, train_index]
                 val = gram_matrix[val_index, :]
                 val = val[:, train_index]
+                test = gram_matrix[test_index, :]
+                test = test[:, train_index]
 
                 c_train = classes[train_index]
                 c_val = classes[val_index]
+                c_test = classes[test_index]
 
                 for c in C:
-                    clf = SVC(C=c, kernel="precomputed", tol=0.001)
+                    clf = SVC(C=c, kernel="precomputed", tol=0.001, max_iter=max_iterations)
                     clf.fit(train, c_train)
                     p = clf.predict(val)
-                    a = np.sum(np.equal(p, c_val)) / val.shape[0]
+                    val_acc = np.sum(np.equal(p, c_val)) / val.shape[0]
 
-                    models.append(clf)
-                    val_accuracies.append(a)
+                    if val_acc > best_val_acc:
+                        best_val_acc = val_acc
 
-            best_i = argmax(val_accuracies)
-            best_model = models[best_i]
-
-            test = all_matrices[int(best_i / len(C))][test_index, :]
-            test = test[:, train_index]
-            c_test = classes[test_index]
-            p = best_model.predict(test)
-            a = np.sum(np.equal(p, c_test)) / test.shape[0]
-            test_accuracies.append(a * 100.0)
+                        p = clf.predict(test)
+                        best_test = (np.sum(np.equal(p, c_test)) / test.shape[0]) * 100.0
 
             if all_std:
-                test_accuracies_complete.append(a * 100.0)
+                test_accuracies_complete.append(best_test)
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
