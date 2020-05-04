@@ -101,7 +101,7 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
             test_accuracies.append(best_test)
             if all_std:
                 test_accuracies_complete.append(best_test)
-            print(len(test_accuracies))
+        print(len(test_accuracies))
 
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
