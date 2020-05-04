@@ -65,6 +65,7 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, C=[10 ** 3,
     # All acc. over all folds and repetitions.
     test_accuracies_complete = []
 
+    print(num_repetitions)
     for i in range(num_repetitions):
         print(i)
         # Test acc. over all folds.
