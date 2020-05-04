@@ -63,7 +63,6 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
     # All acc. over all folds and repetitions.
     test_accuracies_complete = []
 
-    print(num_repetitions)
     for i in range(num_repetitions):
         # Test acc. over all folds.
         test_accuracies = []
@@ -88,7 +87,7 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                 c_test = classes[test_index]
 
                 for c in C:
-                    clf = SVC(C=c, kernel="precomputed", tol=0.001)
+                    clf = SVC(C=c, kernel="precomputed", tol=0.001, max_iter=50000)
                     clf.fit(train, c_train)
                     val_acc = accuracy_score(c_val, clf.predict(val)) * 100.0
 
