@@ -87,7 +87,7 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                 c_test = classes[test_index]
 
                 for c in C:
-                    clf = SVC(C=c, kernel="precomputed", tol=0.001, max_iter=50000)
+                    clf = SVC(C=c, kernel="precomputed", tol=0.001)
                     clf.fit(train, c_train)
                     val_acc = accuracy_score(c_val, clf.predict(val)) * 100.0
 
