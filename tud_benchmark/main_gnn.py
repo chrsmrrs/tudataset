@@ -9,6 +9,13 @@ from torch_geometric.datasets import TUDataset
 
 
 def main():
+    path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'data', 'ZINC_test')
+    dataset = TUDataset(path, name='ZINC_test')
+    dataset = dataset.shuffle()
+
+    print(dataset.data.edge_attr.size())
+    exit()
+
     # # Smaller datasets using LIBSVM.
     # dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
     #              ["REDDIT-BINARY", False], ["ENZYMES", True]]

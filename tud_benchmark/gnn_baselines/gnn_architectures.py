@@ -116,10 +116,10 @@ class GINE(torch.nn.Module):
         self.lin2.reset_parameters()
 
     def forward(self, data):
-        x, edge_index, batch = data.x, data.edge_index, data.batch
-        x = self.conv1(x, edge_index)
+        x, edge_index, batch, edge_attr = data.x, data.edge_index, data.batch, data.edge_attr
+        x = self.conv1(x, edge_index, edge_attr)
         for conv in self.convs:
-            x = conv(x, edge_index)
+            x = conv(x, edge_index, edge_attr)
         x = global_mean_pool(x, batch)
         x = F.relu(self.lin1(x))
         x = F.dropout(x, p=0.5, training=self.training)
