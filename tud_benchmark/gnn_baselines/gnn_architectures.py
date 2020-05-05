@@ -3,111 +3,21 @@ import torch.nn.functional as F
 from torch.nn import Linear, Sequential, ReLU, BatchNorm1d as BN
 from torch_geometric.nn import GINConv, SAGEConv, global_mean_pool, JumpingKnowledge
 
+from torch.nn import Linear as Lin
+from torch.nn import Sequential, Linear, ReLU
+from torch_geometric.nn import global_mean_pool
 
-# TODO: Add GIN for edge labels.
+from torch_geometric.data import (InMemoryDataset, Data)
+from torch_geometric.data import DataLoader
+import torch.nn.functional as F
 
-class GIN0(torch.nn.Module):
-    def __init__(self, dataset, num_layers, hidden):
-        super(GIN0, self).__init__()
-        self.conv1 = GINConv(Sequential(
-            Linear(dataset.num_features, hidden),
-            ReLU(),
-            Linear(hidden, hidden),
-            ReLU(),
-            BN(hidden),
-        ),
-            train_eps=False)
-        self.convs = torch.nn.ModuleList()
-        for i in range(num_layers - 1):
-            self.convs.append(
-                GINConv(Sequential(
-                    Linear(hidden, hidden),
-                    ReLU(),
-                    Linear(hidden, hidden),
-                    ReLU(),
-                    BN(hidden),
-                ),
-                    train_eps=False))
-        self.lin1 = Linear(hidden, hidden)
-        self.lin2 = Linear(hidden, dataset.num_classes)
+import torch
+from torch_geometric.nn import MessagePassing
+import torch.nn.functional as F
+from torch_geometric.nn import global_mean_pool, global_add_pool
+from torch_geometric.utils import degree
 
-    def reset_parameters(self):
-        self.conv1.reset_parameters()
-        for conv in self.convs:
-            conv.reset_parameters()
-        self.lin1.reset_parameters()
-        self.lin2.reset_parameters()
-
-    def forward(self, data):
-        x, edge_index, batch = data.x, data.edge_index, data.batch
-        x = self.conv1(x, edge_index)
-        for conv in self.convs:
-            x = conv(x, edge_index)
-        x = global_mean_pool(x, batch)
-        x = F.relu(self.lin1(x))
-        x = F.dropout(x, p=0.5, training=self.training)
-        x = self.lin2(x)
-        return F.log_softmax(x, dim=-1)
-
-    def __repr__(self):
-        return self.__class__.__name__
-
-
-class GIN0WithJK(torch.nn.Module):
-    def __init__(self, dataset, num_layers, hidden, mode='cat'):
-        super(GIN0WithJK, self).__init__()
-        self.conv1 = GINConv(Sequential(
-            Linear(dataset.num_features, hidden),
-            ReLU(),
-            Linear(hidden, hidden),
-            ReLU(),
-            BN(hidden),
-        ),
-            train_eps=False)
-        self.convs = torch.nn.ModuleList()
-        for i in range(num_layers - 1):
-            self.convs.append(
-                GINConv(Sequential(
-                    Linear(hidden, hidden),
-                    ReLU(),
-                    Linear(hidden, hidden),
-                    ReLU(),
-                    BN(hidden),
-                ),
-                    train_eps=False))
-        self.jump = JumpingKnowledge(mode)
-        if mode == 'cat':
-            self.lin1 = Linear(num_layers * hidden, hidden)
-        else:
-            self.lin1 = Linear(hidden, hidden)
-        self.lin2 = Linear(hidden, dataset.num_classes)
-
-    def reset_parameters(self):
-        self.conv1.reset_parameters()
-        for conv in self.convs:
-            conv.reset_parameters()
-        self.jump.reset_parameters()
-        self.lin1.reset_parameters()
-        self.lin2.reset_parameters()
-
-    def forward(self, data):
-        x, edge_index, batch = data.x, data.edge_index, data.batch
-        x = self.conv1(x, edge_index)
-        xs = [x]
-        for conv in self.convs:
-            x = conv(x, edge_index)
-            xs += [x]
-        x = self.jump(xs)
-        x = global_mean_pool(x, batch)
-        x = F.relu(self.lin1(x))
-        x = F.dropout(x, p=0.5, training=self.training)
-        x = self.lin2(x)
-        return F.log_softmax(x, dim=-1)
-
-    def __repr__(self):
-        return self.__class__.__name__
-
-
+# GIN-eps layer.
 class GIN(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden):
         super(GIN, self).__init__()
@@ -153,6 +63,64 @@ class GIN(torch.nn.Module):
 
     def __repr__(self):
         return self.__class__.__name__
+
+class GINEConv(MessagePassing):
+    def __init__(self, edge_dim, dim_init, dim):
+        super(GINEConv, self).__init__(aggr="add")
+
+        self.edge_encoder = Sequential(Linear(edge_dim, dim),ReLU(),Linear(dim, dim),ReLU(),BN(dim))
+        self.mlp = Sequential(Linear(dim_init, dim), ReLU(), Linear(dim, dim), ReLU(), BN(dim))
+        self.eps = torch.nn.Parameter(torch.Tensor([0]))
+
+    def forward(self, x, edge_index, edge_attr):
+        edge_embedding = self.edge_encoder(edge_attr)
+
+        out = self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
+
+        return out
+
+    def message(self, x_j, edge_attr):
+        return F.relu(x_j + edge_attr)
+
+    def update(self, aggr_out):
+        return aggr_out
+
+
+
+
+# GIN-eps layer with edge labels.
+class GINE(torch.nn.Module):
+    def __init__(self, dataset, num_layers, hidden):
+        super(GINE, self).__init__()
+        self.conv1 = GINEConv(dataset.num_edge_features, dataset.num_features, hidden)
+        self.convs = torch.nn.ModuleList()
+        for i in range(num_layers - 1):
+            self.convs.append(GINEConv(dataset.num_edge_features, hidden, hidden))
+        self.lin1 = Linear(hidden, hidden)
+        self.lin2 = Linear(hidden, dataset.num_classes)
+
+    def reset_parameters(self):
+        self.conv1.reset_parameters()
+        for conv in self.convs:
+            conv.reset_parameters()
+        self.lin1.reset_parameters()
+        self.lin2.reset_parameters()
+
+    def forward(self, data):
+        x, edge_index, batch = data.x, data.edge_index, data.batch
+        x = self.conv1(x, edge_index)
+        for conv in self.convs:
+            x = conv(x, edge_index)
+        x = global_mean_pool(x, batch)
+        x = F.relu(self.lin1(x))
+        x = F.dropout(x, p=0.5, training=self.training)
+        x = self.lin2(x)
+        return F.log_softmax(x, dim=-1)
+
+    def __repr__(self):
+        return self.__class__.__name__
+
+
 
 
 class GINWithJK(torch.nn.Module):
@@ -210,73 +178,4 @@ class GINWithJK(torch.nn.Module):
         return self.__class__.__name__
 
 
-class GraphSAGE(torch.nn.Module):
-    def __init__(self, dataset, num_layers, hidden):
-        super(GraphSAGE, self).__init__()
-        self.conv1 = SAGEConv(dataset.num_features, hidden)
-        self.convs = torch.nn.ModuleList()
-        for i in range(num_layers - 1):
-            self.convs.append(SAGEConv(hidden, hidden))
-        self.lin1 = Linear(hidden, hidden)
-        self.lin2 = Linear(hidden, dataset.num_classes)
 
-    def reset_parameters(self):
-        self.conv1.reset_parameters()
-        for conv in self.convs:
-            conv.reset_parameters()
-        self.lin1.reset_parameters()
-        self.lin2.reset_parameters()
-
-    def forward(self, data):
-        x, edge_index, batch = data.x, data.edge_index, data.batch
-        x = F.relu(self.conv1(x, edge_index))
-        for conv in self.convs:
-            x = F.relu(conv(x, edge_index))
-        x = global_mean_pool(x, batch)
-        x = F.relu(self.lin1(x))
-        x = F.dropout(x, p=0.5, training=self.training)
-        x = self.lin2(x)
-        return F.log_softmax(x, dim=-1)
-
-    def __repr__(self):
-        return self.__class__.__name__
-
-
-class GraphSAGEWithJK(torch.nn.Module):
-    def __init__(self, dataset, num_layers, hidden, mode='cat'):
-        super(GraphSAGEWithJK, self).__init__()
-        self.conv1 = SAGEConv(dataset.num_features, hidden)
-        self.convs = torch.nn.ModuleList()
-        for i in range(num_layers - 1):
-            self.convs.append(SAGEConv(hidden, hidden))
-        self.jump = JumpingKnowledge(mode)
-        if mode == 'cat':
-            self.lin1 = Linear(num_layers * hidden, hidden)
-        else:
-            self.lin1 = Linear(hidden, hidden)
-        self.lin2 = Linear(hidden, dataset.num_classes)
-
-    def reset_parameters(self):
-        self.conv1.reset_parameters()
-        for conv in self.convs:
-            conv.reset_parameters()
-        self.jump.reset_parameters()
-        self.lin1.reset_parameters()
-        self.lin2.reset_parameters()
-
-    def forward(self, data):
-        x, edge_index, batch = data.x, data.edge_index, data.batch
-        x = F.relu(self.conv1(x, edge_index))
-        xs = [x]
-        for conv in self.convs:
-            x = F.relu(conv(x, edge_index))
-            xs += [x]
-        x = self.jump(xs)
-        x = global_mean_pool(x, batch)
-        x = F.relu(self.lin1(x))
-        x = F.dropout(x, p=0.5, training=self.training)
-        x = self.lin2(x)
-        return F.log_softmax(x, dim=-1)
-
-    def __repr__(self):
-        return self.__class__.__name__
