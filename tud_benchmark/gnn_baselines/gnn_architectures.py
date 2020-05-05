@@ -70,13 +70,15 @@ class GINEConv(MessagePassing):
     def __init__(self, edge_dim, dim_init, dim):
         super(GINEConv, self).__init__(aggr="add")
 
-        self.edge_encoder = Sequential(Linear(edge_dim, dim),ReLU(),Linear(dim, dim),ReLU(),BN(dim))
+        self.edge_encoder = Sequential(Linear(edge_dim, dim_init),ReLU(),Linear(dim_init, dim_init),ReLU(),BN(dim_init))
         self.mlp = Sequential(Linear(dim_init, dim), ReLU(), Linear(dim, dim), ReLU(), BN(dim))
         self.eps = torch.nn.Parameter(torch.Tensor([0]))
         self.initial_eps = 0
 
     def forward(self, x, edge_index, edge_attr):
         edge_embedding = self.edge_encoder(edge_attr)
+
+
 
         out = self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
 
