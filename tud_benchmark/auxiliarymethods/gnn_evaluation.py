@@ -128,7 +128,6 @@ def gnn_evaluation(gnn, ds_name, layers, hidden,  max_num_epochs=200, batch_size
                         if lr < 0.000001:
                             break
 
-            print(best_test)
             test_accuracies.append(best_test)
 
             if all_std:
