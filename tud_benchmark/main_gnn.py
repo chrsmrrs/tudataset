@@ -31,7 +31,7 @@ def main():
     # Smaller datasets using LIBSVM.
     dp.get_dataset("SF-295")
 
-    acc, s_1, s_2 = gnn_evaluation(GINE, "SF-295", [3], [64], max_num_epochs=200, batch_size=128, start_lr=0.01, num_repetitions=10, all_std=True)
+    acc, s_1, s_2 = gnn_evaluation(GINEWithJK, "SF-295", [3], [64], max_num_epochs=200, batch_size=128, start_lr=0.01, num_repetitions=10, all_std=True)
     print("SF-295" + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
