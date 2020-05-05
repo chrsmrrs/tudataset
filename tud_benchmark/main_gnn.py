@@ -1,6 +1,6 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GINWithJK, GINE
+from gnn_baselines.gnn_architectures import GINWithJK, GINEwithJK
 import os.path as osp
 from torch_geometric.datasets import TUDataset
 # TODO: Add one-hot.
