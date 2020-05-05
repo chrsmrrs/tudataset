@@ -95,9 +95,6 @@ class GINEConv(MessagePassing):
         self.eps.data.fill_(self.initial_eps)
 
 
-
-
-
 # GIN-eps layer with edge labels.
 class GINE(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden):
@@ -131,6 +128,45 @@ class GINE(torch.nn.Module):
         return self.__class__.__name__
 
 
+class GINEWithJK(torch.nn.Module):
+    def __init__(self, dataset, num_layers, hidden, mode='cat'):
+        super(GINEWithJK, self).__init__()
+        self.conv1 = GINEConv(dataset.num_edge_features, dataset.num_features, hidden)
+        self.convs = torch.nn.ModuleList()
+        for i in range(num_layers - 1):
+            self.convs.append(GINEConv(dataset.num_edge_features, hidden, hidden))
+
+        self.jump = JumpingKnowledge(mode)
+        if mode == 'cat':
+            self.lin1 = Linear(num_layers * hidden, hidden)
+        else:
+            self.lin1 = Linear(hidden, hidden)
+        self.lin2 = Linear(hidden, dataset.num_classes)
+
+    def reset_parameters(self):
+        self.conv1.reset_parameters()
+        for conv in self.convs:
+            conv.reset_parameters()
+        self.jump.reset_parameters()
+        self.lin1.reset_parameters()
+        self.lin2.reset_parameters()
+
+    def forward(self, data):
+        x, edge_index, batch, edge_attr = data.x, data.edge_index, data.batch, data.edge_attr
+        x = self.conv1(x, edge_index, edge_attr)
+        xs = [x]
+        for conv in self.convs:
+            x = conv(x, edge_index, edge_attr)
+            xs += [x]
+        x = self.jump(xs)
+        x = global_mean_pool(x, batch)
+        x = F.relu(self.lin1(x))
+        x = F.dropout(x, p=0.5, training=self.training)
+        x = self.lin2(x)
+        return F.log_softmax(x, dim=-1)
+
+    def __repr__(self):
+        return self.__class__.__name__
 
 
 class GINWithJK(torch.nn.Module):
