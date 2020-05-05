@@ -20,5 +20,10 @@ def main():
         print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
+    print("DONE! :*")
+    for r in results:
+        print(r)
+
+
 if __name__ == "__main__":
     main()
