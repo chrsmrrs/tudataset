@@ -54,7 +54,7 @@ def test(loader, model, device):
 
 
 # 10-CV for GNN training and hyperparameter selection.
-def gnn_evaluation(gnn, ds_name, layers, hidden,  max_num_epochs=200, batch_size=128, start_lr=0.01, num_repetitions=10, all_std=True):
+def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=200, batch_size=128, start_lr=0.01, num_repetitions=10, all_std=True):
     # Load dataset and shuffle.
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
     dataset = TUDataset(path, name=ds_name).shuffle()
@@ -84,6 +84,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden,  max_num_epochs=200, batch_size
         # Test acc. over all folds.
         test_accuracies = []
         kf = KFold(n_splits=10, shuffle=True)
+        dataset.shuffle()
 
         for train_index, test_index in kf.split(list(range(len(dataset)))):
             # Sample 10% split from training split for validation.
@@ -97,16 +98,15 @@ def gnn_evaluation(gnn, ds_name, layers, hidden,  max_num_epochs=200, batch_size
             test_dataset = dataset[test_index.tolist()]
 
             # Prepare batching.
-            train_loader = DataLoader(train_dataset, batch_size=batch_size)
-            val_loader = DataLoader(val_dataset, batch_size=batch_size)
-            test_loader = DataLoader(test_dataset, batch_size=batch_size)
+            train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+            val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True)
+            test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
 
             # Collect val. and test acc. over all hyperparameter combinations.
             for l in layers:
                 for h in hidden:
                     # Setup model.
                     model = gnn(dataset, l, h).to(device)
-                    # TODO Check
                     model.reset_parameters()
 
                     optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
@@ -134,8 +134,8 @@ def gnn_evaluation(gnn, ds_name, layers, hidden,  max_num_epochs=200, batch_size
                 test_accuracies_complete.append(best_test)
         test_accuracies_all.append(float(np.array(test_accuracies).mean()))
 
-        if all_std:
-            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
-                    np.array(test_accuracies_complete).std())
-        else:
-            return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
+    if all_std:
+        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std(),
+                np.array(test_accuracies_complete).std())
+    else:
+        return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
