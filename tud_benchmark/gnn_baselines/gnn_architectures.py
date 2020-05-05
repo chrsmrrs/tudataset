@@ -17,6 +17,8 @@ import torch.nn.functional as F
 from torch_geometric.nn import global_mean_pool, global_add_pool
 from torch_geometric.utils import degree
 
+from torch_geometric.nn.inits import reset
+
 # GIN-eps layer.
 class GIN(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden):
@@ -84,6 +86,12 @@ class GINEConv(MessagePassing):
 
     def update(self, aggr_out):
         return aggr_out
+
+    def reset_parameters(self):
+        reset(self.bond_encoder)
+        reset(self.mlp)
+        self.eps.data.fill_(self.initial_eps)
+
 
 
 
