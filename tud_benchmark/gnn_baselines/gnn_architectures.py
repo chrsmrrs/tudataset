@@ -66,6 +66,7 @@ class GIN(torch.nn.Module):
     def __repr__(self):
         return self.__class__.__name__
 
+# GIN with edge labels.
 class GINEConv(MessagePassing):
     def __init__(self, edge_dim, dim_init, dim):
         super(GINEConv, self).__init__(aggr="add")
@@ -77,8 +78,6 @@ class GINEConv(MessagePassing):
 
     def forward(self, x, edge_index, edge_attr):
         edge_embedding = self.edge_encoder(edge_attr)
-
-
 
         out = self.mlp((1 + self.eps) * x + self.propagate(edge_index, x=x, edge_attr=edge_embedding))
 
