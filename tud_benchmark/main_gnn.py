@@ -1,21 +1,24 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GINWithJK
-
+from gnn_baselines.gnn_architectures import GINWithJK, GraphSAGEWithJK
 
 # TODO: Add one-hot.
 
 def main():
 
+    # Smaller datasets using LIBSVM.
+    dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
+                 ["REDDIT-BINARY", False], ["ENZYMES", True]]
 
-    d = "ENZYMES"
-    dp.get_dataset(d)
+    results = []
 
-    results = gnn_evaluation(GINWithJK, d, [2,3,4], [64], max_num_epochs=100, batch_size=128, start_lr=0.01, num_repetitions=10, all_std=True)
-    print(results)
+    for d, use_labels in dataset:
+        dataset = d
+        dp.get_dataset(dataset)
 
-    print(results)
-
+        acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [1,2,3,4,5], [32,64,128], max_num_epochs=200, batch_size=128, start_lr=0.01, num_repetitions=10, all_std=True)
+        print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 if __name__ == "__main__":
     main()
