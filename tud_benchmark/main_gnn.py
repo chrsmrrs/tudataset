@@ -48,17 +48,17 @@ def main():
     for d, use_labels in dataset:
         dp.get_dataset(dataset)
 
-        acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200,
+        acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200,
                                        batch_size=128, start_lr=0.01,
                                        num_repetitions=10, all_std=True)
-        print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        acc, s_1, s_2 = gnn_evaluation(GINE, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=128,
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=128,
                                        start_lr=0.01,
                                        num_repetitions=10, all_std=True)
-        print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     print("DONE! :*")
     for r in results:
