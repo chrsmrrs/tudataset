@@ -41,6 +41,8 @@ def main():
         print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
+
+
     dataset = [["TRIANGLES", False, False],
                ["github_stargazers", False, False],
                ["reddit_threads", False, False]]
