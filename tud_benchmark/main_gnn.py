@@ -33,7 +33,7 @@ def main():
     ####################################################################################################################
 
     # Larger datasets using LIBLINEAR.
-    dataset = [["MCF-7", True], ["MOLT-4", True]]
+    dataset = [["Yeast", True], ["YeastH", True], ["UACC257", True], ["UACC257H", True], ["OVCAR-8", True], ["OVCAR-8H", True]]
 
     for d, use_labels in dataset:
         dp.get_dataset(d)
