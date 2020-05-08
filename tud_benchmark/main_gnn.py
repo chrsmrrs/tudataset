@@ -10,7 +10,7 @@ def main():
     num_reps = 3
 
     # Smaller datasets.
-    dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True],["NCI109", True], ["PROTEINS", True],["PTC_FM", True]
+    dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True],["NCI109", True], ["PROTEINS", True],["PTC_FM", True],
                ["REDDIT-BINARY", False], ["ENZYMES", True]]
 
 
