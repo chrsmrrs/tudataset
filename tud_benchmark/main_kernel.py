@@ -71,9 +71,9 @@ def main():
     ####################################################################################################################
     # Larger datasets using LIBLINEAR.
 
-    dataset = [["MCF-7", True, True], ["MOLT-4", True, True], ["TRIANGLES", False, False],
+    dataset = [["MCF-7", True, True],  ["TRIANGLES", False, False],
                  ["github_stargazers", False, False],
-                 ["reddit_threads", False, False]]
+                 ["reddit_threads", False, False], ["MOLT-4", True, True]]
 
     for d, use_labels, use_edge_labels in dataset:
         print(d)
