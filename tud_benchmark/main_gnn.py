@@ -32,7 +32,7 @@ def main():
     dataset = [["MCF-7", True], ["MOLT-4", True]]
 
     for d, use_labels in dataset:
-        dp.get_dataset(dataset)
+        dp.get_dataset(d)
 
         acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200,
                                        batch_size=128, start_lr=0.01,
@@ -53,7 +53,7 @@ def main():
                ["reddit_threads", False]]
 
     for d, use_labels in dataset:
-        dp.get_dataset(dataset)
+        dp.get_dataset(d)
 
         acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200,
                                        batch_size=128, start_lr=0.01,
