@@ -11,62 +11,62 @@ def main():
                  ["REDDIT-BINARY", False]]
 
     results = []
-
-    for d, use_labels in dataset:
-        dataset = d
-        classes = dp.get_dataset(dataset)
-
-        all_matrices = []
-        for i in range(1, 6):
-            gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
-        print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        all_matrices = []
-        for i in range(1, 6):
-            gm = kb.compute_lwl_2_dense(dataset, i, use_labels, False, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
-        print(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        all_matrices = []
-        for i in range(1, 6):
-            gm = kb.compute_lwlp_2_dense(dataset, i, use_labels, False, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
-        print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        all_matrices = []
-        for i in range(1, 6):
-            gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
-            gm_n = aux.normalize_gram_matrix(gm)
-            all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
-        print(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        all_matrices = []
-        gm = kb.compute_graphlet_dense(dataset, use_labels, False)
-        gm_n = aux.normalize_gram_matrix(gm)
-        all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
-        print(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        all_matrices = []
-        gm = kb.compute_shortestpath_dense(dataset, use_labels)
-        gm_n = aux.normalize_gram_matrix(gm)
-        all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
-        print(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    # for d, use_labels in dataset:
+    #     dataset = d
+    #     classes = dp.get_dataset(dataset)
+    #
+    #     all_matrices = []
+    #     for i in range(1, 6):
+    #         gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
+    #         gm_n = aux.normalize_gram_matrix(gm)
+    #         all_matrices.append(gm_n)
+    #     acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+    #     print(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     all_matrices = []
+    #     for i in range(1, 6):
+    #         gm = kb.compute_lwl_2_dense(dataset, i, use_labels, False, False)
+    #         gm_n = aux.normalize_gram_matrix(gm)
+    #         all_matrices.append(gm_n)
+    #     acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+    #     print(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "LWL2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     all_matrices = []
+    #     for i in range(1, 6):
+    #         gm = kb.compute_lwlp_2_dense(dataset, i, use_labels, False, False)
+    #         gm_n = aux.normalize_gram_matrix(gm)
+    #         all_matrices.append(gm_n)
+    #     acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+    #     print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     all_matrices = []
+    #     for i in range(1, 6):
+    #         gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
+    #         gm_n = aux.normalize_gram_matrix(gm)
+    #         all_matrices.append(gm_n)
+    #     acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+    #     print(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     all_matrices = []
+    #     gm = kb.compute_graphlet_dense(dataset, use_labels, False)
+    #     gm_n = aux.normalize_gram_matrix(gm)
+    #     all_matrices.append(gm_n)
+    #     acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+    #     print(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     all_matrices = []
+    #     gm = kb.compute_shortestpath_dense(dataset, use_labels)
+    #     gm_n = aux.normalize_gram_matrix(gm)
+    #     all_matrices.append(gm_n)
+    #     acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+    #     print(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     ####################################################################################################################
     # Larger datasets using LIBLINEAR.
