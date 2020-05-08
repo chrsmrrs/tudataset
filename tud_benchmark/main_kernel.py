@@ -71,7 +71,7 @@ def main():
     ####################################################################################################################
     # Larger datasets using LIBLINEAR.
 
-    dataset = [["MCF-7", True, True],  ["TRIANGLES", False, False],
+    dataset = [ ["TRIANGLES", False, False], ["MCF-7", True, True],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False], ["MOLT-4", True, True]]
 
