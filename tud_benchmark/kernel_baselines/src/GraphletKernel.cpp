@@ -95,7 +95,7 @@ namespace GraphletKernel {
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
 
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_u));
-                                    new_labels.push_back( AuxiliaryMethods::pairing(uv, l_u));
+                                    new_labels.push_back(AuxiliaryMethods::pairing(uv, l_u));
                                     new_labels.push_back(AuxiliaryMethods::pairing(uw, l_u));
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_v));
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_w));
