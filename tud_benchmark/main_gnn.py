@@ -29,7 +29,7 @@ def main():
 
     ####################################################################################################################
     # Larger datasets using LIBLINEAR.
-    dataset = [["MCF-7", True, True], ["MOLT-4", True, True]]
+    dataset = [["MCF-7", True], ["MOLT-4", True]]
 
     for d, use_labels in dataset:
         dp.get_dataset(dataset)
@@ -48,9 +48,9 @@ def main():
 
 
 
-    dataset = [["TRIANGLES", False, False],
-               ["github_stargazers", False, False],
-               ["reddit_threads", False, False]]
+    dataset = [["TRIANGLES", False],
+               ["github_stargazers", False],
+               ["reddit_threads", False]]
 
     for d, use_labels in dataset:
         dp.get_dataset(dataset)
