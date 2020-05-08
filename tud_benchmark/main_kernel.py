@@ -75,7 +75,7 @@ def main():
 
     dataset = [["MOLT-4", True, True], ["TRIANGLES", False, False], ["MCF-7", True, True],
                  ["github_stargazers", False, False],
-                 ["reddit_threads", False, False] ]
+                 ["reddit_threads", False, False], ]
 
     for d, use_labels, use_edge_labels in dataset:
         print(d)
