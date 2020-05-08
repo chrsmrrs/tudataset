@@ -13,6 +13,7 @@ def main():
     dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True],["NCI109", True], ["PROTEINS", True],["PTC_FM", True]
                ["REDDIT-BINARY", False], ["ENZYMES", True]]
 
+
     results = []
     for d, use_labels in dataset:
         dp.get_dataset(d)
