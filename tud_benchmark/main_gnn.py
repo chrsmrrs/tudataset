@@ -1,6 +1,6 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GIN, GINE, GINWithJK, GINEWithJK
+from gnn_baselines.gnn_architectures import GIN, GINE, GINWithJK, GINEWithJK, GIN0
 from torch_geometric.datasets import TUDataset
 from torch_geometric.data import DataLoader
 
@@ -8,6 +8,28 @@ import os.path as osp
 
 def main():
     num_reps = 3
+
+    # Smaller datasets.
+    dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True],["NCI109", True], ["PROTEINS", True],["PTC_FM", True]
+               ["REDDIT-BINARY", False], ["ENZYMES", True]]
+
+    results = []
+    for d, use_labels in dataset:
+        dp.get_dataset(d)
+
+        acc, s_1, s_2 = gnn_evaluation(GIN0, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=128,
+                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=128,
+                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+    ####################################################################################################################
+
+    exit()
 
     # Smaller datasets.
     dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
