@@ -136,12 +136,10 @@ namespace GraphletKernel {
                                 Labels new_labels;
 
                                 if (use_edge_labels) {
-                                    cout << "dddd" << endl;
+
                                     uint uv = edge_labels.find(make_tuple(u, v))->second;
                                     //uint uw = edge_labels.find(make_tuple(u, w))->second;
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
-                                    cout << "eeee" << endl;
-
                                     new_labels.push_back(AuxiliaryMethods::pairing(1, l_u));
                                     new_labels.push_back( AuxiliaryMethods::pairing(uv, l_u));
                                     //new_labels.push_back(AuxiliaryMethods::pairing(uw, l_u));
