@@ -90,16 +90,19 @@ namespace GraphletKernel {
                                 Labels new_labels;
 
                                 if (use_edge_labels) {
+
                                     uint uv = edge_labels.find(make_tuple(u, v))->second;
                                     uint uw = edge_labels.find(make_tuple(u, w))->second;
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
 
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_u));
-                                    new_labels.push_back(AuxiliaryMethods::pairing(uv, l_u));
+                                    new_labels.push_back( AuxiliaryMethods::pairing(uv, l_u));
                                     new_labels.push_back(AuxiliaryMethods::pairing(uw, l_u));
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_v));
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_w));
                                     new_labels.push_back(AuxiliaryMethods::pairing(vw, l_v));
+
+
                                 } else {
                                     // Map every labeled triangle to a unique integer.
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_u));
@@ -135,28 +138,30 @@ namespace GraphletKernel {
                                 Labels new_labels;
 
                                 if (use_edge_labels) {
+                                    cout << "dddd" << endl;
                                     uint uv = edge_labels.find(make_tuple(u, v))->second;
-                                    uint uw = edge_labels.find(make_tuple(u, w))->second;
+                                    //uint uw = edge_labels.find(make_tuple(u, w))->second;
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
+                                    cout << "eeee" << endl;
 
                                     new_labels.push_back(AuxiliaryMethods::pairing(1, l_u));
                                     new_labels.push_back( AuxiliaryMethods::pairing(uv, l_u));
-                                    new_labels.push_back(AuxiliaryMethods::pairing(uw, l_u));
+                                    //new_labels.push_back(AuxiliaryMethods::pairing(uw, l_u));
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_v));
                                     new_labels.push_back(AuxiliaryMethods::pairing(1, l_w));
                                     new_labels.push_back(AuxiliaryMethods::pairing(vw, l_v));
+
                                 } else {
                                     // Map every labeled triangle to a unique integer.
                                     new_labels.push_back(AuxiliaryMethods::pairing(1, l_u));
-                                    new_labels.push_back(AuxiliaryMethods::pairing(2,l_v));
-                                    new_labels.push_back(AuxiliaryMethods::pairing(1,l_w));
+                                    new_labels.push_back(AuxiliaryMethods::pairing(2, l_v));
+                                    new_labels.push_back(AuxiliaryMethods::pairing(1, l_w));
                                 }
 
                                 sort(new_labels.begin(), new_labels.end());
                                 for (Label d: new_labels) {
                                     new_label = AuxiliaryMethods::pairing(new_label, d);
                                 }
-
                             } else {
                                 new_label = 2;
                             }
