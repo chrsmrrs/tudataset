@@ -101,8 +101,6 @@ namespace GraphletKernel {
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_v));
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_w));
                                     new_labels.push_back(AuxiliaryMethods::pairing(vw, l_v));
-
-
                                 } else {
                                     // Map every labeled triangle to a unique integer.
                                     new_labels.push_back(AuxiliaryMethods::pairing(2, l_u));
