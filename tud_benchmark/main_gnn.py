@@ -73,7 +73,7 @@ def main():
     #
     # ####################################################################################################################
 
-    # print("TU")
+    print("TUD")
 
     # Larger datasets using LIBLINEAR.
     dataset = [["MCF-7", True], ["MOLT-4", True]]
