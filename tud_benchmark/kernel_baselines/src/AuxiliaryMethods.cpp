@@ -253,4 +253,12 @@ namespace AuxiliaryMethods {
     Label pairing(const Label a, const Label b) {
         return a >= b ? a * a + a + b : a + b * b;
     }
+    
+    Label pairing(const vector<Label> labels) {
+        Label new_label=labels.size();
+        for (Label l: labels) {
+            new_label = pairing(new_label, l);
+        }
+        return new_label;
+    }
 }

@@ -47,8 +47,11 @@ namespace AuxiliaryMethods {
 
     void write_libsvm(const GramMatrix &gram_matrix, const vector<int> classes, std::string filename);
 
-    // Pairing function to map to a pair of Labels to a single label.
+    // Pairing function to map a pair of Labels to a single label.
     Label pairing(const Label a, const Label b);
+    
+    // Pairing function to map a vector of Labels to a single label.
+    Label pairing(const vector<Label> labels);
 }
 
 #endif // WLFAST_AUXILIARYMETHODS_H
