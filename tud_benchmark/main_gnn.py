@@ -52,26 +52,29 @@ def main():
     #     results.append(d + " " + "GINE0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     # exit()
-    #
-    # # Smaller datasets.
-    # dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
-    #            ["REDDIT-BINARY", False], ["ENZYMES", True]]
-    #
-    # results = []
-    # for d, use_labels in dataset:
-    #     dp.get_dataset(d)
-    #
-    #     acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=128,
-    #                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #
-    #     acc, s_1, s_2 = gnn_evaluation(GIN, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=128,
-    #                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #
-    # ####################################################################################################################
+
+    print("TUD")
+    # Smaller datasets.
+    dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
+               ["REDDIT-BINARY", False], ["ENZYMES", True]]
+
+    results = []
+    for d, use_labels in dataset:
+        dp.get_dataset(d)
+
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=100, batch_size=128,
+                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+        acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=100, batch_size=128,
+                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+
+
+    ####################################################################################################################
 
     print("TUD")
 
@@ -81,19 +84,17 @@ def main():
     for d, use_labels in dataset:
         dp.get_dataset(d)
 
-        acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
-                                       batch_size=64, start_lr=0.01,
-                                       num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
         acc, s_1, s_2 = gnn_evaluation(GINE, d, [3], [64], max_num_epochs=200, batch_size=64,
                                        start_lr=0.01,
                                        num_repetitions=num_reps, all_std=True)
         print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-
+        acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
+                                       batch_size=64, start_lr=0.01,
+                                       num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     dataset = [["TRIANGLES", False],
                ["github_stargazers", False],
@@ -113,6 +114,7 @@ def main():
                                        num_repetitions=num_reps, all_std=True)
         print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
 
     print("NeurIPS")
     # Larger datasets using LIBLINEAR.
