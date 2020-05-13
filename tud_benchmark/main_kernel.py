@@ -6,16 +6,6 @@ from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 
 
 def main():
-    all_matrices = []
-    classes = dp.get_dataset("NCI1")
-    for i in range(1, 6):
-        gm = kb.compute_graphlet_sparse("NCI1", True, False)
-        gm_n = aux.normalize_feature_vector(gm)
-        all_matrices.append(gm_n)
-    acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True)
-    print("ENYZMES" + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-    exit()
 
     # Smaller datasets using LIBSVM.
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
