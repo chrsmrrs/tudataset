@@ -29,7 +29,7 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
                 train = gram_matrix[inner_train_index]
                 val = gram_matrix[val_index]
 
-                c_train = classes[train_index]
+                c_train = classes[inner_train_index]
                 c_val = classes[val_index]
 
                 for c in C:
