@@ -6,10 +6,26 @@ from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 
 
 def main():
+    all_matrices = []
+    d= "PROTEINS"
+    classes = dp.get_dataset(d)
+
+    for i in range(1, 6):
+        gm = kb.compute_lwlp_2_sparse("", i, True, False, False)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm_n)
+    acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+    print(d + " " + "LWLP2 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+
+
 
     # Smaller datasets using LIBSVM.
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                  ["REDDIT-BINARY", False]]
+
+
+
 
     results = []
 

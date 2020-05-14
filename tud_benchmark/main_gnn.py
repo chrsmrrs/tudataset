@@ -136,7 +136,7 @@ def main():
         results.append(d + " " + "GINE0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     print("DONE! :*")
-    for r in results:
+    for r in results
         print(r)
 
 
