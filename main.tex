@@ -351,7 +351,6 @@ See~\cref{t2l}.
 
 
 
-
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
 	\label{t2l}	
@@ -360,6 +359,7 @@ See~\cref{t2l}.
 			
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
 			& & {\textsc{Enyzmes}}         &  {\textsc{Imdb-Binary}}      & {\textsc{Imdb-Multi}}           & {\textsc{NCI1}}       & {\textsc{Proteins}}           & {\textsc{Reddit-Binary}}     \\	\toprule
+<<<<<<< HEAD
 			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &    \scriptsize $\pm  \pm  $       & \scriptsize $\pm   \pm $ &  \scriptsize $\pm  \pm   $ &  \scriptsize $\pm  \pm $ &  \scriptsize $\pm  \pm   $ & \scriptsize $\pm  \pm $  \\
 %				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 %				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
@@ -369,6 +369,17 @@ See~\cref{t2l}.
 			\cmidrule{2-8}	
 			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GIN-$\varepsilon$}   &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 		& \text{GIN-$\varepsilon$-JK} &     \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+=======
+			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &    \scriptsize $52.3\pm 0.7 \pm 6.7 $       & \scriptsize $72.6\pm  0.6 \pm 4.1$ &  \scriptsize $50.3\pm 0.8 \pm  3.8 $ &  \scriptsize $84.5\pm 0.3 \pm 1.7$ &  \scriptsize $72.8\pm 0.8 \pm  3.9 $ & \scriptsize $73.9\pm 0.6 \pm 3.2$  \\
+				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+				& \text{WLOA} &   \scriptsize $58.4\pm 2.0 \pm 7.4$       &  \scriptsize $73.2\pm 0.8 \pm 3.8$ &  \scriptsize $49.4\pm 0.3 \pm 3.6 $ & \scriptsize $85.4\pm  0.2 \pm 1.4$ &  \scriptsize $73.2\pm 0.6 \pm 3.5$ &  \scriptsize $88.4\pm 0.4 \pm 2.1 $   \\
+				& \text{GR}            &     \scriptsize $30.1\pm 0.8 \pm 6.0$       &  \scriptsize $59.0\pm 0.9 \pm 5.7$ &  \scriptsize $39.6\pm 0.5 \pm 3.6  $ &  \scriptsize $66.2\pm 0.2\pm 2.2$ &  \scriptsize $71.4\pm 0.6\pm 4.4 $ & \scriptsize $60.0\pm 0.2 \pm  2.7$   \\
+				& \text{SP}            &   \scriptsize $40.5\pm 1.6 \pm 6.2$       &  \scriptsize $58.7\pm 0.9 \pm 4.6 $ &  \scriptsize $39.5\pm 0.9 \pm 4.2$ &  \scriptsize $74.5\pm 0.4\pm 2.2 $  & \scriptsize $75.9\pm 0.6 \pm 4.0$ &  \scriptsize $84.6\pm0.2\pm 0.4 $  \\
+			\cmidrule{2-8}	
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GINE-$\varepsilon$}   &   \scriptsize $\pm \pm $       &  \scriptsize $72.4\pm 0.6\pm 4.0 $ &  \scriptsize $49.7\pm 0.2 \pm  3.9$ & \scriptsize $79.0\pm  0.5 \pm 1.9 $ &  \scriptsize $71.3\pm 0.4 \pm 4.0$ &  \scriptsize $90.0\pm 0.6 \pm 1.7 $   \\
+		& \text{GINE-$\varepsilon$-JK} &     \scriptsize $\pm \pm $       &  \scriptsize $73.4\pm 0.6\pm 4.4$ &  \scriptsize $50.6\pm 0.5 \pm 4.2 $ & \scriptsize $79.1\pm  0.2 \pm 1.5 $ &  \scriptsize $72.4\pm 0.6 \pm 1.7 $ &  \scriptsize $90.6\pm 0.2 \pm  2.2$   \\
+>>>>>>> 777747e44e8c2021d46be4103abca7a40a131bee
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
@@ -382,16 +393,22 @@ See~\cref{t2l}.
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
 			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Triangles}}           & {\textsc{github\_stargazers}}       & {\textsc{reddit\_threads}}      \\	\toprule
 							\multirow{3}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}    & 
-							   \scriptsize $\pm   \pm $       & \scriptsize $\pm   \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\
+							   \scriptsize $94.5\pm  0.0 \pm 0.4$       & \scriptsize $94.6\pm 0.1  \pm 0.3$ & \scriptsize $36.5\pm 0.1\pm0.7$ &  \scriptsize $63.9\pm 0.1\pm1.3$ & \scriptsize $77.0\pm 0.0\pm0.3$  \\
 		
-			& \text{GR}            &   \scriptsize $\pm    \pm  $       &   \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\  
-			& \text{SP}             &    \scriptsize $\pm  \pm $       &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\   
+			& \text{GR}            &   \scriptsize $91.7\pm  0.0  \pm 0.5 $       &   \scriptsize $92.1\pm 0.0 \pm 0.4$ & \scriptsize $14.3\pm 0.0 \pm 0.6$ &  \scriptsize $53.5\pm 0.0 \pm1.3$ & \scriptsize $51.2\pm 0.0 \pm 0.4$  \\  
+			& \text{SP}             &    \scriptsize $91.7\pm 0.0 \pm 0.4 $       &  \scriptsize $92.1\pm 0.0 \pm 0.4 $ & \scriptsize $16.5\pm 0.1 \pm 0.4$ &  \scriptsize $64.1\pm 0.1\pm1.4$ & \scriptsize $77.3\pm 0.0 \pm0.3$  \\   
 			\cmidrule{2-7}	
+<<<<<<< HEAD
 			\multirow{2}{*}{\rotatebox{90}{GNN}}	&  \text{GINE-$\varepsilon$}         &    \scriptsize $\pm  \pm $       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ \\
 			& \text{GINE-$\varepsilon$-JK}            &    \scriptsize $\pm \pm$       & \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm $  \\
+=======
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	&  \text{GIN-E-$\varepsilon$}         &    \scriptsize $92.0\pm  0.1\pm 0.6$       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ \\
+			& \text{GraphSage}            &    \scriptsize $91.8\pm 0.0\pm 0.5$       & \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm $  \\
+>>>>>>> 777747e44e8c2021d46be4103abca7a40a131bee
 			\bottomrule
 	\end{tabular}}
-\end{table*}		
+\end{table*}	
+	
 
 
 
