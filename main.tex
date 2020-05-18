@@ -262,6 +262,8 @@ Further recent works focus on assignment-based approaches~\cite{Kri+2016,Nik+201
 
 \cm{Add new work from Borgwardt and Pascale Frossard.}
 
+\cm{Add IPC paper}
+
 Recently, GNNs~\cite{Gil+2017} emerged as a alternative to graph kernels. Notable instances of this model include~\cite{Duv+2015},~\cite{Li+2016},~\cite{Ham+2017} and the spectral approaches proposed in~\cite{Bru+2014,Def+2015,Kip+2017}---all of which descend from early work in~\cite{Kir+1995,Mer+2005,Sca+2009}. More expressive higher-order approaches are proposed in~\cite{Mor+2019,Mar+2019}. A unifying message passing architecture can be found in~\cite{Gil+2017}. Two recent surveys~\cite{wu2019comprehensive,zhou2018graph} provide a thorough overview of graph neural networks.
 
 The papers~\cite{Fey+2019,Err+2019,Dwi+2020} evalute GNNs using a unified evaluation procedure, however, they only use small- or medium scale datasets. Recently, \url{ogb.stanford.edu} launchend, however the provided datasets for graph classification focus on chemistry and bioinformatic applications, and the number is quite limited at this point.
@@ -359,14 +361,14 @@ See~\cref{t2l}.
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
 			& & {\textsc{Enyzmes}}         &  {\textsc{Imdb-Binary}}      & {\textsc{Imdb-Multi}}           & {\textsc{NCI1}}       & {\textsc{Proteins}}           & {\textsc{Reddit-Binary}}     \\	\toprule
 			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &    \scriptsize $\pm  \pm  $       & \scriptsize $\pm   \pm $ &  \scriptsize $\pm  \pm   $ &  \scriptsize $\pm  \pm $ &  \scriptsize $\pm  \pm   $ & \scriptsize $\pm  \pm $  \\
-				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
-				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+%				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+%				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 				& \text{WLOA} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 				& \text{GR}            &     \scriptsize $\pm  \pm$       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm \pm   $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm \pm $ & \scriptsize $\pm  \pm  $   \\
 				& \text{SP}            &   \scriptsize $\pm  \pm $       &  \scriptsize $\pm  \pm  $ &  \scriptsize $\pm  \pm $ &  \scriptsize $\pm \pm  $  & \scriptsize $\pm  \pm $ &  \scriptsize $\pm\pm $  \\
 			\cmidrule{2-8}	
-			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GINE-$\varepsilon$}   &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
-		& \text{GINE-$\varepsilon$-JK} &     \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GIN-$\varepsilon$}   &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+		& \text{GIN-$\varepsilon$-JK} &     \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
@@ -385,8 +387,8 @@ See~\cref{t2l}.
 			& \text{GR}            &   \scriptsize $\pm    \pm  $       &   \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\  
 			& \text{SP}             &    \scriptsize $\pm  \pm $       &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$  \\   
 			\cmidrule{2-7}	
-			\multirow{2}{*}{\rotatebox{90}{GNN}}	&  \text{GIN-E-$\varepsilon$}         &    \scriptsize $\pm  \pm $       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ \\
-			& \text{GraphSage}            &    \scriptsize $\pm \pm$       & \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm $  \\
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	&  \text{GINE-$\varepsilon$}         &    \scriptsize $\pm  \pm $       & \scriptsize $\pm \pm $ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ \\
+			& \text{GINE-$\varepsilon$-JK}            &    \scriptsize $\pm \pm$       & \scriptsize $\pm \pm$ & \scriptsize $\pm \pm$ &  \scriptsize $\pm \pm$ & \scriptsize $\pm \pm $  \\
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
