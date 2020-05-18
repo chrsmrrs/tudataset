@@ -96,6 +96,7 @@ def main():
     #     print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
     #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
     #
+    print("TUD")
     dataset = [["TRIANGLES", False],
                ["github_stargazers", False],
                ["reddit_threads", False]]
