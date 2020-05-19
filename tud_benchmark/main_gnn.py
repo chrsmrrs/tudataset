@@ -98,7 +98,6 @@ def main():
     #
     print("TUD")
     dataset = [
-               ["github_stargazers", False],
                ["reddit_threads", False]]
 
     for d, use_labels in dataset:
