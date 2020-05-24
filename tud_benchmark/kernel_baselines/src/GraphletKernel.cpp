@@ -94,14 +94,14 @@ namespace GraphletKernel {
                                     uint uv = edge_labels.find(make_tuple(u, v))->second;
                                     uint uw = edge_labels.find(make_tuple(u, w))->second;
                                     uint vw = edge_labels.find(make_tuple(v, w))->second;
-                                    
+
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_u, uv, l_v, vw, l_w, uw}));
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_u, uw, l_w, vw, l_v, uv}));
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_v, uv, l_u, uw, l_w, vw}));
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_v, vw, l_w, uw, l_u, uv}));
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_w, uw, l_u, uv, l_v, vw}));
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_w, vw, l_v, uv, l_u, uw}));
-                                    
+
                                     new_label = *min_element(new_labels.begin(), new_labels.end());
                                 } else {
                                     // Map every labeled triangle to a unique integer.
@@ -143,7 +143,7 @@ namespace GraphletKernel {
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_u, l_v, l_w}));
                                     new_labels.push_back(AuxiliaryMethods::pairing({l_w, l_v, l_u}));
                                 }
-                                
+
                                 new_label = *min_element(new_labels.begin(), new_labels.end());
                             } else {
                                 new_label = 2;
@@ -162,7 +162,6 @@ namespace GraphletKernel {
                 }
             }
         }
-
         return graphlet_counter;
     }
 
