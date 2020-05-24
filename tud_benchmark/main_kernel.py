@@ -33,7 +33,7 @@ def main():
             gm = kb.compute_lwl_2_sparse(dataset, i, use_labels, use_edge_labels, False)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
-        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True)
         print(d + " " + "LWL2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWL2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
@@ -42,7 +42,7 @@ def main():
             gm = kb.compute_lwlp_2_sparse(dataset, i, use_labels, use_edge_labels, False)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
-        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True)
         print(d + " " + "LWLP2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "LWLP2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
