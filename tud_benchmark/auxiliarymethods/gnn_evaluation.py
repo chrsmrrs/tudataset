@@ -54,7 +54,7 @@ def test(loader, model, device):
 
 
 # 10-CV for GNN training and hyperparameter selection.
-def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=200, batch_size=128,  start_lr=0.01, num_repetitions=10, all_std=True):
+def gnn_evaluation(gnn, ds_name, layers, hidden, add_pool=False, max_num_epochs=200, batch_size=128,  start_lr=0.01, num_repetitions=10, all_std=True):
     # Load dataset and shuffle.
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
     dataset = TUDataset(path, name=ds_name).shuffle()
@@ -106,7 +106,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=200, batch_size=
             for l in layers:
                 for h in hidden:
                     # Setup model.
-                    model = gnn(dataset, l, h).to(device)
+                    model = gnn(dataset, l, h, add_pool=add_pool).to(device)
                     model.reset_parameters()
 
                     optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
