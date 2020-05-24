@@ -38,7 +38,7 @@ def main():
         results.append(d + " " + "LWL2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
-        for i in range(3,6):
+        for i in range(3,4):
             gm = kb.compute_lwlp_2_sparse(dataset, i, use_labels, use_edge_labels, False)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
