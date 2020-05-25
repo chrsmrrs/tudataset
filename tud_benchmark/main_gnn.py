@@ -6,36 +6,36 @@ import os.path as osp
 
 def main():
     num_reps = 10
-    # NeuriPS stuff, ENZYMES
-    print("NeurIPS")
-
-    # Smaller datasets.
-    dataset = [["ENZYMES", True]]
-
-    results = []
-    for d, use_labels in dataset:
-        dp.get_dataset(d)
-
-        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4,5], [16,32,64,128], add_pool=True, max_num_epochs=200, batch_size=128,
-                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4,5], [16,32,64,128], add_pool=False, max_num_epochs=200, batch_size=128,
-                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        acc, s_1, s_2 = gnn_evaluation(GIN0, d, [1,2,3,4,5], [16,32,64,128], add_pool=True, max_num_epochs=200, batch_size=128,
-                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        acc, s_1, s_2 = gnn_evaluation(GIN0, d, [1,2,3,4,5], [16,32,64,128], add_pool=False, max_num_epochs=200, batch_size=128,
-                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
+    # # NeuriPS stuff, ENZYMES
+    # print("NeurIPS")
+    #
+    # # Smaller datasets.
+    # dataset = [["ENZYMES", True]]
+    #
+    # results = []
+    # for d, use_labels in dataset:
+    #     dp.get_dataset(d)
+    #
+    #     acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4,5], [16,32,64,128], add_pool=True, max_num_epochs=200, batch_size=128,
+    #                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4,5], [16,32,64,128], add_pool=False, max_num_epochs=200, batch_size=128,
+    #                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     acc, s_1, s_2 = gnn_evaluation(GIN0, d, [1,2,3,4,5], [16,32,64,128], add_pool=True, max_num_epochs=200, batch_size=128,
+    #                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     acc, s_1, s_2 = gnn_evaluation(GIN0, d, [1,2,3,4,5], [16,32,64,128], add_pool=False, max_num_epochs=200, batch_size=128,
+    #                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GIN0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
 
     # results = []
     # for d, use_labels in dataset:
@@ -141,25 +141,27 @@ def main():
     #                                    num_repetitions=num_reps, all_std=True)
     #     print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
     #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #
-    # print("TUD")
-    # dataset = [
-    #            ["reddit_threads", False]]
-    #
-    # for d, use_labels in dataset:
-    #     dp.get_dataset(d)
-    #
-    #     acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [3], [64], max_num_epochs=200,
-    #                                    batch_size=64, start_lr=0.01,
-    #                                    num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #
-    #     acc, s_1, s_2 = gnn_evaluation(GIN, d, [3], [64], max_num_epochs=200, batch_size=64,
-    #                                    start_lr=0.01,
-    #                                    num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+    print("TUD")
+    dataset = [["TRIANGLES", False],
+        ["reddit_threads", False]
+    ]
+
+    for d, use_labels in dataset:
+        dp.get_dataset(d)
+
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [3], [64], max_num_epochs=200, batch_size=64,
+                                       start_lr=0.01,
+                                       num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+        # acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [3], [64], max_num_epochs=200,
+        #                                batch_size=64, start_lr=0.01,
+        #                                num_repetitions=num_reps, all_std=True)
+        # print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        # results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
 
     results = []
 
