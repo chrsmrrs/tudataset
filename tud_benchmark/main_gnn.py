@@ -1,6 +1,6 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GIN0, GIN
+from gnn_baselines.gnn_architectures import GIN0, GIN, GINE, GINEWithJK
 
 import os.path as osp
 
@@ -124,43 +124,43 @@ def main():
     #
     # print("TUD")
     #
-    # # Larger datasets using LIBLINEAR.
-    # dataset = [["MCF-7", True], ["MOLT-4", True]]
-    #
-    # for d, use_labels in dataset:
-    #     dp.get_dataset(d)
-    #
-    #     acc, s_1, s_2 = gnn_evaluation(GINE, d, [3], [64], max_num_epochs=200, batch_size=64,
-    #                                    start_lr=0.01,
-    #                                    num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #
-    #     acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
-    #                                    batch_size=64, start_lr=0.01,
-    #                                    num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-    print("TUD")
-    dataset = [["TRIANGLES", False],
-        ["reddit_threads", False]
-    ]
+    # Larger datasets using LIBLINEAR.
+    dataset = [["Yeast", True], ["MCF-7", True], ["MOLT-4", True]]
 
     for d, use_labels in dataset:
         dp.get_dataset(d)
 
-        acc, s_1, s_2 = gnn_evaluation(GIN, d, [3], [64], max_num_epochs=200, batch_size=64,
+        acc, s_1, s_2 = gnn_evaluation(GINE, d, [3], [64], max_num_epochs=200, batch_size=64,
                                        start_lr=0.01,
                                        num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        # acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [3], [64], max_num_epochs=200,
-        #                                batch_size=64, start_lr=0.01,
-        #                                num_repetitions=num_reps, all_std=True)
-        # print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        # results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
+                                       batch_size=64, start_lr=0.01,
+                                       num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+    # print("TUD")
+    # dataset = [["TRIANGLES", False],
+    #     ["reddit_threads", False]
+    # ]
+    #
+    # for d, use_labels in dataset:
+    #     dp.get_dataset(d)
+    #
+    #     acc, s_1, s_2 = gnn_evaluation(GIN, d, [3], [64], max_num_epochs=200, batch_size=64,
+    #                                    start_lr=0.01,
+    #                                    num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     # acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [3], [64], max_num_epochs=200,
+    #     #                                batch_size=64, start_lr=0.01,
+    #     #                                num_repetitions=num_reps, all_std=True)
+    #     # print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     # results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
     results = []
