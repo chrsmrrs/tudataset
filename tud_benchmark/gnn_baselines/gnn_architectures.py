@@ -59,8 +59,6 @@ class GIN(torch.nn.Module):
             x = conv(x, edge_index)
 
         if self.add_pool:
-            print("######")
-            exit()
             x = global_add_pool(x, batch)
         else:
             x = global_mean_pool(x, batch)
