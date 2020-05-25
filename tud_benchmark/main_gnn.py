@@ -5,7 +5,7 @@ from gnn_baselines.gnn_architectures import GIN0, GIN, GINE, GINEWithJK
 import os.path as osp
 
 def main():
-    num_reps = 10
+    num_reps = 3
     # # NeuriPS stuff, ENZYMES
     # print("NeurIPS")
     #
