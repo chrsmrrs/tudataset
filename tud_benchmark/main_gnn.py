@@ -17,12 +17,12 @@ def main():
         dp.get_dataset(d)
 
         acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4,5], [64,128], add_pool=True, max_num_epochs=200, batch_size=128,
-                                       start_lr=0.01, num_repetitions=1, all_std=True)
+                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
         print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4,5], [64,128], add_pool=False, max_num_epochs=200, batch_size=128,
-                                       start_lr=0.01, num_repetitions=1, all_std=True)
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4,5], [32,64,128], add_pool=False, max_num_epochs=200, batch_size=128,
+                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
         print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
