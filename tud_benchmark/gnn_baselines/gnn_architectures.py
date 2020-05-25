@@ -58,8 +58,7 @@ class GIN(torch.nn.Module):
         for conv in self.convs:
             x = conv(x, edge_index)
 
-        if self.add_pool == "add":
-            print("AAA")
+        if self.add_pool:
             x = global_add_pool(x, batch)
         else:
             x = global_mean_pool(x, batch)
@@ -111,7 +110,7 @@ class GIN0(torch.nn.Module):
         for conv in self.convs:
             x = conv(x, edge_index)
 
-        if self.add_pool == "add":
+        if self.add_pool:
             x = global_add_pool(x, batch)
         else:
             x = global_mean_pool(x, batch)
