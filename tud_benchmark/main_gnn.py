@@ -16,7 +16,7 @@ def main():
     for d, use_labels in dataset:
         dp.get_dataset(d)
 
-        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4], [128], add_pool=True, max_num_epochs=200, batch_size=128,
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1,2,3,4], [128], add_pool=True, max_num_epochs=200, batch_size=64,
                                        start_lr=0.01, num_repetitions=1, all_std=True)
         print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
