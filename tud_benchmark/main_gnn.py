@@ -5,7 +5,7 @@ from gnn_baselines.gnn_architectures import GIN0, GIN, GINE, GINEWithJK
 import os.path as osp
 
 def main():
-    num_reps = 10
+    num_reps = 3
     # NeuriPS stuff, ENZYMES
     print("NeurIPS")
 
@@ -127,22 +127,22 @@ def main():
     # Larger datasets using LIBLINEAR.
 
     # TODO: RUN
-    # dataset = [["Yeast", True], ["MCF-7", True], ["MOLT-4", True]]
-    #
-    # for d, use_labels in dataset:
-    #     dp.get_dataset(d)
-    #
-    #     acc, s_1, s_2 = gnn_evaluation_old(GINE, d, [3], [64], max_num_epochs=200, batch_size=64,
-    #                                    start_lr=0.01,
-    #                                    num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #
-    #     acc, s_1, s_2 = gnn_evaluation_old(GINEWithJK, d, [3], [64], max_num_epochs=200,
-    #                                    batch_size=64, start_lr=0.01,
-    #                                    num_repetitions=num_reps, all_std=True)
-    #     print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-    #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    dataset = [["Yeast", True]]
+
+    for d, use_labels in dataset:
+        dp.get_dataset(d)
+
+        acc, s_1, s_2 = gnn_evaluation_old(GINE, d, [3], [64], max_num_epochs=200, batch_size=64,
+                                       start_lr=0.01,
+                                       num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+        acc, s_1, s_2 = gnn_evaluation_old(GINEWithJK, d, [3], [64], max_num_epochs=200,
+                                       batch_size=64, start_lr=0.01,
+                                       num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GINEWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     # print("TUD")
     # dataset = [["TRIANGLES", False],
