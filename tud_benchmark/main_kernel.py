@@ -29,7 +29,7 @@ def main():
 
         all_matrices = []
         for i in range(3,4):
-            gm = kb.compute_lwlp_2_sparse(dataset, i, use_labels, use_edge_labels, False)
+            gm = kb.compute_lwlp_2_sparse(dataset, i, use_labels, use_edge_labels, True)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
         print("###")
@@ -39,7 +39,7 @@ def main():
 
         all_matrices = []
         for i in range(3,4):
-            gm = kb.compute_lwl_2_sparse(dataset, i, use_labels, use_edge_labels, False)
+            gm = kb.compute_lwl_2_sparse(dataset, i, use_labels, use_edge_labels, True)
             gm_n = aux.normalize_feature_vector(gm)
             all_matrices.append(gm_n)
             print("###")
