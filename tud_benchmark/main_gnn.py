@@ -1,6 +1,6 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation,gnn_evaluation_old
-from gnn_baselines.gnn_architectures import GIN0, GIN, GINE, GINEWithJK, G
+from gnn_baselines.gnn_architectures import GIN0, GIN, GINE, GINEWithJK
 
 import os.path as osp
 
