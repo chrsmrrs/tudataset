@@ -3,7 +3,6 @@ import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
 from auxiliarymethods.kernel_evaluation import linear_svm_evaluation
 from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
-from __future__ import division
 import numpy as np
 
 import pandas as pd
