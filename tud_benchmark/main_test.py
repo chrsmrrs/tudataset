@@ -29,7 +29,7 @@ def main():
             # Collect feature matrices over all iterations
             all_feature_matrices = []
 
-            for i in range(2, 2):
+            for i in range(0, 3):
                 # Load feature matrices.
                 feature_vector = pd.read_csv(path + name + "__" + algorithm + "_" + str(i), header=1,
                                              delimiter=" ").to_numpy()
