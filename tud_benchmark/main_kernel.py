@@ -11,42 +11,6 @@ def main():
     results = []
     num_reps= 3
 
-    dataset = [["Yeast", True, True]]
-
-    for d, use_labels, use_edge_labels in dataset:
-        print(d)
-        dataset = d
-        classes = dp.get_dataset(dataset)
-
-        # all_matrices = []
-        # for i in range(3, 4):
-        #     gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)
-        #     gm_n = aux.normalize_feature_vector(gm)
-        #     all_matrices.append(gm_n)
-        # acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
-        # print(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        # results.append(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        all_matrices = []
-        for i in range(3,4):
-            gm = kb.compute_lwlp_2_sparse(dataset, i, use_labels, use_edge_labels, True)
-            gm_n = aux.normalize_feature_vector(gm)
-            all_matrices.append(gm_n)
-        print("###")
-        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True)
-        print(d + " " + "LWLP2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "LWLP2SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        all_matrices = []
-        for i in range(3,4):
-            gm = kb.compute_lwl_2_sparse(dataset, i, use_labels, use_edge_labels, True)
-            gm_n = aux.normalize_feature_vector(gm)
-            all_matrices.append(gm_n)
-            print("###")
-        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=1, all_std=True)
-        print(d + " " + "LWL2S " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "LWL2S " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
     # all_matrices = []
     # gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
     # gm_n = aux.normalize_feature_vector(gm)
