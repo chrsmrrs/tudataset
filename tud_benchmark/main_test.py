@@ -6,7 +6,7 @@ from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 import numpy as np
 
 import pandas as pd
-from auxiliarymethods import dataset_parsers as dp
+import auxiliarymethods.datasets as dp
 from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split
 
