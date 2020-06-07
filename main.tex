@@ -292,7 +292,7 @@ The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning
 \end{table*}		
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
-	\label{t2l}	
+	\label{t2ll}	
 	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{.9}
 		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
@@ -358,7 +358,7 @@ Our intention here is to provide baseline experiments and compare graph kernels 
 \textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics.
 
 
-\xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016} included in the \textsc{TUDataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL}, \textsc{WL-OA}, and the  $\delta$-$2$-LWL$^+$ were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
+\xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016} included in the \textsc{TUDataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL} and \textsc{WL-OA} were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
 
 All kernel experiments were conducted on a workstation with an \text{Intel Xeon E5-2690v4} with 2.60\si GHz and 384\si GB of RAM running \text{Ubuntu 16.04.6 LTS} using a single core. Moreover, we used the GNU \CC Compiler 5.5.0 with the flag \texttt{--O2}. 
 
@@ -371,7 +371,7 @@ For comparision with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu
 All results can be reproduced using the scripts provided at \url{www.github.com/chrsmrrs/tudataset}.
 
 \subsection{Results and discussion}
-See~\cref{t2l}.
+See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beating by the the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. 
 
 
 
@@ -409,7 +409,11 @@ We thank everybody who provided datasets for \textsc{TuDataset}.
 \section{Experimental protocol and hyperparameters for \textsc{Zinc} and \textsc{Alchemy}}
 For the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}, we closely followed the hyperparameters found in~\cite{Dwi+2020} and~\cite{Che+2020}, respectively, for the (\textsc{Gine-$\varepsilon$} layers. That is, for \textsc{Zinc}, we used four (\textsc{Gine-$\varepsilon$} layers with a hidden dimension of 256 followed by batch norm and a $4$-layer MLP for the joint regression of the twelve targets, after applying mean pooling. For \textsc{Alchemy} and \textsc{QM9}, we used six layers with 64 (hidden) node features and a set2seq layer~\cite{Vin+2016} for graph-level pooling, followed by a $2$-layer MLP for the joint regression of the twelve targets.
 
-For \textsc{Zinc}, we used the given train, validation split, test split, and report the MAE over the test set. For the \textsc{Alchemy} dataset, we uniformly and at random sampled 80\% of the graphs for training, and 10\% for validation and testing, respectively. Moreover, following~\cite{Che+2020,Gil+2017}, we normalized the targets of the training split to zero mean and unit variance. We used a single model to predict all targets. Following~\cite{Kli+2020}, we report mean standardized MAE and mean standardized logMAE. We repeated each experiment five times (with different random splits in case of \textsc{Alchemy}) and report average scores and standard deviations. All neural experiments were conducted on a workstation with four Nvidia Tesla V100 GPU cards with 32GB of GPU memory running Oracle Linux Server 7.7.
+For \textsc{Zinc}, we used the given train, validation split, test split, and report the MAE over the test set. For the \textsc{Alchemy} and \textsc{QM9} datasets, we uniformly and at random sampled 80\% of the graphs for training, and 10\% for validation and testing, respectively. Moreover, following~\cite{Che+2020,Gil+2017}, we normalized the targets of the training split to zero mean and unit variance. We used a single model to predict all targets. Following~\cite{Kli+2020}, we report mean standardized MAE and mean standardized logMAE. We repeated each experiment five times (with different random splits in case of \textsc{Alchemy}) and report average scores and standard deviations.  Moreover, we use learning rate decay of $0.5$ with a patience parameter of $5$ with starting learning rate of $0.001$ and a minimum of $10^{-6}$.
+
+For the \textsc{QM9} dataset, we additionally used the \textsc{MPNN}~\cite{Gil+2017} architecture as a baseline, closely following the setup of~\cite{Gil+2017}. For the (\textsc{Gine-$\varepsilon$}  and the \textsc{MPNN} architecture, following~\citeauthor{Gil+2017}~\cite{Gil+2017}, we used a complete graph, computed pairwise $\ell_2$ distances based on the 3D-coordinates, and concatenated them to the edge features. We note here that our intent is not the beat state-of-the-art, physical knowledge-incorporating architectures, e.g., \textsf{DimeNet}~\cite{Kli+2020} or \textsf{Cormorant}~\cite{And+2019}, but to solely provide baseline scores. 
+
+All neural experiments were conducted on a workstation with four Nvidia Tesla V100 GPU cards with 32GB of GPU memory running Oracle Linux Server 7.7.
 
 \end{document}
 
