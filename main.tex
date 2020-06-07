@@ -270,7 +270,7 @@ The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning
 
 
 \begin{table*}[ht]\centering		
-	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
+	\caption{Classification accuracies in percent and standard deviations on small-scale datasets.}
 	\label{t2l}	
 	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
 		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
@@ -291,7 +291,7 @@ The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning
 	\end{tabular}}
 \end{table*}		
 \begin{table*}[t]\centering		
-	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
+	\caption{Classification accuracies in percent and standard deviations on mid-scale datasets.}
 	\label{t2ll}	
 	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
 		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
@@ -334,14 +334,14 @@ Recently, temporal graphs were considered by \citet{Oettershagen2019}, where edg
 \xhdr{Synthetic.}
 We also provide several synthetic graph datasets to demonstrate the strengths or weaknesses of specific methods. The datasets \textsc{SyntheticNew} and \textsc{SyntheticNew} were created by \citet{Fer+2013} (see Erratum) and \citet{Mor+2016}, respectively, to demonstrate the ability of kernels to operate on graphs with continuous attributes. \citet{Knyazev2019} introduced the datasets \textsc{Colors} and \textsc{Triangles}, where the task is to count the number of nodes with a given one-hot-encoded color and the number of triangles, respectively. 
 
-\xhdr{Baselines methods.} To provide meaningful baselines, we provide implementations of common graph kernel as well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel in \CPP and made them accessible through the Python interface of \textsc{TuDataset}, see the website for further details.  Moreover, all GNN architectures provided by \textsc{PyTorch Geometric} can be conveniently used as a baseline as well. 
+\xhdr{Baselines methods.} To provide meaningful baselines, we provide implementations of common graph kernel as well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel in \CPP and made them accessible through the Python interface of \textsc{TuDataset}.  Moreover, all GNN architectures provided by \textsc{PyTorch Geometric} can be conveniently used as a baseline as well. See~\cref{eval} for further details and example code.
 
 \xhdr{Evaluation methods.}\label{eval} To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNN approaches. All proposed methods and evaluation tools can be conveniently accessed from the Python interface, see the appendix for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{Kin+2015}. To compute classification accuracies, we propose to use $10$-fold cross-validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparameters, e.g., number of iterations, $C$ parameter, number of layers, feature dimension, \dots. Moreover, we repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each.). For the large-scale molecule learning tasks, we either use random splits (80\%/10\%/10\%) or provided, fixed splits and report MAE (mean std. MAE, mean std. logMAE for multi-target regression, see \cite{Kli+2020}) over five runs. 
 
 
 \begin{table}[]\centering	
 	\caption{Mean MAE (mean std. MAE, logMAE) on large-scale (multi-target) molecular regression tasks.\label{neural_short_tt}}
-	\resizebox{1.0\columnwidth}{!}{\renewcommand{\arraystretch}{1.1}
+	\resizebox{1.0\columnwidth}{!}{\renewcommand{\arraystretch}{1.2}
 		\begin{tabular}{lccc}	\toprule
 			\multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{2}{c}{\textbf{Dataset}}\\\cmidrule{2-4}
 			& {\textsc{Zinc}}     & {\textsc{alchemy}}   & {\textsc{Qm9}}   \\	\toprule
@@ -353,7 +353,7 @@ We also provide several synthetic graph datasets to demonstrate the strengths or
 
 \section{Experimental evaluation}
 
-Our intention here is to provide baseline experiments and compare graph kernels and GNNs. See the appendix for detailed experimental protocal. We used the following datasets, graph kernels, and GNN baselines.
+Our intent here is to provide baseline experiments and compare graph kernels and GNNs. See the appendix for detailed experimental protocal. We used the following datasets, graph kernels, and GNN baselines.
 
 \xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes}, \textsc{Imdb-Binary}, \textsc{Imdb-Multi}, \textsc{Mcf-7}, \textsc{Molt-4},	\textsc{NCI1}, \textsc{Proteins},
 \textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics.
@@ -370,7 +370,7 @@ For comparision with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu
 All results can be reproduced using the scripts provided at \url{www.github.com/XXX/XXX}.
 
 \subsection{Results and discussion}
-See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beating by the the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. On the molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architecture such as \textsc{MPNN} can signifcant gains over the generic \textsc{Gin-$\varepsilon$} baseline. 
+See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beaten by the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. On the molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architecture such as \textsc{MPNN} result in signifcant gains over the generic \textsc{Gin-$\varepsilon$} baseline. 
 
 
 
@@ -385,7 +385,7 @@ See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}
 
 \section{Conclusion}
 
-We gave an overview of the \textsc{TuDataset}, and reported on the results of an experimental study comparing graph kernels and GNNs on a subset of the data. We believe that our dataset collection will spark further progress in the area of graph represention learning. We are looking forward to adding more dataset to our collection, and are excited about contributions from the community, and reseachers and practitionors from other areas.
+We gave an overview of the \textsc{TuDataset}, and reported on the results of an experimental study comparing graph kernels and GNNs on a subset of the data. We believe that our dataset collection will spark further progress in the area of graph represention learning, are looking forward to adding more dataset, and are excited about contributions from the community, and reseachers and practitionors from other areas.
 
 
 \section{Acknowledgement}
@@ -401,12 +401,18 @@ We thank everybody who provided datasets to the  \textsc{TuDataset} dataset coll
 
 
 
-\section{Evaluation Method Examples}
+\section{Evaluation examples}
+
+\xhdr{Kernel with kernelized SVM}
 \lstinputlisting[language=Python]{example.py}
-\cm{Add linear svm and GNN example}
 
+\xhdr{Sparse feature maps with linear SVM}
+\lstinputlisting[language=Python]{example_sparse.py}
 
-\section{Experimental protocol and hyperparameters for \textsc{Zinc} and \textsc{Alchemy}}
+\xhdr{GNN evaluation}
+\lstinputlisting[language=Python]{example_gnn.py}
+
+\section{Experimental protocol and hyperparameters for \textsc{Zinc}, \textsc{Alchemy}, \textsc{QM9}}
 For the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}, we closely followed the hyperparameters found in~\cite{Dwi+2020} and~\cite{Che+2020}, respectively, for the (\textsc{Gine-$\varepsilon$} layers. That is, for \textsc{Zinc}, we used four (\textsc{Gine-$\varepsilon$} layers with a hidden dimension of 256 followed by batch norm and a $4$-layer MLP for the joint regression of the twelve targets, after applying mean pooling. For \textsc{Alchemy} and \textsc{QM9}, we used six layers with 64 (hidden) node features and a set2seq layer~\cite{Vin+2016} for graph-level pooling, followed by a $2$-layer MLP for the joint regression of the twelve targets.
 
 For \textsc{Zinc}, we used the given train, validation split, test split, and report the MAE over the test set. For the \textsc{Alchemy} and \textsc{QM9} datasets, we uniformly and at random sampled 80\% of the graphs for training, and 10\% for validation and testing, respectively. Moreover, following~\cite{Che+2020,Gil+2017}, we normalized the targets of the training split to zero mean and unit variance. We used a single model to predict all targets. Following~\cite{Kli+2020}, we report mean standardized MAE and mean standardized logMAE. We repeated each experiment five times (with different random splits in case of \textsc{Alchemy}) and report average scores and standard deviations.  Moreover, we use learning rate decay of $0.5$ with a patience parameter of $5$ with starting learning rate of $0.001$ and a minimum of $10^{-6}$.
