@@ -272,7 +272,7 @@ The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning
 \begin{table*}[ht]\centering		
 	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
 	\label{t2l}	
-	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{.9}
+	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
 		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
 			
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
@@ -293,7 +293,7 @@ The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
 	\label{t2ll}	
-	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{.9}
+	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
 		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
 			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Yeast}}           & {\textsc{github\_star.}}       & {\textsc{reddit\_threads}}      \\	\toprule
@@ -341,11 +341,12 @@ We also provide several synthetic graph datasets to demonstrate the strengths or
 
 \begin{table}[]\centering	
 	\caption{Mean MAE (mean std. MAE, logMAE) on large-scale (multi-target) molecular regression tasks.\label{neural_short_tt}}
-	\resizebox{.75\columnwidth}{!}{\renewcommand{\arraystretch}{1.0}
-		\begin{tabular}{lcc}	\toprule
-			\multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{2}{c}{\textbf{Dataset}}\\\cmidrule{2-3}
-			& {\textsc{Zinc}}     & {\textsc{alchemy}}   \\	\toprule
-			\textsc{Gine-$\varepsilon$}    & 0.084                                                                                                                                                                                                                                     \scriptsize $\pm 0.004$   &                                                                                                                                                                                                                                0.103 {\scriptsize $\pm 0.001$} -2.956 {\scriptsize $\pm 0.029$} \\	
+	\resizebox{1.0\columnwidth}{!}{\renewcommand{\arraystretch}{1.1}
+		\begin{tabular}{lccc}	\toprule
+			\multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{2}{c}{\textbf{Dataset}}\\\cmidrule{2-4}
+			& {\textsc{Zinc}}     & {\textsc{alchemy}}   & {\textsc{Qm9}}   \\	\toprule
+			\textsc{Gine-$\varepsilon$}    & 0.084                                                                                                                                                                                                                                     \scriptsize $\pm 0.004$   &                                                                                                                                                                                                                                0.103 {\scriptsize $\pm 0.001$} -2.956 {\scriptsize $\pm 0.029$} &  0.081 {\scriptsize $\pm 0.003$} -3.400 {\scriptsize $\pm  0.094 $}   \\
+			\textsc{MPNN}    & ---                                                                                                                                                                                                                                    & --- & 0.034 {\scriptsize $\pm 0.001$} {-4.156}{\scriptsize $\pm 0.030$}  \\		
 			\bottomrule
 	\end{tabular}}
 \end{table}		
@@ -366,12 +367,11 @@ All kernel experiments were conducted on a workstation with an \text{Intel Xeon 
 For comparision with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} and \textsc{Gin-$\varepsilon$-JK} with jumping knowledge networks as a neural baselines~\cite{Xu+2018}. For data with (continuous) edge features, we used a $2$-layer MLP to map them to the same number of components as the node features and combined them using summation (\textsc{Gine-$\varepsilon$} and \textsc{Gine-$\varepsilon$}-JK). We used mean pooling to pool the learned node embeddings to a graph embedding and used $2$-layer MLP for the final classification, using a dropout layer with $p = 0.5$ after the first layer of the MLP. We optimized the number of hidden units from $
 \{ 32, 64, 128\}$, the number of layers from $ \{1, 2, 3, 4, 5\}$ using the validation set. Moreover, we use learning rate decay of $0.5$ with a patience parameter of $5$ with starting learning rate of $0.01$ and a minimum of $10^{-6}$. For both methods, we used the evaluation procedute described in~\cref{eval} to optimize hyperparameters and compute accuracies. See the appendix for details on the hyperparameter and evaluation protocols used for the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}.
 
-
-
-All results can be reproduced using the scripts provided at \url{www.github.com/chrsmrrs/tudataset}.
+All results can be reproduced using the scripts provided at \url{www.github.com/XXX/XXX}.
 
 \subsection{Results and discussion}
-See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beating by the the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. 
+See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beating by the the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. On the molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architecture such as \textsc{MPNN} can signifcant gains over the generic \textsc{Gin-$\varepsilon$} baseline. 
+
 
 
 
@@ -390,7 +390,7 @@ We gave an overview of the \textsc{TuDataset}, and reported on the results of an
 
 \section{Acknowledgement}
 
-We thank everybody who provided datasets for \textsc{TuDataset}.
+We thank everybody who provided datasets to the  \textsc{TuDataset} dataset collection.
 
 \bibliography{bibliography}
 \bibliographystyle{icml2020}
@@ -411,7 +411,7 @@ For the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}, w
 
 For \textsc{Zinc}, we used the given train, validation split, test split, and report the MAE over the test set. For the \textsc{Alchemy} and \textsc{QM9} datasets, we uniformly and at random sampled 80\% of the graphs for training, and 10\% for validation and testing, respectively. Moreover, following~\cite{Che+2020,Gil+2017}, we normalized the targets of the training split to zero mean and unit variance. We used a single model to predict all targets. Following~\cite{Kli+2020}, we report mean standardized MAE and mean standardized logMAE. We repeated each experiment five times (with different random splits in case of \textsc{Alchemy}) and report average scores and standard deviations.  Moreover, we use learning rate decay of $0.5$ with a patience parameter of $5$ with starting learning rate of $0.001$ and a minimum of $10^{-6}$.
 
-For the \textsc{QM9} dataset, we additionally used the \textsc{MPNN}~\cite{Gil+2017} architecture as a baseline, closely following the setup of~\cite{Gil+2017}. For the (\textsc{Gine-$\varepsilon$}  and the \textsc{MPNN} architecture, following~\citeauthor{Gil+2017}~\cite{Gil+2017}, we used a complete graph, computed pairwise $\ell_2$ distances based on the 3D-coordinates, and concatenated them to the edge features. We note here that our intent is not the beat state-of-the-art, physical knowledge-incorporating architectures, e.g., \textsf{DimeNet}~\cite{Kli+2020} or \textsf{Cormorant}~\cite{And+2019}, but to solely provide baseline scores. 
+For the \textsc{QM9} dataset, we additionally used the \textsc{MPNN}~\cite{Gil+2017} architecture as a baseline, closely following the setup of~\cite{Gil+2017}. For the \textsc{Gine-$\varepsilon$}  and the \textsc{MPNN} architecture, following~\citeauthor{Gil+2017}~\cite{Gil+2017}, we used a complete graph, computed pairwise $\ell_2$ distances based on the 3D-coordinates, and concatenated them to the edge features. We note here that our intent is not the beat state-of-the-art, physical knowledge-incorporating architectures, e.g., \textsc{DimeNet}~\cite{Kli+2020} or \textsc{Cormorant}~\cite{And+2019}, but to solely provide baseline scores. 
 
 All neural experiments were conducted on a workstation with four Nvidia Tesla V100 GPU cards with 32GB of GPU memory running Oracle Linux Server 7.7.
 
