@@ -214,12 +214,12 @@
 
 
 
-\icmltitlerunning{TUDatasets}
+\icmltitlerunning{Anon}
 
 \begin{document}
 
 \twocolumn[
-\icmltitle{TUDataset: A collection of benchmark datasets for learning with graphs}
+\icmltitle{\texttt{Anon}Dataset: A collection of benchmark datasets for learning with graphs}
 \icmlsetsymbol{equal}{*}
 
 \begin{icmlauthorlist}
@@ -247,14 +247,14 @@
 %\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-Recently, there has been an increasing interest in (supervised) learning with graph data, especially using graph neural networks.  However, the development of meaningful benchmark datasets and standardized evaluation procedures is lagging. That is, most papers still evaluate their methods on small-scale datasets leading to high standard deviations and hard to interpret results, consequently hindering advancements in this area. To address this, we introduce the \textsc{TuDataset} for graph classification and regression. The dataset consists of over 120 datasets from a wide range of applications and varying sizes. We provide Python-based data loaders, kernel, and graph neural network baseline methods implementations, and evaluation tools. Here, we give an overview of the datasets, standardized evaluation procedures, and provide baseline experiments. All datasets are available at \url{www.graphlearning.io}. The experiments are fully reproducible from the code available at \url{www.github.com/chrsmrrs/tudatasets}.
+Recently, there has been an increasing interest in (supervised) learning with graph data, especially using graph neural networks.  However, the development of meaningful benchmark datasets and standardized evaluation procedures is lagging. That is, most papers still evaluate their methods on small-scale datasets leading to high standard deviations and hard to interpret results, consequently hindering advancements in this area. To address this, we introduce the \textsc{\texttt{Anon}} for graph classification and regression. The dataset consists of over 120 datasets from a wide range of applications and varying sizes. We provide Python-based data loaders, kernel, and graph neural network baseline methods implementations, and evaluation tools. Here, we give an overview of the datasets, standardized evaluation procedures, and provide baseline experiments. All datasets are available at \url{Anon}. The experiments are fully reproducible from the code available at \url{www.github.com/Anon}.
 \end{abstract}
 
 \section{Introduction}
 Graph-structured data is ubiquitous across application domains ranging from chemo- and bioinformatics~\cite{Barabasi2004,Sto+2020} to image~\cite{Sim+2017} and social network analysis~\cite{Eas+2010}. To develop successful machine learning models in these domains, we need techniques that can exploit the rich information inherent in the graph structure, as well as the feature information contained within nodes and edges. In recent years, numerous approaches have been proposed for machine learning with graphs---most notably, approaches based on graph \new{kernels}~\cite{Kri+2019} or using \new{graph neural networks} (GNNs)~\cite{Gil+2017}. However, most papers, even recent ones, evaluate newly proposed architectures or methods on a fixed set of small-scale benchmark datasets leading to high standard deviations and hard to interpret results. 
 
 \paragraph{Present work.} 
-Here, we give an overview of \textsc{TuDatasets}. The benchmark collection consists of over 120 datasets from a wide range of domains for supervised learning with graphs, i.e., classification and regression. All datasets are provided in a standard dataset format at \url{graphlearning.io} and are easily accessible from popular graph learning frameworks such as \textsc{Pytorch Geometric}~\cite{Fey+2019} and \textsc{DGL}~\cite{Wan+2019}. To facilitate standard comparison of kernel and neural approaches, we provide implementations of standard algorithms and easy-to-use evaluation procedures. Moreover, we report results on an experimental study comparing graph kernels and GNNs on a subset of the \textsc{TuDataset}.
+Here, we give an overview of \textsc{\texttt{Anon}}. The benchmark collection consists of over 120 datasets from a wide range of domains for supervised learning with graphs, i.e., classification and regression. All datasets are provided in a standard dataset format at \url{Anon} and are easily accessible from popular graph learning frameworks such as \textsc{Pytorch Geometric}~\cite{Fey+2019} and \textsc{DGL}~\cite{Wan+2019}. To facilitate standard comparison of kernel and neural approaches, we provide implementations of standard algorithms and easy-to-use evaluation procedures. Moreover, we report results on an experimental study comparing graph kernels and GNNs on a subset of the \textsc{\texttt{Anon}}.
 
 \xhdr{Related work.}
 There exist two main approaches to supervised learning with graphs, graph kernels and graph neural networks (GNNs). Graph kernels have been studied extensively in the past 15 years, see~\cite{Kri+2019} for a thorough overview. Important approaches include random-walk and shortest paths based kernels~\cite{Gae+2003,Sugiyama2015,Bor+2005,Kri+2017b}, as well as the Weisfeiler-Lehman subtree kernel~\cite{She+2011,Mor+2017}. 
@@ -262,9 +262,9 @@ Further recent works focus on assignment-based approaches~\cite{Kri+2016,Nik+201
 
 The papers~\cite{Fey+2019,Che+2019,Err+2019,Dwi+2020} evaluate GNNs using a unified evaluation procedure, however, they only use small- or medium scale datasets. Recently, \url{ogb.stanford.edu}~\cite{Hu+2020} launched, however, the provided datasets for graph classification focus on chemistry and bioinformatic applications, and the number is quite limited at this point. Moreover, the datasets proposed in~\cite{Fer+2019} focuses on instances from planning competitions. http://www.jmlr.org/papers/volume21/18-370/18-370.pdf
 
-\section{The TUDataset collection}
+\section{The \texttt{Anon}Dataset collection}
 
-The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning.io}. The data baseline methods and experimental evaluation tools can be installed by running \texttt{pip install tudatasets}. See the website for dataset statistics and documentation.
+The \texttt{Anon} contains over 120 datasets provided at \texttt{Anon}. The data baseline methods and experimental evaluation tools can be installed by running \texttt{pip install Anon}. See the website for dataset statistics and documentation.
 
 \subsection{Datasets}
 
@@ -314,14 +314,14 @@ Our collection of datasets covers graphs from various domains, contributed by di
 \xhdr{Small molecules.} 
 A common class of graph datasets consists of small molecules with class labels representing, e.g., toxicity or biological activity. Here, a graph encodes a molecule, i.e., nodes take the places of atoms and edges that of chemical bonds. Consequently, the labels encode atom and bond types, with possibly additional chemical attributes. The graph models differ, e.g., in whether hydrogen atoms are represented explicitly by nodes, and bonds in aromatic rings are annotated accordingly.
 
-Our collection contains small datasets commonly used in the early graph kernel literature such as \textsc{Mutag}~\cite{Deb+1991} and \textsc{Ptc}~\cite{Helma2001}, medium-sized datasets, e.g., \textsc{Nci1} and \textsc{Nci109}~\cite{Wal+2008,She+2011}, as well as several large datasets derived from the \textsc{Tox21 Challenge 2014} or \textsc{PubChem}~\cite{Kim2018}. This includes the eleven datasets from anticancer screen tests with different cancer cell lines used by~\citet{Yan2008} to demonstrate the efficacy of classifiers based on significant graph patterns. These datasets, the largest of which contain more than 79k graphs, are typically not balanced and contain far more small molecules that are identified as inactive against cancer cells. Moreover, our collection also contain large-scale molecular regression tasks such as \textsc{Alchemy}~\cite{Che+2020}, \textsc{Qm9}~\cite{Ram+2014}, and \textsc{ZINC}~\cite{Dwi+2020,Jin+2018a}. For the two formers, we also provide 3D coordinates, which are crucial to study rotation-invariant GNN architectures.
+Our collection contains small datasets commonly used in the early graph kernel literature such as \textsc{Mutag}~\cite{Deb+1991} and \textsc{Ptc}~\cite{Helma2001}, medium-sized datasets, e.g., \textsc{Nci1} and \textsc{Nci109}~\cite{Wal+2008,She+2011}, as well as several large datasets derived from the \textsc{Tox21 Challenge 2014} or \textsc{PubChem}~\cite{Kim2018}. This includes the eleven datasets from anticancer screen tests with different cancer cell lines used by~\citet{Yan2008} to demonstrate the efficacy of classifiers based on significant graph patterns. These datasets, the largest of which contain more than 79k graphs, are typically not balanced and contain far more small molecules that are identified as inactive against cancer cells. Moreover, our collection also contain large-scale molecular regression tasks such as \textsc{Alchemy}~\cite{Che+2020}, \textsc{Qm9}~\cite{Ram+2014}, and \textsc{Zinc}~\cite{Dwi+2020,Jin+2018a}. For the two formers, we also provide 3D coordinates, which are crucial to study rotation-invariant GNN architectures.
 
 \xhdr{Bioinformatics.}
 The datasets \textsc{DD}, \textsc{Enzymes} and \textsc{Proteins} represent macromolecules. \citet{Bor+2005a} introduced a graph model for proteins, where nodes represent secondary structure elements and are annotated by their type, i.e., helix, sheet, or turn, as well as several physical and chemical information. An edge connects two nodes if they are neighbors along the amino acid sequence or one of three nearest neighbors in space. Using this approach, the dataset \textsc{Enzymes} was derived from the \textsc{Brenda} database~\cite{Schomburg2004}. Here, the task is to assign enzymes to one of the 6 EC top-level classes, which reflect the catalyze chemical reaction. Similarly, the dataset \textsc{Proteins} was derived from \citep{Dob+2003}, and the task is to predict whether a protein is an enzyme. The dataset \textsc{DD} used by \citet{She+2011} is based on the same data but contains graphs, where nodes represent individual amino acids and edges their spatial proximity.
 
 
 \xhdr{Computer vision.}
-Graph-based methods are widely used in computer vision for various tasks using diverse graph models. Our collection provides several datasets originating from the \emph{IAM Graph Database}~\citep{Riesen2008} such as \textsc{Letter} and \textsc{Fingerprint}. Other datasets represent \textsc{Cuneiform} signs~\citep{Kriege2018}, 3D point clouds for robot grasping tasks (\textsc{FirstMM\_DB}) and semantic image processing (\textsc{Msrc})~\cite{Neu+2016}.
+Graph-based methods are widely used in computer vision for various tasks using diverse graph models. Our collection provides several datasets originating from the \textsc{IAM Graph Database}~\citep{Riesen2008} such as \textsc{Letter} and \textsc{Fingerprint}. Other datasets represent \textsc{Cuneiform} signs~\citep{Kriege2018}, 3D point clouds for robot grasping tasks (\textsc{FirstMM\_DB}) and semantic image processing (\textsc{Msrc})~\cite{Neu+2016}.
 
 \xhdr{Social networks.}
 \citet{Yan+2015a} introduced several graph classification datasets derived from social networks. In the \textsc{Reddit} datasets, each graph represents a discussion thread, where nodes correspond to users, two of which are connected by an edge if one responded to a comment of the other. This graph model is used to derive several datasets, where the classification task is to distinguish either discussion-based and question/answer-based subreddits (\textsc{Reddit-Binary}) or predict the subreddit, where the thread was posted (\textsc{Reddit-Multi-5K} and \textsc{Reddit-Multi-12K}). \textsc{Collab} are datasets derived from scientific collaboration networks. Each graph is the ego-network of a researcher, and the task is to predict his research field, i.e., high energy, condensed matter, or astrophysics. Similarly, the \textsc{Imdb} datasets consist of ego-networks derived from actor collaborations, and the task is to predict the genre, e.g.,  Action vs.\@ Romance.
@@ -334,7 +334,7 @@ Recently, temporal graphs were considered by \citet{Oettershagen2019}, where edg
 \xhdr{Synthetic.}
 We also provide several synthetic graph datasets to demonstrate the strengths or weaknesses of specific methods. The datasets \textsc{SyntheticNew} and \textsc{SyntheticNew} were created by \citet{Fer+2013} (see Erratum) and \citet{Mor+2016}, respectively, to demonstrate the ability of kernels to operate on graphs with continuous attributes. \citet{Knyazev2019} introduced the datasets \textsc{Colors} and \textsc{Triangles}, where the task is to count the number of nodes with a given one-hot-encoded color and the number of triangles, respectively. 
 
-\xhdr{Baselines methods.} To provide meaningful baselines, we provide implementations of common graph kernel as well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel in \CPP and made them accessible through the Python interface of \textsc{TuDataset}.  Moreover, all GNN architectures provided by \textsc{PyTorch Geometric} can be conveniently used as a baseline as well. See~\cref{eval} for further details and example code.
+\xhdr{Baselines methods.} To provide meaningful baselines, we provide implementations of common graph kernel as well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel in \CPP and made them accessible through the Python interface of \textsc{\texttt{Anon}}.  Moreover, all GNN architectures provided by \textsc{PyTorch Geometric} can be conveniently used as a baseline as well. See~\cref{eval} for further details and example code.
 
 \xhdr{Evaluation methods.}\label{eval} To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNN approaches. All proposed methods and evaluation tools can be conveniently accessed from the Python interface, see the appendix for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{Kin+2015}. To compute classification accuracies, we propose to use $10$-fold cross-validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparameters, e.g., number of iterations, $C$ parameter, number of layers, feature dimension, \dots. Moreover, we repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each.). For the large-scale molecule learning tasks, we either use random splits (80\%/10\%/10\%) or provided, fixed splits and report MAE (mean std. MAE, mean std. logMAE for multi-target regression, see \cite{Kli+2020}) over five runs. 
 
@@ -350,47 +350,34 @@ We also provide several synthetic graph datasets to demonstrate the strengths or
 			\bottomrule
 	\end{tabular}}
 \end{table}		
-
 \section{Experimental evaluation}
 
-Our intent here is to provide baseline experiments and compare graph kernels and GNNs. See the appendix for detailed experimental protocal. We used the following datasets, graph kernels, and GNN baselines.
+Our intent here is to provide baseline experiments and compare graph kernels and GNNs. We used the following datasets, graph kernels, and GNN baselines.
 
-\xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes}, \textsc{Imdb-Binary}, \textsc{Imdb-Multi}, \textsc{Mcf-7}, \textsc{Molt-4},	\textsc{NCI1}, \textsc{Proteins},
-\textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics.
+\xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes}, \textsc{Imdb-Binary}, \textsc{Imdb-Multi}, \textsc{Mcf-7}, \textsc{Molt-4},    \textsc{NCI1}, \textsc{Proteins},
+\textsc{Reddit-Binary},    \textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics.
 
 
-\xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016} included in the \textsc{TUDataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL} and \textsc{WL-OA} were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
+\xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016} included in the \textsc{\texttt{Anon}} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL} and \textsc{WL-OA} were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
 
 All kernel experiments were conducted on a workstation with an \text{Intel Xeon E5-2690v4} with 2.60\si GHz and 384\si GB of RAM running \text{Ubuntu 16.04.6 LTS} using a single core. Moreover, we used the GNU \CC Compiler 5.5.0 with the flag \texttt{--O2}. 
 
 \xhdr{GNNs.} 
-For comparision with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} and \textsc{Gin-$\varepsilon$-JK} with jumping knowledge networks as a neural baselines~\cite{Xu+2018}. For data with (continuous) edge features, we used a $2$-layer MLP to map them to the same number of components as the node features and combined them using summation (\textsc{Gine-$\varepsilon$} and \textsc{Gine-$\varepsilon$}-JK). We used mean pooling to pool the learned node embeddings to a graph embedding and used $2$-layer MLP for the final classification, using a dropout layer with $p = 0.5$ after the first layer of the MLP. We optimized the number of hidden units from $
-\{ 32, 64, 128\}$, the number of layers from $ \{1, 2, 3, 4, 5\}$ using the validation set. Moreover, we use learning rate decay of $0.5$ with a patience parameter of $5$ with starting learning rate of $0.01$ and a minimum of $10^{-6}$. For both methods, we used the evaluation procedute described in~\cref{eval} to optimize hyperparameters and compute accuracies. See the appendix for details on the hyperparameter and evaluation protocols used for the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}.
+For comparison with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} and \textsc{Gin-$\varepsilon$-JK} with jumping knowledge networks as neural baselines~\cite{Xu+2018}. For data with (continuous) edge features, we used a $2$-layer MLP to map them to the same number of components as the node features and combined them using summation (\textsc{Gine-$\varepsilon$} and \textsc{Gine-$\varepsilon$}-JK). We used mean pooling to pool the learned node embeddings to a graph embedding and used $2$-layer MLP for the final classification, using a dropout layer with $p = 0.5$ after the first layer of the MLP. We optimized the number of hidden units from $
+\{ 32, 64, 128\}$, the number of layers from $ \{1, 2, 3, 4, 5\}$ using the validation set. Moreover, we use a learning rate decay of $0.5$ with a patience parameter of $5$ with a starting learning rate of $0.01$ and a minimum of $10^{-6}$. For both methods, we used the evaluation procedure described in~\cref{eval} to optimize hyperparameters and compute accuracies. See the appendix for details on the hyperparameter and evaluation protocols used for the larger molecular regression tasks, \textsc{Zinc}, \textsc{Alchemy},  \textsc{QM9}.
 
-All results can be reproduced using the scripts provided at \url{www.github.com/XXX/XXX}.
+All results can be are reproducable using the scripts provided at \url{www.github.com/Anon}.
 
 \subsection{Results and discussion}
 See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beaten by the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. On the molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architecture such as \textsc{MPNN} result in signifcant gains over the generic \textsc{Gin-$\varepsilon$} baseline. 
 
-
-
-
-
-
-
-
-
-
-
-
 \section{Conclusion}
 
-We gave an overview of the \textsc{TuDataset}, and reported on the results of an experimental study comparing graph kernels and GNNs on a subset of the data. We believe that our dataset collection will spark further progress in the area of graph represention learning, are looking forward to adding more dataset, and are excited about contributions from the community, and reseachers and practitionors from other areas.
-
+We gave an overview of the \textsc{\texttt{Anon}}, and reported on the results of an experimental study comparing graph kernels and GNNs on a subset of the data. We believe that our dataset collection will spark further progress in graph representation learning. We are looking forward to adding more datasets and are excited about contributions from the community, researchers, and practitioners from other areas.
 
 \section{Acknowledgement}
 
-We thank everybody who provided datasets to the  \textsc{TuDataset} dataset collection.
+We thank everybody who provided datasets to the  \textsc{\texttt{Anon}} dataset collection.
 
 \bibliography{bibliography}
 \bibliographystyle{icml2020}
