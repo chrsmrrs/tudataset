@@ -214,7 +214,7 @@
 
 
 
-\icmltitlerunning{TUD Datasets}
+\icmltitlerunning{TUDatasets}
 
 \begin{document}
 
@@ -260,13 +260,54 @@ Here, we give an overview of \textsc{TuDatasets}. The benchmark collection consi
 There exist two main approaches to supervised learning with graphs, graph kernels and graph neural networks (GNNs). Graph kernels have been studied extensively in the past 15 years, see~\cite{Kri+2019} for a thorough overview. Important approaches include random-walk and shortest paths based kernels~\cite{Gae+2003,Sugiyama2015,Bor+2005,Kri+2017b}, as well as the Weisfeiler-Lehman subtree kernel~\cite{She+2011,Mor+2017}. 
 Further recent works focus on assignment-based approaches~\cite{Kri+2016,Nik+2017}, spectral approaches~\cite{Kon+2016}, and graph decomposition approaches~\cite{Nik+2018}, randomized binning approaches~\cite{Hei+2019}, and the extension of kernels based on the Weisfeiler-Leman algorithm~\cite{Tog+2019, Rie+2019}. For a theoretical investigation of graph kernels, see~\cite{Kri+2018}. Recently, graph neural networks (GNNs)~\cite{Gil+2017,Sca+2009} emerged as an alternative to graph kernels. Notable instances of this architecture include, e.g.,~\cite{Duv+2015,Ham+2017,Vel+2018}, and the spectral approaches proposed in, e.g.,~\cite{Bru+2014,Def+2015,Kip+2017,Mon+2017}---all of which descend from early work in~\cite{Kir+1995,Mer+2005,Spe+1997,Sca+2009}. A survey of recent advancements in GNN techniques can be found, e.g., in~\cite{Cha+2020,Wu+2019,Zho+2018}.
 
-The papers~\cite{Fey+2019,Che+2019,Err+2019,Dwi+2020} evaluate GNNs using a unified evaluation procedure, however, they only use small- or medium scale datasets. Recently, \url{ogb.stanford.edu}~\cite{Hu+2020} launched, however, the provided datasets for graph classification focus on chemistry and bioinformatic applications, and the number is quite limited at this point. Moreover, the datasets proposed in~\cite{Fer+2019} focuses on instances from planning competitions.
+The papers~\cite{Fey+2019,Che+2019,Err+2019,Dwi+2020} evaluate GNNs using a unified evaluation procedure, however, they only use small- or medium scale datasets. Recently, \url{ogb.stanford.edu}~\cite{Hu+2020} launched, however, the provided datasets for graph classification focus on chemistry and bioinformatic applications, and the number is quite limited at this point. Moreover, the datasets proposed in~\cite{Fer+2019} focuses on instances from planning competitions. http://www.jmlr.org/papers/volume21/18-370/18-370.pdf
 
 \section{The TUDataset collection}
 
 The \textsc{TuDataset} contains over 120 datasets provided at \url{graphlearning.io}. The data baseline methods and experimental evaluation tools can be installed by running \texttt{pip install tudatasets}. See the website for dataset statistics and documentation.
 
 \subsection{Datasets}
+
+
+\begin{table*}[ht]\centering		
+	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
+	\label{t2l}	
+	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{.9}
+		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
+			
+			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
+			& & {\textsc{Enyzmes}}         &  {\textsc{Imdb-Binary}}      & {\textsc{Imdb-Multi}}           & {\textsc{NCI1}}       & {\textsc{Proteins}}           & {\textsc{Reddit-Binary}}     \\	\toprule
+			
+			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &   $52.3$ \scriptsize $\pm 0.7 \pm 6.7 $       & $72.6$ \scriptsize $\pm  0.6 \pm 4.1$ &  $50.3$ \scriptsize $\pm 0.8 \pm  3.8 $ & $84.5$ \scriptsize $\pm 0.3 \pm 1.7$ & $72.8$ \scriptsize $\pm 0.8 \pm  3.9 $ & $73.9$ \scriptsize $\pm 0.6 \pm 3.2$  \\
+			%				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+			%				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
+			& \text{WLOA} & $58.4$ \scriptsize $\pm 2.0 \pm 7.4$       &  $73.2$ \scriptsize $\pm 0.8 \pm 3.8$ & $49.4$ \scriptsize $\pm 0.3 \pm 3.6 $ & $85.4$ \scriptsize $\pm  0.2 \pm 1.4$ & $73.2$ \scriptsize $\pm 0.6 \pm 3.5$ & $88.4$ \scriptsize $\pm 0.4 \pm 2.1 $   \\
+			& \text{GR}            &    $30.1$ \scriptsize $\pm 0.8 \pm 6.0$       & $59.0$ \scriptsize $\pm 0.9 \pm 5.7$ & $39.6$ \scriptsize $\pm 0.5 \pm 3.6  $ & $66.2$ \scriptsize $\pm 0.2\pm 2.2$ & $71.4$ \scriptsize $\pm 0.6\pm 4.4 $ & $60.0$ \scriptsize $\pm 0.2 \pm  2.7$   \\
+			& \text{SP}            & $40.5$  \scriptsize $\pm 1.6 \pm 6.2$       & $58.7$ \scriptsize $\pm 0.9 \pm 4.6 $ & $39.5$ \scriptsize $\pm 0.9 \pm 4.2$ & $74.5$ \scriptsize $\pm 0.4\pm 2.2 $  &$75.9$ \scriptsize $\pm 0.6 \pm 4.0$ & $84.6$ \scriptsize $\pm0.2\pm 0.4 $  \\
+			\cmidrule{2-8}	
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \textsc{Gin-$\varepsilon$}   &   \scriptsize $\pm \pm $       & $72.4$ \scriptsize $\pm 0.6\pm 4.0 $ &  $49.7$ \scriptsize $\pm 0.2 \pm  3.9$ & $79.0$ \scriptsize $\pm  0.5 \pm 1.9 $ &  $71.3$ \scriptsize $\pm 0.4 \pm 4.0$ & $90.0$ \scriptsize $\pm 0.6 \pm 1.7 $   \\
+			& \textsc{Gin-$\varepsilon$-JK} &     \scriptsize $\pm \pm $       & $73.4$ \scriptsize $\pm 0.6\pm 4.4$ & $50.6$ \scriptsize $\pm 0.5 \pm 4.2 $ & $79.1$ \scriptsize $\pm  0.2 \pm 1.5 $ & $72.4$ \scriptsize $\pm 0.6 \pm 1.7 $ & $90.6$ \scriptsize $\pm 0.2 \pm  2.2$   \\
+			\bottomrule
+	\end{tabular}}
+\end{table*}		
+\begin{table*}[t]\centering		
+	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
+	\label{t2l}	
+	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{.9}
+		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
+			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
+			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Yeast}}           & {\textsc{github\_star.}}       & {\textsc{reddit\_threads}}      \\	\toprule
+			\multirow{3}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}    & 
+			$94.5$ \scriptsize $<0.1 \pm 0.4$  &$94.6$ \scriptsize $\pm 0.1  \pm 0.3$ & $89.2$ \scriptsize $\pm 0.1 \pm 0.4$ &  $63.9$ \scriptsize $\pm 0.1\pm 1.3$ &$77.0$ \scriptsize $<0.1 \pm 0.3$  \\
+			
+			& \text{GR}            & $91.7$  \scriptsize $<0.1  \pm 0.5 $       & $92.1$ \scriptsize $<0.1 \pm 0.4$ & $88.2$ \scriptsize $<0.1  \pm 0.4$ &  $53.5$ \scriptsize $<0.1 \pm 1.3$ & $51.2$ \scriptsize $<0.1 \pm 0.4$  \\  
+			& \text{SP}             &  $91.7$  \scriptsize $<0.1 \pm 0.4 $       &$92.1$  \scriptsize $<0.1 \pm 0.4 $ & $88.2$ \scriptsize $<0.1  \pm 0.4$ & $64.1$ \scriptsize $\pm 0.1\pm 1.4$ & $77.3$ \scriptsize $<0.1 \pm 0.3$  \\   
+			\cmidrule{2-7}	
+			\multirow{2}{*}{\rotatebox{90}{GNN}}	&  \textsc{Gine-$\varepsilon$}         &  $92.0$ \scriptsize $\pm  0.1 \pm 0.6$       & $92.3$ \scriptsize $\pm 0.1 \pm 0.6$ & 88.3 \scriptsize $<0.1 \pm 0.3$ &  $67.1$ \scriptsize $\pm 0.5 \pm 1.6  $ & $77.2$ \scriptsize $<0.1  \pm 0.3$ \\
+			& \textsc{Gine-$\varepsilon$-JK}   &   $91.8$ \scriptsize $<0.1 \pm 0.5$       & $92.2$ \scriptsize $<0.1 \pm 0.5$ & 88.2  \scriptsize $<0.1 \pm 0.3$ & $67.2$ \scriptsize $\pm 0.4 \pm 1.3$ &  $77.3$  \scriptsize $<0.1 \pm 0.3 $  \\
+			\bottomrule
+	\end{tabular}}
+\end{table*}
 
 Our collection of datasets covers graphs from various domains, contributed by different authors. Therefore, they differ regarding the used graph model even within the same domain and the provided annotations, e.g., discrete or continuous node and edge attributes. Here, we give an overview of some representative domains and graph models.
 
@@ -293,33 +334,41 @@ Recently, temporal graphs were considered by \citet{Oettershagen2019}, where edg
 \xhdr{Synthetic.}
 We also provide several synthetic graph datasets to demonstrate the strengths or weaknesses of specific methods. The datasets \textsc{SyntheticNew} and \textsc{SyntheticNew} were created by \citet{Fer+2013} (see Erratum) and \citet{Mor+2016}, respectively, to demonstrate the ability of kernels to operate on graphs with continuous attributes. \citet{Knyazev2019} introduced the datasets \textsc{Colors} and \textsc{Triangles}, where the task is to count the number of nodes with a given one-hot-encoded color and the number of triangles, respectively. 
 
-\subsection{Baselines Methods}
+\xhdr{Baselines methods.} To provide meaningful baselines, we provide implementations of common graph kernel as well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel in \CPP and made them accessible through the Python interface of \textsc{TuDataset}, see the website for further details.  Moreover, all GNN architectures provided by \textsc{PyTorch Geometric} can be conveniently used as a baseline as well. 
 
-To provide meaningful baselines, we provide implementations of common graph kernel as well as GNNs baselines. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment}~\cite{Kri+2016} kernel in \CPP and made them accessible through the Python interface of \textsc{TuDataset}, see the website for further details.  Moreover, all GNN architectures provided by \textsc{PyTorch Geometric} can be conveniently used as a baseline as well. 
+\xhdr{Evaluation methods.}\label{eval} To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNN approaches. All proposed methods and evaluation tools can be conveniently accessed from the Python interface, see the appendix for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{Kin+2015}. To compute classification accuracies, we propose to use $10$-fold cross-validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparameters, e.g., number of iterations, $C$ parameter, number of layers, feature dimension, \dots. Moreover, we repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each.). For the large-scale molecule learning tasks, we either use random splits (80\%/10\%/10\%) or provided, fixed splits and report MAE (mean std. MAE, mean std. logMAE for multi-target regression, see \cite{Kli+2020}) over five runs. 
 
-\subsection{Evaluation Methods}\label{eval}
 
-To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNN approaches. All proposed methods and evaluation tools can be conveniently accessed from the Python interface, see the appendix for further details. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{Kin+2015}. To compute classification accuracies, we propose to use $10$-fold cross-validation, where we select a validation set uniformly at random from each training fold ($10\%$ of the training fold), to select hyperparameters, e.g., number of iterations, $C$ parameter, number of layers, feature dimension, \dots. Moreover, we repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each.). For the large-scale molecule learning tasks, we either use random splits (80\%/10\%/10\%) or provided, fixed splits and report MAE (mean std. MAE, mean std. logMAE for multi-target regression, see \cite{Kli+2020}) over five runs. 
+\begin{table}[]\centering	
+	\caption{Mean MAE (mean std. MAE, logMAE) on large-scale (multi-target) molecular regression tasks.\label{neural_short_tt}}
+	\resizebox{.75\columnwidth}{!}{\renewcommand{\arraystretch}{1.0}
+		\begin{tabular}{lcc}	\toprule
+			\multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{2}{c}{\textbf{Dataset}}\\\cmidrule{2-3}
+			& {\textsc{Zinc}}     & {\textsc{alchemy}}   \\	\toprule
+			\textsc{Gine-$\varepsilon$}    & 0.084                                                                                                                                                                                                                                     \scriptsize $\pm 0.004$   &                                                                                                                                                                                                                                0.103 {\scriptsize $\pm 0.001$} -2.956 {\scriptsize $\pm 0.029$} \\	
+			\bottomrule
+	\end{tabular}}
+\end{table}		
 
 \section{Experimental evaluation}
 
-Our intention here is to provide baseline experiments and compare graph kernels and GNNs
-\subsection{Experimental protocol}
-We used the following datasets, graph kernels, and GNN baselines.
+Our intention here is to provide baseline experiments and compare graph kernels and GNNs. See the appendix for detailed experimental protocal. We used the following datasets, graph kernels, and GNN baselines.
 
-\xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes},
-\textsc{Imdb-BINARY}, \textsc{Imdb-MULTI}, \textsc{Mcf-7}, \textsc{Molt-4},	\textsc{Nci1}, \textsc{Proteins},
-\textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257}. See the website for dataset statistics.
-\cm{ZINC ALche}
+\xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes}, \textsc{Imdb-Binary}, \textsc{Imdb-Multi}, \textsc{Mcf-7}, \textsc{Molt-4},	\textsc{NCI1}, \textsc{Proteins},
+\textsc{Reddit-Binary},	\textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics.
 
-\paragraph{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016}, and $\delta$-$2$-LWL$^+$ kernel~\cite{Mor+2019b} included in the \textsc{TUD Dataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL}, \textsc{WL-OA}, and the  $\delta$-$2$-LWL$^+$ were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}\cm{Cite sklearn}
 
-\paragraph{GNNs.} We used the GNN architectures \textsc{GCN}~\cite{Kip+2017}, \textsc{Sage}~\cite{Ham+2017}, \textsc{Gin} and \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} as neural baselines. For all experiments, we used the global mean operator to obtain graph-level outputs. For each dataset, we optimize the number of hidden units from $
-\{16, 32, 64, 128\}$, the number of layers from $ \{2, 3, 4, 5\}$ and the learning rate from $ \{0.0001, 0.001, 0.01 \}$ with respect to the validation set. The batch size was fixed to $128$.\cm{change this }
+\xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016} included in the \textsc{TUDataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL}, \textsc{WL-OA}, and the  $\delta$-$2$-LWL$^+$ were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
 
-For both methods, we used the evaluation procecude described in~\cref{eval} to optimize hyperparameters and compute accuracies. All experiments can be reproduced using the scripts provided at \url{XXX}.
+All kernel experiments were conducted on a workstation with an \text{Intel Xeon E5-2690v4} with 2.60\si GHz and 384\si GB of RAM running \text{Ubuntu 16.04.6 LTS} using a single core. Moreover, we used the GNU \CC Compiler 5.5.0 with the flag \texttt{--O2}. 
 
-\cm{Add regression}
+\xhdr{GNNs.} 
+For comparision with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} and \textsc{Gin-$\varepsilon$-JK} with jumping knowledge networks as a neural baselines~\cite{Xu+2018}. For data with (continuous) edge features, we used a $2$-layer MLP to map them to the same number of components as the node features and combined them using summation (\textsc{Gine-$\varepsilon$} and \textsc{Gine-$\varepsilon$}-JK). We used mean pooling to pool the learned node embeddings to a graph embedding and used $2$-layer MLP for the final classification, using a dropout layer with $p = 0.5$ after the first layer of the MLP. We optimized the number of hidden units from $
+\{ 32, 64, 128\}$, the number of layers from $ \{1, 2, 3, 4, 5\}$ using the validation set. Moreover, we use learning rate decay of $0.5$ with a patience parameter of $5$ with starting learning rate of $0.01$ and a minimum of $10^{-6}$. For both methods, we used the evaluation procedute described in~\cref{eval} to optimize hyperparameters and compute accuracies. See the appendix for details on the hyperparameter and evaluation protocols used for the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}.
+
+
+
+All results can be reproduced using the scripts provided at \url{www.github.com/chrsmrrs/tudataset}.
 
 \subsection{Results and discussion}
 See~\cref{t2l}.
@@ -328,72 +377,9 @@ See~\cref{t2l}.
 
 
 
-\begin{table*}[t]\centering		
-	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
-	\label{t2l}	
-	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
-		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
-			
-			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
-			& & {\textsc{Enyzmes}}         &  {\textsc{Imdb-Binary}}      & {\textsc{Imdb-Multi}}           & {\textsc{NCI1}}       & {\textsc{Proteins}}           & {\textsc{Reddit-Binary}}     \\	\toprule
-
-			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &   $52.3$ \scriptsize $\pm 0.7 \pm 6.7 $       & $72.6$ \scriptsize $\pm  0.6 \pm 4.1$ &  $50.3$ \scriptsize $\pm 0.8 \pm  3.8 $ & $84.5$ \scriptsize $\pm 0.3 \pm 1.7$ & $72.8$ \scriptsize $\pm 0.8 \pm  3.9 $ & $73.9$ \scriptsize $\pm 0.6 \pm 3.2$  \\
-%				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
-%				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
-				& \text{WLOA} & $58.4$ \scriptsize $\pm 2.0 \pm 7.4$       &  $73.2$ \scriptsize $\pm 0.8 \pm 3.8$ & $49.4$ \scriptsize $\pm 0.3 \pm 3.6 $ & $85.4$ \scriptsize $\pm  0.2 \pm 1.4$ & $73.2$ \scriptsize $\pm 0.6 \pm 3.5$ & $88.4$ \scriptsize $\pm 0.4 \pm 2.1 $   \\
-				& \text{GR}            &    $30.1$ \scriptsize $\pm 0.8 \pm 6.0$       & $59.0$ \scriptsize $\pm 0.9 \pm 5.7$ & $39.6$ \scriptsize $\pm 0.5 \pm 3.6  $ & $66.2$ \scriptsize $\pm 0.2\pm 2.2$ & $71.4$ \scriptsize $\pm 0.6\pm 4.4 $ & $60.0$ \scriptsize $\pm 0.2 \pm  2.7$   \\
-				& \text{SP}            & $40.5$  \scriptsize $\pm 1.6 \pm 6.2$       & $58.7$ \scriptsize $\pm 0.9 \pm 4.6 $ & $39.5$ \scriptsize $\pm 0.9 \pm 4.2$ & $74.5$ \scriptsize $\pm 0.4\pm 2.2 $  &$75.9$ \scriptsize $\pm 0.6 \pm 4.0$ & $84.6$ \scriptsize $\pm0.2\pm 0.4 $  \\
-			\cmidrule{2-8}	
-			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \text{GINE-$\varepsilon$}   &   \scriptsize $\pm \pm $       & $72.4$ \scriptsize $\pm 0.6\pm 4.0 $ &  $49.7$ \scriptsize $\pm 0.2 \pm  3.9$ & $79.0$ \scriptsize $\pm  0.5 \pm 1.9 $ &  $71.3$ \scriptsize $\pm 0.4 \pm 4.0$ & $90.0$ \scriptsize $\pm 0.6 \pm 1.7 $   \\
-		& \text{GINE-$\varepsilon$-JK} &     \scriptsize $\pm \pm $       & $73.4$ \scriptsize $\pm 0.6\pm 4.4$ & $50.6$ \scriptsize $\pm 0.5 \pm 4.2 $ & $79.1$ \scriptsize $\pm  0.2 \pm 1.5 $ & $72.4$ \scriptsize $\pm 0.6 \pm 1.7 $ & $90.6$ \scriptsize $\pm 0.2 \pm  2.2$   \\
-		\bottomrule
-	\end{tabular}}
-\end{table*}		
 
 
 
-\begin{table*}[t]\centering		
-	\caption{Classification accuracies in percent and standard deviations,  \textsc{OOT}--- Computation did not finish within one day, \textsc{OOM}--- Out of memory.}
-	\label{t2l}	
-	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
-		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
-			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
-			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Yeast}}           & {\textsc{github\_stargazers}}       & {\textsc{reddit\_threads}}      \\	\toprule
-							\multirow{3}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}    & 
-							   $94.5$ \scriptsize $<0.1 \pm 0.4$  &$94.6$ \scriptsize $\pm 0.1  \pm 0.3$ & $89.2$ \scriptsize $\pm 0.1 \pm 0.4$ &  $63.9$ \scriptsize $\pm 0.1\pm 1.3$ &$77.0$ \scriptsize $<0.1 \pm 0.3$  \\
-		
-			& \text{GR}            & $91.7$  \scriptsize $<0.1  \pm 0.5 $       & $92.1$ \scriptsize $<0.1 \pm 0.4$ & $88.2$ \scriptsize $<0.1  \pm 0.4$ &  $53.5$ \scriptsize $<0.1 \pm 1.3$ & $51.2$ \scriptsize $<0.1 \pm 0.4$  \\  
-			& \text{SP}             &  $91.7$  \scriptsize $<0.1 \pm 0.4 $       &$92.1$  \scriptsize $<0.1 \pm 0.4 $ & $88.2$ \scriptsize $<0.1  \pm 0.4$ & $64.1$ \scriptsize $\pm 0.1\pm 1.4$ & $77.3$ \scriptsize $<0.1 \pm 0.3$  \\   
-			\cmidrule{2-7}	
-	\multirow{2}{*}{\rotatebox{90}{GNN}}	&  \text{GIN-E-$\varepsilon$}         &  $92.0$ \scriptsize $\pm  0.1 \pm 0.6$       & $92.3$ \scriptsize $\pm 0.1 \pm 0.6$ & \scriptsize $\pm \pm$ &  $67.1$ \scriptsize $\pm 0.5 \pm 1.6  $ & $77.2$ \scriptsize $<0.1  \pm 0.3$ \\
-	& \text{GINE-$\varepsilon$-JK}   &   $91.8$ \scriptsize $<0.1 \pm 0.5$       & $92.2$ \scriptsize $<0.1 \pm 0.5$ & \scriptsize $\pm \pm$ & $67.2$ \scriptsize $\pm 0.4 \pm 1.3$ &  $77.3$  \scriptsize $<0.1 \pm 0.3 $  \\
-\bottomrule
-	\end{tabular}}
-\end{table*}
-
-Yeast GINE 88.31840671346515 0.003881831878911156 0.32166787163196536
-Yeast GINEWithJK 88.18231308533625 0.04015610969845854 0.3325038752499045
-
-
-
-\begin{table}[t]\centering	
-	\cm{Maybe add qm9}	
-	\caption{Results for neural and kernel baselines.}
-	\label{t2l}	
-	\resizebox{0.55\columnwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
-		\begin{tabular}{@{}c <{\enspace}@{}lcc@{}}	\toprule
-			
-			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{2}{c}{\textbf{Dataset}}\\\cmidrule{3-4}
-			&  & {\textsc{Zinc}}         &  {\textsc{Alchemy}}         \\	
-			\toprule
-			\multirow{3}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}             &      \scriptsize $$ &  \scriptsize $$  \\  
-				& \text{GR}            &\scriptsize $ $ &  \scriptsize $ $  \\  
-			& \text{SP}             &   \scriptsize $ $  &  \scriptsize $ $ \\   
-			\cmidrule{2-4}
-			\multirow{2}{*}{\rotatebox{90}{}} & \text{$1$-GNN-E}             &   \scriptsize $\pm $  & \scriptsize $\pm   $		\\	
-			\bottomrule
-	\end{tabular}}
-\end{table}		
 
 
 
@@ -412,9 +398,18 @@ We thank everybody who provided datasets for \textsc{TuDataset}.
 \appendix
 
 \onecolumn
+
+
+
 \section{Evaluation Method Examples}
 \lstinputlisting[language=Python]{example.py}
 \cm{Add linear svm and GNN example}
+
+
+\section{Experimental protocol and hyperparameters for \textsc{Zinc} and \textsc{Alchemy}}
+For the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}, we closely followed the hyperparameters found in~\cite{Dwi+2020} and~\cite{Che+2020}, respectively, for the (\textsc{Gine-$\varepsilon$} layers. That is, for \textsc{Zinc}, we used four (\textsc{Gine-$\varepsilon$} layers with a hidden dimension of 256 followed by batch norm and a $4$-layer MLP for the joint regression of the twelve targets, after applying mean pooling. For \textsc{Alchemy} and \textsc{QM9}, we used six layers with 64 (hidden) node features and a set2seq layer~\cite{Vin+2016} for graph-level pooling, followed by a $2$-layer MLP for the joint regression of the twelve targets.
+
+For \textsc{Zinc}, we used the given train, validation split, test split, and report the MAE over the test set. For the \textsc{Alchemy} dataset, we uniformly and at random sampled 80\% of the graphs for training, and 10\% for validation and testing, respectively. Moreover, following~\cite{Che+2020,Gil+2017}, we normalized the targets of the training split to zero mean and unit variance. We used a single model to predict all targets. Following~\cite{Kli+2020}, we report mean standardized MAE and mean standardized logMAE. We repeated each experiment five times (with different random splits in case of \textsc{Alchemy}) and report average scores and standard deviations. All neural experiments were conducted on a workstation with four Nvidia Tesla V100 GPU cards with 32GB of GPU memory running Oracle Linux Server 7.7.
 
 \end{document}
 
