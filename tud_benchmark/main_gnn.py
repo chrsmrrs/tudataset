@@ -94,8 +94,10 @@ def main():
 
     print("TUD")
     # Smaller datasets.
-    dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
-               ["REDDIT-BINARY", False], ["ENZYMES", True]]
+    # dataset = [["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
+    #            ["REDDIT-BINARY", False], ["ENZYMES", True]]
+
+    dataset = [["ENZYMES", True]]
 
     results = []
     for d, use_labels in dataset:
