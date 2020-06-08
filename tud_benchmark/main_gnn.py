@@ -27,6 +27,8 @@ def main():
         print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
+    exit()
+
     # Midscale datasets.
     dataset = [["Yeast", True], ["YeastH", True], ["UACC257", True], ["UACC257H", True], ["OVCAR-8", True],
                ["OVCAR-8H", True]]
@@ -47,7 +49,6 @@ def main():
         results.append(d + " " + "GINE0 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
-w
 
 if __name__ == "__main__":
     main()
