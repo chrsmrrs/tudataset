@@ -287,12 +287,12 @@ The \texttt{Anon} collection contains over 120 datasets provided at \texttt{www.
 			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &   $52.3$ \scriptsize $\pm 0.7 \pm 6.7 $       & $72.6$ \scriptsize $\pm  0.6 \pm 4.1$ &  $50.3$ \scriptsize $\pm 0.8 \pm  3.8 $ & $84.5$ \scriptsize $\pm 0.3 \pm 1.7$ & $72.8$ \scriptsize $\pm 0.8 \pm  3.9 $ & $73.9$ \scriptsize $\pm 0.6 \pm 3.2$  \\
 			%				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 			%				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
-			& \text{WLOA} & $58.4$ \scriptsize $\pm 2.0 \pm 7.4$       &  $73.2$ \scriptsize $\pm 0.8 \pm 3.8$ & $49.4$ \scriptsize $\pm 0.3 \pm 3.6 $ & $85.4$ \scriptsize $\pm  0.2 \pm 1.4$ & $73.2$ \scriptsize $\pm 0.6 \pm 3.5$ & $88.4$ \scriptsize $\pm 0.4 \pm 2.1 $   \\
+			& \text{WLOA} & $58.4$ \scriptsize $\pm 2.0 \pm 7.4$   &  $73.2$ \scriptsize $\pm 0.8 \pm 3.8$ & $49.4$ \scriptsize $\pm 0.3 \pm 3.6 $ & $85.4$ \scriptsize $\pm  0.2 \pm 1.4$ & $73.2$ \scriptsize $\pm 0.6 \pm 3.5$ & $88.4$ \scriptsize $\pm 0.4 \pm 2.1 $   \\
 			& \text{GR}            &    $30.1$ \scriptsize $\pm 0.8 \pm 6.0$       & $59.0$ \scriptsize $\pm 0.9 \pm 5.7$ & $39.6$ \scriptsize $\pm 0.5 \pm 3.6  $ & $66.2$ \scriptsize $\pm 0.2\pm 2.2$ & $71.4$ \scriptsize $\pm 0.6\pm 4.4 $ & $60.0$ \scriptsize $\pm 0.2 \pm  2.7$   \\
 			& \text{SP}            & $40.5$  \scriptsize $\pm 1.6 \pm 6.2$       & $58.7$ \scriptsize $\pm 0.9 \pm 4.6 $ & $39.5$ \scriptsize $\pm 0.9 \pm 4.2$ & $74.5$ \scriptsize $\pm 0.4\pm 2.2 $  &$75.9$ \scriptsize $\pm 0.6 \pm 4.0$ & $84.6$ \scriptsize $\pm0.2\pm 0.4 $  \\
 			\cmidrule{2-8}	
 			\multirow{2}{*}{\rotatebox{90}{GNN}}	& \textsc{Gin-$\varepsilon$}   &  39.5 \scriptsize $\pm 1.4 \pm 7.6 $       & $72.4$ \scriptsize $\pm 0.6\pm 4.0 $ &  $49.7$ \scriptsize $\pm 0.2 \pm  3.9$ & $79.0$ \scriptsize $\pm  0.5 \pm 1.9 $ &  $71.3$ \scriptsize $\pm 0.4 \pm 4.0$ & $90.0$ \scriptsize $\pm 0.6 \pm 1.7 $   \\
-			& \textsc{Gin-$\varepsilon$-JK} &  d   \scriptsize $\pm \pm $       & $73.4$ \scriptsize $\pm 0.6\pm 4.4$ & $50.6$ \scriptsize $\pm 0.5 \pm 4.2 $ & $79.1$ \scriptsize $\pm  0.2 \pm 1.5 $ & $72.4$ \scriptsize $\pm 0.6 \pm 1.7 $ & $90.6$ \scriptsize $\pm 0.2 \pm  2.2$   \\
+			& \textsc{Gin-$\varepsilon$-JK} &  41.3 \scriptsize $\pm 1.8 \pm 6.7$       & $73.4$ \scriptsize $\pm 0.6\pm 4.4$ & $50.6$ \scriptsize $\pm 0.5 \pm 4.2 $ & $79.1$ \scriptsize $\pm  0.2 \pm 1.5 $ & $72.4$ \scriptsize $\pm 0.6 \pm 1.7 $ & $90.6$ \scriptsize $\pm 0.2 \pm  2.2$   \\
 			\bottomrule
 	\end{tabular}}
 \end{table*}		
@@ -381,12 +381,12 @@ All results are reproducible using the scripts provided at \url{www.github.com/A
 \cref{t2l,t2ll,neural_short_tt} summarize the results. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beaten by the $1$-\textsc{WL} or the neural baselines. However, it does not scale to large datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs well on all datasets, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall.\footnote{For the neural baselines unlike the kernel baselines, we used one-hot degree features for datasets that do not provide node labels.}
 Our results show that despite the extensive research on GNNs in recent years, classical graph kernels in combination with SVMs are still highly competitive in graph classification tasks.
 
-On the large-scale molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architectures such as \textsc{MPNN} result in significant gains over the generic \textsc{Gin-$\varepsilon$} baseline. \nk{Koennte man das auch mit Kernel testen? Vielleicht noch ein Satz dazu?}
+On the large-scale molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architectures such as \textsc{MPNN} result in significant gains over the generic \textsc{Gin-$\varepsilon$} baseline. 
 
 
 \section{Conclusion}
 
-We gave an overview of the \textsc{\texttt{Anon}}, and reported on the results of an experimental study comparing graph kernels and GNNs on a subset of the data. We believe that our dataset collection will spark further progress in graph representation learning, and that our unified evaluation procedures will improve the comparability of results. We are looking forward to adding more datasets and are excited about contributions from the community, researchers, and practitioners from other areas.
+We gave an overview of the \textsc{\texttt{Anon}}, and reported on the results of an experimental study comparing graph kernels and GNNs on a subset of the data. We believe that our dataset collection will spark further progress in graph representation learning, and that our unified evaluation procedures will improve the comparability of results. We are looking forward to adding more datasets and are excited about contributions from the community, researchers, and practitioners from other areas. Future work includes a more extensive comparision of kernel and neural approaches on large-scale molecular regression tasks with continuous node and edge features.
 
 \section{Acknowledgement}
 
