@@ -266,7 +266,7 @@ There exist two main approaches to supervised learning with graphs, graph kernel
 Further recent works focus on approaches based on assignments~\cite{Kri+2016,Nik+2017}, spectral properties~\cite{Kon+2016}, graph decomposition~\cite{Nik+2018}, randomized binning~\cite{Hei+2019}, and the extension of kernels based on the Weisfeiler-Leman algorithm~\cite{Tog+2019, Rie+2019}. For a theoretical investigation of graph kernels, see~\cite{Kri+2018}. Recently, graph neural networks (GNNs)~\cite{Gil+2017,Sca+2009} emerged as an alternative to graph kernels. Notable instances of this architecture include, e.g.,~\cite{Duv+2015,Ham+2017,Vel+2018}, and the spectral approaches proposed in, e.g.,~\cite{Bru+2014,Def+2015,Kip+2017,Mon+2017}---all of which descend from early work in~\cite{Kir+1995,Mer+2005,Spe+1997,Sca+2009}. A survey of recent advancements in GNN techniques can be found, e.g., in~\cite{Cha+2020,Wu+2019,Zho+2018}.
 
 The papers~\cite{Fey+2019,Che+2019new,Err+2019,Dwi+2020} evaluate GNNs using a unified evaluation procedure, however, they only use small- or medium scale datasets. Recently, \url{ogb.stanford.edu}~\cite{Hu+2020} launched, however, the provided datasets for graph classification focus on chemistry and bioinformatic applications, and the number is quite limited at this point. Moreover, the datasets proposed in~\cite{Fer+2019} focuses on instances from planning competitions. 
-Recent efforts to implement graph kernels in a common framework such as the \textsc{GraKeL} library~\cite{Sig+2018} foster comparability, but do not solve the dataset related issues discussed above.
+Recent efforts to implement graph kernels in a common framework such as the \textsc{GraKeL} library~\cite{Sig+2018} foster comparability, but do not solve the dataset related issues discussed above, and only focus on kernel approaches.
 
 
 \section{The \texttt{Anon}Dataset collection}
@@ -280,7 +280,7 @@ The \texttt{Anon} collection contains over 120 datasets provided at \texttt{www.
 \begin{table*}[ht]\centering		
 	\caption{Classification accuracies in percent and standard deviations on small-scale datasets.}
 	\label{t2l}	
-	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.0}
 		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
 			
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
@@ -289,7 +289,7 @@ The \texttt{Anon} collection contains over 120 datasets provided at \texttt{www.
 			\multirow{4}{*}{\rotatebox{90}{Kernel}}	& \text{1-WL}  &   $52.3$ \scriptsize $\pm 0.7 \pm 6.7 $       & $72.6$ \scriptsize $\pm  0.6 \pm 4.1$ &  $50.3$ \scriptsize $\pm 0.8 \pm  3.8 $ & $84.5$ \scriptsize $\pm 0.3 \pm 1.7$ & $72.8$ \scriptsize $\pm 0.8 \pm  3.9 $ & $73.9$ \scriptsize $\pm 0.6 \pm 3.2$  \\
 			%				& \text{2-LWL} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
 			%				& \text{2-LWL$^+$} &   \scriptsize $\pm \pm $       &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $ & \scriptsize $\pm   \pm $ &  \scriptsize $\pm \pm $ &  \scriptsize $\pm  \pm  $   \\
-			& \text{WLOA} & $58.4$ \scriptsize $\pm 2.0 \pm 7.4$   &  $73.2$ \scriptsize $\pm 0.8 \pm 3.8$ & $49.4$ \scriptsize $\pm 0.3 \pm 3.6 $ & $85.4$ \scriptsize $\pm  0.2 \pm 1.4$ & $73.2$ \scriptsize $\pm 0.6 \pm 3.5$ & $88.4$ \scriptsize $\pm 0.4 \pm 2.1 $   \\
+			& \text{WL-OA} & $58.4$ \scriptsize $\pm 2.0 \pm 7.4$   &  $73.2$ \scriptsize $\pm 0.8 \pm 3.8$ & $49.4$ \scriptsize $\pm 0.3 \pm 3.6 $ & $85.4$ \scriptsize $\pm  0.2 \pm 1.4$ & $73.2$ \scriptsize $\pm 0.6 \pm 3.5$ & $88.4$ \scriptsize $\pm 0.4 \pm 2.1 $   \\
 			& \text{GR}            &    $30.1$ \scriptsize $\pm 0.8 \pm 6.0$       & $59.0$ \scriptsize $\pm 0.9 \pm 5.7$ & $39.6$ \scriptsize $\pm 0.5 \pm 3.6  $ & $66.2$ \scriptsize $\pm 0.2\pm 2.2$ & $71.4$ \scriptsize $\pm 0.6\pm 4.4 $ & $60.0$ \scriptsize $\pm 0.2 \pm  2.7$   \\
 			& \text{SP}            & $40.5$  \scriptsize $\pm 1.6 \pm 6.2$       & $58.7$ \scriptsize $\pm 0.9 \pm 4.6 $ & $39.5$ \scriptsize $\pm 0.9 \pm 4.2$ & $74.5$ \scriptsize $\pm 0.4\pm 2.2 $  &$75.9$ \scriptsize $\pm 0.6 \pm 4.0$ & $84.6$ \scriptsize $\pm0.2\pm 0.4 $  \\
 			\cmidrule{2-8}	
@@ -301,7 +301,7 @@ The \texttt{Anon} collection contains over 120 datasets provided at \texttt{www.
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations on mid-scale datasets.}
 	\label{t2ll}	
-	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.0}
 		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
 			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Yeast}}           & {\textsc{github\_star.}}       & {\textsc{reddit\_threads}}      \\	\toprule
@@ -341,13 +341,11 @@ Graph-based methods are widely used in computer vision for various tasks using d
 Recently, temporal graphs were considered by \citet{Oettershagen2019}, where edges represent the contact or interaction between two individuals at a certain point in time. These graphs are of interest when studying dissemination processes such as the spreading of epidemics, rumours or fake news. We provide temporal graph classification datasets derived from \textsc{Tumblr}~\citep{rozenshtein2016reconstructing}, \textsc{Dblp} and \textsc{Facebook}~\citep{viswanath2009evolution} as well as contacts between students at the \textsc{MIT}~\cite{konect:eagle06}, in a \textsc{Highschool} and visitors at the \textsc{Infectious} exhibition~\citep{Isella2011}.
 
 \xhdr{Synthetic.}
-Several graph datasets were generated to demonstrate the strengths or weaknesses of specific methods. The datasets \textsc{SyntheticNew} and \textsc{Synthie} were created by \citet{Fer+2013} (see Erratum) and \citet{Mor+2016}, respectively, to demonstrate the ability of kernels to operate on graphs with continuous attributes.
-% With the same goal, the dataset \textsc{Frankenstein} was obtained from a small molecule dataset by replacing the atom labels by MNIST digit images~\citep{Ors+2015}.
-\citet{Knyazev2019} introduced the datasets \textsc{Colors} and \textsc{Triangles}, where the task is to count the number of nodes with a given one-hot-encoded color and the number of triangles, respectively. 
+Several graph datasets were generated to demonstrate the strengths or weaknesses of specific methods. The datasets \textsc{SyntheticNew} and \textsc{Synthie} were created by \citet{Fer+2013} (see Erratum) and \citet{Mor+2016}, respectively, to demonstrate the ability of kernels to operate on graphs with continuous attributes. \citet{Knyazev2019} introduced the datasets \textsc{Colors} and \textsc{Triangles}, where the task is to count the number of nodes with a given one-hot-encoded color and the number of triangles, respectively. 
 
 \subsection{Baselines methods} To provide meaningful baselines, we provide implementations of common graph kernel as well as GNN architectures. We have implemented the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphlet}~\cite{She+2009} (using labeled subgraphs with three nodes), \new{Weisfeiler-Lehman Optimal Assignment}~\cite{Kri+2016} kernel in \CPP and made them accessible through the Python interface of \textsc{\texttt{Anon}}.  Moreover, all GNN architectures provided by \textsc{PyTorch Geometric} can be conveniently used as a baseline as well. 
 
-\subsection{Evaluation methods}\label{eval} To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNNs. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{Kin+2015}. To compute classification accuracies, we propose to use $10$-fold cross-validation, where we select $10\%$ of each training fold uniformly at random as validation set to optimize hyperparameters, e.g., the number of iterations, $C$ parameter, number of layers, feature dimension. We repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each). For the large-scale molecule learning tasks, we either use random splits (80\%/10\%/10\%) or provided, fixed splits and report MAE (mean std. MAE, mean std. logMAE for multi-target regression, see \cite{Kli+2020}) over five runs. 
+\subsection{Evaluation methods}\label{evalm} To ensure a fair and meaningful comparison between methods, we propose the following evaluation procedures for kernels and GNNs. First, for kernels we propose the established $C$-SVM implementation \textsc{LibSvm}~\cite{Cha+11} for kernels that compute a Gram matrix, and the linear $C$-SVM implementation \textsc{LibLinear}~\cite{Fan+2008} for kernels  that can be computed based on sparse, explicit feature maps. We optimize GNNs end-to-end using \textsc{Adam}~\cite{Kin+2015}. To compute classification accuracies, we propose to use $10$-fold cross-validation, where we select $10\%$ of each training fold uniformly at random as validation set to optimize hyperparameters, e.g., the number of iterations, $C$ parameter, number of layers, feature dimension. We repeat the above evaluation ten times and report standard deviations over all ten repetitions, and additionally across all one hundred runs (i.e., ten repetitions with ten folds each). For the large-scale molecule learning tasks, we either use random splits (80\%/10\%/10\%) or provided, fixed splits and report MAE (mean std. MAE, mean std. logMAE for multi-target regression, see \cite{Kli+2020}) over five runs. 
 
 
 \begin{table}[]\centering	
@@ -375,7 +373,7 @@ All kernel experiments were conducted on a workstation with an \text{Intel Xeon 
 
 \xhdr{GNNs.} 
 For comparison with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu+2018b} and \textsc{Gin-$\varepsilon$-JK} with jumping knowledge networks as neural baselines~\cite{Xu+2018}. For data with (continuous) edge features, we used a $2$-layer MLP to map them to the same number of components as the node features and combined them using summation (\textsc{Gine-$\varepsilon$} and \textsc{Gine-$\varepsilon$}-JK). We used mean pooling to pool the learned node embeddings to a graph embedding and used a $2$-layer MLP for the final classification, using a dropout layer with $p = 0.5$ after the first layer of the MLP. We optimized the number of hidden units from $
-\{ 32, 64, 128\}$, the number of layers from $ \{1, 2, 3, 4, 5\}$ using the validation set. Moreover, we use a learning rate decay of $0.5$ with a patience parameter of $5$, a starting learning rate of $0.01$ and a minimum of $10^{-6}$. For both methods, we used the evaluation procedure described in~\cref{eval} to optimize hyperparameters and compute accuracies. See the appendix for details on the hyperparameter and evaluation protocols used for the larger molecular regression tasks, \textsc{Zinc}, \textsc{Alchemy},  \textsc{QM9}.
+\{ 32, 64, 128\}$, the number of layers from $ \{1, 2, 3, 4, 5\}$ using the validation set. Moreover, we use a learning rate decay of $0.5$ with a patience parameter of $5$, a starting learning rate of $0.01$ and a minimum of $10^{-6}$. For both methods, we used the evaluation procedure described in~\cref{evalm} to optimize hyperparameters and compute accuracies. See the appendix for details on the hyperparameter and evaluation protocols used for the larger molecular regression tasks (\textsc{Zinc}, and \textsc{Alchemy},  \textsc{QM9}).
 
 All results are reproducible using the scripts provided at \url{www.github.com/Anon}.
 
