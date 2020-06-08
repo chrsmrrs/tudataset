@@ -357,7 +357,7 @@ We also provide several synthetic graph datasets to demonstrate the strengths or
 Our intent here is to provide baseline experiments and compare graph kernels and GNNs. We used the following datasets, graph kernels, and GNN baselines.
 
 \xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes}, \textsc{Imdb-Binary}, \textsc{Imdb-Multi}, \textsc{Mcf-7}, \textsc{Molt-4},    \textsc{NCI1}, \textsc{Proteins},
-\textsc{Reddit-Binary},    \textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics.
+\textsc{Reddit-Binary},    \textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics. We 
 
 
 \xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree}~\cite{She+2011}, \new{Shortest-path}~\cite{Bor+2005}, \new{Graphket}~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} \textsc{WL-OA}~\cite{Kri+2016} included in the \textsc{\texttt{Anon}} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \text{Liblinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL} and \textsc{WL-OA} were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
@@ -371,7 +371,8 @@ For comparison with kernel methods, we used \textsc{Gin-$\varepsilon$}~\cite{Xu+
 All results can be are reproducable using the scripts provided at \url{www.github.com/Anon}.
 
 \subsection{Results and discussion}
-See~\cref{t2l,t2ll,neural_short_tt}. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beaten by the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. On the molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architecture such as \textsc{MPNN} result in signifcant gains over the generic \textsc{Gin-$\varepsilon$} baseline. 
+\cref{t2l,t2ll,neural_short_tt} summarize the results. On the small-scale datasets, see \cref{t2l}, the \textsc{WLOA} performs best overall, i.e., only on the \textsc{IMDB-Binary} and the \textsc{Reddit-Binary} dataset it is beaten by the $1$-\textsc{WL} or the neural baselines. However, it does not scale midscale datasets, \cref{t2l}, as it relies on Gram matrix computation. Here, the $1$-WL performs, excluding \textsc{github\_stargazers}, where the neural baseline perform best overall. On the molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architecture such as \textsc{MPNN} result in signifcant gains over the generic \textsc{Gin-$\varepsilon$} baseline. For the neural baselines unlike the kernel baselines, we used one-hot degree features for datasets that do not provide node label.
+
 
 \section{Conclusion}
 
