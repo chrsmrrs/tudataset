@@ -6,6 +6,8 @@
 \usepackage{hyperref}
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
+\usepackage[protrusion=true,expansion=false, activate={true,nocompatibility},final,kerning=true,spacing=true,shrink=60,stretch=10]{microtype}
+
 \usepackage{natbib}
 
 \usepackage{booktabs}
@@ -52,7 +54,7 @@
 \setlist[itemize]{noitemsep, topsep=0.5\topsep}
 
 \usepackage{setspace}
-\usepackage[protrusion=true,expansion=false, activate={true,nocompatibility},final,kerning=true,spacing=true]{microtype}
+\usepackage[protrusion=true,expansion=false,final,kerning=true,spacing=true]{microtype}
 
 \usepackage{ellipsis}
 \usepackage{xspace}
@@ -364,7 +366,7 @@ Several graph datasets were generated to demonstrate the strengths or weaknesses
 Our intent here is to provide baseline experiments and compare graph kernels and GNNs. We used the following datasets, graph kernels, and GNN baselines.
 
 \xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes}, \textsc{Imdb-Binary}, \textsc{Imdb-Multi}, \textsc{Mcf-7}, \textsc{Molt-4},    \textsc{NCI1}, \textsc{Proteins},
-\textsc{Reddit-Binary},    \textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets, and the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics. We opted for not using the 3D-coordinates of the \textsc{Alchemy} dataset to solely provide baseline results based on graph structure.
+\textsc{Reddit-Binary}, \textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets. Moreover, we used the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics. We opted for not using continuous node features of the small datasets (if available) and the 3D-coordinates of the \textsc{Alchemy} dataset to solely provide baseline results based on graph structure. In case of the \textsc{QM9} dataset, we closely replicated the (continuous) node and edge features of~\citet{Gil+2017}.
 
 
 \xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree} (\textsc{$1$-WL})~\cite{She+2011}, \new{Shortest-path} (\textsc{SP})~\cite{Bor+2005}, \new{Graphlet} (\textsc{GR})~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} (\textsc{WL-OA})~\cite{Kri+2016} included in the \textsc{\texttt{Anon}} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \textsc{LibLinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL} and \textsc{WL-OA} were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
