@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
-\usepackage[protrusion=true,expansion=false, activate={true,nocompatibility},final,kerning=true,spacing=true,shrink=50,stretch=]{microtype}
+\usepackage[protrusion=true,expansion=false, activate={true,nocompatibility},final,kerning=true,spacing=true,shrink=30]{microtype}
 
 \usepackage{natbib}
 
@@ -310,7 +310,7 @@ Several graph datasets were generated to demonstrate the strengths or weaknesses
 \begin{table*}[ht]\centering		
 	\caption{Classification accuracies in percent and standard deviations on small-scale datasets.}
 	\label{t2l}	
-	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.2}
 		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
 			
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
@@ -331,7 +331,7 @@ Several graph datasets were generated to demonstrate the strengths or weaknesses
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations on mid-scale datasets.}
 	\label{t2ll}	
-	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.1}
+	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{1.2}
 		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
 			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Yeast}}           & {\textsc{github\_star.}}       & {\textsc{reddit\_threads}}      \\	\toprule
@@ -373,7 +373,7 @@ All results are reproducible using the scripts provided at \url{www.github.com/A
 Our results show that despite the extensive research on GNNs in recent years, classical graph kernels in combination with SVMs are still highly competitive in graph classification tasks.
 \begin{table}[]\centering	
 	\caption{Mean MAE (mean std. MAE, logMAE) on large-scale (multi-target) molecular regression tasks.\label{neural_short_tt}}
-	\resizebox{1.0\columnwidth}{!}{\renewcommand{\arraystretch}{1.1}
+	\resizebox{1.0\columnwidth}{!}{\renewcommand{\arraystretch}{1.2}
 		\begin{tabular}{lccc}	\toprule
 			\multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{2}{c}{\textbf{Dataset}}\\\cmidrule{2-4}
 			& {\textsc{Zinc}}     & {\textsc{alchemy}}   & {\textsc{Qm9}}   \\	\toprule
@@ -382,7 +382,7 @@ Our results show that despite the extensive research on GNNs in recent years, cl
 			\bottomrule
 	\end{tabular}}
 \end{table}		
-On the large-scale molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architectures such as \textsc{MPNN} result in significant gains over the generic \textsc{Gin-$\varepsilon$} baseline. 
+On the large-scale molecular learning tasks, see \cref{neural_short_tt}, it becomes apparent that specialized architectures such as \textsc{MPNN} result in significant gains over the generic \textsc{Gine-$\varepsilon$} baseline. 
 
 
 \section{Conclusion}
@@ -392,7 +392,7 @@ We gave an overview of the \textsc{\texttt{Anon}}, and reported on the results o
 \section{Acknowledgement}
 
 We thank everybody who provided datasets to the  \textsc{\texttt{Anon}} dataset collection.
-
+\newpage
 \bibliography{bibliography}
 \bibliographystyle{icml2020}
 
@@ -414,7 +414,7 @@ We thank everybody who provided datasets to the  \textsc{\texttt{Anon}} dataset 
 \lstinputlisting[language=Python]{example_gnn.py}
 
 \section{Experimental protocol and hyperparameters for \textsc{Zinc}, \textsc{Alchemy}, \textsc{QM9}}\label{eval}
-For the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}\footnote{Note that the full dataset is different from the contest dataset, e.g., it does not provide normalized targets, see \url{https://alchemy.tencent.com/}.}, we closely followed the hyperparameters found in~\cite{Dwi+2020} and~\cite{Che+2020}, respectively, for the (\textsc{Gine-$\varepsilon$} layers. That is, for \textsc{Zinc}, we used four (\textsc{Gine-$\varepsilon$} layers with a hidden dimension of 256 followed by batch norm and a $4$-layer MLP for the joint regression of the twelve targets, after applying mean pooling. For \textsc{Alchemy} and \textsc{QM9}, we used six layers with 64 (hidden) node features and a set2seq layer~\cite{Vin+2016} for graph-level pooling, followed by a $2$-layer MLP for the joint regression of the twelve targets.
+For the larger molecular regression tasks, \textsc{Zinc} and \textsc{Alchemy}\footnote{Note that the full dataset is different from the contest dataset, e.g., it does not provide normalized targets, see \url{https://alchemy.tencent.com/}.}, we closely followed the hyperparameters found in~\cite{Dwi+2020} and~\cite{Che+2020}, respectively, for the \textsc{Gine-$\varepsilon$} layers. That is, for \textsc{Zinc}, we used four \textsc{Gine-$\varepsilon$} layers with a hidden dimension of 256 followed by batch norm and a $4$-layer MLP for the joint regression of the twelve targets, after applying mean pooling. For \textsc{Alchemy} and \textsc{QM9}, we used six layers with 64 (hidden) node features and a set2seq layer~\cite{Vin+2016} for graph-level pooling, followed by a $2$-layer MLP for the joint regression of the twelve targets.
 
 For \textsc{Zinc}, we used the given train, validation split, test split, and report the MAE over the test set. For the \textsc{Alchemy} and \textsc{QM9} datasets, we uniformly and at random sampled 80\% of the graphs for training, and 10\% for validation and testing, respectively. Moreover, following~\cite{Che+2020,Gil+2017}, we normalized the targets of the training split to zero mean and unit variance. We used a single model to predict all targets. Following~\cite{Kli+2020}, we report mean standardized MAE and mean standardized logMAE. We repeated each experiment five times (with different random splits in case of \textsc{Alchemy} and \textsc{QM9}) and report average scores and standard deviations.  Moreover, we use a learning rate decay of $0.5$ with a patience parameter of $5$, and a starting learning rate of $0.001$ with a minimum of $10^{-6}$.
 
