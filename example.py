@@ -15,7 +15,7 @@ for i in range(1, 6):
     gm = aux.normalize_gram_matrix(gm)
     all_matrices.append(gm)
 
-# Perform 10 repetions of 10-CV using LIBSVM.
+# Perform 10 repetitions of 10-CV using LIBSVM.
 print(kernel_svm_evaluation(all_matrices, classes,
                             num_repetitions=10, all_std=True))
 

@@ -14,6 +14,6 @@ for i in range(1, 6):
     gm_n = aux.normalize_feature_vector(gm)
     all_matrices.append(gm_n)
 
-# Perform 10 repetions of 10-CV using LIBINEAR.
+# Perform 10 repetitions of 10-CV using LIBINEAR.
 print(linear_svm_evaluation(all_matrices, classes,
-                            num_repetitions=num_reps, all_std=True))
+                            num_repetitions=10, all_std=True))
