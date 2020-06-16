@@ -6,7 +6,6 @@ from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 
 
 def main():
-
     # Smaller datasets using LIBSVM.
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                  ["REDDIT-BINARY", False]]
@@ -55,7 +54,6 @@ def main():
 
     # Larger datasets using LIBLINEAR.
     num_reps= 10
-    results  = []
 
     dataset = [["MOLT-4", True, True], ["TRIANGLES", False, False], ["MCF-7", True, True],
                  ["github_stargazers", False, False],
@@ -75,6 +73,24 @@ def main():
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
         print(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+        all_matrices = []
+        gm = kb.compute_graphlet_sparse(dataset, i, use_labels, use_edge_labels)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm_n)
+
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
+        print(d + " " + "GRSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+        all_matrices = []
+        gm = kb.compute__shortestpath_sparse(dataset, i, use_labels, use_edge_labels)
+        gm_n = aux.normalize_feature_vector(gm)
+        all_matrices.append(gm_n)
+
+        acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
+        print(d + " " + "SPSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "SPSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
     print("DONE! :*")
