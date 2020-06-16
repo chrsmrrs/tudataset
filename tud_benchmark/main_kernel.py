@@ -75,16 +75,16 @@ def main():
         results.append(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
-        gm = kb.compute_graphlet_sparse(dataset, i, use_labels, use_edge_labels)
+        gm = kb.compute_graphlet_sparse(dataset, use_labels, use_edge_labels)
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
 
         acc, s_1, s_2 = linear_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
         print(d + " " + "GRSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "WL1SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GRSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
-        gm = kb.compute__shortestpath_sparse(dataset, i, use_labels, use_edge_labels)
+        gm = kb.compute__shortestpath_sparse(dataset, use_labels, use_edge_labels)
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
 

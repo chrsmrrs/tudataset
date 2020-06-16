@@ -123,12 +123,6 @@ class GIN0(torch.nn.Module):
     def __repr__(self):
         return self.__class__.__name__
 
-
-
-
-
-
-
 class GINWithJK(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden, mode='cat'):
         super(GINWithJK, self).__init__()
@@ -206,11 +200,6 @@ class GINE0Conv(MessagePassing):
         reset(self.edge_encoder)
         reset(self.mlp)
 
-
-
-
-
-
 class GINE0(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden):
         super(GINE0, self).__init__()
@@ -241,7 +230,6 @@ class GINE0(torch.nn.Module):
 
     def __repr__(self):
         return self.__class__.__name__
-
 
 class GINEConv(MessagePassing):
     def __init__(self, edge_dim, dim_init, dim):
@@ -299,7 +287,6 @@ class GINE(torch.nn.Module):
 
     def __repr__(self):
         return self.__class__.__name__
-
 
 class GINEWithJK(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden, mode='cat'):
