@@ -84,7 +84,7 @@ def main():
         results.append(d + " " + "GRSP " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         all_matrices = []
-        gm = kb.compute__shortestpath_sparse(dataset, use_labels, use_edge_labels)
+        gm = kb.compute_shortestpath_sparse(dataset, use_labels, use_edge_labels)
         gm_n = aux.normalize_feature_vector(gm)
         all_matrices.append(gm_n)
 
