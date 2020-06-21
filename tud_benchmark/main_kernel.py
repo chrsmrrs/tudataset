@@ -55,7 +55,7 @@ def main():
     # Larger datasets using LIBLINEAR.
     num_reps= 10
 
-    dataset = [["MOLT-4", True, True], ["TRIANGLES", False, False], ["MCF-7", True, True],
+    dataset = [["MOLT-4", True, True], ["Yeast", False, False], ["MCF-7", True, True],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
 
