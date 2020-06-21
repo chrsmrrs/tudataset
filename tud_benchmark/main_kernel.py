@@ -59,7 +59,7 @@ def main():
     #              ["github_stargazers", False, False],
     #              ["reddit_threads", False, False]]
 
-    dataset = [["Yeast", False, False], ["MCF-7", True, True],
+    dataset = [["Yeast", True, True], ["MCF-7", True, True],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
 
