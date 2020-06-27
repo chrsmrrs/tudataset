@@ -12,19 +12,18 @@ def main():
                 ["REDDIT-BINARY", False], ["ENZYMES", True]]
 
     results = []
-    for d, use_labels in dataset:
-        dp.get_dataset(d)
-
-        acc, s_1, s_2 = gnn_evaluation(GIN, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=64,
-                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
-        acc, s_1, s_2 = gnn_evaluation_old(GINWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=64,
-                                       start_lr=0.01, num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-
+    # for d, use_labels in dataset:
+    #     dp.get_dataset(d)
+    #
+    #     acc, s_1, s_2 = gnn_evaluation(GIN, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=64,
+    #                                 start_lr=0.01, num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     acc, s_1, s_2 = gnn_evaluation_old(GINWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=64,
+    #                                    start_lr=0.01, num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
     # Midscale datasets.
     dataset = [["Yeast", True], ["YeastH", True], ["UACC257", True], ["UACC257H", True], ["OVCAR-8", True],
@@ -33,13 +32,13 @@ def main():
     for d, use_labels in dataset:
         dp.get_dataset(d)
 
-        acc, s_1, s_2 = gnn_evaluation(GINE, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200,
+        acc, s_1, s_2 = gnn_evaluation_old(GINE, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200,
                                        batch_size=64, start_lr=0.01,
                                        num_repetitions=num_reps, all_std=True)
         print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=64,
+        acc, s_1, s_2 = gnn_evaluation_old(GINEWithJK, d, [1, 2, 3, 4, 5], [32, 64, 128], max_num_epochs=200, batch_size=64,
                                        start_lr=0.01,
                                        num_repetitions=num_reps, all_std=True)
         print(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
