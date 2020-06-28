@@ -1,14 +1,21 @@
-import networkx as nx
 import os.path as path
+import sys
+
+import networkx as nx
+
+sys.path.insert(0, '..')
+sys.path.insert(0, '.')
+
 
 def read_txt(ds_name):
     pre = ""
 
-    with open("datasets/" + pre + ds_name + "/" + ds_name + "_graph_indicator.txt", "r") as f:
+    with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_indicator.txt",
+              "r") as f:
         graph_indicator = [int(i) - 1 for i in list(f)]
     f.closed
 
-    # Nodes
+    # Nodes.
     num_graphs = max(graph_indicator)
     node_indices = []
     offset = []
@@ -24,12 +31,12 @@ def read_txt(ds_name):
     for i in node_indices:
         g = nx.Graph()
         for j in range(i[1] - i[0]):
-            g.add_node(j+1)
+            g.add_node(j + 1)
 
         graph_db.append(g)
 
-    # Edges
-    with open("datasets/" + pre + ds_name + "/" + ds_name + "_A.txt", "r") as f:
+    # Edges.
+    with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_A.txt", "r") as f:
         edges = [i.split(',') for i in list(f)]
     f.closed
 
@@ -45,74 +52,78 @@ def read_txt(ds_name):
             g.add_edge(e[0] - off, e[1] - off)
             edge_list.append((e[0] - off, e[1] - off))
 
-    # Node labels
-    if path.exists("datasets/" + pre + ds_name + "/" + ds_name + "_node_labels.txt"):
-        with open("datasets/" + pre + ds_name + "/" + ds_name + "_node_labels.txt", "r") as f:
-            node_labels = [map(int, i.split(',')) for i in list(f)] #[int(i) for i in list(f)]
+    # Node labels.
+    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_labels.txt"):
+        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_labels.txt",
+                  "r") as f:
+            node_labels = [map(int, i.split(',')) for i in list(f)]  # [int(i) for i in list(f)]
         f.closed
 
         i = 0
         for g in graph_db:
             for v in range(g.number_of_nodes()):
-                g.nodes[v]['labels']= node_labels[i]
+                g.nodes[v]['labels'] = node_labels[i]
                 i += 1
 
-
-    # Node Attributes
-    if path.exists("datasets/" + pre + ds_name + "/" + ds_name + "_node_attributes.txt"):
-        with open("datasets/" + pre + ds_name + "/" + ds_name + "_node_attributes.txt", "r") as f:
+    # Node Attributes.
+    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_attributes.txt"):
+        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_attributes.txt",
+                  "r") as f:
             node_attributes = [map(float, i.split(',')) for i in list(f)]
         f.closed
 
         i = 0
         for g in graph_db:
             for v in range(g.number_of_nodes()):
-                g.nodes[v]['attributes']= node_attributes[i]
+                g.nodes[v]['attributes'] = node_attributes[i]
                 i += 1
 
-
-    # Edge Labels
-    if path.exists("datasets/" + ds_name + "/" + ds_name + "_edge_labels.txt"):
-        with open("datasets/" + ds_name + "/" + ds_name + "_edge_labels.txt", "r") as f:
-            edge_labels =  [map(int, i.split(',')) for i in list(f)] #[int(i) for i in list(f)]
+    # Edge Labels.
+    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_labels.txt"):
+        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_labels.txt",
+                  "r") as f:
+            edge_labels = [map(int, i.split(',')) for i in list(f)]  # [int(i) for i in list(f)]
         f.closed
-            
+
         i = 0
         for g in graph_db:
             for e in range(g.number_of_edges()):
-                g.edges[edge_list[i]]['labels']= edge_labels[i]
+                g.edges[edge_list[i]]['labels'] = edge_labels[i]
                 i += 1
 
-    # Edge Attributes
-    if path.exists("datasets/" + ds_name + "/" + ds_name + "_edge_attributes.txt"):
-        with open("datasets/" + ds_name + "/" + ds_name + "_edge_attributes.txt", "r") as f:
+    # Edge Attributes.
+    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_attributes.txt"):
+        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_attributes.txt",
+                  "r") as f:
             edge_attributes = [map(float, i.split(',')) for i in list(f)]
         f.closed
-            
+
         i = 0
         for g in graph_db:
             for e in range(g.number_of_edges()):
-                g.edges[edge_list[i]]['attributes']= edge_attributes[i]
+                g.edges[edge_list[i]]['attributes'] = edge_attributes[i]
                 i += 1
 
-    # Classes
-    if path.exists("datasets/" + ds_name + "/" + ds_name + "_graph_labels.txt"):
-        with open("datasets/" + pre + ds_name + "/" + ds_name + "_graph_labels.txt", "r") as f:
-            classes = [map(int, i.split(',')) for i in list(f)] #[int(i) for i in list(f)]
+    # Classes.
+    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_labels.txt"):
+        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_labels.txt",
+                  "r") as f:
+            classes = [map(int, i.split(',')) for i in list(f)]  # [int(i) for i in list(f)]
         f.closed
         i = 0
         for g in graph_db:
-            g.graph['classes']= classes[i]
+            g.graph['classes'] = classes[i]
             i += 1
-    
-    # Targets
-    if path.exists("datasets/" + ds_name + "/" + ds_name + "_graph_attributes.txt"):
-        with open("datasets/" + pre + ds_name + "/" + ds_name + "_graph_attributes.txt", "r") as f:
+
+    # Targets.
+    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_attributes.txt"):
+        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_attributes.txt",
+                  "r") as f:
             targets = [map(float, i.split(',')) for i in list(f)]
         f.closed
         i = 0
         for g in graph_db:
-            g.graph['targets']= targets[i]
+            g.graph['targets'] = targets[i]
             i += 1
 
     return graph_db

@@ -3,9 +3,17 @@ import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
 from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 from auxiliarymethods.kernel_evaluation import linear_svm_evaluation
+from auxiliarymethods.reader import read_txt
+
 
 
 def main():
+    classes = dp.get_dataset("ENZYMES")
+    read_txt("ENZYMES")
+    exit()
+
+
+
     ### Smaller datasets using LIBSVM.
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                ["REDDIT-BINARY", False]]
