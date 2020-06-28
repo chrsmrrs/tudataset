@@ -1,11 +1,7 @@
 /**********************************************************************
- * Copyright (C) 2017 Christopher Morris <christopher.morris@udo.edu>
- *
- * This file is part of globalwl.
- *
- * globalwl can not be copied and/or distributed without the express
- * permission of Christopher Morris.
+ * Copyright (C) 2020 Christopher Morris <christopher.morris@udo.edu>
  *********************************************************************/
+
 
 #ifndef WLFAST_GRAPHLETKERNEL_H
 #define WLFAST_GRAPHLETKERNEL_H

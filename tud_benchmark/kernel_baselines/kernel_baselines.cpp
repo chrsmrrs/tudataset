@@ -1,6 +1,7 @@
 /**********************************************************************
- * Copyright (C) 2017 Christopher Morris <christopher.morris@udo.edu>
+ * Copyright (C) 2020 Christopher Morris <christopher.morris@udo.edu>
  *********************************************************************/
+
 
 #include <cstdio>
 #include "src/AuxiliaryMethods.h"
@@ -181,13 +182,6 @@ PYBIND11_MODULE(kernel_baselines, m) {
     m.def("compute_wl_1_dense", &compute_wl_1_dense);
     m.def("compute_wl_1_sparse", &compute_wl_1_sparse);
     m.def("compute_wloa_dense", &compute_wloa_dense);
-
-    m.def("compute_lwl_2_dense", &compute_lwl_2_dense);
-    m.def("compute_lwl_2_sparse", &compute_lwl_2_sparse);
-    m.def("compute_lwl_2_wloa_dense", &compute_lwl_2_wloa_dense);
-    m.def("compute_lwlp_2_wloa_dense", &compute_lwlp_2_wloa_dense);
-    m.def("compute_lwlp_2_dense", &compute_lwlp_2_dense);
-    m.def("compute_lwlp_2_sparse", &compute_lwlp_2_sparse);
 
     m.def("compute_graphlet_dense", &compute_graphlet_dense);
     m.def("compute_graphlet_sparse", &compute_graphlet_sparse);

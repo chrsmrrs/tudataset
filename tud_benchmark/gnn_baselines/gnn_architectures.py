@@ -1,23 +1,12 @@
 import torch
-import torch.nn.functional as F
 from torch.nn import Linear, Sequential, ReLU, BatchNorm1d as BN
-from torch_geometric.nn import GINConv, SAGEConv, global_mean_pool, JumpingKnowledge
+from torch_geometric.nn import GINConv, global_mean_pool, global_add_pool, JumpingKnowledge
 
-from torch.nn import Linear as Lin
-from torch.nn import Sequential, Linear, ReLU
-from torch_geometric.nn import global_mean_pool
-
-from torch_geometric.data import (InMemoryDataset, Data)
-from torch_geometric.data import DataLoader
-import torch.nn.functional as F
-
-import torch
 from torch_geometric.nn import MessagePassing
 import torch.nn.functional as F
-from torch_geometric.nn import global_mean_pool, global_add_pool
-from torch_geometric.utils import degree
 
 from torch_geometric.nn.inits import reset
+
 
 class GIN(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden, add_pool=False):
@@ -71,6 +60,7 @@ class GIN(torch.nn.Module):
     def __repr__(self):
         return self.__class__.__name__
 
+
 class GIN0(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden, add_pool=False):
         super(GIN0, self).__init__()
@@ -81,7 +71,7 @@ class GIN0(torch.nn.Module):
             ReLU(),
             BN(hidden),
         ),
-                             train_eps=False)
+            train_eps=False)
         self.convs = torch.nn.ModuleList()
         for i in range(num_layers - 1):
             self.convs.append(
@@ -92,7 +82,7 @@ class GIN0(torch.nn.Module):
                     ReLU(),
                     BN(hidden),
                 ),
-                        train_eps=False))
+                    train_eps=False))
         self.lin1 = Linear(hidden, hidden)
         self.lin2 = Linear(hidden, dataset.num_classes)
         self.add_pool = add_pool
@@ -122,6 +112,7 @@ class GIN0(torch.nn.Module):
 
     def __repr__(self):
         return self.__class__.__name__
+
 
 class GINWithJK(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden, mode='cat'):
@@ -177,11 +168,13 @@ class GINWithJK(torch.nn.Module):
     def __repr__(self):
         return self.__class__.__name__
 
+
 class GINE0Conv(MessagePassing):
     def __init__(self, edge_dim, dim_init, dim):
         super(GINE0Conv, self).__init__(aggr="add")
 
-        self.edge_encoder = Sequential(Linear(edge_dim, dim_init),ReLU(),Linear(dim_init, dim_init),ReLU(),BN(dim_init))
+        self.edge_encoder = Sequential(Linear(edge_dim, dim_init), ReLU(), Linear(dim_init, dim_init), ReLU(),
+                                       BN(dim_init))
         self.mlp = Sequential(Linear(dim_init, dim), ReLU(), Linear(dim, dim), ReLU(), BN(dim))
 
     def forward(self, x, edge_index, edge_attr):
@@ -199,6 +192,7 @@ class GINE0Conv(MessagePassing):
     def reset_parameters(self):
         reset(self.edge_encoder)
         reset(self.mlp)
+
 
 class GINE0(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden):
@@ -231,11 +225,13 @@ class GINE0(torch.nn.Module):
     def __repr__(self):
         return self.__class__.__name__
 
+
 class GINEConv(MessagePassing):
     def __init__(self, edge_dim, dim_init, dim):
         super(GINEConv, self).__init__(aggr="add")
 
-        self.edge_encoder = Sequential(Linear(edge_dim, dim_init),ReLU(),Linear(dim_init, dim_init),ReLU(),BN(dim_init))
+        self.edge_encoder = Sequential(Linear(edge_dim, dim_init), ReLU(), Linear(dim_init, dim_init), ReLU(),
+                                       BN(dim_init))
         self.mlp = Sequential(Linear(dim_init, dim), ReLU(), Linear(dim, dim), ReLU(), BN(dim))
         self.eps = torch.nn.Parameter(torch.Tensor([0]))
         self.initial_eps = 0
@@ -256,6 +252,7 @@ class GINEConv(MessagePassing):
         reset(self.edge_encoder)
         reset(self.mlp)
         self.eps.data.fill_(self.initial_eps)
+
 
 class GINE(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden):
@@ -287,6 +284,7 @@ class GINE(torch.nn.Module):
 
     def __repr__(self):
         return self.__class__.__name__
+
 
 class GINEWithJK(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden, mode='cat'):
@@ -327,5 +325,3 @@ class GINEWithJK(torch.nn.Module):
 
     def __repr__(self):
         return self.__class__.__name__
-
-

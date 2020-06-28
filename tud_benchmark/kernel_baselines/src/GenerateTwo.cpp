@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (C) 2017 Christopher Morris <christopher.morris@udo.edu>
+ * Copyright (C) 2020 Christopher Morris <christopher.morris@udo.edu>
  *********************************************************************/
 
 #include "AuxiliaryMethods.h"

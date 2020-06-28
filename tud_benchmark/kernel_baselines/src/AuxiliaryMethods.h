@@ -1,13 +1,10 @@
 /**********************************************************************
- * Copyright (C) 2017 Christopher Morris <christopher.morris@udo.edu>
+ * Copyright (C) 2020 Christopher Morris <christopher.morris@udo.edu>
  *********************************************************************/
 
 
 #ifndef WLFAST_AUXILIARYMETHODS_H
 #define WLFAST_AUXILIARYMETHODS_H
-
-//#include "/usr/local/include/eigen3/Eigen/Dense"
-
 
 #include <fstream>
 #include <iostream>
