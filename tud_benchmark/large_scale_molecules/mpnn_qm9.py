@@ -78,13 +78,11 @@ for _ in range(5):
     dataset = dataset.shuffle()
 
     tenpercent = int(len(dataset) * 0.1)
-    print("###")
     mean = dataset.data.y.mean(dim=0, keepdim=True)
     std = dataset.data.y.std(dim=0, keepdim=True)
     dataset.data.y = (dataset.data.y - mean) / std
     mean, std = mean.to(device), std.to(device)
 
-    print("###")
     test_dataset = dataset[:tenpercent].shuffle()
     val_dataset = dataset[tenpercent:2 * tenpercent].shuffle()
     train_dataset = dataset[2 * tenpercent:].shuffle()
