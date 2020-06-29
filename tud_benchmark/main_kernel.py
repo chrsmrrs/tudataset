@@ -3,14 +3,13 @@ import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
 from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 from auxiliarymethods.kernel_evaluation import linear_svm_evaluation
-from auxiliarymethods.reader import read_txt
+from auxiliarymethods.reader import tud_to_networkx
 
 
 
 def main():
-    classes = dp.get_dataset("ENZYMES")
-    read_txt("ENZYMES")
-    exit()
+    classes = dp.get_dataset("ZINC_test", regression=True)
+    graph_db = tud_to_networkx("ZINC_test")
 
 
 

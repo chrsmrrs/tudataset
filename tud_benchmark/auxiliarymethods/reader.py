@@ -1,17 +1,11 @@
 import os.path as path
-import sys
-
 import networkx as nx
 
-sys.path.insert(0, '..')
-sys.path.insert(0, '.')
 
+def tud_to_networkx(ds_name):
+    pre = ds_name + "/"
 
-def read_txt(ds_name):
-    pre = ""
-
-    with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_indicator.txt",
-              "r") as f:
+    with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_graph_indicator.txt", "r") as f:
         graph_indicator = [int(i) - 1 for i in list(f)]
     f.closed
 
@@ -31,12 +25,12 @@ def read_txt(ds_name):
     for i in node_indices:
         g = nx.Graph()
         for j in range(i[1] - i[0]):
-            g.add_node(j + 1)
+            g.add_node(j)
 
         graph_db.append(g)
 
     # Edges.
-    with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_A.txt", "r") as f:
+    with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_A.txt", "r") as f:
         edges = [i.split(',') for i in list(f)]
     f.closed
 
@@ -53,9 +47,8 @@ def read_txt(ds_name):
             edge_list.append((e[0] - off, e[1] - off))
 
     # Node labels.
-    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_labels.txt"):
-        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_labels.txt",
-                  "r") as f:
+    if path.exists("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_node_labels.txt"):
+        with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_node_labels.txt", "r") as f:
             node_labels = [map(int, i.split(',')) for i in list(f)]  # [int(i) for i in list(f)]
         f.closed
 
@@ -66,9 +59,8 @@ def read_txt(ds_name):
                 i += 1
 
     # Node Attributes.
-    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_attributes.txt"):
-        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_node_attributes.txt",
-                  "r") as f:
+    if path.exists("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_node_attributes.txt"):
+        with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_node_attributes.txt", "r") as f:
             node_attributes = [map(float, i.split(',')) for i in list(f)]
         f.closed
 
@@ -79,9 +71,8 @@ def read_txt(ds_name):
                 i += 1
 
     # Edge Labels.
-    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_labels.txt"):
-        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_labels.txt",
-                  "r") as f:
+    if path.exists("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_edge_labels.txt"):
+        with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_edge_labels.txt", "r") as f:
             edge_labels = [map(int, i.split(',')) for i in list(f)]  # [int(i) for i in list(f)]
         f.closed
 
@@ -92,9 +83,8 @@ def read_txt(ds_name):
                 i += 1
 
     # Edge Attributes.
-    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_attributes.txt"):
-        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_edge_attributes.txt",
-                  "r") as f:
+    if path.exists("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_edge_attributes.txt"):
+        with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_edge_attributes.txt", "r") as f:
             edge_attributes = [map(float, i.split(',')) for i in list(f)]
         f.closed
 
@@ -105,9 +95,8 @@ def read_txt(ds_name):
                 i += 1
 
     # Classes.
-    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_labels.txt"):
-        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_labels.txt",
-                  "r") as f:
+    if path.exists("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_graph_labels.txt"):
+        with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_graph_labels.txt", "r") as f:
             classes = [map(int, i.split(',')) for i in list(f)]  # [int(i) for i in list(f)]
         f.closed
         i = 0
@@ -116,9 +105,8 @@ def read_txt(ds_name):
             i += 1
 
     # Targets.
-    if path.exists("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_attributes.txt"):
-        with open("./datasets/" + pre + ds_name + "/" + ds_name + "/" + "raw/" + ds_name + "_graph_attributes.txt",
-                  "r") as f:
+    if path.exists("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_graph_attributes.txt"):
+        with open("./datasets/" + pre + ds_name + "/raw/" + ds_name + "_graph_attributes.txt", "r") as f:
             targets = [map(float, i.split(',')) for i in list(f)]
         f.closed
         i = 0
