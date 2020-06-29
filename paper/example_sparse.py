@@ -3,10 +3,12 @@ import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
 from auxiliarymethods.kernel_evaluation import linear_svm_evaluation
 
+# Download datasets.
 classes = dp.get_dataset("MOLT-4")
 use_labels, use_edge_labels = True, True
 
 all_matrices = []
+# Compute 1-WL kernel for 1 to 5 iterations.
 for i in range(1, 6):
     # Use node labels and edge labels.
     gm = kb.compute_wl_1_sparse(dataset, i, use_labels, use_edge_labels)

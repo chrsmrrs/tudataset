@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  28 JUN 2020 18:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  28 JUN 2020 23:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1121,7 +1121,7 @@ Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/forloop/forloop.sty
 Package: forloop 2006/09/18 v3.0 For Loops for LaTeX
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 108.
+Package hyperref Info: Option `colorlinks' set `true' on input line 109.
 \titrun=\box73
 \c@@affiliationcounter=\count339
 \c@@affilnum=\count340
@@ -1212,7 +1212,7 @@ Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 30, step: 1, non-selected.
+(microtype)             stretch: 20, shrink: 40, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: Adjustment of interword spacing enabled.
@@ -1347,17 +1347,6 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 239.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 239.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 239.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 239.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `pcr' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 239.
 \c@@affilp=\count354
@@ -1458,6 +1447,25 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 244.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 245.
+(/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pcr' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--255
+[][][][]$\T1/pcr/m/n/9 https : / / pytorch-[]geometric . readthedocs .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--255
+[][][][]$\T1/pcr/m/n/9 https : / / docs . dgl . ai / en / 0 . 4 . x / api / pyt
+hon /
+ []
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1466,9 +1474,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <12> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 265.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1524,6 +1529,7 @@ LaTeX Warning: No positions in optional float specifier.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+(./main.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
@@ -1531,31 +1537,25 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.388 \newpage
-              pdfTeX warning (ext4): destination with the same identifier (name
-{table.2}) has been already used, duplicate ignored
+l.1 \begin{thebibliography}{75}
+                               pdfTeX warning (ext4): destination with the same
+ identifier (name{table.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.388 \newpage
-              pdfTeX warning (ext4): destination with the same identifier (name
-{table.3}) has been already used, duplicate ignored
+l.1 \begin{thebibliography}{75}
+                               pdfTeX warning (ext4): destination with the same
+ identifier (name{table.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.388 \newpage
-              ] (./main.bbl [5]
+l.1 \begin{thebibliography}{75}
+                               ] [5]
 Underfull \hbox (badness 4595) in paragraph at lines 169--173
 []\T1/ptm/m/n/10 (+20) Helma, C., King, R. D., Kramer, S., and Srini-vasan,
  []
 
 [6]
-Underfull \hbox (badness 1831) in paragraph at lines 296--301
-[]\T1/ptm/m/n/10 (+20) Morris, C., Ker-st-ing, K., and Mutzel, P.  Glo-cal-ized
-
- []
-
-
 Underfull \hbox (badness 2547) in paragraph at lines 387--392
 []\T1/ptm/m/n/10 (+20) Shervashidze, N., Schweitzer, P., van Leeuwen, E. J.,
  []
@@ -1565,35 +1565,38 @@ Underfull \hbox (badness 2547) in paragraph at lines 387--392
 ] (./example.py
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 1.
-) (./example_sparse.py) (./example_gnn.py)
+) (./example_sparse.py) (./example_gnn.py [9
+
+])
+(./networkx.py)
 LaTeX Font Info:    Font shape `T1/ptm/bx/sc' in size <12> not available
-(Font)              Font shape `T1/ptm/b/sc' tried instead on input line 409.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9
-
-]
-[10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 418.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 418.
+(Font)              Font shape `T1/ptm/b/sc' tried instead on input line 412.
+ [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 421.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 421.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 418.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 418.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 421.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 421.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 418.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 421.
  ) 
 Here is how much of TeX's memory you used:
- 37442 strings out of 492616
- 719407 string characters out of 6129480
- 794698 words of memory out of 5000000
- 40224 multiletter control sequences out of 15000+600000
- 615749 words of font info for 391 fonts, out of 8000000 for 9000
+ 37568 strings out of 492616
+ 720665 string characters out of 6129480
+ 800323 words of memory out of 5000000
+ 40261 multiletter control sequences out of 15000+600000
+ 616315 words of font info for 428 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,81p,1257b,1432s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
+ 62i,13n,81p,1257b,2457s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
 , replaced by a fixed one
@@ -1603,23 +1606,21 @@ pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019/texmf-di
-st/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts
-/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/u
-rw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/u
-tmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (10 pages, 221084 bytes).
+ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2019/texmf-dist/f
+onts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
+e1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/tim
+es/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.
+pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (10 pages, 209287 bytes).
 PDF statistics:
- 559 PDF objects out of 1000 (max. 8388607)
- 510 compressed objects within 6 object streams
- 154 named destinations out of 1000 (max. 500000)
- 44653 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 588 PDF objects out of 1000 (max. 8388607)
+ 541 compressed objects within 6 object streams
+ 178 named destinations out of 1000 (max. 500000)
+ 41069 words of extra memory for PDF output out of 42996 (max. 10000000)
 
