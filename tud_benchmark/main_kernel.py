@@ -11,8 +11,6 @@ def main():
     classes = dp.get_dataset("ZINC_test", regression=True)
     graph_db = tud_to_networkx("ZINC_test")
 
-
-
     ### Smaller datasets using LIBSVM.
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                ["REDDIT-BINARY", False]]
