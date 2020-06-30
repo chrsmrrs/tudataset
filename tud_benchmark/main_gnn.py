@@ -30,6 +30,7 @@ def main():
 
 
     num_reps = 3
+    print(num_reps)
 
     ### Midscale datasets.
     dataset = [["Yeast", True], ["YeastH", True], ["UACC257", True], ["UACC257H", True], ["OVCAR-8", True],
