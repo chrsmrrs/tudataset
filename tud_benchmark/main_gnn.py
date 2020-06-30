@@ -29,7 +29,7 @@ def main():
     #     results.append(d + " " + "GINWithJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
 
-    num = 3
+    num_reps = 3
 
     ### Midscale datasets.
     dataset = [["Yeast", True], ["YeastH", True], ["UACC257", True], ["UACC257H", True], ["OVCAR-8", True],
