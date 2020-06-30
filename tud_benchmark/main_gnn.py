@@ -1,5 +1,5 @@
 import auxiliarymethods.datasets as dp
-from auxiliarymethods.gnn_evaluation import gnn_evaluation, gnn_evaluation_old
+from auxiliarymethods.gnn_evaluation import gnn_evaluation
 from gnn_baselines.gnn_architectures import GIN, GINWithJK, GINE, GINEWithJK
 
 
