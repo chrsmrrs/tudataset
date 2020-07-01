@@ -126,5 +126,5 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
                 np.array(test_accuracies_complete).std())
     else:
         return (np.array(test_accuracies_all).mean(), np.array(test_accuracies_all).std())
-    
+
 
