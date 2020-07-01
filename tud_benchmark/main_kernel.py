@@ -7,22 +7,22 @@ from auxiliarymethods.reader import tud_to_networkx
 
 
 def main():
-    dataset = "ENZYMES"
-
-    # Download datasets.
-    dp.get_dataset(dataset)
-    # Output datasets as a list of graphs.
-    graph_db = tud_to_networkx(dataset)
-
-    for g in graph_db:
-        for v in g.nodes(data=True):
-            print(g.nodes[v]['labels'])
-
-    exit()
-
-
-    classes = dp.get_dataset("ZINC_test", regression=True)
-    graph_db = tud_to_networkx("ZINC_test")
+    # dataset = "ENZYMES"
+    #
+    # # Download datasets.
+    # dp.get_dataset(dataset)
+    # # Output datasets as a list of graphs.
+    # graph_db = tud_to_networkx(dataset)
+    #
+    # for g in graph_db:
+    #     for v in g.nodes(data=True):
+    #         print(g.nodes[v]['labels'])
+    #
+    # exit()
+    #
+    #
+    # classes = dp.get_dataset("ZINC_test", regression=True)
+    # graph_db = tud_to_networkx("ZINC_test")
 
     ### Smaller datasets using LIBSVM.
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
@@ -41,7 +41,7 @@ def main():
             gm = kb.compute_wl_1_dense(dataset, i, use_labels, False)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
         print(dataset + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(dataset + " " + "WL1 " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
@@ -51,7 +51,7 @@ def main():
             gm = kb.compute_wloa_dense(dataset, i, use_labels, False)
             gm_n = aux.normalize_gram_matrix(gm)
             all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
         print(dataset + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(dataset + " " + "WLOA " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
@@ -60,7 +60,7 @@ def main():
         gm = kb.compute_graphlet_dense(dataset, use_labels, False)
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
         print(dataset + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(dataset + " " + "GR " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
@@ -69,9 +69,13 @@ def main():
         gm = kb.compute_shortestpath_dense(dataset, use_labels)
         gm_n = aux.normalize_gram_matrix(gm)
         all_matrices.append(gm_n)
-        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=10, all_std=True)
+        acc, s_1, s_2 = kernel_svm_evaluation(all_matrices, classes, num_repetitions=num_reps, all_std=True)
         print(dataset + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(dataset + " " + "SP " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+
+    # Number of repetitions of 10-CV.
+    num_reps = 3
 
     ### Larger datasets using LIBLINEAR with edge labels.
     dataset = [["MOLT-4", True, True], ["Yeast", True, True], ["MCF-7", True, True],

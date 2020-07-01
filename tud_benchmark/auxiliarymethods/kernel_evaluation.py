@@ -20,16 +20,16 @@ def linear_svm_evaluation(all_feature_matrices, classes, num_repetitions=10,
 
         for train_index, test_index in kf.split(list(range(len(classes)))):
             # Sample 10% split from training split for validation.
-            inner_train_index, val_index = train_test_split(train_index, test_size=0.1)
+            train_index, val_index = train_test_split(train_index, test_size=0.1)
             best_val_acc = 0.0
             best_gram_matrix = all_feature_matrices[0]
             best_c = C[0]
 
             for gram_matrix in all_feature_matrices:
-                train = gram_matrix[inner_train_index]
+                train = gram_matrix[train_index]
                 val = gram_matrix[val_index]
 
-                c_train = classes[inner_train_index]
+                c_train = classes[train_index]
                 c_val = classes[val_index]
 
                 for c in C:
@@ -80,18 +80,18 @@ def kernel_svm_evaluation(all_matrices, classes, num_repetitions=10,
 
         for train_index, test_index in kf.split(list(range(len(classes)))):
             # Determine hyperparameters
-            inner_train_index, val_index = train_test_split(train_index, test_size=0.1)
+            train_index, val_index = train_test_split(train_index, test_size=0.1)
             best_val_acc = 0.0
             best_gram_matrix = all_matrices[0]
             best_c = C[0]
 
             for gram_matrix in all_matrices:
-                train = gram_matrix[inner_train_index, :]
-                train = train[:, inner_train_index]
+                train = gram_matrix[train_index, :]
+                train = train[:, train_index]
                 val = gram_matrix[val_index, :]
-                val = val[:, inner_train_index]
+                val = val[:, train_index]
 
-                c_train = classes[inner_train_index]
+                c_train = classes[train_index]
                 c_val = classes[val_index]
 
                 for c in C:
