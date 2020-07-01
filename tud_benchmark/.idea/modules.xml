@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$USER_HOME$/sparsewl/neural_baselines/.idea/neural_baselines.iml" filepath="$USER_HOME$/sparsewl/neural_baselines/.idea/neural_baselines.iml" />
       <module fileurl="file://$USER_HOME$/sparsewl/.idea/sparsewl.iml" filepath="$USER_HOME$/sparsewl/.idea/sparsewl.iml" />
+      <module fileurl="file://$USER_HOME$/tgnn/.idea/tgnn.iml" filepath="$USER_HOME$/tgnn/.idea/tgnn.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/tud_benchmark.iml" filepath="$PROJECT_DIR$/.idea/tud_benchmark.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/tud_datasets.iml" filepath="$PROJECT_DIR$/.idea/tud_datasets.iml" />
     </modules>

@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="neural_baselines" />
     <orderEntry type="module" module-name="sparsewl" />
+    <orderEntry type="module" module-name="tgnn" />
   </component>
 </module>
