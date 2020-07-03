@@ -1,0 +1,71 @@
+\mode<presentation> {
+   \usecolortheme{seahorse}
+   \usecolortheme{rose}
+
+   \definecolor{tudo}{RGB}{18,102,172}
+   \colorlet{tudodark}{tudo!70!black}%{tudo!55!black}
+    \definecolor{nicebrown}{RGB}{219,179,143}
+
+   \setbeamercolor{structure}{fg=tudodark}
+
+   \usefonttheme[onlymath]{serif}
+
+   \useinnertheme{rounded}
+   \setbeamertemplate{items}[circle]
+   \setbeamertemplate{blocks}[rounded][shadow=false]
+   \setbeamertemplate{footline}
+{
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \insertframenumber\kern.5em\vskip2pt%
+} 
+
+}
+
+\setbeamercolor{frametitle}{fg=tudodark}
+\setbeamertemplate{frametitle}
+{
+\begin{centering}%
+\insertframetitle\par\vspace{4pt}%
+\color{tudodark} \hrule width \textwidth height 1pt%
+\end{centering}%
+}
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\tikzset{temporal/.code args={<#1>#2#3#4}{%
+  \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
+}}
+
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+  \setlength{\textwidth}{#1}
+  \begin{actionenv}#3%
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+  
+\newenvironment<>{statusblock}[1]{%
+  \begin{actionenv}#2%
+      \def\insertblocktitle{#1}%
+      \par%
+      \mode<presentation>{%
+%        \setbeamercolor{block title}{fg=white,bg=orange!20!black}
+%        \setbeamercolor{block body}{fg=black,bg=olive!50}
+       \setbeamercolor{block title}{bg=nicebrown!50,fg=black!70!nicebrown}
+     }%
+      \usebeamertemplate{block begin}}
+    {\par\usebeamertemplate{block end}\end{actionenv}}
+
+\setbeamertemplate{navigation symbols}{}
+
+\newcommand{\paper}[1]{\begin{footnotesize}\color{tudodark}{[#1]}\end{footnotesize}}
+\newcommand{\citep}[1]{\paper{#1}}

@@ -1,0 +1,105 @@
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+% \newcommand{\tp}[0]{\intercal}%
+\newcommand{\tp}[0]{\top}%
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\setST}{\ \middle|\ } % used to get a nice delimiter within \left\{...}\right; adaptive solution would be better
+\newcommand{\win}[1]{$\hspace{-0.3mm}$\textbf{#1}}
+\newcommand{\size}[1]{|#1|}
+% \newcommand{\sizeV}[1]{|#1|^{\hspace{-.15em}\textit{\tiny V}}}
+\newcommand{\sizeV}[1]{|#1|}
+% \newcommand{\sizeE}[1]{|#1|_{\hspace{-.15em}\textit{\tiny E}}}
+\newcommand{\sizeE}[1]{\left\lVert#1\right\rVert}
+% \newcommand{\sizeVE}[1]{|#1|^{\hspace{-.15em}\textit{\tiny V}}_{\hspace{-.15em}\textit{\tiny E}}}
+\newcommand{\attr}[0]{\alpha}
+\newcommand{\lab}[0]{\tau}
+\newcommand{\wag}[0]{\nabla_{\hspace{-.15em}w}}
+\newcommand{\wdpg}[0]{\times_{\hspace{-.15em}w}}
+\newcommand{\iso}[0]{\psi}
+\newcommand{\comp}[1]{\overline{#1}}
+% \newcommand{\splitcomp}[1]{{#1}^\complement}
+\newcommand{\splitcomp}[1]{\widetilde{#1}}
+
+% numbers
+\newcommand{\bbR}[0]{\ensuremath{\mathbb{R}}\xspace}
+\newcommand{\bbRnn}[0]{\ensuremath{\mathbb{R}_{\geq0}}\xspace}
+\newcommand{\bbRp}[0]{\ensuremath{\mathbb{R}^+}\xspace}
+\newcommand{\bbN}[0]{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\bbNp}[0]{\ensuremath{\mathbb{N}^+}\xspace}
+
+\newcommand{\bigO}[0]{\ensuremath{\mathcal{O}}}
+\newcommand{\cNP}[0]{\ensuremath{\mathsf{NP}}}
+\newcommand{\cP}[0]{\ensuremath{\mathsf{P}}}
+\newcommand{\cGI}[0]{\ensuremath{\mathsf{GI}}\xspace}
+
+\newcommand{\EdgeSet}[1]{\ensuremath{[#1]^2}}
+\newcommand{\diEdgeSet}[1]{\ensuremath{#1 \times #1}}
+
+\newcommand{\wlength}[0]{\ensuremath{\ell}}
+
+\newcommand{\hilb}[0]{\ensuremath{\mathcal{H}}\xspace}
+\newcommand{\graphs}[0]{\ensuremath{\mathcal{G}}\xspace}
+\newcommand{\powset}[0]{\ensuremath{\mathcal{P}}\xspace}
+% \newcommand{\powset}[0]{\ensuremath{\mathfrak{P}}\xspace}
+\newcommand{\linegraph}[1]{\ensuremath{L(#1)}\xspace}
+\newcommand{\subdivgraph}[1]{\ensuremath{S(#1)}\xspace}
+
+
+%% global vector style
+\let\vec\mathbf
+
+
+%% additional functions
+\DeclareMathOperator{\N}{N}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\csi}{cisi}
+\DeclareMathOperator{\sm}{sm}
+\DeclareMathOperator{\enc}{enc}
+\DeclareMathOperator{\ip}{i}
+\DeclareMathOperator{\s}{s}
+\DeclareMathOperator{\p}{p}
+\DeclareMathOperator{\feat}{feat}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\RBF}{RBF}
+\DeclareMathOperator{\DPG}{DPG}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\bin}{bin}
+\DeclareMathOperator{\BS}{bs}
+\DeclareMathOperator{\WSKR}{wskr}
+\DeclareMathOperator{\FV}{fv}
+\DeclareMathOperator{\CAN}{CAN}
+
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\type}{type}
+% argmax and argmin
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+%% common subgraph 
+\DeclareMathOperator{\childB}{childB}
+\DeclareMathOperator{\childS}{childS}
+\DeclareMathOperator{\parentS}{parentS}
+\DeclareMathOperator{\REF}{ref}
+\DeclareMathOperator{\tw}{tw}
+\DeclareMathOperator{\NTD}{NTD}
+\DeclareMathOperator{\NTDG}{NTDG}
+\newcommand{\MCSfunc}[3]{\ensuremath{\textsc{#1}(#2,#3)}}
+\newcommand{\MCS}[2]{\MCSfunc{Mcs}{#1}{#2}}
+% \newcommand{\MCCIS}[2]{\MCSfunc{Mccis}{#1}{#2}}
+% \newcommand{\BBPMCCES}[2]{\MCSfunc{Bbp-Mcces}{#1}{#2}}
+\newcommand{\MCCIS}[2]{\MCS{#1}{#2}}
+\newcommand{\BBPMCCES}[2]{\MCS{#1}{#2}}
+\newcommand{\sizeGraph}[1]{\ensuremath{\llbracket#1\rrbracket}}
+\newcommand{\sMCS}[2]{\ensuremath{\sizeGraph{\MCS{#1}{#2}}}}
+\renewcommand{\cmark}{\color{tudodark}{\ding{51}}}%
+\renewcommand{\xmark}{\color{red}{\ding{55}}}%
+\newcommand{\X}{\ensuremath{\chi}\xspace}
+\newcommand{\Assign}{\ensuremath{\mathfrak{B}}\xspace}
+
+
+% \newcommand{\paper}[1]{\begin{footnotesize}\color{tudodark}{{[#1]}}\end{footnotesize}}
+% \newcommand{\citep}[1]{\paper{#1}}

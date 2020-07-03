@@ -1,0 +1,86 @@
+\documentclass[utf8, xcolor=dvipsnames,ngerman]{beamer}
+% \documentclass[utf8, xcolor=dvipsnames,english,handout]{beamer}
+
+\usepackage{soul} 
+\usepackage{pifont} 
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\usepackage[english]{babel}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows,backgrounds,automata}
+\usetikzlibrary{positioning,shapes,matrix,calc}
+\usepackage{xspace}
+\usepackage{pgfpages}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{graphicx}
+
+
+% \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
+
+\setbeameroption{hide notes}
+%\setbeameroption{show notes}
+%\setbeameroption{show notes on second screen}
+%\setbeameroption{show only notes}
+
+\newcommand{\univ}{\ensuremath{\mathcal{X}}\xspace}
+
+\input{config_beamer.tex}
+\input{commands.tex}
+
+\graphicspath{{figures/}}
+
+
+\title{TUDataset: A collection of benchmark datasets for learning with graphs}
+\author{%
+Christopher Morris \and
+\emph{Nils M.~Kriege} \and
+Franka Bause \and 
+Kristian Kersting \and
+Petra Mutzel \and
+Marion Neumann
+}
+\institute{%
+\inst{1} affiliation for author1 \and %
+\inst{2} Faculty of Computer Science \\ University of Vienna}
+                      
+\date{July 17, 2020}
+
+% \begin{icmlauthorlist}
+% \icmlauthor{Franka Bause}{tud}
+% \icmlauthor{Kristian Kersting}{darm}
+% \icmlauthor{Petra Mutzel}{bonn}
+% \icmlauthor{Marion Neumann}{wustl}
+% \end{icmlauthorlist}
+
+% \icmlaffiliation{p}{CERC in Data Science for Real-Time Decision-Making, Polytechnique Montréal}
+% \icmlaffiliation{tud}{Department of Computer Science, TU Dortmund University}
+% \icmlaffiliation{vie}{Faculty of Computer Science, University of Vienna}
+% \icmlaffiliation{darm}{Machine Learning Group, TU Darmstadt}
+% \icmlaffiliation{bonn}{Department of Computer Science, University of Bonn}
+% \icmlaffiliation{wustl}{Department of Computer Science and Engineering, Washington University in St. Louis}
+
+
+\begin{document}
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+% By default all math in TikZ nodes are set in inline mode. Change this to
+% displaystyle so that we don't get small fractions.
+\everymath{\displaystyle}
+
+\begin{frame}
+ \titlepage
+%  \putat{135}{-15}{\includegraphics[height=1.6cm]{Uni_Logo_2016.pdf}}
+\end{frame}
+
+
+
+
+
+\end{document}
