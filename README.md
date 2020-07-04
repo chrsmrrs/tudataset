@@ -28,16 +28,17 @@ In order to execute the kernel baseline you have to compile the Python package. 
 
 Execute the following steps: 
 ```Bash
-$ cd tud_benchmark
+$ cd tud_benchmark/kernel_baselines
 ```
 If you are using a Linux system, run
 ```Bash
-$ g++ main.cpp src/*.h src/*.cpp -std=c++11 -o wlglobal -O2
+$ g++ -O3 -shared -std=c++11 -fPIC `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
 ```
 on MacOs, run
 ```Bash
-$ g++ main.cpp src/*.h src/*.cpp -std=c++11 -o wlglobal -O2
+$ g++ -O3 -shared -std=c++11 -undefined dynamic_lookup `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
 ```
+
 You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_baselines.cpp``, 
 ``src/AuxiliaryMethods.h``, and ``Graph.cpp``. 
 
