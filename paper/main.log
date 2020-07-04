@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  4 JUL 2020 14:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  4 JUL 2020 15:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1575,22 +1575,32 @@ LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 (./networkx.py)
 LaTeX Font Info:    Font shape `T1/ptm/bx/sc' in size <12> not available
 (Font)              Font shape `T1/ptm/b/sc' tried instead on input line 419.
- [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 430.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 430.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10] [11pdfTeX warning (ext4): destination with the same identifier (name{table
+.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.467 \end{document}
+                    ]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 467.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 467.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 430.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 430.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 467.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 467.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 430.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 467.
  ) 
 Here is how much of TeX's memory you used:
- 37561 strings out of 492616
- 720612 string characters out of 6129480
- 800509 words of memory out of 5000000
- 40265 multiletter control sequences out of 15000+600000
- 614962 words of font info for 418 fonts, out of 8000000 for 9000
+ 37576 strings out of 492616
+ 720783 string characters out of 6129480
+ 801708 words of memory out of 5000000
+ 40272 multiletter control sequences out of 15000+600000
+ 623462 words of font info for 423 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,13n,81p,1262b,2457s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
@@ -1615,16 +1625,19 @@ e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/
 2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/201
 9/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2019/texmf-dist/f
-onts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/tim
-es/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.
-pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (10 pages, 210933 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
+ype1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/t
+imes/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8
+a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></u
+sr/local/texlive/2019/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on main.pdf (11 pages, 225349 bytes).
 PDF statistics:
- 596 PDF objects out of 1000 (max. 8388607)
- 549 compressed objects within 6 object streams
- 180 named destinations out of 1000 (max. 500000)
- 40557 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 619 PDF objects out of 1000 (max. 8388607)
+ 566 compressed objects within 6 object streams
+ 182 named destinations out of 1000 (max. 500000)
+ 41581 words of extra memory for PDF output out of 42996 (max. 10000000)
 

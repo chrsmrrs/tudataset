@@ -37,13 +37,6 @@ namespace AuxiliaryMethods {
     vector<int> read_classes(string data_set_name);
        vector<float> read_targets(string data_set_name);
 
-    // Write Gram matrix to file.
-    void write_gram_matrix(const GramMatrix &gram_matrix, string file_name);
-
-    void write_sparse_gram_matrix(const GramMatrix &gram_matrix, string file_name);
-
-    void write_libsvm(const GramMatrix &gram_matrix, const vector<int> classes, std::string filename);
-
     // Pairing function to map a pair of Labels to a single label.
     Label pairing(const Label a, const Label b);
     

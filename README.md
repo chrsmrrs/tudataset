@@ -21,16 +21,26 @@ First make sure that you have all requirements installed.
 - torch-geometric
 - pybind11
 - libsvm
+- g++ 
 
+### Compilation`
+In order to execute the kernel baseline you have to compile the Python package. If you just want to use the GNN baseline and evaluation scripts, you can skip this step.
 
-
-
-Using `cmake` you can simply type `cmake cmake-build-debug`, otherwise (using `gcc`)
-
+Execute the following steps: 
+```Bash
+$ cd tud_benchmark
+```
+If you are using a Linux system, run
 ```Bash
 $ g++ main.cpp src/*.h src/*.cpp -std=c++11 -o wlglobal -O2
 ```
-In order to compile, you need a recent version of [Eigen 3](http://eigen.tuxfamily.org/index.php?title=Main_Page) installed on your system.
+on MacOs, run
+```Bash
+$ g++ main.cpp src/*.h src/*.cpp -std=c++11 -o wlglobal -O2
+```
+You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_baselines.cpp``, 
+``src/AuxiliaryMethods.h``, and ``Graph.cpp``. 
+
 
 ## Terms and conditions
 Please feel free to use our code. We only ask that you cite:
