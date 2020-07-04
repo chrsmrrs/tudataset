@@ -19,12 +19,14 @@ First make sure that you have all requirements installed.
 - sklearn
 - torch 1.5
 - torch-geometric
+
+If you want to use the kernel baseline, you will further need:
 - pybind11
 - libsvm
 - g++ 
 
-### Compilation`
-In order to execute the kernel baseline you have to compile the Python package. If you just want to use the GNN baseline and evaluation scripts, you can skip this step.
+### Compilation of kernel baselines
+To execute the kernel baselines you have to compile the Python package. If you just want to use the GNN baselines, data loaders, and evaluation scripts, you can skip this step.
 
 Execute the following steps: 
 ```Bash
