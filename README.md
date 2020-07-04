@@ -42,7 +42,7 @@ $ g++ -O3 -shared -std=c++11 -undefined dynamic_lookup `python3 -m pybind11 --in
 ```
 
 You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_baselines.cpp``, 
-``src/AuxiliaryMethods.h``, and ``Graph.cpp``. 
+``kernel_baselines/src/AuxiliaryMethods.h``, and ``kernel_baselines/src/Graph.cpp``. 
 
 
 ## Terms and conditions
