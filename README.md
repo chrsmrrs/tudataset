@@ -1,6 +1,6 @@
 # TUDataset
 
-Source code for our ICML 2020 Workshop on Graph Representation Learning and Beyond (GRL+ 2020) paper "[TUDataset: A collection of benchmark datasets for learning with graphs](https://arxiv.org/abs/XXX.XXX)". This repository contains graph kernel and GNN baseline implementation, data loaders, and evaluations scripts.
+Source code for our ICML 2020 Workshop on Graph Representation Learning and Beyond (GRL+ 2020) paper "[TUDataset: A collection of benchmark datasets for learning with graphs](https://arxiv.org/abs/XXX.XXX)". This repository contains graph kernel and GNN baseline implementations, data loaders, and evaluations scripts.
 
 See [graphlearning.io](https://graphlearning.io/) for documentation on how to use this package.
 
