@@ -33,20 +33,22 @@ def main():
     print(num_reps)
 
     ### Midscale datasets.
-    dataset = [["Yeast", True], ["YeastH", True], ["UACC257", True], ["UACC257H", True], ["OVCAR-8", True],
-               ["OVCAR-8H", True]]
 
-    for d, use_labels in dataset:
+    dataset = [["MOLT-4", True, True], ["Yeast", True, True], ["MCF-7", True, True],
+                 ["github_stargazers", False, False],
+                 ["reddit_threads", False, False]]
+    
+    for d, use_labels, _ in dataset:
         dp.get_dataset(d)
 
-        # GINE (GIN with edge labels), dataset d, layers in [1:5], hidden dimension in {32,64,128}.
+        # GINE (GIN with edge labels), dataset d, 3 layers, hidden dimension in {64}.
         acc, s_1, s_2 = gnn_evaluation(GINE, d, [3], [64], max_num_epochs=200,
                                            batch_size=64, start_lr=0.01,
                                            num_repetitions=num_reps, all_std=True)
         print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
         results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        # GINE (GIN with edge labels) with jumping knowledge, dataset d, layers in [1:5], hidden dimension in {32,64,128}.
+        # GINE (GIN with edge labels) with jumping knowledge, dataset d, 3 layers, hidden dimension in {64}.
         acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
                                            batch_size=64,
                                            start_lr=0.01,
