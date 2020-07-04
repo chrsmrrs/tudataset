@@ -37,7 +37,7 @@ def main():
     dataset = [["MOLT-4", True, True], ["Yeast", True, True], ["MCF-7", True, True],
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
-    
+
     for d, use_labels, _ in dataset:
         dp.get_dataset(d)
 
