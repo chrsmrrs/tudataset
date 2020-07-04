@@ -8,6 +8,23 @@ See [graphlearning.io](http://www.graphlearning.io/) for documentation on how to
 
 
 ## Installation
+
+First make sure that you have all requirements installed.
+###  Requirements
+- Python 3.8
+- eigen3
+- numpy
+- pandas
+- scipy
+- sklearn
+- torch 1.5
+- torch-geometric
+- pybind11
+- libsvm
+
+
+
+
 Using `cmake` you can simply type `cmake cmake-build-debug`, otherwise (using `gcc`)
 
 ```Bash
