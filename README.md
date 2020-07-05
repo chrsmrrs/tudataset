@@ -12,7 +12,6 @@ See [graphlearning.io](http://www.graphlearning.io/) for documentation on how to
 First make sure that you have all requirements installed.
 ###  Requirements
 - Python 3.8
-- eigen3
 - numpy
 - pandas
 - scipy
@@ -21,6 +20,7 @@ First make sure that you have all requirements installed.
 - torch-geometric
 
 If you want to use the kernel baseline, you will further need:
+- eigen3
 - pybind11
 - libsvm
 - g++ 
