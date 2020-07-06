@@ -52,6 +52,7 @@ See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for basel
 ## Terms and conditions
 Please feel free to use our code. We only ask that you cite:
 
+```
 @inproceedings{Morris+2020,
     title={TUDataset: A collection of benchmark datasets for learning with graphs},
     author={Christopher Morris and Nils M. Kriege and Franka Bause and Kristian Kersting and Petra Mutzel and Marion Neumann},
@@ -60,6 +61,7 @@ Please feel free to use our code. We only ask that you cite:
     url={www.graphlearning.io}
     year={2020}
 }
+```
 
 ## Contact Information
 If you have any questions, send an email to Christopher Morris (christopher.morris at tu-dortmund.de).
