@@ -3,27 +3,8 @@ import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
 from auxiliarymethods.kernel_evaluation import kernel_svm_evaluation
 from auxiliarymethods.kernel_evaluation import linear_svm_evaluation
-from auxiliarymethods.reader import tud_to_networkx
-
 
 def main():
-    # dataset = "ENZYMES"
-    #
-    # # Download datasets.
-    # dp.get_dataset(dataset)
-    # # Output datasets as a list of graphs.
-    # graph_db = tud_to_networkx(dataset)
-    #
-    # for g in graph_db:
-    #     for v in g.nodes(data=True):
-    #         print(g.nodes[v]['labels'])
-    #
-    # exit()
-    #
-    #
-    # classes = dp.get_dataset("ZINC_test", regression=True)
-    # graph_db = tud_to_networkx("ZINC_test")
-
     ### Smaller datasets using LIBSVM.
     dataset = [["ENZYMES", True], ["IMDB-BINARY", False], ["IMDB-MULTI", False], ["NCI1", True], ["PROTEINS", True],
                ["REDDIT-BINARY", False]]

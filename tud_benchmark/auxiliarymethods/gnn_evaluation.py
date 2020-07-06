@@ -50,7 +50,7 @@ def test(loader, model, device):
 
 
 # 10-CV for GNN training and hyperparameter selection.
-def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=200, batch_size=128, start_lr=0.01,
+def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=200, batch_size=128, start_lr=0.01, min_lr = 0.000001, factor=0.5, patience=5,
                        num_repetitions=10, all_std=True):
     # Load dataset and shuffle.
     path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'datasets', ds_name)
@@ -108,7 +108,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=200, batch_size=
 
                     optimizer = torch.optim.Adam(model.parameters(), lr=start_lr)
                     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
-                                                                           factor=0.5, patience=5,
+                                                                           factor=factor, patience=patience,
                                                                            min_lr=0.0000001)
                     for epoch in range(1, max_num_epochs + 1):
                         lr = scheduler.optimizer.param_groups[0]['lr']
@@ -121,7 +121,7 @@ def gnn_evaluation(gnn, ds_name, layers, hidden, max_num_epochs=200, batch_size=
                             best_test = test(test_loader, model, device) * 100.0
 
                         # Break if learning rate is smaller 10**-6.
-                        if lr < 0.000001:
+                        if lr < min_lr:
                             break
 
             test_accuracies.append(best_test)

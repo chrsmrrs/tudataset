@@ -165,7 +165,6 @@ namespace AuxiliaryMethods {
         return classes;
     }
 
-
     vector<float> read_targets(string data_set_name) {
         string line;
 
@@ -187,67 +186,6 @@ namespace AuxiliaryMethods {
         }
 
         return classes;
-    }
-
-    void write_gram_matrix(const GramMatrix &gram_matrix, string file_name) {
-        const IOFormat CSVFormat(10, 1, ", ", "\n");
-        string path = "/Users/chrsmrrs/localwl_dev/";
-
-        ofstream file(path + file_name.c_str());
-
-        // Convert sparse matrix to dense matrix to write it out to a file.
-        MatrixXd dense_gram_matrix(gram_matrix);
-
-        cout << dense_gram_matrix.rows()  << " " << dense_gram_matrix.cols() << endl;
-
-        file << dense_gram_matrix.format(CSVFormat);
-
-        file.close();
-    }
-
-    void write_sparse_gram_matrix(const GramMatrix &gram_matrix, string file_name) {
-        saveMarket(gram_matrix, file_name);
-    }
-
-
-    void write_libsvm(const GramMatrix &gram_matrix, const vector<int> classes, std::string filename) {
-        MatrixXd dense_gram_matrix(gram_matrix);
-
-        int size = classes.size();
-        MatrixXd norm(size, size);
-
-
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                double x = sqrt(dense_gram_matrix(i, i)) * sqrt(dense_gram_matrix(j, j));
-                if (x != 0) {
-                    norm(i, j) = dense_gram_matrix(i, j) / x;
-                } else {
-                    norm(i, j) = 0.0;
-                }
-            }
-        }
-
-        string path = "/home/morris/localwl_dev/svm/SVM/src/EXPNEW/";
-        //string path = "/Users/chrsmrrs/localwl_dev/svm/SVM/src/EXP3/";
-
-        ofstream file(path + filename);
-
-        if (file.is_open()) {
-            for (int i = 0; i < size; i++) {
-
-
-                file << classes[i] << " 0:" << (i + 1);
-                for (int c = 0; c < size; c++) {
-                    file << " " << (c + 1) << ":" << norm(i, c);
-                }
-                file << std::endl;
-            }
-            file.close();
-        } else {
-            printf("%s", "!!! Unable to open file 3!!!\n");
-            exit(EXIT_FAILURE);
-        }
     }
 
     Label pairing(const Label a, const Label b) {

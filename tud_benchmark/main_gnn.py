@@ -1,6 +1,6 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GIN, GINWithJK, GINE, GINEWithJK
+from gnn_baselines.gnn_architectures import GIN, GINWithJK
 
 
 def main():
@@ -33,29 +33,61 @@ def main():
     print(num_reps)
 
     ### Midscale datasets.
-    dataset = [["Yeast", True], ["YeastH", True], ["UACC257", True], ["UACC257H", True], ["OVCAR-8", True],
-               ["OVCAR-8H", True]]
+    dataset = [["MOLT-4", True, True], ["Yeast", True, True], ["MCF-7", True, True]]
 
-    for d, use_labels in dataset:
+
+    # for d, use_labels, _ in dataset:
+    #     print(d)
+    #     dp.get_dataset(d)
+    #
+    #     # GINE (GIN with edge labels), dataset d, 3 layers, hidden dimension in {64}.
+    #     acc, s_1, s_2 = gnn_evaluation(GINE, d, [3], [64], max_num_epochs=200,
+    #                                        batch_size=64, start_lr=0.01,
+    #                                        num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     # GINE (GIN with edge labels) with jumping knowledge, dataset d, 3 layers, hidden dimension in {64}.
+    #     acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
+    #                                        batch_size=64,
+    #                                        start_lr=0.01,
+    #                                        num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+
+
+
+    dataset = [["reddit_threads", False, False],
+                 ["github_stargazers", False, False],
+                 ]
+
+    dataset = [["github_stargazers", False, False]
+                 ]
+
+    for d, use_labels, _ in dataset:
+        print(d)
         dp.get_dataset(d)
 
-        # GINE (GIN with edge labels), dataset d, layers in [1:5], hidden dimension in {32,64,128}.
-        acc, s_1, s_2 = gnn_evaluation(GINE, d, [1, 2, 3, 4, 5], [64], max_num_epochs=200,
+        # GINE (GIN with edge labels), dataset d, 3 layers, hidden dimension in {64}.
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [3], [64], max_num_epochs=200,
                                            batch_size=64, start_lr=0.01,
                                            num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        # GINE (GIN with edge labels) with jumping knowledge, dataset d, layers in [1:5], hidden dimension in {32,64,128}.
-        acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [1, 2, 3, 4, 5], [64], max_num_epochs=200,
+        # GINE (GIN with edge labels) with jumping knowledge, dataset d, 3 layers, hidden dimension in {64}.
+        acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [3], [64], max_num_epochs=200,
                                            batch_size=64,
                                            start_lr=0.01,
                                            num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GINJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        for r in results:
-            print(r)
+
+    for r in results:
+        print(r)
+
 
 
 if __name__ == "__main__":
