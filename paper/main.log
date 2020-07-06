@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  6 JUL 2020 12:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  6 JUL 2020 16:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1361,25 +1361,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \kern 1.66702pt
 (hyperref)                removed on input line 240.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 240.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 240.
-
 \c@@affiltud=\count356
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 240.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 240.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\leavevmode@ifvmode' on input line 240.
@@ -1399,15 +1381,6 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \kern 1.66702pt
 (hyperref)                removed on input line 240.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 240.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 240.
-
 \c@@affilbonn=\count358
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -1418,25 +1391,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \kern 1.66702pt
 (hyperref)                removed on input line 240.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 240.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 240.
-
 \c@@affilwustl=\count359
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 240.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 240.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\leavevmode@ifvmode' on input line 240.
@@ -1475,6 +1430,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
+Underfull \hbox (badness 1360) in paragraph at lines 266--268
+\T1/ptm/m/n/10 (+20) or medium-scale datasets. Re-cently, [][]$\T1/pcr/m/n/10 o
+gb . stanford .
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1530,31 +1491,25 @@ LaTeX Warning: No positions in optional float specifier.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [4pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.398 T
-       his work has been partially funded by the Deutsche Forschungsgemeinsc...
-pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
- been already used, duplicate ignored
+l.403 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.2
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.398 T
-       his work has been partially funded by the Deutsche Forschungsgemeinsc...
-pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
- been already used, duplicate ignored
+l.403 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.3
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.398 T
-       his work has been partially funded by the Deutsche Forschungsgemeinsc...
-] (./main.bbl [5]
+l.403 
+      ] (./main.bbl [5]
 Underfull \hbox (badness 4595) in paragraph at lines 169--173
 []\T1/ptm/m/n/10 (+20) Helma, C., King, R. D., Kramer, S., and Srini-vasan,
  []
@@ -1592,13 +1547,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 473.
  ) 
 Here is how much of TeX's memory you used:
- 37580 strings out of 492616
- 720817 string characters out of 6129480
- 799841 words of memory out of 5000000
+ 37557 strings out of 492616
+ 720608 string characters out of 6129480
+ 799861 words of memory out of 5000000
  40272 multiletter control sequences out of 15000+600000
- 623695 words of font info for 426 fonts, out of 8000000 for 9000
+ 622400 words of font info for 409 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,81p,1262b,2457s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,13n,81p,1309b,2457s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1630,10 +1585,10 @@ ype1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></u
 sr/local/texlive/2019/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (11 pages, 225227 bytes).
+Output written on main.pdf (11 pages, 224411 bytes).
 PDF statistics:
- 620 PDF objects out of 1000 (max. 8388607)
- 567 compressed objects within 6 object streams
+ 626 PDF objects out of 1000 (max. 8388607)
+ 573 compressed objects within 6 object streams
  182 named destinations out of 1000 (max. 500000)
  41581 words of extra memory for PDF output out of 42996 (max. 10000000)
 
