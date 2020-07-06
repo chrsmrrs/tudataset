@@ -43,6 +43,7 @@ def main():
 
 
     for d, use_labels, _ in dataset:
+        print(d)
         dp.get_dataset(d)
 
         # GINE (GIN with edge labels), dataset d, 3 layers, hidden dimension in {64}.
