@@ -12,7 +12,6 @@ See [graphlearning.io](http://www.graphlearning.io/) for documentation on how to
 First make sure that you have all requirements installed.
 ###  Requirements
 - Python 3.8
-- eigen3
 - numpy
 - pandas
 - scipy
@@ -21,6 +20,7 @@ First make sure that you have all requirements installed.
 - torch-geometric
 
 If you want to use the kernel baseline, you will further need:
+- eigen3
 - pybind11
 - libsvm
 - g++ 
@@ -44,6 +44,10 @@ $ g++ -O3 -shared -std=c++11 -undefined dynamic_lookup `python3 -m pybind11 --in
 You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_baselines.cpp``, 
 ``kernel_baselines/src/AuxiliaryMethods.h``, and ``kernel_baselines/src/Graph.cpp``. 
 
+
+## Usage
+
+See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for baseline and evaluation examples. More details can be found at [graphlearning.io](https://chrsmrrs.github.io/datasets/docs/documentation/).
 
 ## Terms and conditions
 Please feel free to use our code. We only ask that you cite:
