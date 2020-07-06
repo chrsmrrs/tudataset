@@ -1,6 +1,6 @@
 import auxiliarymethods.datasets as dp
 from auxiliarymethods.gnn_evaluation import gnn_evaluation
-from gnn_baselines.gnn_architectures import GIN, GINWithJK, GINE, GINEWithJK
+from gnn_baselines.gnn_architectures import GIN, GINWithJK
 
 
 def main():
@@ -33,9 +33,7 @@ def main():
     print(num_reps)
 
     ### Midscale datasets.
-    dataset = [["MOLT-4", True, True], ["Yeast", True, True], ["MCF-7", True, True],
-                 ["github_stargazers", False, False],
-                 ["reddit_threads", False, False]]
+    dataset = [["MOLT-4", True, True], ["Yeast", True, True], ["MCF-7", True, True]]
 
 
     # for d, use_labels, _ in dataset:
@@ -62,6 +60,9 @@ def main():
 
     dataset = [["reddit_threads", False, False],
                  ["github_stargazers", False, False],
+                 ]
+
+    dataset = [["github_stargazers", False, False]
                  ]
 
     for d, use_labels, _ in dataset:
