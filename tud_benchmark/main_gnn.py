@@ -37,32 +37,56 @@ def main():
                  ["github_stargazers", False, False],
                  ["reddit_threads", False, False]]
 
+
+    # for d, use_labels, _ in dataset:
+    #     print(d)
+    #     dp.get_dataset(d)
+    #
+    #     # GINE (GIN with edge labels), dataset d, 3 layers, hidden dimension in {64}.
+    #     acc, s_1, s_2 = gnn_evaluation(GINE, d, [3], [64], max_num_epochs=200,
+    #                                        batch_size=64, start_lr=0.01,
+    #                                        num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #
+    #     # GINE (GIN with edge labels) with jumping knowledge, dataset d, 3 layers, hidden dimension in {64}.
+    #     acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
+    #                                        batch_size=64,
+    #                                        start_lr=0.01,
+    #                                        num_repetitions=num_reps, all_std=True)
+    #     print(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+    #     results.append(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+
+
+
+
     dataset = [["reddit_threads", False, False],
                  ["github_stargazers", False, False],
                  ]
-
 
     for d, use_labels, _ in dataset:
         print(d)
         dp.get_dataset(d)
 
         # GINE (GIN with edge labels), dataset d, 3 layers, hidden dimension in {64}.
-        acc, s_1, s_2 = gnn_evaluation(GINE, d, [3], [64], max_num_epochs=200,
+        acc, s_1, s_2 = gnn_evaluation(GIN, d, [3], [64], max_num_epochs=200,
                                            batch_size=64, start_lr=0.01,
                                            num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GINE " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GIN " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
         # GINE (GIN with edge labels) with jumping knowledge, dataset d, 3 layers, hidden dimension in {64}.
-        acc, s_1, s_2 = gnn_evaluation(GINEWithJK, d, [3], [64], max_num_epochs=200,
+        acc, s_1, s_2 = gnn_evaluation(GINWithJK, d, [3], [64], max_num_epochs=200,
                                            batch_size=64,
                                            start_lr=0.01,
                                            num_repetitions=num_reps, all_std=True)
-        print(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
-        results.append(d + " " + "GINEJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        print(d + " " + "GINJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
+        results.append(d + " " + "GINJK " + str(acc) + " " + str(s_1) + " " + str(s_2))
 
-        for r in results:
-            print(r)
+
+    for r in results:
+        print(r)
+
 
 
 if __name__ == "__main__":
