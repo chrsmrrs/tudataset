@@ -358,7 +358,7 @@ Several graph datasets were generated to demonstrate the strengths or weaknesses
 Our intent here is to provide baseline experiments and compare graph kernels and GNNs. We used the following datasets, graph kernels, and GNN baselines.
 
 \xhdr{Datasets.} We used the \textsc{deezer\_ego\_nets}, \textsc{github\_stargazers}, \textsc{Enymes}, \textsc{Imdb-Binary}, \textsc{Imdb-Multi}, \textsc{Mcf-7}, \textsc{Molt-4},    \textsc{NCI1}, \textsc{Proteins},
-\textsc{Reddit-Binary}, \textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets. Moreover, we used the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website for dataset statistics. We opted for not using continuous node features of the small datasets (if available) and the 3D-coordinates of the \textsc{Alchemy} dataset to solely provide baseline results based on graph structure and discrete labels. In case of the \textsc{QM9} dataset, we closely replicated the (continuous) node and edge features of~\citet{Gil+2017}.
+\textsc{Reddit-Binary}, \textsc{reddit\_threads}, \textsc{twitch\_egos}, \textsc{Uacc257} graph classification datasets. Moreover, we used the \textsc{Alchemy}, \textsc{QM9}, \textsc{Zinc} (multi-target) regression datasets. See the website and \cref{ds} in the appendix for dataset statistics. We opted for not using continuous node features of the small datasets (if available) and the 3D-coordinates of the \textsc{Alchemy} dataset to solely provide baseline results based on graph structure and discrete labels. In case of the \textsc{QM9} dataset, we closely replicated the (continuous) node and edge features of~\citet{Gil+2017}.
 
 
 \xhdr{Graph kernels.} As kernel baselines we used the \new{Weisfeiler-Lehman Subtree} (\textsc{$1$-WL})~\cite{She+2011}, \new{Shortest-path} (\textsc{SP})~\cite{Bor+2005}, \new{Graphlet} (\textsc{GR})~\cite{She+2009}, \new{Weisfeiler-Lehman Optimal Assigment} (\textsc{WL-OA})~\cite{Kri+2016} included in the \textsc{TUDataset} package. The $C$-parameter was selected from $\{10^{-3}, 10^{-2}, \dotsc, 10^{2},$ $10^{3}\}$ from the validation set. For the larger datasets, we computed sparse feature vectors for each graph and used the linear $C$-SVM implementation of \textsc{LibLinear}~\cite{Fan+2008}. The number of iterations of the \textsc{$1$-WL} and \textsc{WL-OA} were selected from $\{0,\dotsc,5\}$.\footnote{As already shown in~\cite{She+2011}, choosing the number of iterations too large will lead to overfitting.}
@@ -376,7 +376,7 @@ Our results show that despite the extensive research on GNNs in recent years, cl
 \begin{table}[]\centering	
 	\caption{Mean MAE (mean std. MAE, logMAE) on large-scale (multi-target) molecular regression tasks.\label{neural_short_tt}}
 	\resizebox{1.0\columnwidth}{!}{\renewcommand{\arraystretch}{1.05}
-		\begin{tabular}{lccc}	\toprule
+		\begin{tabular}{lccc}	\toprule 
 			\multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{3}{c}{\textbf{Dataset}}\\\cmidrule{2-4}
 			& {\textsc{Zinc}}     & {\textsc{alchemy}}   & {\textsc{Qm9}}   \\	\toprule
 			\textsc{Gine-$\varepsilon$}    & 0.084                                                                                                                                                                                                                                     \scriptsize $\pm 0.004$   &                                                                                                                                                                                                                                0.103 {\scriptsize $\pm 0.001$} -2.956 {\scriptsize $\pm 0.029$} &  0.081 {\scriptsize $\pm 0.003$} -3.400 {\scriptsize $\pm  0.094 $}   \\
@@ -413,6 +413,8 @@ through project VRG19-009.
 
 \section{Evaluation examples}\label{evalcode}
 
+See \url{www.graphlearning.io} for further documentation.
+
 \xhdr{Kernelized SVM for graph kernels based on Gram matrices}
 \lstinputlisting[language=Python]{example.py}
 
@@ -433,7 +435,7 @@ For \textsc{Zinc}, we used the given train, validation split, test split, and re
 For the \textsc{QM9} dataset, we additionally used the \textsc{MPNN}~\cite{Gil+2017} architecture as a baseline, closely following the setup of~\cite{Gil+2017}. For the \textsc{Gine-$\varepsilon$}  and the \textsc{MPNN} architecture, following~\citeauthor{Gil+2017}~\cite{Gil+2017}, we used a complete graph, computed pairwise $\ell_2$ distances based on the 3D-coordinates, and concatenated them to the edge features. We note here that our intent is not to beat the state-of-the-art, physical knowledge-incorporating architectures, e.g., \textsc{DimeNet}~\cite{Kli+2020} or \textsc{Cormorant}~\cite{And+2019}, but to solely provide baseline scores. 
 
 All neural experiments were conducted on a workstation with four Nvidia Tesla V100 GPU cards with 32GB of GPU memory running Oracle Linux Server 7.7.
-
+\newpage
 \section{Dataset statistics}
 \begin{table}[h]
 	\begin{center}
@@ -451,20 +453,15 @@ All neural experiments were conducted on a workstation with four Nvidia Tesla V1
 				$\textsc{PTC\_FM}$       & 349               & 2                 & 14.1                             & 14.5                          & \cmark    & \xmark         \\
 				$\textsc{Proteins}$      & 1\,113              & 2                 & 39.1                             & 72.8                          & \cmark    & \xmark         \\
 				$\textsc{Reddit-Binary}$ & 2\,000              & 2                 & 429.6                            & 497.8                         & \xmark     & \xmark        \\ \midrule
-				
+							
+				$\textsc{MCF-7}$       & 27\,770  & 2	&	26.4	&	 28.5               & \cmark  & \cmark           \\
+					
+				$\textsc{Molt-7}$       & 39\,765  &	2	&	26.1	&	     	28.1          & \cmark  & \cmark           \\
 				$\textsc{Yeast}$       &   79\,601&	2&	21.5&	22.8                & \cmark  & \cmark           \\
-				$\textsc{YeastH}$       &  79\,601&	2&	39.4&	40.7                  & \cmark  & \cmark           \\
-				$\textsc{UACC257}$       &      39\,988&	2&	26.1&	28.1                      & \cmark  & \cmark           \\
-				$\textsc{UACC257H}$       &  39\,988&	2&	46.7&	48.7      & \cmark  & \cmark           \\
-				$\textsc{OVCAR-8}$       &      	40\,516&	2&	26.1&	28.1             & \cmark  & \cmark           \\
-				$\textsc{OVCAR-8H}$       &        40\,516	&2&	46.7&	48.7              & \cmark  & \cmark           \\
+				$\textsc{github\_star}$       &  12\,725 & 2	& 	113.8		&	234.6               & \xmark  & \xmark           \\
+				$\textsc{reddit\_threads}$   &	203\,088	  & 2  &	23.9 &	25.0  		               & \xmark  & \xmark           \\
 				\midrule        
-				%$\textsc{Zinc (10k)}$       & 12\,000 & 12	&&	     & \cmark  & \cmark           \\
-				%$\textsc{Zinc (50k)} $       & 60\,000  & 12	&&	     & \cmark  & \cmark           \\
 				$\textsc{Zinc}$       &  249\,456 &12	&23.1 &	24.9     & \cmark  & \cmark           \\
-				
-				%$\textsc{Alchemy (10k)}$       & 12\,000 &12	& &	     & \cmark  & \cmark           \\
-				%$\textsc{Alchemy (50k)} $       &60\,000 &12	&&	     & \cmark  & \cmark           \\
 				$\textsc{Alchemy}$       & 202\,579 &12	& 10.1 &	10.4 	     & \cmark  & \cmark           \\
 				$\textsc{QM9}$       &129\,433  &12	& 18.0 &	18.6     & \cmark (13+3D)$^\dagger$  & \cmark (4)          \\
 				\bottomrule

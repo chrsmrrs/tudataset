@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  6 JUL 2020 12:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  6 JUL 2020 12:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1574,33 +1574,29 @@ LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 ])
 (./networkx.py)
 LaTeX Font Info:    Font shape `T1/ptm/bx/sc' in size <12> not available
-(Font)              Font shape `T1/ptm/b/sc' tried instead on input line 428.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10] [11pdfTeX warning (ext4): destination with the same identifier (name{table
-.4}) has been already used, duplicate ignored
+(Font)              Font shape `T1/ptm/b/sc' tried instead on input line 430.
+ [10] [11pdfTeX warning (ext4): destination with the same identifier (name{tabl
+e.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.476 \end{document}
+l.473 \end{document}
                     ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 476.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 476.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 473.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 473.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 476.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 476.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 473.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 473.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 476.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 473.
  ) 
 Here is how much of TeX's memory you used:
- 37576 strings out of 492616
- 720783 string characters out of 6129480
- 800708 words of memory out of 5000000
+ 37580 strings out of 492616
+ 720817 string characters out of 6129480
+ 799841 words of memory out of 5000000
  40272 multiletter control sequences out of 15000+600000
- 623462 words of font info for 423 fonts, out of 8000000 for 9000
+ 623695 words of font info for 426 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,13n,81p,1262b,2457s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
@@ -1634,10 +1630,10 @@ ype1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></u
 sr/local/texlive/2019/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (11 pages, 224924 bytes).
+Output written on main.pdf (11 pages, 225227 bytes).
 PDF statistics:
- 619 PDF objects out of 1000 (max. 8388607)
- 566 compressed objects within 6 object streams
+ 620 PDF objects out of 1000 (max. 8388607)
+ 567 compressed objects within 6 object streams
  182 named destinations out of 1000 (max. 500000)
  41581 words of extra memory for PDF output out of 42996 (max. 10000000)
 
