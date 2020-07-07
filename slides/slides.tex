@@ -80,27 +80,33 @@ Marion Neumann\inst{6}
 \begin{frame}{Graph Classification and Regression}
 
 \begin{block}{Setting}
- \begin{description}
-  \item[Input: ] Trainingset $T = \{(G_1,y_1),\dots,(G_n,y_n)\}$ of \textbf{graphs} $g_i \in \mathcal{G}$
-and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
-  \item[Goal: ] Learn function $f : \mathcal{G} \to \mathcal{Y}$.
- \end{description} 
+%  \begin{description}
+%   \item[Input: ] Trainingset $T = \{(G_1,y_1),\dots,(G_n,y_n)\}$ of \textbf{graphs} $g_i \in \mathcal{G}$
+% and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
+%   \item[Goal: ] Learn function $f : \mathcal{G} \to \mathcal{Y}$.
+%  \end{description} 
+Learn function $f : \mathcal{G} \to \mathcal{Y}$ predicting a property of a graph.
 \end{block}
 
-\begin{exampleblock}{}
+\vspace{.8em}
+\pause
+
+\begin{statusblock}{Example}
 \begin{columns}[c]
   \column{0.5\textwidth} 
     \begin{itemize}
-      \item $\mathcal{G}$ -- set of molecules
+      \item $\mathcal{G}$ -- set of molecular graphs
       \item $\mathcal{Y} = \{\texttt{toxic}, \texttt{non-toxic}\}$
-      \item $T$ -- tested molecules
+%       \item $T$ -- tested molecules
     \end{itemize}
   \column{0.4\textwidth}
     \LARGE$f\left(\vcenter{\hbox{\includegraphics[width=1.9cm]{caffeine.pdf}}}\right)= \text{?}$
 \end{columns}
+\end{statusblock}
 
-\end{exampleblock}
+\pause
 
+\vspace{.5em}
 
 \textbf{Approaches:}\\
 \begin{itemize}
@@ -111,7 +117,8 @@ and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
 \end{frame}
 
 
-\begin{frame}{Authoritative Experimental Evaluation}
+
+\begin{frame}{Authoritative Experimental Evaluations}
 
 \begin{block}{Problems}
  \begin{itemize}
@@ -133,13 +140,21 @@ and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
 \begin{frame}[t]{\textsc{TUDataset}: Contribution}
 
 \begin{block}{(1) Datasets}
- \begin{itemize}
-  \item \alert<2>{Small molecules}
-  \item \alert<3>{Bioinformatics}
-  \item \alert<4>{Computer vision}
-  \item \alert<5>{Social networks}
-  \item \alert<6>{Synthetic}
- \end{itemize}
+Over 120 graph datasets from various domains:
+
+\begin{columns}[T]
+  \column{0.45\textwidth}
+  \begin{itemize}
+    \item \alert<2>{Small molecules}
+    \item \alert<3>{Bioinformatics}
+    \item \alert<4>{Computer vision}
+  \end{itemize}
+  \column{0.45\textwidth}
+  \begin{itemize}
+    \item \alert<5>{Social networks}
+    \item \alert<6>{Synthetic}
+   \end{itemize}
+\end{columns}
 \end{block}
 
 \begin{center}
@@ -211,13 +226,10 @@ and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
 \begin{block}{Thank You!}
 \begin{itemize}
  \item Many thanks to all contributors of datasets
- \item Your contribution is highly welcome!
+ \item Your involvement is greatly appreciated!
 \end{itemize}
 
 \end{block}
-
-
-
 \end{frame}
 
 
