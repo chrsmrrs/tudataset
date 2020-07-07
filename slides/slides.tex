@@ -17,6 +17,7 @@
 \usepackage{multirow}
 \usepackage{diagbox}
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 
 % \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
@@ -129,9 +130,9 @@ and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
  
 \end{frame}
 
-\begin{frame}{\textsc{TUDataset}: Contribution}
+\begin{frame}[t]{\textsc{TUDataset}: Contribution}
 
-\begin{block}{1) Datasets}
+\begin{block}{(1) Datasets}
  \begin{itemize}
   \item \alert<2>{Small molecules}
   \item \alert<3>{Bioinformatics}
@@ -143,30 +144,20 @@ and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
 
 \begin{center}
 \only<2>{\includegraphics[height=3.5cm]{caffeine} \qquad \includegraphics[height=3.5cm]{molecule_cloud.png}}%
-\only<3>{\includegraphics[height=3.3cm]{protein-graph}\\\hfill\paper{Borgwardt et al., 2005; Vishwanathan et al., 2010}}%
-\only<4>{\includegraphics[height=3.43cm]{keil.png} \qquad \includegraphics[height=3.4cm]{graph.pdf}\\\paper{Kriege et al., 2018}}%
+\only<3>{\includegraphics[height=3.1cm]{protein-graph}\\\hfill\paper{Borgwardt et al., 2005; Vishwanathan et al., 2010}}%
+\only<4>{\includegraphics[height=3.1cm]{keil.png} \qquad \includegraphics[height=3.1cm]{graph.pdf}\\\hfill\paper{Kriege et al., 2018}}%
+\only<5>{%
+\includegraphics[height=1cm]{IMDB_Logo_2016.pdf}\qquad
+\includegraphics[height=.7cm]{GitHub_logo_2013.pdf}\qquad 
+\includegraphics[height=1cm]{Twitter_bird_logo_2012.pdf}\\ \vspace{.7em}
+\includegraphics[height=1cm]{Reddit_logo_new.pdf}\qquad
+\includegraphics[height=1cm]{DBLP_Logo_320x120.png}\qquad
+\includegraphics[height=1.1cm]{Facebook_f_logo.pdf}\\ \vspace{.7em}
+\includegraphics[height=.9cm]{Deezer_logo.pdf}\qquad
+\includegraphics[height=.9cm]{Twitch_logo_2019.pdf}
+}%
+
 \end{center}
-
-
-% \begin{block}{Application areas with structured data}%\vspace{-.1em}
-% \begin{columns}[c]
-%   \column{0.45\textwidth}
-% 	 \begin{itemize}
-% 	   \item \alert<6>{Social network analysis}
-% 	   \item \alert<7>{Bioinformatics}
-% 	   \item \alert<8>{Computer vision}
-% 	   \item \alert<9-10>{Cheminformatics}
-% 	   \end{itemize}
-%     \vspace{.67em}
-%   \column{0.45\textwidth}\centering%
-%    \only<6>{\includegraphics[height=2.7cm]{Social_Network_Analysis_Visualization.png}}%
-%    \only<7>{\includegraphics[height=2.7cm]{protein-graph}}%
-%    \only<8>{\includegraphics[height=2.7cm]{keil.png}}%
-%    \only<9>{\includegraphics[height=2.7cm]{caffeine}}%
-%    \only<10->{\includegraphics[height=2.7cm]{molecule_cloud.png}}%
-% \end{columns}
-% \end{block}
-
 
 
 \end{frame}
@@ -174,17 +165,19 @@ and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
 
 \begin{frame}{\textsc{TUDataset}: Our Contribution}
 
-\begin{block}{2) Baseline methods}
+\begin{block}{(2) Baseline methods}
  \begin{itemize}
-  \item Weisfeiler-Lehman subtree kernel \paper{Shervashidze et al., 2011}
   \item Shortest-path kernel \paper{Borgwardt, Kriegel,2005}
   \item Graphlet \paper{Shervashidze et al., 2009} 
+  \item Weisfeiler-Lehman subtree kernel \paper{Shervashidze et al., 2011}
   \item Weisfeiler-Lehman optimal assignment kernel \paper{Kriege et al., 2016}
-  \item GNN architectures of PyTorch Geometric
+  \item GNN architectures of PyTorch Geometric \paper{Fey, Lenssen, 2019}
  \end{itemize}
 \end{block}
 
-\begin{block}{3) Evaluation Module}
+\pause
+
+\begin{block}{(3) Evaluation Module}
  \begin{itemize}
   \item 10-fold cross validation
   \item Hyperparameter optimization for each fold
@@ -196,9 +189,31 @@ and labels $y_i \in \mathcal{Y}$, $i \in \{1,2, \dots, n\}$.
 
 \begin{frame}{Summary}
 
+\begin{itemize}
+ \item Collection of over 120 graph datasets 
+ \item Standard file format with data loaders
+ \item Evaluation modules in Python
+ \item Graph kernel baselines in C\texttt{++} with Python bindings
+ \item Accessible via graph learning frameworks
+\end{itemize}
 
-\begin{block}{Acknowledgement}
- 
+\vspace{1.5em}
+
+\pause
+
+\begin{center}
+ \Large{ \url{http://graphlearning.io}}
+\end{center}
+
+\vspace{1.5em}
+
+\pause
+\begin{block}{Thank You!}
+\begin{itemize}
+ \item Many thanks to all contributors of datasets
+ \item Your contribution is highly welcome!
+\end{itemize}
+
 \end{block}
 
 
