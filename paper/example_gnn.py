@@ -6,7 +6,7 @@ from auxiliarymethods.reader import tud_to_networkx
 dataset = "PROTEINS"
 use_labels = True
 
-# Download datasets.
+# Download dataset.
 dp.get_dataset(dataset)
 
 # Optimize the number of layers ({1,2,3,4,5}) and

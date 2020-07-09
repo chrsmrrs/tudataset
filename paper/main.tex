@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
-\usepackage[protrusion=true,expansion=false, activate={true,nocompatibility},final,kerning=true,spacing=true,shrink=40]{microtype}
+\usepackage[protrusion=true,expansion=false, activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=10, shrink=65]{microtype}
 
 \usepackage{natbib}
 
@@ -40,8 +40,8 @@
 \usepackage{siunitx}
 
 \usepackage{pifont}
-\newcommand{\cmark}{\ding{51}}%
-\newcommand{\xmark}{\ding{55}}%
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
 
 \usepackage{enumitem}
 \setlist[enumerate]{noitemsep, topsep=0.5\topsep}
@@ -234,18 +234,16 @@
 \icmlaffiliation{wustl}{Department of Computer Science and Engineering, Washington University in St. Louis}
 \icmlcorrespondingauthor{Christopher Morris}{christopher.morris@tu-dortmund.de}
 
-\icmlkeywords{Machine Learning, ICML}
+\icmlkeywords{graph learning, graph kernel, weisfeiler, leman, gnn, graph neural network, benchmark datasets}
 
 \vskip 0.3in
 ]
 
-\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
-%\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
+\printAffiliationsAndNotice{}
 
 \begin{abstract}
 Recently, there has been an increasing interest in (supervised) learning with graph data, especially using graph neural networks.  However, the development of meaningful benchmark datasets and standardized evaluation procedures is lagging, consequently hindering advancements in this area. 
-% That is, most papers still evaluate their methods on small-scale datasets leading to high standard deviations and hard to interpret results
-To address this, we introduce the \textsc{TUDataset} for graph classification and regression. The collection consists of over 120 datasets of varying sizes from a wide range of applications. We provide Python-based data loaders, kernel, and graph neural network baseline implementations, and evaluation tools. Here, we give an overview of the datasets, standardized evaluation procedures, and provide baseline experiments. All datasets are available at \url{www.graphlearning.io}. The experiments are fully reproducible from the code available at \url{www.github.com/chrsmrrs/tudataset}.
+To address this, we introduce the \textsc{TUDataset} for graph classification and regression. The collection consists of over 120 datasets of varying sizes from a wide range of applications. We provide Python-based data loaders, kernel and graph neural network baseline implementations, and evaluation tools. Here, we give an overview of the datasets, standardized evaluation procedures, and provide baseline experiments. All datasets are available at \url{www.graphlearning.io}. The experiments are fully reproducible from the code available at \url{www.github.com/chrsmrrs/tudataset}.
 \end{abstract}
 
 
@@ -307,7 +305,7 @@ Several graph datasets were generated to demonstrate the strengths or weaknesses
 \begin{table*}[ht]\centering		
 	\caption{Classification accuracies in percent and standard deviations on small-scale datasets.}
 	\label{t2l}	
-	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{.95}
+	\resizebox{0.8\textwidth}{!}{ 	\renewcommand{\arraystretch}{.9}
 		\begin{tabular}{@{}c <{\enspace}@{}lcccccc@{}}	\toprule
 			
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{6}{c}{\textbf{Dataset}}\\\cmidrule{3-8}
@@ -336,7 +334,7 @@ Several graph datasets were generated to demonstrate the strengths or weaknesses
 \begin{table*}[t]\centering		
 	\caption{Classification accuracies in percent and standard deviations on mid-scale datasets.}
 	\label{t2ll}	
-	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{.95}
+	\resizebox{0.75\textwidth}{!}{ 	\renewcommand{\arraystretch}{.9}
 		\begin{tabular}{@{}c <{\enspace}@{}lccccc@{}}	\toprule
 			& \multirow{3}{*}{\vspace*{4pt}\textbf{Method}}&\multicolumn{5}{c}{\textbf{Dataset}}\\\cmidrule{3-7}
 			& & {\textsc{Mcf-7}}         &  {\textsc{Molt-4}}      & {\textsc{Yeast}}           & {\textsc{github\_star}}       & {\textsc{reddit\_threads}}      \\	\toprule
@@ -401,7 +399,6 @@ Resource-Constrained Data Analysis'', project A6 ``Resource-efficient Graph Mini
 Nils Kriege has been supported by the Vienna Science and Technology Fund (WWTF) 
 through project VRG19-009.
 
-%\newpage
 \bibliography{bibliography}
 \bibliographystyle{icml2020}
 
@@ -424,7 +421,7 @@ See \url{www.graphlearning.io} for further documentation.
 \xhdr{GNN evaluation}
 \lstinputlisting[language=Python]{example_gnn.py}
 
-\xhdr{Loading graphs as NetworkX graphs}
+\xhdr{Loading graphs in NetworkX format}
 \lstinputlisting[language=Python]{networkx.py}
 
 \section{Experimental protocol and hyperparameters for \textsc{Zinc}, \textsc{Alchemy}, \textsc{QM9}}\label{eval}

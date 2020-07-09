@@ -3,7 +3,7 @@ import auxiliarymethods.datasets as dp
 import kernel_baselines as kb
 from auxiliarymethods.kernel_evaluation import linear_svm_evaluation
 
-# Download datasets.
+# Download dataset.
 classes = dp.get_dataset("MOLT-4")
 use_labels, use_edge_labels = True, True
 

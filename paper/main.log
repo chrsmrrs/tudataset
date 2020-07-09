@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  6 JUL 2020 16:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  7 JUL 2020 20:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1212,7 +1212,7 @@ Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 40, step: 1, non-selected.
+(microtype)             stretch: 10, shrink: 65, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: Adjustment of interword spacing enabled.
@@ -1402,8 +1402,8 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removed on input line 240.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 245.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 248.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 244.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 246.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1412,12 +1412,12 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--260
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
 [][][][]$\T1/pcr/m/n/9 https : / / pytorch-[]geometric . readthedocs .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--260
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
 [][][][]$\T1/pcr/m/n/9 https : / / docs . dgl . ai / en / 0 . 4 . x / api / pyt
 hon /
  []
@@ -1430,12 +1430,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Underfull \hbox (badness 1360) in paragraph at lines 266--268
-\T1/ptm/m/n/10 (+20) or medium-scale datasets. Re-cently, [][]$\T1/pcr/m/n/10 o
-gb . stanford .
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1445,39 +1439,39 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \vbox (2.46005pt too high) detected at line 324
+Overfull \vbox (3.66013pt too high) detected at line 322
  []
 
 
-Overfull \vbox (2.46005pt too high) detected at line 351
+Overfull \vbox (3.66013pt too high) detected at line 349
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--362
-\T1/ptm/b/n/10 Datasets. \T1/ptm/m/n/10 (+20) We used the \T1/ptm/m/sc/10 (+20)
- deezer_ego_nets\T1/ptm/m/n/10 (+20) ,
+Underfull \hbox (badness 10000) in paragraph at lines 358--360
+\T1/ptm/b/n/10 Datasets. \T1/ptm/m/n/10 (+10) We used the \T1/ptm/m/sc/10 (+10)
+ deezer_ego_nets\T1/ptm/m/n/10 (+10) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--362
-\T1/ptm/m/sc/10 (+20) github_stargazers\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (
-+20) Enymes\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Imdb-Binary\T1/ptm/m/n/
-10 (+20) ,
+Underfull \hbox (badness 10000) in paragraph at lines 358--360
+\T1/ptm/m/sc/10 (+10) github_stargazers\T1/ptm/m/n/10 (+10) , \T1/ptm/m/sc/10 (
++10) Enymes\T1/ptm/m/n/10 (+10) , \T1/ptm/m/sc/10 (+10) Imdb-Binary\T1/ptm/m/n/
+10 (+10) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--362
-\T1/ptm/m/sc/10 (+20) Imdb-Multi\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Mc
-f-7\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Molt-4\T1/ptm/m/n/10 (+20) , \T
-1/ptm/m/sc/10 (+20) NCI1\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) Pro-teins\
-T1/ptm/m/n/10 (+20) ,
+Underfull \hbox (badness 10000) in paragraph at lines 358--360
+\T1/ptm/m/sc/10 (+10) Imdb-Multi\T1/ptm/m/n/10 (+10) , \T1/ptm/m/sc/10 (+10) Mc
+f-7\T1/ptm/m/n/10 (+10) , \T1/ptm/m/sc/10 (+10) Molt-4\T1/ptm/m/n/10 (+10) , \T
+1/ptm/m/sc/10 (+10) NCI1\T1/ptm/m/n/10 (+10) , \T1/ptm/m/sc/10 (+10) Pro-teins\
+T1/ptm/m/n/10 (+10) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--362
-\T1/ptm/m/sc/10 (+20) Reddit-Binary\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20)
- red-dit_threads\T1/ptm/m/n/10 (+20) , \T1/ptm/m/sc/10 (+20) twitch_egos\T1/ptm
-/m/n/10 (+20) ,
+Underfull \hbox (badness 10000) in paragraph at lines 358--360
+\T1/ptm/m/sc/10 (+10) Reddit-Binary\T1/ptm/m/n/10 (+10) , \T1/ptm/m/sc/10 (+10)
+ red-dit_threads\T1/ptm/m/n/10 (+10) , \T1/ptm/m/sc/10 (+10) twitch_egos\T1/ptm
+/m/n/10 (+10) ,
  []
 
 
@@ -1486,9 +1480,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [3]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 376.
+               Default added (so using `tbp') on input line 374.
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+(./main.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
@@ -1496,62 +1494,60 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.403 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.2
-}) has been already used, duplicate ignored
+l.13 
+     pdfTeX warning (ext4): destination with the same identifier (name{table.2}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.403 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.3
-}) has been already used, duplicate ignored
+l.13 
+     pdfTeX warning (ext4): destination with the same identifier (name{table.3}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.403 
-      ] (./main.bbl [5]
-Underfull \hbox (badness 4595) in paragraph at lines 169--173
-[]\T1/ptm/m/n/10 (+20) Helma, C., King, R. D., Kramer, S., and Srini-vasan,
+l.13 
+     ]
+Underfull \hbox (badness 5667) in paragraph at lines 169--173
+[]\T1/ptm/m/n/10 (+10) Helma, C., King, R. D., Kramer, S., and Srini-vasan,
  []
 
-[6]
-Underfull \hbox (badness 2547) in paragraph at lines 387--392
-[]\T1/ptm/m/n/10 (+20) Shervashidze, N., Schweitzer, P., van Leeuwen, E. J.,
+[5] [6]
+Underfull \hbox (badness 1043) in paragraph at lines 401--406
+[]\T1/ptm/m/n/10 (+10) Simonovsky, M. and Ko-modakis, N.  Dy-namic edge-
  []
 
-[7]) [8
-
-] (./example.py
+) [7] (./example.py
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 1.
-) (./example_sparse.py) (./example_gnn.py [9
+) (./example_sparse.py) (./example_gnn.py [8
 
 ])
 (./networkx.py)
 LaTeX Font Info:    Font shape `T1/ptm/bx/sc' in size <12> not available
-(Font)              Font shape `T1/ptm/b/sc' tried instead on input line 430.
- [10] [11pdfTeX warning (ext4): destination with the same identifier (name{tabl
-e.4}) has been already used, duplicate ignored
+(Font)              Font shape `T1/ptm/b/sc' tried instead on input line 427.
+ [9] [10pdfTeX warning (ext4): destination with the same identifier (name{table
+.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.473 \end{document}
+l.470 \end{document}
                     ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 473.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 473.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 470.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 470.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 473.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 473.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 470.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 470.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 473.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 470.
  ) 
 Here is how much of TeX's memory you used:
- 37557 strings out of 492616
- 720608 string characters out of 6129480
- 799861 words of memory out of 5000000
+ 37655 strings out of 492616
+ 721545 string characters out of 6129480
+ 798728 words of memory out of 5000000
  40272 multiletter control sequences out of 15000+600000
- 622400 words of font info for 409 fonts, out of 8000000 for 9000
+ 627750 words of font info for 477 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,13n,81p,1309b,2457s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
@@ -1585,10 +1581,10 @@ ype1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></u
 sr/local/texlive/2019/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (11 pages, 224411 bytes).
+Output written on main.pdf (10 pages, 224045 bytes).
 PDF statistics:
- 626 PDF objects out of 1000 (max. 8388607)
- 573 compressed objects within 6 object streams
- 182 named destinations out of 1000 (max. 500000)
+ 607 PDF objects out of 1000 (max. 8388607)
+ 555 compressed objects within 6 object streams
+ 181 named destinations out of 1000 (max. 500000)
  41581 words of extra memory for PDF output out of 42996 (max. 10000000)
 
