@@ -47,7 +47,7 @@ You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_ba
 
 ## Usage
 
-See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for baseline and evaluation examples. More details can be found at [graphlearning.io](https://chrsmrrs.github.io/datasets/docs/documentation/).
+See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for baseline and evaluation examples. More details can be found at [graphlearning.io](https://chrsmrrs.github.io/datasets/docs/evalution/).
 
 ## Terms and conditions
 Please feel free to use our code. We only ask that you cite:
