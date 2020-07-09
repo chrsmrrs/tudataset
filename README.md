@@ -1,6 +1,6 @@
 # TUDataset
 
-Source code for our ICML 2020 Workshop on Graph Representation Learning and Beyond (GRL+ 2020) paper "[TUDataset: A collection of benchmark datasets for learning with graphs](https://arxiv.org/abs/XXX.XXX)". This repository contains graph kernel and GNN baseline implementations, data loaders, and evaluations scripts.
+Source code for our ICML 2020 Workshop on Graph Representation Learning and Beyond (GRL+ 2020) paper "[TUDataset: A collection of benchmark datasets for learning with graphs](https://grlplus.github.io/papers/79.pdf)". This repository contains graph kernel and GNN baseline implementations, data loaders, and evaluations scripts.
 
 See [graphlearning.io](http://www.graphlearning.io/) for documentation on how to use this package.
 
@@ -47,7 +47,7 @@ You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_ba
 
 ## Usage
 
-See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for baseline and evaluation examples. More details can be found at [graphlearning.io](https://chrsmrrs.github.io/datasets/docs/documentation/).
+See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for baseline and evaluation examples. More details can be found at [graphlearning.io](https://chrsmrrs.github.io/datasets/docs/evalution/).
 
 ## Terms and conditions
 Please feel free to use our code. We only ask that you cite:
