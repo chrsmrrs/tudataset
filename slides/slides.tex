@@ -110,7 +110,7 @@ Learn function $f : \mathcal{G} \to \mathcal{Y}$ predicting a property of a grap
 
 \textbf{Approaches:}\\
 \begin{itemize}
- \item Graph embedding, e.g., chemical fingerprints (1973)
+ \item Simple vector representations,\,e.g.\,chemical fingerprints (1973)
  \item Graph kernels (2002)
  \item Graph neural networks (2016)
 \end{itemize}
@@ -118,12 +118,12 @@ Learn function $f : \mathcal{G} \to \mathcal{Y}$ predicting a property of a grap
 
 
 
-\begin{frame}{Authoritative Experimental Evaluations}
+\begin{frame}{Reliable Experimental Evaluations}
 
 \begin{block}{Problems}
  \begin{itemize}
-  \item Graph models are non standardized 
-  \item Experimental setup is not standardized
+  \item Graph models non-standardized  
+  \item Experimental setup non-standardized 
   \item[$\Rightarrow$] Results from different publications not comparable
  \end{itemize}
 \end{block}
@@ -145,10 +145,12 @@ Learn function $f : \mathcal{G} \to \mathcal{Y}$ predicting a property of a grap
  
 \end{frame}
 
+
+\setbeamercolor{alerted text}{fg=orange}
 \begin{frame}[t]{\textsc{TUDataset} Benchmark Collection}
 
 \begin{block}{(1) Datasets}
-Over 120 graph datasets from various domains:
+Over 120 graph datasets of various sizes and domains:
 
 \begin{columns}[T]
   \column{0.45\textwidth}
@@ -186,7 +188,7 @@ Over 120 graph datasets from various domains:
 \end{frame}
 
 
-\begin{frame}{\textsc{TUDataset} Benchmark Collection}
+\begin{frame}[t]{\textsc{TUDataset} Benchmark Collection}
 
 \begin{block}{(2) Baseline methods}
  \begin{itemize}
@@ -211,6 +213,7 @@ Over 120 graph datasets from various domains:
 
 
 \begin{frame}{Summary}
+\putat{250}{-50}{\includegraphics[height=2cm]{tud.png}}
 
 \begin{itemize}
  \item Collection of over 120 graph datasets 
@@ -227,6 +230,7 @@ Over 120 graph datasets from various domains:
 \begin{center}
  \Large{ \url{http://graphlearning.io}}
 \end{center}
+
 
 \vspace{1.5em}
 
