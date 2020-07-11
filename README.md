@@ -17,7 +17,7 @@ First make sure that you have all requirements installed.
 - scipy
 - sklearn
 - torch 1.5
-- torch-geometric
+- torch-geometric 1.5
 
 If you want to use the kernel baselines, you will further need:
 - eigen3
