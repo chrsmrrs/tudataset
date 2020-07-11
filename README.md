@@ -34,16 +34,15 @@ $ cd tud_benchmark/kernel_baselines
 ```
 If you are using a Linux system, run
 ```Bash
-$ g++ -O3 -shared -std=c++11 -fPIC `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
+$ g++ -O3 -shared -std=c++11 -undefined dynamic_lookup `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
 ```
 on MacOs, run
 ```Bash
-$ g++ -O3 -shared -std=c++11 -undefined dynamic_lookup `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
+$ g++ -O3 -shared -std=c++11 -fPIC `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
 ```
 
 You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_baselines.cpp``, 
 ``kernel_baselines/src/AuxiliaryMethods.h``, and ``kernel_baselines/src/Graph.cpp``. 
-
 
 ## Usage
 See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for baseline and evaluation examples. More details can be found at [graphlearning.io](https://chrsmrrs.github.io/datasets/docs/evalution/).
