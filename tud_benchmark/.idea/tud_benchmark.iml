@@ -7,5 +7,6 @@
     <orderEntry type="module" module-name="neural_baselines" />
     <orderEntry type="module" module-name="sparsewl" />
     <orderEntry type="module" module-name="tgnn" />
+    <orderEntry type="module" module-name="mipGNN" />
   </component>
 </module>

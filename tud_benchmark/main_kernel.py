@@ -17,6 +17,8 @@ def main():
     for dataset, use_labels in dataset:
         classes = dp.get_dataset(dataset)
 
+        print()
+
         # 1-WL kernel, number of iterations in [1:6].
         all_matrices = []
         for i in range(1, 6):

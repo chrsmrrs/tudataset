@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/mipGNN/.idea/mipGNN.iml" filepath="$USER_HOME$/mipGNN/.idea/mipGNN.iml" />
       <module fileurl="file://$USER_HOME$/sparsewl/neural_baselines/.idea/neural_baselines.iml" filepath="$USER_HOME$/sparsewl/neural_baselines/.idea/neural_baselines.iml" />
       <module fileurl="file://$USER_HOME$/sparsewl/.idea/sparsewl.iml" filepath="$USER_HOME$/sparsewl/.idea/sparsewl.iml" />
       <module fileurl="file://$USER_HOME$/tgnn/.idea/tgnn.iml" filepath="$USER_HOME$/tgnn/.idea/tgnn.iml" />
