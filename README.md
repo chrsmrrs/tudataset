@@ -19,7 +19,7 @@ First make sure that you have all requirements installed.
 - torch 1.5
 - torch-geometric
 
-If you want to use the kernel baseline, you will further need:
+If you want to use the kernel baselines, you will further need:
 - eigen3
 - pybind11
 - libsvm
@@ -46,7 +46,6 @@ You might need to adjust your path to ``pybind11`` and ``eigen3`` in ``kernel_ba
 
 
 ## Usage
-
 See ``tud_benchmark/main_kernel.py`` and ``tud_benchmark/main_gnn.py`` for baseline and evaluation examples. More details can be found at [graphlearning.io](https://chrsmrrs.github.io/datasets/docs/evalution/).
 
 ## Terms and conditions
