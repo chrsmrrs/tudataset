@@ -1,15 +1,14 @@
 import torch
-from torch.nn import Linear, Sequential, ReLU, BatchNorm1d as BN
-from torch_geometric.nn import GINConv, global_mean_pool, global_add_pool, JumpingKnowledge
-
-from torch_geometric.nn import MessagePassing
 import torch.nn.functional as F
-
+from torch.nn import Linear, Sequential, ReLU, BatchNorm1d as BN
+from torch_geometric.nn import GINConv, global_mean_pool, JumpingKnowledge
+from torch_geometric.nn import MessagePassing
 from torch_geometric.nn.inits import reset
 
 
+# Taken from https://github.com/rusty1s/pytorch_geometric/blob/master/benchmark/kernel/gin.py.
 class GIN(torch.nn.Module):
-    def __init__(self, dataset, num_layers, hidden, add_pool=False):
+    def __init__(self, dataset, num_layers, hidden):
         super(GIN, self).__init__()
         self.conv1 = GINConv(Sequential(
             Linear(dataset.num_features, hidden),
@@ -32,7 +31,6 @@ class GIN(torch.nn.Module):
                     train_eps=True))
         self.lin1 = Linear(hidden, hidden)
         self.lin2 = Linear(hidden, dataset.num_classes)
-        self.add_pool = add_pool
 
     def reset_parameters(self):
         self.conv1.reset_parameters()
@@ -47,10 +45,7 @@ class GIN(torch.nn.Module):
         for conv in self.convs:
             x = conv(x, edge_index)
 
-        if self.add_pool:
-            x = global_add_pool(x, batch)
-        else:
-            x = global_mean_pool(x, batch)
+        x = global_mean_pool(x, batch)
 
         x = F.relu(self.lin1(x))
         x = F.dropout(x, p=0.5, training=self.training)
@@ -61,8 +56,9 @@ class GIN(torch.nn.Module):
         return self.__class__.__name__
 
 
+# Taken from https://github.com/rusty1s/pytorch_geometric/blob/master/benchmark/kernel/gin.py.
 class GIN0(torch.nn.Module):
-    def __init__(self, dataset, num_layers, hidden, add_pool=False):
+    def __init__(self, dataset, num_layers, hidden):
         super(GIN0, self).__init__()
         self.conv1 = GINConv(Sequential(
             Linear(dataset.num_features, hidden),
@@ -85,7 +81,6 @@ class GIN0(torch.nn.Module):
                     train_eps=False))
         self.lin1 = Linear(hidden, hidden)
         self.lin2 = Linear(hidden, dataset.num_classes)
-        self.add_pool = add_pool
 
     def reset_parameters(self):
         self.conv1.reset_parameters()
@@ -100,10 +95,7 @@ class GIN0(torch.nn.Module):
         for conv in self.convs:
             x = conv(x, edge_index)
 
-        if self.add_pool:
-            x = global_add_pool(x, batch)
-        else:
-            x = global_mean_pool(x, batch)
+        x = global_mean_pool(x, batch)
 
         x = F.relu(self.lin1(x))
         x = F.dropout(x, p=0.5, training=self.training)
@@ -114,6 +106,7 @@ class GIN0(torch.nn.Module):
         return self.__class__.__name__
 
 
+# Taken from https://github.com/rusty1s/pytorch_geometric/blob/master/benchmark/kernel/gin.py.
 class GINWithJK(torch.nn.Module):
     def __init__(self, dataset, num_layers, hidden, mode='cat'):
         super(GINWithJK, self).__init__()
