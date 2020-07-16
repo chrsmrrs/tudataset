@@ -1,5 +1,5 @@
 import auxiliarymethods.datasets as dp
-from auxiliarymethods.gnn_evaluation import gnn_evaluation
+from auxiliarymethods.reader import tud_to_networkx
 
 dataset = "PROTEINS"
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  11 JUL 2020 03:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.30)  16 JUL 2020 16:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1513,7 +1513,7 @@ Underfull \hbox (badness 5667) in paragraph at lines 169--173
  []
 
 [5] [6]
-Underfull \hbox (badness 1043) in paragraph at lines 401--406
+Underfull \hbox (badness 1043) in paragraph at lines 402--407
 []\T1/ptm/m/n/10 (+10) Simonovsky, M. and Ko-modakis, N.  Dy-namic edge-
  []
 
@@ -1543,11 +1543,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 469.
  ) 
 Here is how much of TeX's memory you used:
- 37655 strings out of 492616
- 721545 string characters out of 6129480
- 798727 words of memory out of 5000000
+ 37651 strings out of 492616
+ 721512 string characters out of 6129480
+ 799868 words of memory out of 5000000
  40272 multiletter control sequences out of 15000+600000
- 627750 words of font info for 477 fonts, out of 8000000 for 9000
+ 627620 words of font info for 475 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,13n,81p,1309b,2457s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
@@ -1581,10 +1581,10 @@ ype1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></u
 sr/local/texlive/2019/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (10 pages, 224047 bytes).
+Output written on main.pdf (10 pages, 224071 bytes).
 PDF statistics:
  607 PDF objects out of 1000 (max. 8388607)
  555 compressed objects within 6 object streams
- 181 named destinations out of 1000 (max. 500000)
+ 180 named destinations out of 1000 (max. 500000)
  41581 words of extra memory for PDF output out of 42996 (max. 10000000)
 
