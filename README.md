@@ -11,19 +11,19 @@ See [graphlearning.io](http://www.graphlearning.io/) for documentation on how to
 
 First make sure that you have all requirements installed.
 ###  Requirements
-- Python 3.8
-- numpy
-- pandas
-- scipy
-- sklearn
-- torch 1.5
-- torch-geometric 1.5
+- `networkx`
+- `numpy` (somewhat recent version)
+- `pandas` (somewhat recent version)
+- `Python` 3.x
+- `scipy` (somewhat recent version)
+- `sklearn` (somewhat recent version)
+- `torch` 1.5
+- `torch-geometric` 1.5
 
 If you want to use the kernel baselines, you will further need:
-- eigen3
-- pybind11
-- libsvm
-- g++ 
+- `eigen3`
+- `g++` 
+- `pybind11`
 
 ### Compilation of kernel baselines
 To execute the kernel baselines you have to compile the Python package. If you just want to use the GNN baselines, data loaders, and evaluation scripts, you can skip this step.
