@@ -36,7 +36,7 @@ If you are using a Linux system, run
 ```Bash
 $ g++ -O3 -shared -std=c++11 -fPIC `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
 ```
-on MacOs, run
+on MacOS, run
 ```Bash
 $ g++ -O3 -shared -std=c++11 -undefined dynamic_lookup `python3 -m pybind11 --includes`  kernel_baselines.cpp src/*cpp -o ../kernel_baselines`python3-config --extension-suffix`
 ```
