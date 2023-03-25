@@ -68,7 +68,7 @@ class NetGINE(torch.nn.Module):
         x_2 = self.bn2(x_2)
         x_3 = F.relu(self.conv3(x_2, data.edge_index, data.edge_attr))
         x_3 = self.bn3(x_3)
-        x_4 = F.relu(self.conv3(x_3, data.edge_index, data.edge_attr))
+        x_4 = F.relu(self.conv4(x_3, data.edge_index, data.edge_attr))
         x_4 = self.bn4(x_4)
 
         x = torch.cat([x_1, x_2, x_3, x_4], dim=-1)
